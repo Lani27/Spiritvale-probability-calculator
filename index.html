@@ -50,6 +50,11 @@
         .multiselect-dropdown-list input {
             margin-right: 0.5rem;
         }
+        .multiselect-dropdown-list label:has(input:disabled) {
+            opacity: 0.5;
+            cursor: not-allowed;
+            color: #9ca3af; /* gray-400 */
+        }
     </style>
 </head>
 <body class="text-slate-300">
@@ -277,9 +282,16 @@
 
                 multiSelectContainers.forEach((container, index) => {
                     const button = container.querySelector('button');
+                    const list = container.querySelector('.multiselect-dropdown-list');
+
                     button.addEventListener('click', (e) => {
                         e.stopPropagation();
                         toggleDropdown(index);
+                    });
+
+                    // Prevent dropdown from closing when clicking inside the list
+                    list.addEventListener('click', (e) => {
+                        e.stopPropagation();
                     });
                 });
 
@@ -349,28 +361,36 @@
             }
 
             function updateCheckboxDisabledStates() {
-                const allOtherSelections = selectedStats
-                    .map((slot, index) => slot.map(statName => ({ ...statDetails[statName], slotIndex: index })))
-                    .flat();
+                const selectionsBySlot = selectedStats.map((slot, index) =>
+                    slot.map(statName => ({ ...statDetails[statName], slotIndex: index }))
+                );
+
+                const allSelectedGroups = selectionsBySlot.flat().map(s => s.group).filter(Boolean);
 
                 multiSelectContainers.forEach((container, containerIndex) => {
                     const list = container.querySelector('.multiselect-dropdown-list');
+                    const selectionsInThisSlot = selectionsBySlot[containerIndex];
+                    const groupsInThisSlot = selectionsInThisSlot.map(s => s.group).filter(Boolean);
+
                     list.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                         const statName = checkbox.value;
                         const stat = statDetails[statName];
 
-                        const isSelectedInThisSlot = selectedStats[containerIndex].includes(statName);
-                        if (isSelectedInThisSlot) {
-                            checkbox.disabled = false;
+                        checkbox.disabled = false; // Reset first
+
+                        // Rule 1: A stat is selected in another slot.
+                        const conflictAcrossSlots = selectionsBySlot.flat().find(s =>
+                            s.slotIndex !== containerIndex && ((s.group && s.group === stat.group) || s.name === stat.name)
+                        );
+                        if (conflictAcrossSlots) {
+                            checkbox.disabled = true;
                             return;
                         }
 
-                        const conflictingSelection = allOtherSelections.find(s => {
-                            if (s.slotIndex === containerIndex) return false; // Don't check against its own slot
-                            return (s.group && s.group === stat.group) || s.name === stat.name;
-                        });
-
-                        checkbox.disabled = !!conflictingSelection;
+                        // Rule 2: A different group is already selected in THIS slot.
+                        if (groupsInThisSlot.length > 0 && stat.group && !groupsInThisSlot.includes(stat.group)) {
+                            checkbox.disabled = true;
+                        }
                     });
                 });
             }
@@ -446,56 +466,62 @@
                 const equipment = equipmentData[equipmentName];
                 const statObjectArrays = statNameArrays.map(slot => slot.map(name => statDetails[name]));
 
-                let totalProb = 1;
-
-                // Line 1
-                const s1Array = statObjectArrays[0];
-                let p1_sum = 0;
-                s1Array.forEach(s1 => {
-                    let p1 = 1 / equipment.pools.line1.length;
+                // --- Probability for Slot 1 ---
+                const slot1Options = statObjectArrays[0];
+                let probSlot1 = 0;
+                slot1Options.forEach(stat => {
+                    let p = 1 / equipment.pools.line1.length; // Chance to get the stat
                     if (isPerfect) {
-                        p1 *= 1 / s1.values;
+                        p *= 1 / stat.values; // Chance for a perfect roll on that stat
                     }
-                    p1_sum += p1;
+                    probSlot1 += p;
                 });
-                totalProb *= p1_sum;
 
-                // Lines 2 & 3
-                const s2Array = statObjectArrays[1];
-                const s3Array = statObjectArrays[2];
+                // --- Probability for Slots 2 & 3 ---
+                const slot2Options = statObjectArrays[1];
+                const slot3Options = statObjectArrays[2];
+
+                // Since the UI now enforces that slot 2 and 3 have different, valid groups,
+                // we can simplify the calculation.
                 const line23pool = equipment.pools.line23 || [];
-                const numGroups = new Set(line23pool.map(s => s.group)).size;
-                const pGroupSelection = 1 / combinations(numGroups, 2);
+                const numGroupsInPool = new Set(line23pool.map(s => s.group)).size;
 
-                let p2_sum = 0;
-                s2Array.forEach(s2 => {
-                    const s2GroupSize = getStatsInGroup(s2.group, equipmentName, 'line23');
-                    let p2 = 1 / s2GroupSize;
+                // The probability of selecting the two correct groups for slot 2 and 3
+                const probOfCorrectGroupPair = 1 / combinations(numGroupsInPool, 2);
+
+                // Probability within the chosen groups
+                let probSlot2 = 0;
+                slot2Options.forEach(stat => {
+                    const groupSize = getStatsInGroup(stat.group, equipmentName, 'line23');
+                    let p = 1 / groupSize; // Chance to get the stat within its group
                     if (isPerfect) {
-                        p2 *= 1 / s2.values;
+                        p *= 1 / stat.values;
                     }
-                    p2_sum += p2;
+                    probSlot2 += p;
                 });
 
-                let p3_sum = 0;
-                s3Array.forEach(s3 => {
-                    const s3GroupSize = getStatsInGroup(s3.group, equipmentName, 'line23');
-                    let p3 = 1 / s3GroupSize;
+                let probSlot3 = 0;
+                slot3Options.forEach(stat => {
+                    const groupSize = getStatsInGroup(stat.group, equipmentName, 'line23');
+                    let p = 1 / groupSize;
                     if (isPerfect) {
-                        p3 *= 1 / s3.values;
+                        p *= 1 / stat.values;
                     }
-                    p3_sum += p3;
+                    probSlot3 += p;
                 });
 
-                totalProb *= pGroupSelection * p2_sum * p3_sum;
+                // The total probability for slots 2 and 3 is the chance to get the right groups,
+                // multiplied by the chances of getting the right stats within those groups.
+                const probSlots2and3 = probOfCorrectGroupPair * probSlot2 * probSlot3;
 
-                // Simple denominator calculation
+                // --- Final Probability ---
+                const totalProb = probSlot1 * probSlots2and3;
                 const denominator = totalProb > 0 ? Math.round(1 / totalProb) : Infinity;
 
                 return {
                     prob: totalProb,
                     denominator: denominator,
-                    breakdown: "See individual calculations" // Placeholder
+                    breakdown: "Calculation refactored for clarity."
                 };
             }
 
