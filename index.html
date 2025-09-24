@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpiritVale Stat Roll Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* gray-900 */
+        }
+        .custom-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%236b7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 8 4 4 4-4"/></svg>');
+            background-size: 1.25rem;
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+        }
+        .calculator-panel {
+             background-color: #1f2937; /* gray-800 */
+        }
+    </style>
+</head>
+<body class="text-slate-300">
+
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <!-- Main Content -->
+        <main class="w-full max-w-2xl mx-auto">
+            <header class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold text-white">SpiritVale Stat Roll Calculator</h1>
+                <p class="text-slate-400 mt-2">Select your equipment and desired stats to see the roll probability.</p>
+            </header>
+
+            <div class="calculator-panel shadow-lg rounded-xl p-6 md:p-8 border border-gray-700">
+                <!-- Equipment Selection -->
+                <div class="mb-6">
+                    <label for="equipmentType" class="block text-sm font-medium text-slate-400 mb-2">Equipment Piece</label>
+                    <select id="equipmentType" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                        <!-- Options will be populated by JS -->
+                    </select>
+                </div>
+
+                <!-- Stat Selection Form -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label for="stat1" class="block text-sm font-medium text-slate-400 mb-2">Stat 1</label>
+                        <select id="stat1" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <!-- Options will be populated by JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="stat2" class="block text-sm font-medium text-slate-400 mb-2">Stat 2</label>
+                        <select id="stat2" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <!-- Options will be populated by JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label for="stat3" class="block text-sm font-medium text-slate-400 mb-2">Stat 3</label>
+                        <select id="stat3" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <!-- Options will be populated by JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="text-center my-8">
+                    <button id="calculateBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-md transition-colors w-full md:w-auto">
+                        Calculate Probability
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="hidden text-center bg-red-900/50 border border-red-700 text-red-300 px-4 py-3 rounded-lg mb-6">
+                    <p id="error-text"></p>
+                </div>
+
+                <!-- Results Section -->
+                <div id="results" class="hidden">
+                     <hr class="border-gray-700 my-6">
+                    <h2 class="text-xl font-semibold text-center mb-6 text-white">Calculation Results</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Scenario 1: Any Roll -->
+                        <div>
+                            <h3 class="text-md font-medium text-blue-400 mb-2 text-center">Chance for Right Stats (Any Roll)</h3>
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex flex-col justify-center border border-gray-700">
+                                <p class="text-3xl font-bold text-center text-white mb-2" id="any-roll-chance"></p>
+                                <p class="text-center text-slate-400" id="any-roll-fraction"></p>
+                                <p class="text-xs text-center text-slate-500 mt-2 break-words" id="any-roll-breakdown"></p>
+                            </div>
+                        </div>
+
+                        <!-- Scenario 2: Perfect Roll -->
+                        <div>
+                            <h3 class="text-md font-medium text-blue-400 mb-2 text-center">Chance for Perfect Roll (Max Values)</h3>
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex flex-col justify-center border border-gray-700">
+                                <p class="text-3xl font-bold text-center text-white mb-2" id="perfect-roll-chance"></p>
+                                <p class="text-center text-slate-400" id="perfect-roll-fraction"></p>
+                                <p class="text-xs text-center text-slate-500 mt-2 break-words" id="perfect-roll-breakdown"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <footer class="text-center mt-6">
+                <p class="text-xs text-slate-500">Probabilities are based on the assumption of equal chances for each outcome within a stat group.</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA SETUP ---
+            const equipmentData = {
+                "Ranged Weapon": {
+                    pools: {
+                        line1: [
+                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
+                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
+                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                        ],
+                        line23: [
+                            { name: 'Atk%', group: 'percentAttack', values: 3 }, { name: 'Matk%', group: 'percentAttack', values: 3 },
+                            { name: 'Damage Ranged', group: 'damageType', values: 4 }, { name: 'Damage Magic', group: 'damageType', values: 4 },
+                            { name: 'Crit', group: 'critChance', values: 4 },
+                            { name: 'Crit Damage', group: 'critDamage', values: 4 },
+                            { name: 'Leech', group: 'leech', values: 4 },
+                        ]
+                    },
+                    selection: ['line1', 'line23', 'line23']
+                },
+                "Melee Weapon": {
+                    pools: {
+                        line1: [
+                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
+                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
+                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                        ],
+                        line23: [
+                            { name: 'Atk%', group: 'percentAttack', values: 3 }, { name: 'Matk%', group: 'percentAttack', values: 3 },
+                            { name: 'Damage Melee', group: 'damageType', values: 4 }, { name: 'Damage Magic', group: 'damageType', values: 4 },
+                            { name: 'Crit', group: 'critChance', values: 4 },
+                            { name: 'Crit Damage', group: 'critDamage', values: 4 },
+                            { name: 'Leech', group: 'leech', values: 4 },
+                        ]
+                    },
+                    selection: ['line1', 'line23', 'line23']
+                },
+                "Chest": {
+                    pools: {
+                        line1: [
+                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
+                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
+                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                        ],
+                        line23: [
+                            { name: 'Hp%', group: 'resourcePercent', values: 4 }, { name: 'Mp%', group: 'resourcePercent', values: 4 }, // 7-10
+                            { name: 'Def', group: 'defense', values: 3 }, { name: 'Mdef', group: 'defense', values: 3 }, // 3-5
+                            { name: '-Physical Damage', group: 'damageReduction', values: 3 }, { name: '-Magical Damage', group: 'damageReduction', values: 3 }, // 3-5
+                            { name: 'Healing Received', group: 'healing', values: 4 } // 7-10
+                        ]
+                    },
+                    selection: ['line1', 'line23', 'line23']
+                },
+                "Feet": {
+                     pools: {
+                        line1: [
+                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
+                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
+                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                        ],
+                        line23: [
+                            { name: 'Atk Speed', group: 'atkSpeed', values: 4 }, // 7-10
+                            { name: 'Cast speed', group: 'castSpeed', values: 5 }, // 11-15
+                            { name: 'Movement speed', group: 'moveSpeed', values: 4 } // 7-10
+                        ]
+                    },
+                    selection: ['line1', 'line23', 'line23']
+                },
+                "Legs": {
+                    pools: {
+                         line1: [
+                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
+                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
+                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                        ],
+                        line23: [
+                            { name: 'Hp Regen', group: 'regen', values: 9 }, { name: 'Mp regen', group: 'regen', values: 9 }, // 17-25
+                            { name: 'Flee', group: 'flee', values: 5 }, // 11-15
+                            { name: '-MpCost', group: 'mpCost', values: 4 }, // 7-10
+                            { name: 'Leech', group: 'leech', values: 4 } // 7-10
+                        ]
+                    },
+                    selection: ['line1', 'line23', 'line23']
+                },
+                "Accessory": {
+                    pools: {
+                         line1: [
+                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
+                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
+                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                        ],
+                        line23: [
+                            { name: 'Hp%', group: 'resourcePercent', values: 2 }, { name: 'Mp%', group: 'resourcePercent', values: 2 }, // 1-2
+                            { name: 'Atk%', group: 'percentAttack', values: 2 }, { name: 'Matk%', group: 'percentAttack', values: 2 }, // 1-2
+                        ]
+                    },
+                    selection: ['line1', 'line23', 'line23']
+                }
+            };
+            
+            let statDetails = {};
+            const equipmentSelect = document.getElementById('equipmentType');
+            const statSelects = [document.getElementById('stat1'), document.getElementById('stat2'), document.getElementById('stat3')];
+            const calculateBtn = document.getElementById('calculateBtn');
+            const resultsDiv = document.getElementById('results');
+            const errorDiv = document.getElementById('error-message');
+            const errorText = document.getElementById('error-text');
+
+            // --- MATH HELPER ---
+            function combinations(n, k) {
+                if (k < 0 || k > n) return 0;
+                if (k === 0 || k === n) return 1;
+                if (k > n / 2) k = n - k;
+                let res = 1;
+                for (let i = 1; i <= k; i++) {
+                    res = res * (n - i + 1) / i;
+                }
+                return Math.round(res);
+            }
+
+            // --- UI INITIALIZATION & UPDATES ---
+            function init() {
+                Object.keys(equipmentData).forEach(name => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = name;
+                    equipmentSelect.appendChild(option);
+                });
+                
+                equipmentSelect.addEventListener('change', () => updateUIForEquipment(equipmentSelect.value));
+                calculateBtn.addEventListener('click', handleCalculate);
+                statSelects.forEach(sel => sel.addEventListener('change', handleSelectChange));
+
+                updateUIForEquipment(equipmentSelect.value);
+            }
+
+            function updateUIForEquipment(equipmentName) {
+                const equipment = equipmentData[equipmentName];
+                statDetails = {}; // Clear old details
+                
+                // Rebuild statDetails map for current equipment
+                Object.values(equipment.pools).flat().forEach(s => statDetails[s.name] = s);
+
+                statSelects.forEach((select, index) => {
+                    const poolName = equipment.selection[index];
+                    const statList = equipment.pools[poolName];
+                    populateSelect(select, statList, `Select Stat ${index + 1}`);
+                });
+
+                resultsDiv.classList.add('hidden');
+                hideError();
+            }
+
+            function populateSelect(select, statList, placeholder) {
+                select.innerHTML = `<option value="">${placeholder}</option>`;
+                statList.forEach(stat => {
+                    const option = document.createElement('option');
+                    option.value = stat.name;
+                    option.textContent = stat.name;
+                    select.appendChild(option);
+                });
+            }
+
+            function handleSelectChange() {
+                // Get all selections, including empty ones, to preserve indices
+                const allSelections = statSelects.map(s => statDetails[s.value]);
+
+                statSelects.forEach((currentSelect, currentIndex) => {
+                    // For the current dropdown, find selections made in OTHER dropdowns
+                    const otherSelections = allSelections.filter((sel, index) => sel && index !== currentIndex);
+
+                    // Loop through the options of the current dropdown
+                    for (const option of currentSelect.options) {
+                        if (option.value === "") continue;
+
+                        const optionStat = statDetails[option.value];
+                        if (!optionStat) continue;
+
+                        // Start by assuming the option is enabled
+                        option.disabled = false;
+
+                        // Check for conflicts with selections in OTHER dropdowns
+                        // A group is taken if another selection has the same group (and groups are defined)
+                        const isGroupTaken = otherSelections.some(sel => sel.group && optionStat.group && sel.group === optionStat.group);
+                        // A specific stat is taken if another selection is the exact same stat
+                        const isStatTaken = otherSelections.some(sel => sel.name === optionStat.name);
+                        
+                        if (isGroupTaken || isStatTaken) {
+                            option.disabled = true;
+                        }
+                    }
+                });
+
+                // If a change causes a selected item to become disabled (e.g. selecting a conflicting stat in another box), reset it.
+                statSelects.forEach(select => {
+                    if (select.options[select.selectedIndex]?.disabled) {
+                        select.value = "";
+                    }
+                });
+
+                // Hide placeholder if a selection is made
+                statSelects.forEach(select => {
+                    const placeholderOption = select.querySelector('option[value=""]');
+                    if (placeholderOption) {
+                        placeholderOption.hidden = !!select.value;
+                    }
+                });
+            }
+
+            // --- CALCULATION LOGIC ---
+            function handleCalculate() {
+                const selectedNames = statSelects.map(s => s.value);
+                if (selectedNames.some(name => !name)) {
+                    showError("Please select three stats.");
+                    return;
+                }
+
+                const selectedStats = selectedNames.map(name => statDetails[name]);
+                
+                // Custom check for weapon, which has distinct pools
+                if (equipmentData[equipmentSelect.value].selection[0] === 'line1') {
+                    const line1Group = selectedStats[0].group; // will be undefined
+                    const line23Groups = new Set([selectedStats[1].group, selectedStats[2].group]);
+                     if (line23Groups.size < 2) {
+                        showError("Stat 2 and Stat 3 must be from different groups.");
+                        return;
+                    }
+                } else { // Generic check for items with one big pool
+                     const uniqueGroups = new Set(selectedStats.map(s => s.group));
+                     if (uniqueGroups.size < 3) {
+                         showError("Selected stats must be from different groups.");
+                         return;
+                    }
+                }
+
+
+                hideError();
+
+                const equipmentName = equipmentSelect.value;
+                const anyRollProb = calculateProbability(equipmentName, selectedNames, false);
+                const perfectRollProb = calculateProbability(equipmentName, selectedNames, true);
+
+                displayResults(anyRollProb, perfectRollProb);
+            }
+
+            function getStatsInGroup(group, equipmentName, poolName) {
+                 const equipment = equipmentData[equipmentName];
+                 const pool = equipment.pools[poolName] || [];
+                 return pool.filter(s => s.group === group).length;
+            }
+
+            function calculateProbability(equipmentName, statNames, isPerfect) {
+                const equipment = equipmentData[equipmentName];
+                const stats = statNames.map(name => statDetails[name]);
+
+                let totalProb = 1;
+                let breakdown = [];
+
+                // All equipment now follows the same logic
+                // Line 1
+                const s1 = stats[0];
+                let p1 = 1 / equipment.pools.line1.length;
+                let p1Breakdown = `1/${equipment.pools.line1.length}`;
+                if (isPerfect) {
+                    p1 *= 1 / s1.values;
+                    p1Breakdown += ` × 1/${s1.values}`;
+                }
+                totalProb *= p1;
+                breakdown.push(`(${p1Breakdown} for ${s1.name})`);
+
+                // Lines 2 & 3
+                const s2 = stats[1];
+                const s3 = stats[2];
+                const line23pool = equipment.pools.line23 || [];
+                const numGroups = new Set(line23pool.map(s => s.group)).size;
+                const pGroupSelection = 1 / combinations(numGroups, 2);
+                
+                const s2GroupSize = getStatsInGroup(s2.group, equipmentName, 'line23');
+                const s3GroupSize = getStatsInGroup(s3.group, equipmentName, 'line23');
+                
+                let p2 = 1 / s2GroupSize;
+                let p3 = 1 / s3GroupSize;
+                
+                let p23Breakdown = `1/${combinations(numGroups, 2)} for groups`;
+                if (isPerfect) {
+                    p2 *= 1 / s2.values;
+                    p3 *= 1 / s3.values;
+                    p23Breakdown += ` × (1/${s2GroupSize} × 1/${s2.values}) × (1/${s3GroupSize} × 1/${s3.values})`;
+                } else {
+                    p23Breakdown += ` × 1/${s2GroupSize} × 1/${s3GroupSize}`;
+                }
+                totalProb *= pGroupSelection * p2 * p3;
+                breakdown.push(`(${p23Breakdown})`);
+                
+                return {
+                    prob: totalProb,
+                    denominator: Math.round(1 / totalProb),
+                    breakdown: breakdown.join(' × ')
+                };
+            }
+
+            // --- DISPLAY & ERROR HANDLING ---
+            function displayResults(any, perfect) {
+                document.getElementById('any-roll-chance').textContent = `${(any.prob * 100).toFixed(4)}%`;
+                document.getElementById('any-roll-fraction').textContent = `1 in ${any.denominator.toLocaleString()}`;
+                document.getElementById('any-roll-breakdown').textContent = `Calc: ${any.breakdown}`;
+
+                document.getElementById('perfect-roll-chance').textContent = `${(perfect.prob * 100).toFixed(4)}%`;
+                document.getElementById('perfect-roll-fraction').textContent = `1 in ${perfect.denominator.toLocaleString()}`;
+                document.getElementById('perfect-roll-breakdown').textContent = `Calc: ${perfect.breakdown}`;
+                
+                resultsDiv.classList.remove('hidden');
+            }
+            
+            function showError(message) {
+                errorText.textContent = message;
+                errorDiv.classList.remove('hidden');
+                resultsDiv.classList.add('hidden');
+            }
+
+            function hideError() {
+                errorDiv.classList.add('hidden');
+            }
+            
+            init();
+        });
+    </script>
+</body>
+</html>
+
