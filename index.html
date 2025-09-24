@@ -365,32 +365,27 @@
                     slot.map(statName => ({ ...statDetails[statName], slotIndex: index }))
                 );
 
-                const allSelectedGroups = selectionsBySlot.flat().map(s => s.group).filter(Boolean);
+                const allSelectedStatsFlat = selectionsBySlot.flat();
 
                 multiSelectContainers.forEach((container, containerIndex) => {
                     const list = container.querySelector('.multiselect-dropdown-list');
-                    const selectionsInThisSlot = selectionsBySlot[containerIndex];
-                    const groupsInThisSlot = selectionsInThisSlot.map(s => s.group).filter(Boolean);
 
                     list.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                         const statName = checkbox.value;
                         const stat = statDetails[statName];
 
-                        checkbox.disabled = false; // Reset first
+                        // A stat is disabled if a stat with the same name or from the same group
+                        // is selected in a DIFFERENT slot.
+                        const isConflicting = allSelectedStatsFlat.some(selected => {
+                            // Don't check against the same slot
+                            if (selected.slotIndex === containerIndex) {
+                                return false;
+                            }
+                            // Check for conflict by group or name
+                            return (stat.group && stat.group === selected.group) || (stat.name === selected.name);
+                        });
 
-                        // Rule 1: A stat is selected in another slot.
-                        const conflictAcrossSlots = selectionsBySlot.flat().find(s =>
-                            s.slotIndex !== containerIndex && ((s.group && s.group === stat.group) || s.name === stat.name)
-                        );
-                        if (conflictAcrossSlots) {
-                            checkbox.disabled = true;
-                            return;
-                        }
-
-                        // Rule 2: A different group is already selected in THIS slot.
-                        if (groupsInThisSlot.length > 0 && stat.group && !groupsInThisSlot.includes(stat.group)) {
-                            checkbox.disabled = true;
-                        }
+                        checkbox.disabled = isConflicting;
                     });
                 });
             }
