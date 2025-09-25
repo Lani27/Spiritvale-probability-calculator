@@ -205,6 +205,13 @@
                      <div class="card">
                         <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Target Stats</h2>
                          <div class="space-y-4">
+                            <div class="input-group">
+                                <label for="monster_select">Select Monster</label>
+                                <select id="monster_select" class="recalculate">
+                                    <option value="">-- Select a Monster --</option>
+                                </select>
+                            </div>
+                            <div id="monster_details" class="hidden text-sm text-gray-400 bg-gray-800 p-3 rounded-md space-y-1"></div>
                             <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate"></div>
                              <div class="input-group"><label for="t_archetype">Archetype</label>
                                  <select id="t_archetype" class="recalculate">
@@ -304,6 +311,7 @@
         </div>
     </div>
 
+    <script src="monsters.js"></script>
     <script>
         // --- DATA ---
         const archetypeData = {
@@ -322,6 +330,61 @@
 
         // --- UI Generation & Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
+            const monsterSelect = document.getElementById('monster_select');
+            const monsterDetailsDiv = document.getElementById('monster_details');
+            const tLvInput = document.getElementById('t_lv');
+            const tArchetypeSelect = document.getElementById('t_archetype');
+            const tElementSelect = document.getElementById('t_element');
+            const tDefInput = document.getElementById('t_def');
+            const tMdefInput = document.getElementById('t_mdef');
+            const tBlockInput = document.getElementById('t_block');
+
+            // --- Monster Selection Logic ---
+            if (typeof monsters !== 'undefined') {
+                monsters.sort((a, b) => a.MonsterName.localeCompare(b.MonsterName));
+                monsters.forEach(monster => {
+                    const option = document.createElement('option');
+                    option.value = monster.MonsterName;
+                    option.textContent = `Lv. ${monster.Level} - ${monster.MonsterName}`;
+                    monsterSelect.appendChild(option);
+                });
+
+                monsterSelect.addEventListener('change', () => {
+                    const selectedMonster = monsters.find(m => m.MonsterName === monsterSelect.value);
+
+                    if (selectedMonster) {
+                        tLvInput.value = selectedMonster.Level;
+                        tArchetypeSelect.value = selectedMonster.ArchetypeId;
+                        tElementSelect.value = selectedMonster.Element;
+
+                        tLvInput.disabled = true;
+                        tArchetypeSelect.disabled = true;
+                        tElementSelect.disabled = true;
+
+                        monsterDetailsDiv.innerHTML = `
+                            <div class="flex justify-between"><span><strong>Name:</strong></span> <span>${selectedMonster.MonsterName}</span></div>
+                            <div class="flex justify-between"><span><strong>Level:</strong></span> <span>${selectedMonster.Level}</span></div>
+                            <div class="flex justify-between"><span><strong>Element:</strong></span> <span>${selectedMonster.Element}</span></div>
+                            <div class="flex justify-between"><span><strong>Archetype:</strong></span> <span>${selectedMonster.ArchetypeId}</span></div>
+                            <div class="flex justify-between"><span><strong>Map:</strong></span> <span>${selectedMonster.Map}</span></div>
+                        `;
+                        monsterDetailsDiv.classList.remove('hidden');
+                    } else {
+                        tLvInput.disabled = false;
+                        tArchetypeSelect.value = 'Custom';
+                        tArchetypeSelect.disabled = false;
+                        tElementSelect.disabled = false;
+                        tDefInput.disabled = false;
+                        tMdefInput.disabled = false;
+                        tBlockInput.disabled = false;
+
+                        monsterDetailsDiv.classList.add('hidden');
+                        monsterDetailsDiv.innerHTML = '';
+                    }
+                    calculateAll();
+                });
+            }
+
             document.querySelectorAll('.recalculate').forEach(input => {
                 input.addEventListener('input', calculateAll);
             });
@@ -330,6 +393,7 @@
                 calculateAll();
             });
             document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
+
             toggleSkillSection();
             generateSkillInputs();
             calculateAll();
