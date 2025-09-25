@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Damage Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #d1d5db;
+        }
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
+        .input-group label, .checkbox-group label {
+            text-align: right;
+            font-weight: 500;
+        }
+        .checkbox-group {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        input[type="number"], select {
+            background-color: #374151;
+            border: 1px solid #4b5563;
+            color: #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+        }
+        input[type="checkbox"] {
+             width: 1.25rem;
+             height: 1.25rem;
+             background-color: #374151;
+             border: 1px solid #4b5563;
+             border-radius: 0.25rem;
+        }
+        .card {
+            background-color: #1f2937;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #374151;
+        }
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        .result-label {
+            color: #9ca3af;
+        }
+        .result-value {
+            font-weight: 600;
+            color: #f9fafb;
+        }
+        .btn {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            background-color: #2563eb;
+        }
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        .btn-danger {
+            background-color: #ef4444;
+        }
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        .skill-card {
+            border: 1px solid #374151;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+        }
+        .scaling-rule {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-white">Damage & Stat Simulator</h1>
+            <p class="text-lg text-gray-400 mt-2">Enter your character and target stats to see the results.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Player Stats Column -->
+            <div class="lg:col-span-1 space-y-6">
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Character Stats</h2>
+                    <div class="space-y-4">
+                        <div class="input-group"><label for="p_lv">Level (LV)</label><input id="p_lv" type="number" value="100" class="recalculate"></div>
+                        <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate"></div>
+                        <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate"></div>
+                        <div class="input-group"><label for="p_vit">VIT</label><input id="p_vit" type="number" value="50" class="recalculate"></div>
+                        <div class="input-group"><label for="p_int">INT</label><input id="p_int" type="number" value="99" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dex">DEX</label><input id="p_dex" type="number" value="99" class="recalculate"></div>
+                        <div class="input-group"><label for="p_luk">LUK</label><input id="p_luk" type="number" value="99" class="recalculate"></div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Equipment & Bonuses</h2>
+                    <div class="space-y-4">
+                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="150" class="recalculate"></div>
+                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="100" class="recalculate"></div>
+                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="100" class="recalculate"></div>
+                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="150" class="recalculate"></div>
+                         <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="20" class="recalculate"></div>
+                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="15" class="recalculate"></div>
+                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="15" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_melee_perc">Damage Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_ranged_perc">Damage Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_magic_perc">Damage Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_element_perc">Damage vs Element %</label><input id="p_dmg_element_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="35" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="150" class="recalculate"></div>
+                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="20" class="recalculate"></div>
+                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="20" class="recalculate"></div>
+                    </div>
+                </div>
+                 <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Weapon Setup</h2>
+                    <div class="space-y-4">
+                        <div class="input-group"><label for="p_weapon_bad">Weapon (sets BAD)</label>
+                            <select id="p_weapon_bad" class="recalculate">
+                                <option value="0.9">Unarmed</option>
+                                <option value="1">Dagger</option>
+                                <option value="1">Twinblade</option>
+                                <option value="1.1" selected>Sword</option>
+                                <option value="1.1">Book</option>
+                                <option value="1.15">Mace</option>
+                                <option value="1.2">Spear</option>
+                                <option value="1.2">Wand</option>
+                                <option value="1.3">Axe</option>
+                                <option value="1.4">Bow</option>
+                            </select>
+                        </div>
+                        <div class="input-group"><label for="p_element">Elemental Conversion</label>
+                            <select id="p_element" class="recalculate">
+                                <option value="Neutral">Neutral</option>
+                                <option value="Poison">Poison</option>
+                                <option value="Shadow">Shadow</option>
+                                <option value="Holy">Holy</option>
+                                <option value="Fire" selected>Fire</option>
+                                <option value="Water">Water</option>
+                                <option value="Wind">Wind</option>
+                                <option value="Earth">Earth</option>
+                                <option value="Undead">Undead</option>
+                            </select>
+                        </div>
+                        <div class="input-group"><label for="p_is_ranged">Ranged Attack</label><input id="p_is_ranged" type="checkbox" class="recalculate"></div>
+                        <div class="input-group"><label for="p_twohanded">Two-Handed</label><input id="p_twohanded" type="checkbox" class="recalculate"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Column -->
+            <div class="lg:col-span-2 space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     <div class="card">
+                        <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Target Stats</h2>
+                         <div class="space-y-4">
+                            <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate"></div>
+                            <div class="input-group"><label for="t_element">Element</label>
+                                <select id="t_element" class="recalculate">
+                                    <option value="Neutral">Neutral</option>
+                                    <option value="Poison">Poison</option>
+                                    <option value="Shadow">Shadow</option>
+                                    <option value="Holy">Holy</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Wind" selected>Wind</option>
+                                    <option value="Earth">Earth</option>
+                                    <option value="Undead">Undead</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Core Combat Stats</h2>
+                        <div class="space-y-2">
+                            <div class="result-item"><span class="result-label">Final ATK</span><span id="r_atk" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Final MATK</span><span id="r_matk" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Attack Speed (ASPD)</span><span id="r_aspd" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Attack Delay</span><span id="r_atk_delay" class="result-value">0s</span></div>
+                            <div class="result-item"><span class="result-label">Cast Speed</span><span id="r_cspd" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Cast Time Reduction</span><span id="r_ctr" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Damage Calculations vs. Target</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                        <div>
+                            <h3 class="text-lg font-semibold text-blue-300 mb-2">Auto-Attack Damage</h3>
+                             <div class="result-item"><span class="result-label">Chance to Hit</span><span id="r_hit_chance" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Target Dmg. Reduction</span><span id="r_phys_reduc" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Elemental Modifier</span><span id="r_ele_mod" class="result-value">100%</span></div>
+                            <div class="result-item"><span class="result-label">Normal Hit</span><span id="r_normal_hit" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Critical Hit</span><span id="r_crit_hit" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Average Damage/Hit</span><span id="r_avg_hit" class="result-value">0</span></div>
+                            <div class="result-item font-bold text-lg"><span class="result-label text-blue-200">Auto-Attack DPS</span><span id="r_dps" class="result-value text-blue-200">0</span></div>
+                        </div>
+                         <div>
+                             <h3 class="text-lg font-semibold text-purple-300 mb-2">Base Magic Damage (Ref)</h3>
+                             <div class="result-item"><span class="result-label">Chance to Hit</span><span class="result-value">100%</span></div>
+                             <div class="result-item"><span class="result-label">Target Dmg. Reduction</span><span id="r_mag_reduc" class="result-value">0%</span></div>
+                             <div class="result-item"><span class="result-label">Elemental Modifier</span><span id="r_ele_mod_mag" class="result-value">100%</span></div>
+                             <div class="result-item"><span class="result-label">Normal Hit</span><span id="r_normal_mhit" class="result-value">0</span></div>
+                             <div class="result-item"><span class="result-label text-gray-500">Critical Hit</span><span id="r_crit_mhit" class="result-value text-gray-500">N/A</span></div>
+                             <div class="result-item"><span class="result-label">Average Damage/Hit</span><span id="r_avg_mhit" class="result-value">0</span></div>
+                             <div class="result-item font-bold text-lg"><span class="result-label text-purple-200">Magic DPS (Ref)</span><span id="r_mdps" class="result-value text-purple-200">0</span></div>
+                        </div>
+                    </div>
+                     <div id="rotation-results-container" class="mt-6 hidden">
+                        <h3 class="text-xl font-semibold text-yellow-300 mb-2 border-t border-gray-600 pt-4">Skill Rotation DPS</h3>
+                        <div class="result-item font-bold text-2xl"><span class="result-label text-yellow-200">Total Rotation DPS</span><span id="r_rotation_dps" class="result-value text-yellow-200">0</span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Skill Rotation Simulator</h2>
+                    <div class="flex items-center space-x-4 mb-4">
+                        <input id="simulate_skills" type="checkbox">
+                        <label for="simulate_skills">Simulate DPS with Skills</label>
+                    </div>
+                    <div id="skill-rotation-setup" class="hidden">
+                         <div class="input-group">
+                            <label for="num_skills">Number of Skills</label>
+                            <input id="num_skills" type="number" value="1" min="0">
+                        </div>
+                        <div id="skill-inputs-container" class="space-y-4 mt-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- UI Generation & Listeners ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // General inputs
+            document.querySelectorAll('.recalculate').forEach(input => {
+                input.addEventListener('input', calculateAll);
+            });
+             // Special handlers for skill section
+            document.getElementById('num_skills').addEventListener('input', () => {
+                generateSkillInputs();
+                calculateAll();
+            });
+            document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
+
+            // Initial setup
+            toggleSkillSection();
+            generateSkillInputs();
+            calculateAll();
+        });
+
+        function toggleSkillSection() {
+            const isEnabled = document.getElementById('simulate_skills').checked;
+            document.getElementById('skill-rotation-setup').classList.toggle('hidden', !isEnabled);
+            document.getElementById('rotation-results-container').classList.toggle('hidden', !isEnabled);
+            calculateAll();
+        }
+
+        function generateSkillInputs() {
+            const container = document.getElementById('skill-inputs-container');
+            const numSkills = getFloat('num_skills');
+            container.innerHTML = '';
+            for (let i = 1; i <= numSkills; i++) {
+                container.appendChild(createSkillCard(i));
+            }
+            document.querySelectorAll('.recalculate-skill').forEach(el => {
+                el.addEventListener('input', calculateAll);
+            });
+            for (let i = 1; i <= numSkills; i++) {
+                toggleSkillOptions(i);
+            }
+        }
+
+        function createSkillCard(index) {
+            const card = document.createElement('div');
+            card.className = 'skill-card';
+            card.innerHTML = `
+                <h4 class="text-lg font-semibold text-yellow-400 mb-2">Skill ${index}</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="input-group"><label>Damage Type</label><select id="skill-${index}-type" class="recalculate-skill"><option value="phys" selected>Physical</option><option value="magic">Magical</option></select></div>
+                    <div class="input-group"><label>Skill Element</label>
+                        <select id="skill-${index}-element" class="recalculate-skill">
+                            <option value="Neutral" selected>Neutral (from Weapon)</option><option value="Poison">Poison</option><option value="Shadow">Shadow</option><option value="Holy">Holy</option><option value="Fire">Fire</option><option value="Water">Water</option><option value="Wind">Wind</option><option value="Earth">Earth</option><option value="Undead">Undead</option>
+                        </select>
+                    </div>
+                    <div class="input-group"><label>Skill Level</label><input id="skill-${index}-level" type="number" value="10" class="recalculate-skill"></div>
+                    <div class="input-group"><label>Base Damage %</label><input id="skill-${index}-base-dmg" type="number" value="200" class="recalculate-skill"></div>
+                    <div class="input-group"><label>Dmg % / Level</label><input id="skill-${index}-dmg-per-level" type="number" value="50" class="recalculate-skill"></div>
+                    <div class="input-group"><label>Cast Time (s)</label><input id="skill-${index}-cast-time" type="number" value="1.5" class="recalculate-skill"></div>
+                    <div class="input-group"><label>Cooldown (s)</label><input id="skill-${index}-cooldown" type="number" value="5" class="recalculate-skill"></div>
+                </div>
+
+                <div class="mt-4 border-t border-gray-600 pt-4 space-y-4">
+                    <div class="checkbox-group"><label for="skill-${index}-is-multihit">Multi-hit</label><input type="checkbox" id="skill-${index}-is-multihit" class="recalculate-skill" onclick="toggleSkillOptions(${index})"></div>
+                    <div id="skill-${index}-multihit-options" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 pl-8">
+                        <div class="input-group"><label>Base Hits</label><input id="skill-${index}-base-hits" type="number" value="1" class="recalculate-skill"></div>
+                        <div class="input-group"><label>Hits / Level</label><input id="skill-${index}-hits-per-level" type="number" value="0" class="recalculate-skill"></div>
+                    </div>
+
+                    <div class="checkbox-group"><label for="skill-${index}-is-dot">Damage over Time</label><input type="checkbox" id="skill-${index}-is-dot" class="recalculate-skill" onclick="toggleSkillOptions(${index})"></div>
+                    <div id="skill-${index}-dot-options" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 pl-8">
+                         <div class="input-group"><label>Base Duration (s)</label><input id="skill-${index}-base-duration" type="number" value="5" class="recalculate-skill"></div>
+                         <div class="input-group"><label>Duration / Level</label><input id="skill-${index}-duration-per-level" type="number" value="0" class="recalculate-skill"></div>
+                    </div>
+                </div>
+
+                <div class="mt-4 border-t border-gray-600 pt-4">
+                    <h5 class="font-semibold text-gray-300">Stat Scaling</h5>
+                    <div id="skill-${index}-scaling-container"></div>
+                    <button class="btn btn-sm mt-2" onclick="addScalingRule(${index})">+ Add Scaling Rule</button>
+                </div>
+                <div id="skill-${index}-scaling-result" class="text-sm mt-2 text-gray-400"></div>
+                <div id="skill-${index}-dot-result" class="text-sm mt-2 text-green-400 hidden"></div>
+            `;
+            return card;
+        }
+
+        function toggleSkillOptions(index) {
+            const isMultiHit = document.getElementById(`skill-${index}-is-multihit`).checked;
+            document.getElementById(`skill-${index}-multihit-options`).classList.toggle('hidden', !isMultiHit);
+
+            const isDot = document.getElementById(`skill-${index}-is-dot`).checked;
+            document.getElementById(`skill-${index}-dot-options`).classList.toggle('hidden', !isDot);
+            document.getElementById(`skill-${index}-dot-result`).classList.toggle('hidden', !isDot);
+        }
+
+        function addScalingRule(skillIndex) {
+            const container = document.getElementById(`skill-${skillIndex}-scaling-container`);
+            const ruleIndex = container.children.length + 1;
+            const ruleDiv = document.createElement('div');
+            ruleDiv.className = 'scaling-rule';
+            ruleDiv.innerHTML = `
+                <span>+</span>
+                <input id="skill-${skillIndex}-scale-${ruleIndex}-val" type="number" value="2" class="recalculate-skill w-1/4">
+                <span>ATK per</span>
+                <select id="skill-${skillIndex}-scale-${ruleIndex}-stat" class="recalculate-skill w-1/3">
+                    <option value="str">STR</option><option value="agi">AGI</option><option value="vit">VIT</option>
+                    <option value="int">INT</option><option value="dex">DEX</option><option value="luk">LUK</option>
+                </select>
+                <button class="btn btn-sm btn-danger" onclick="this.parentElement.remove(); calculateAll();">X</button>
+            `;
+            container.appendChild(ruleDiv);
+            ruleDiv.querySelectorAll('.recalculate-skill').forEach(el => el.addEventListener('input', calculateAll));
+            calculateAll();
+        }
+
+        // --- Calculation Helpers ---
+        function getFloat(id) {
+            const el = document.getElementById(id);
+            if (!el) return 0;
+            const val = parseFloat(el.value);
+            return isNaN(val) ? 0 : val;
+        }
+        function getSelect(id) {
+            const el = document.getElementById(id);
+            return el ? el.value : '';
+        }
+        function getBool(id) {
+            const el = document.getElementById(id);
+            return el ? el.checked : false;
+        }
+        function getElementalMultiplier(attacker, defender) {
+            if (attacker === defender) return 1.0;
+            const advantages = {
+                'Fire':  { 'Wind': 1.5, 'Water': 0.75 }, 'Water': { 'Fire': 1.5, 'Earth': 0.75 },
+                'Wind':  { 'Earth': 1.5, 'Fire': 0.75 }, 'Earth': { 'Water': 1.5, 'Wind': 0.75 },
+                'Holy':  { 'Shadow': 2.0, 'Undead': 2.0 }, 'Shadow':{ 'Holy': 2.0 }
+            };
+            if (advantages[attacker] && advantages[attacker][defender]) return advantages[attacker][defender];
+            for (const ele in advantages) {
+                if (advantages[ele][attacker] && ele === defender) return advantages[defender][attacker];
+            }
+            return 1.0;
+        }
+
+        // --- Main Calculation Logic ---
+        function calculateAll() {
+            // Player stats
+            const p_stats = {
+                lv: getFloat('p_lv'), str: getFloat('p_str'), agi: getFloat('p_agi'),
+                vit: getFloat('p_vit'), int: getFloat('p_int'), dex: getFloat('p_dex'), luk: getFloat('p_luk')
+            };
+
+            // Equipment & bonuses
+            const p_weapon_atk = getFloat('p_weapon_atk'), p_weapon_matk = getFloat('p_weapon_matk');
+            const p_atk = getFloat('p_atk'), p_matk = getFloat('p_matk'), p_mastery = getFloat('p_mastery');
+            const p_atk_perc = getFloat('p_atk_perc') / 100, p_matk_perc = getFloat('p_matk_perc') / 100;
+            const p_dmg_melee_perc = getFloat('p_dmg_melee_perc') / 100;
+            const p_dmg_ranged_perc = getFloat('p_dmg_ranged_perc') / 100;
+            const p_dmg_magic_perc = getFloat('p_dmg_magic_perc') / 100;
+            const p_dmg_element_perc = getFloat('p_dmg_element_perc') / 100;
+            const p_crit_rate_perc = getFloat('p_crit_rate_perc'), p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
+            const p_aspd_perc = getFloat('p_aspd_perc') / 100, p_cspd_perc = getFloat('p_cspd_perc') / 100;
+
+            // Weapon
+            const p_bad = getFloat('p_weapon_bad'), p_element = getSelect('p_element');
+            const p_is_ranged = getBool('p_is_ranged'), p_twohanded = getBool('p_twohanded');
+
+            // Target stats
+            const t_lv = getFloat('t_lv'), t_element = getSelect('t_element');
+            const t_def = t_lv * 1.5, t_mdef = t_lv * 1.5, t_vit = t_lv * 0.5;
+            const t_flee = t_lv * 2, t_luk = t_lv * 0.5;
+
+            // --- BASE CALCULATIONS ---
+            const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
+            const total_bonus_atk = p_weapon_atk + p_atk;
+            const total_bonus_matk = p_weapon_matk + p_matk;
+
+            const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + total_bonus_atk * (1 + mainStat / 200)) *
+                              (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * (p_twohanded ? 1.25 : 1);
+
+            const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + total_bonus_matk * (1 + p_stats.int / 200)) *
+                               (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * (p_twohanded ? 1.25 : 1);
+
+            const cast_speed = 200 - 50 * (1 - (p_stats.dex / 200 + p_stats.int / 400)) / (1 + p_cspd_perc) + 0.5 * Math.floor(p_stats.dex / 10);
+            const cast_time_reduction = 1 - (200 - cast_speed) / 50;
+
+            const aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
+            const attack_delay = Math.max(0.01, (200 - aspd) / 50);
+
+            const final_crit_rate = Math.max(0, p_crit_rate_perc - (t_luk / 5)) / 100;
+
+            const final_hit = (p_stats.lv + p_stats.dex + 25);
+            const hit_chance = Math.min(100, 100 + final_hit - t_flee) / 100;
+
+            const total_t_def = (t_def) * (1 + t_vit / 1000);
+            const total_t_mdef = (t_mdef) * (1 + t_vit / 1000);
+
+            const auto_attack_elemental_multiplier = getElementalMultiplier(p_element, t_element);
+            const phys_reduc = 100 / (total_t_def + 100);
+            const mag_reduc = 100 / (total_t_mdef + 100);
+
+            let physDmgModifier = 1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc);
+            const magDmgModifier = 1.0 + p_dmg_magic_perc;
+            const elementDmgModifier = 1.0 + p_dmg_element_perc;
+
+            // Auto-Attack Damage
+            const normal_hit = final_atk * phys_reduc * physDmgModifier * auto_attack_elemental_multiplier * elementDmgModifier;
+            const crit_hit = normal_hit * (p_crit_dmg_perc / 100);
+            const avg_hit = (normal_hit * (1 - final_crit_rate) + crit_hit * final_crit_rate) * hit_chance;
+            const dps = avg_hit / attack_delay;
+
+            // Base Magic Damage
+            const normal_mhit = final_matk * mag_reduc * magDmgModifier * auto_attack_elemental_multiplier * elementDmgModifier;
+            const avg_mhit = normal_mhit; // Magic cannot crit
+            const mdps = avg_mhit; // Base DPS assumes 1 cast per second
+
+            // --- SKILL ROTATION CALCULATION ---
+            let rotation_dps = 0;
+            if (getBool('simulate_skills')) {
+                const numSkills = getFloat('num_skills');
+                let totalSkillDamage = 0;
+                let totalCastTime = 0;
+                let longestCooldown = 0;
+
+                for (let i = 1; i <= numSkills; i++) {
+                    const type = getSelect(`skill-${i}-type`);
+                    let skill_element = getSelect(`skill-${i}-element`);
+                    if (skill_element === 'Neutral') {
+                        skill_element = p_element; // Use weapon conversion for neutral skills
+                    }
+                    const skill_ele_multiplier = getElementalMultiplier(skill_element, t_element);
+
+                    const level = getFloat(`skill-${i}-level`);
+                    const baseDmg = getFloat(`skill-${i}-base-dmg`);
+                    const dmgPerLevel = getFloat(`skill-${i}-dmg-per-level`);
+                    const castTime = getFloat(`skill-${i}-cast-time`);
+                    const cooldown = getFloat(`skill-${i}-cooldown`);
+
+                    const isMultiHit = getBool(`skill-${i}-is-multihit`);
+                    let totalHits = 1;
+                    if (isMultiHit) {
+                        const baseHits = getFloat(`skill-${i}-base-hits`);
+                        const hitsPerLevel = getFloat(`skill-${i}-hits-per-level`);
+                        totalHits = baseHits + (hitsPerLevel * level);
+                    }
+
+                    const isDot = getBool(`skill-${i}-is-dot`);
+
+                    const finalCastTime = castTime * (1 - cast_time_reduction);
+                    totalCastTime += finalCastTime;
+                    if (cooldown > longestCooldown) {
+                        longestCooldown = cooldown;
+                    }
+
+                    let flatScalingDamage = 0;
+                    const scalingRules = document.querySelectorAll(`#skill-${i}-scaling-container .scaling-rule`);
+                    scalingRules.forEach((rule, j) => {
+                        const val = parseFloat(rule.querySelector(`#skill-${i}-scale-${j+1}-val`).value) || 0;
+                        const stat = rule.querySelector(`#skill-${i}-scale-${j+1}-stat`).value;
+                        flatScalingDamage += val * p_stats[stat];
+                    });
+                     document.getElementById(`skill-${i}-scaling-result`).textContent = `+${Math.floor(flatScalingDamage).toLocaleString()} flat damage from scaling.`;
+
+                    const totalDmgPercent = (baseDmg + (dmgPerLevel * level)) / 100;
+
+                    let skillBaseDmg = 0, skillDmgReduc = 1, skillTypeModifier = 1;
+                    let avgDamagePerInstance = 0;
+
+                    if (type === 'phys') {
+                        skillBaseDmg = final_atk + flatScalingDamage;
+                        skillDmgReduc = phys_reduc;
+                        skillTypeModifier = physDmgModifier;
+                        const skillNormalHit = skillBaseDmg * totalDmgPercent * skillDmgReduc * skillTypeModifier * skill_ele_multiplier * elementDmgModifier;
+                        const skillCritHit = skillNormalHit * (p_crit_dmg_perc / 100);
+                        avgDamagePerInstance = (skillNormalHit * (1 - final_crit_rate) + skillCritHit * final_crit_rate) * hit_chance;
+                    } else { // magic
+                        skillBaseDmg = final_matk + flatScalingDamage;
+                        skillDmgReduc = mag_reduc;
+                        skillTypeModifier = magDmgModifier;
+                        const skillNormalHit = skillBaseDmg * totalDmgPercent * skillDmgReduc * skillTypeModifier * skill_ele_multiplier * elementDmgModifier;
+                        avgDamagePerInstance = skillNormalHit; // Magic cannot crit
+                    }
+
+                    const dotResultEl = document.getElementById(`skill-${i}-dot-result`);
+                    if (isDot) {
+                        const baseDuration = getFloat(`skill-${i}-base-duration`);
+                        const durationPerLevel = getFloat(`skill-${i}-duration-per-level`);
+                        const totalDuration = baseDuration + (durationPerLevel * level);
+
+                        if (totalDuration > 0) {
+                            const totalTicks = Math.max(1, Math.floor(totalDuration / attack_delay));
+                            const totalDotDamage = avgDamagePerInstance * totalTicks;
+                            totalSkillDamage += totalDotDamage;
+                            const dps_dot = totalDotDamage / totalDuration;
+                            dotResultEl.textContent = `Deals ${Math.floor(dps_dot).toLocaleString()} DPS over ${totalDuration.toFixed(2)}s (${totalTicks} ticks).`;
+                        } else {
+                            dotResultEl.textContent = 'Duration must be greater than 0 for DoT calculation.';
+                        }
+                    } else {
+                         totalSkillDamage += avgDamagePerInstance * totalHits;
+                    }
+                }
+
+                const rotationCycleTime = Math.max(totalCastTime, longestCooldown);
+                const autoAttackTime = Math.max(0, rotationCycleTime - totalCastTime);
+                const numAutoAttacks = Math.floor(autoAttackTime / attack_delay);
+                const totalAutoAttackDamage = numAutoAttacks * avg_hit;
+
+                if (rotationCycleTime > 0) {
+                    rotation_dps = (totalSkillDamage + totalAutoAttackDamage) / rotationCycleTime;
+                }
+            }
+
+            // --- UPDATE UI ---
+            document.getElementById('r_atk').textContent = Math.floor(final_atk).toLocaleString();
+            document.getElementById('r_matk').textContent = Math.floor(final_matk).toLocaleString();
+            document.getElementById('r_aspd').textContent = aspd.toFixed(2);
+            document.getElementById('r_atk_delay').textContent = attack_delay.toFixed(2) + 's';
+            document.getElementById('r_cspd').textContent = cast_speed.toFixed(2);
+            document.getElementById('r_ctr').textContent = (cast_time_reduction * 100).toFixed(2) + '%';
+            document.getElementById('r_crit_rate').textContent = (final_crit_rate * 100).toFixed(2) + '%';
+            document.getElementById('r_crit_dmg').textContent = p_crit_dmg_perc.toFixed(2) + '%';
+
+            document.getElementById('r_hit_chance').textContent = (hit_chance * 100).toFixed(2) + '%';
+            document.getElementById('r_phys_reduc').textContent = ((1 - phys_reduc) * 100).toFixed(2) + '%';
+            document.getElementById('r_ele_mod').textContent = (auto_attack_elemental_multiplier * 100).toFixed(0) + '%';
+            document.getElementById('r_normal_hit').textContent = Math.floor(normal_hit).toLocaleString();
+            document.getElementById('r_crit_hit').textContent = Math.floor(crit_hit).toLocaleString();
+            document.getElementById('r_avg_hit').textContent = Math.floor(avg_hit).toLocaleString();
+            document.getElementById('r_dps').textContent = Math.floor(dps).toLocaleString();
+
+            document.getElementById('r_mag_reduc').textContent = ((1 - mag_reduc) * 100).toFixed(2) + '%';
+            document.getElementById('r_ele_mod_mag').textContent = (auto_attack_elemental_multiplier * 100).toFixed(0) + '%';
+            document.getElementById('r_normal_mhit').textContent = Math.floor(normal_mhit).toLocaleString();
+            document.getElementById('r_crit_mhit').textContent = 'N/A'; // Magic cannot crit
+            document.getElementById('r_avg_mhit').textContent = Math.floor(avg_mhit).toLocaleString();
+            document.getElementById('r_mdps').textContent = Math.floor(mdps).toLocaleString();
+
+            document.getElementById('r_rotation_dps').textContent = Math.floor(rotation_dps).toLocaleString();
+        }
+    </script>
+</body>
+</html>
