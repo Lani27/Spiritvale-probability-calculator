@@ -30,7 +30,7 @@
             align-items: center;
             gap: 0.5rem;
         }
-        input[type="number"], select {
+        input[type="number"], input[type="text"], select {
             background-color: #374151;
             border: 1px solid #4b5563;
             color: #d1d5db;
@@ -205,11 +205,12 @@
                      <div class="card">
                         <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Target Stats</h2>
                          <div class="space-y-4">
-                            <div class="input-group">
-                                <label for="monster_select">Select Monster</label>
-                                <select id="monster_select" class="recalculate">
-                                    <option value="">-- Select a Monster --</option>
-                                </select>
+                            <div class="relative" id="monster-selection-wrapper">
+                                <div class="input-group">
+                                    <label for="monster_search">Search Monster</label>
+                                    <input type="text" id="monster_search" placeholder="-- Type to search --">
+                                </div>
+                                <div id="monster_list" class="absolute z-10 w-full bg-gray-700 border border-gray-600 rounded-md mt-1 hidden max-h-60 overflow-y-auto"></div>
                             </div>
                             <div id="monster_details" class="hidden text-sm text-gray-400 bg-gray-800 p-3 rounded-md space-y-1"></div>
                             <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate"></div>
@@ -330,8 +331,10 @@
 
         // --- UI Generation & Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
-            const monsterSelect = document.getElementById('monster_select');
+            const monsterSearchInput = document.getElementById('monster_search');
+            const monsterListDiv = document.getElementById('monster_list');
             const monsterDetailsDiv = document.getElementById('monster_details');
+            const monsterSelectionWrapper = document.getElementById('monster-selection-wrapper');
             const tLvInput = document.getElementById('t_lv');
             const tArchetypeSelect = document.getElementById('t_archetype');
             const tElementSelect = document.getElementById('t_element');
@@ -339,50 +342,91 @@
             const tMdefInput = document.getElementById('t_mdef');
             const tBlockInput = document.getElementById('t_block');
 
-            // --- Monster Selection Logic ---
+            // --- Searchable Monster Selection Logic ---
             if (typeof monsters !== 'undefined') {
-                monsters.sort((a, b) => a.MonsterName.localeCompare(b.MonsterName));
-                monsters.forEach(monster => {
-                    const option = document.createElement('option');
-                    option.value = monster.MonsterName;
-                    option.textContent = `Lv. ${monster.Level} - ${monster.MonsterName}`;
-                    monsterSelect.appendChild(option);
-                });
+                monsters.sort((a, b) => a.Level - b.Level);
 
-                monsterSelect.addEventListener('change', () => {
-                    const selectedMonster = monsters.find(m => m.MonsterName === monsterSelect.value);
+                const populateMonsterList = (filter = '') => {
+                    monsterListDiv.innerHTML = '';
+                    const filteredMonsters = monsters.filter(m => m.MonsterName.toLowerCase().includes(filter.toLowerCase()));
 
-                    if (selectedMonster) {
-                        tLvInput.value = selectedMonster.Level;
-                        tArchetypeSelect.value = selectedMonster.ArchetypeId;
-                        tElementSelect.value = selectedMonster.Element;
-
-                        tLvInput.disabled = true;
-                        tArchetypeSelect.disabled = true;
-                        tElementSelect.disabled = true;
-
-                        monsterDetailsDiv.innerHTML = `
-                            <div class="flex justify-between"><span><strong>Name:</strong></span> <span>${selectedMonster.MonsterName}</span></div>
-                            <div class="flex justify-between"><span><strong>Level:</strong></span> <span>${selectedMonster.Level}</span></div>
-                            <div class="flex justify-between"><span><strong>Element:</strong></span> <span>${selectedMonster.Element}</span></div>
-                            <div class="flex justify-between"><span><strong>Archetype:</strong></span> <span>${selectedMonster.ArchetypeId}</span></div>
-                            <div class="flex justify-between"><span><strong>Map:</strong></span> <span>${selectedMonster.Map}</span></div>
-                        `;
-                        monsterDetailsDiv.classList.remove('hidden');
+                    if (filteredMonsters.length === 0) {
+                        monsterListDiv.innerHTML = `<div class="p-2 text-gray-400">No monster found</div>`;
                     } else {
-                        tLvInput.disabled = false;
-                        tArchetypeSelect.value = 'Custom';
-                        tArchetypeSelect.disabled = false;
-                        tElementSelect.disabled = false;
-                        tDefInput.disabled = false;
-                        tMdefInput.disabled = false;
-                        tBlockInput.disabled = false;
-
-                        monsterDetailsDiv.classList.add('hidden');
-                        monsterDetailsDiv.innerHTML = '';
+                        filteredMonsters.forEach(monster => {
+                            const item = document.createElement('div');
+                            item.className = 'p-2 hover:bg-gray-600 cursor-pointer';
+                            item.textContent = `Lv. ${monster.Level} - ${monster.MonsterName}`;
+                            item.dataset.monsterName = monster.MonsterName;
+                            monsterListDiv.appendChild(item);
+                        });
                     }
-                    calculateAll();
+                };
+
+                monsterSearchInput.addEventListener('focus', () => {
+                    populateMonsterList(monsterSearchInput.value);
+                    monsterListDiv.classList.remove('hidden');
                 });
+
+                monsterSearchInput.addEventListener('input', () => {
+                    populateMonsterList(monsterSearchInput.value);
+                     if (monsterSearchInput.value === '') {
+                        resetToCustom();
+                    }
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!monsterSelectionWrapper.contains(e.target)) {
+                        monsterListDiv.classList.add('hidden');
+                    }
+                });
+
+                monsterListDiv.addEventListener('click', (e) => {
+                    if (e.target && e.target.dataset.monsterName) {
+                        const monsterName = e.target.dataset.monsterName;
+                        const selectedMonster = monsters.find(m => m.MonsterName === monsterName);
+                        if (selectedMonster) {
+                            selectMonster(selectedMonster);
+                        }
+                    }
+                });
+
+                const selectMonster = (monster) => {
+                    monsterSearchInput.value = monster.MonsterName;
+                    monsterListDiv.classList.add('hidden');
+
+                    tLvInput.value = monster.Level;
+                    tArchetypeSelect.value = monster.ArchetypeId;
+                    tElementSelect.value = monster.Element;
+
+                    tLvInput.disabled = true;
+                    tArchetypeSelect.disabled = true;
+                    tElementSelect.disabled = true;
+
+                    monsterDetailsDiv.innerHTML = `
+                        <div class="flex justify-between"><span><strong>Name:</strong></span> <span>${monster.MonsterName}</span></div>
+                        <div class="flex justify-between"><span><strong>Level:</strong></span> <span>${monster.Level}</span></div>
+                        <div class="flex justify-between"><span><strong>Element:</strong></span> <span>${monster.Element}</span></div>
+                        <div class="flex justify-between"><span><strong>Archetype:</strong></span> <span>${monster.ArchetypeId}</span></div>
+                        <div class="flex justify-between"><span><strong>Map:</strong></span> <span>${monster.Map}</span></div>
+                    `;
+                    monsterDetailsDiv.classList.remove('hidden');
+                    calculateAll();
+                };
+
+                const resetToCustom = () => {
+                    tLvInput.disabled = false;
+                    tArchetypeSelect.value = 'Custom';
+                    tArchetypeSelect.disabled = false;
+                    tElementSelect.disabled = false;
+                    tDefInput.disabled = false;
+                    tMdefInput.disabled = false;
+                    tBlockInput.disabled = false;
+
+                    monsterDetailsDiv.classList.add('hidden');
+                    monsterDetailsDiv.innerHTML = '';
+                    calculateAll();
+                };
             }
 
             document.querySelectorAll('.recalculate').forEach(input => {
