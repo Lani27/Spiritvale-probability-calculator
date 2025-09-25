@@ -451,9 +451,12 @@
             const t_flee = t_lv * 2, t_luk = t_lv * 0.5;
 
             // --- BASE CALCULATIONS ---
-            const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
             const total_bonus_atk = p_weapon_atk + p_atk;
             const total_bonus_matk = p_weapon_matk + p_matk;
+
+            const weaponSelect = document.getElementById('p_weapon_bad');
+            const selectedWeaponText = weaponSelect.options[weaponSelect.selectedIndex].text;
+            const mainStat = selectedWeaponText === "Bow" ? p_stats.dex : p_stats.str;
 
             const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + total_bonus_atk * (1 + mainStat / 200)) *
                               (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * (p_twohanded ? 1.25 : 1);
