@@ -577,9 +577,19 @@
 
             const multipliers = archetypeData[archetype];
             const t_luk = level * multipliers.luk;
-            defInput.value = Math.floor(level * multipliers.vit);
-            mdefInput.value = Math.floor(level * multipliers.int);
-            blockInput.value = Math.floor(level * multipliers.dex / 4);
+            const t_vit = level * multipliers.vit;
+            const t_int = level * multipliers.int;
+            const t_dex = level * multipliers.dex;
+
+            const base_def = level * multipliers.vit;
+            defInput.value = Math.floor(base_def * (1 + t_vit / 1000));
+
+            const base_mdef = level * multipliers.int;
+            // NOTE: Assuming MDEF scales with INT, not VIT as in user-provided formula.
+            mdefInput.value = Math.floor(base_mdef * (1 + t_int / 1000));
+
+            const base_block = level * multipliers.dex / 4;
+            blockInput.value = Math.floor(base_block * (1 + t_dex / 100));
 
             return { base_crit_def: t_luk / 5, t_luk };
         }
@@ -623,11 +633,14 @@
             const crit_damage_multiplier = (120 + Math.floor(p_stats.luk / 10) + p_crit_dmg_perc) / 100;
             const final_hit = (p_stats.lv + p_stats.dex + 25);
             const hit_chance = Math.min(100, 100 + final_hit - t_flee) / 100;
-            const final_block_chance = t_block_base * (1 + p_stats.dex / 100);
+            const final_block_chance = t_block_base; // Already calculated in updateTargetStatsFromArchetype
             const auto_attack_elemental_multiplier = getElementalMultiplier(p_element, t_element);
 
-            const phys_reduc = t_def_base / (t_def_base + 400);
-            const mag_reduc = t_mdef_base / (t_mdef_base + 400);
+            // Per user spec, DamageReduction is 100 / (DEF + 100).
+            // This is interpreted as a damage multiplier, so the reduction value is 1 - multiplier.
+            // Which simplifies to DEF / (DEF + 100).
+            const phys_reduc = t_def_base / (t_def_base + 100);
+            const mag_reduc = t_mdef_base / (t_mdef_base + 100);
 
             const normal_hit = final_atk * (1 - phys_reduc) * (1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc)) * auto_attack_elemental_multiplier * (1.0 + p_dmg_element_perc);
             const crit_hit = normal_hit * crit_damage_multiplier;
