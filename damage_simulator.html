@@ -249,7 +249,7 @@
                             <div class="result-item"><span class="result-label">Attack Delay</span><span id="r_atk_delay" class="result-value">0s</span></div>
                             <div class="result-item"><span class="result-label">Cast Speed <span class="text-xs text-yellow-400 ml-1">(calc. inaccurate)</span></span><span id="r_cspd" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Cast Time Reduction <span class="text-xs text-yellow-400 ml-1">(calc. inaccurate)</span></span><span id="r_ctr" class="result-value">0%</span></div>
-                            <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0% (vs Target: 0%)</span></div>
                             <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Block Chance</span><span id="r_block" class="result-value">0%</span></div>
                         </div>
@@ -598,7 +598,7 @@
             document.getElementById('r_atk_delay').textContent = attack_delay.toFixed(2) + 's';
             document.getElementById('r_cspd').textContent = cast_speed.toFixed(2);
             document.getElementById('r_ctr').textContent = (cast_time_reduction * 100).toFixed(2) + '%';
-            document.getElementById('r_crit_rate').textContent = (final_crit_rate * 100).toFixed(2) + '%';
+            document.getElementById('r_crit_rate').textContent = `${base_crit_rate.toFixed(2)}% (vs Target: ${(final_crit_rate * 100).toFixed(2)}%)`;
             document.getElementById('r_crit_dmg').textContent = (crit_damage_multiplier * 100).toFixed(2) + '%';
             document.getElementById('r_block').textContent = final_block_chance.toFixed(2) + '%';
             document.getElementById('r_hit_chance').textContent = (hit_chance * 100).toFixed(2) + '%';
