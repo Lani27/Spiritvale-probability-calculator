@@ -351,6 +351,11 @@
                          <div class="input-group"><label>Base Duration (s)</label><input id="skill-${index}-base-duration" type="number" value="5" class="recalculate-skill"></div>
                          <div class="input-group"><label>Duration / Level</label><input id="skill-${index}-duration-per-level" type="number" value="0" class="recalculate-skill"></div>
                     </div>
+
+                    <div class="checkbox-group"><label for="skill-${index}-has-dmg-card">Skill Damage Card?</label><input type="checkbox" id="skill-${index}-has-dmg-card" class="recalculate-skill" onclick="toggleSkillOptions(${index})"></div>
+                    <div id="skill-${index}-dmg-card-options" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 pl-8">
+                        <div class="input-group"><label>Damage Boost %</label><input id="skill-${index}-dmg-card-perc" type="number" value="0" class="recalculate-skill"></div>
+                    </div>
                 </div>
 
                 <div class="mt-4 border-t border-gray-600 pt-4">
@@ -371,6 +376,9 @@
             const isDot = document.getElementById(`skill-${index}-is-dot`).checked;
             document.getElementById(`skill-${index}-dot-options`).classList.toggle('hidden', !isDot);
             document.getElementById(`skill-${index}-dot-result`).classList.toggle('hidden', !isDot);
+
+            const hasDmgCard = document.getElementById(`skill-${index}-has-dmg-card`).checked;
+            document.getElementById(`skill-${index}-dmg-card-options`).classList.toggle('hidden', !hasDmgCard);
         }
 
         function addScalingRule(skillIndex) {
@@ -382,7 +390,7 @@
                 <span>+</span>
                 <input id="skill-${skillIndex}-scale-${ruleIndex}-val" type="number" value="2" class="recalculate-skill w-1/4">
                 <span>ATK per</span>
-                <select id="skill-${skillIndex}-scale-${ruleIndex}-stat" class="recalculate-skill w-1/3">
+                <select id="skill-${index}-scale-${ruleIndex}-stat" class="recalculate-skill w-1/3">
                     <option value="str">STR</option><option value="agi">AGI</option><option value="vit">VIT</option>
                     <option value="int">INT</option><option value="dex">DEX</option><option value="luk">LUK</option>
                 </select>
@@ -454,13 +462,14 @@
             const total_bonus_atk = p_weapon_atk + p_atk;
             const total_bonus_matk = p_weapon_matk + p_matk;
 
-            const weaponSelect = document.getElementById('p_weapon_bad');
-            const selectedWeaponText = weaponSelect.options[weaponSelect.selectedIndex].text;
-            const mainStat = selectedWeaponText === "Bow" ? p_stats.dex : p_stats.str;
+            // CORRECTED: Use p_is_ranged to determine main stat for ATK calculation
+            const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
 
+            // VERIFIED: ATK Formula
             const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + total_bonus_atk * (1 + mainStat / 200)) *
                               (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * (p_twohanded ? 1.25 : 1);
 
+            // VERIFIED: MATK Formula
             const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + total_bonus_matk * (1 + p_stats.int / 200)) *
                                (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * (p_twohanded ? 1.25 : 1);
 
@@ -562,6 +571,13 @@
                         skillTypeModifier = magDmgModifier;
                         const skillNormalHit = skillBaseDmg * totalDmgPercent * skillDmgReduc * skillTypeModifier * skill_ele_multiplier * elementDmgModifier;
                         avgDamagePerInstance = skillNormalHit; // Magic cannot crit
+                    }
+
+                    // ADDED: Apply Skill Damage Card multiplier
+                    const hasDmgCard = getBool(`skill-${i}-has-dmg-card`);
+                    if (hasDmgCard) {
+                        const dmgCardPerc = getFloat(`skill-${i}-dmg-card-perc`) / 100;
+                        avgDamagePerInstance *= (1 + dmgCardPerc);
                     }
 
                     const dotResultEl = document.getElementById(`skill-${i}-dot-result`);
