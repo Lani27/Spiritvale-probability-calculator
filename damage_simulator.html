@@ -151,8 +151,9 @@
                         <div class="input-group"><label for="p_dmg_ranged_perc">Damage Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_magic_perc">Damage Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_element_perc">Damage vs Element %</label><input id="p_dmg_element_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="35" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="150" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="5" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="10" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="20" class="recalculate"></div>
                         <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="20" class="recalculate"></div>
                         <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="20" class="recalculate"></div>
                     </div>
@@ -200,6 +201,12 @@
                         <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Target Stats</h2>
                          <div class="space-y-4">
                             <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate"></div>
+                            <div class="input-group"><label for="t_def">DEF</label><input id="t_def" type="number" value="50" class="recalculate"></div>
+                            <div class="input-group"><label for="t_def_perc">Def %</label><input id="t_def_perc" type="number" value="0" class="recalculate"></div>
+                            <div class="input-group"><label for="t_mdef">MDEF</label><input id="t_mdef" type="number" value="50" class="recalculate"></div>
+                            <div class="input-group"><label for="t_mdef_perc">Mdef %</label><input id="t_mdef_perc" type="number" value="0" class="recalculate"></div>
+                            <div class="input-group"><label for="t_block">Block</label><input id="t_block" type="number" value="0" class="recalculate"></div>
+                             <div class="input-group"><label for="t_reflect_perc">Reflect %</label><input id="t_reflect_perc" type="number" value="0" class="recalculate"></div>
                             <div class="input-group"><label for="t_element">Element</label>
                                 <select id="t_element" class="recalculate">
                                     <option value="Neutral">Neutral</option>
@@ -213,6 +220,7 @@
                                     <option value="Undead">Undead</option>
                                 </select>
                             </div>
+                            <div class="input-group"><label for="t_critdef_flat">Flat CRITDEF</label><input id="t_critdef_flat" type="number" value="0" class="recalculate"></div>
                         </div>
                     </div>
                     <div class="card">
@@ -226,6 +234,8 @@
                             <div class="result-item"><span class="result-label">Cast Time Reduction</span><span id="r_ctr" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Block Chance</span><span id="r_block" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Reflected Damage</span><span id="r_reflect" class="result-value">0</span></div>
                         </div>
                     </div>
                 </div>
@@ -446,7 +456,9 @@
             const p_dmg_ranged_perc = getFloat('p_dmg_ranged_perc') / 100;
             const p_dmg_magic_perc = getFloat('p_dmg_magic_perc') / 100;
             const p_dmg_element_perc = getFloat('p_dmg_element_perc') / 100;
-            const p_crit_rate_perc = getFloat('p_crit_rate_perc'), p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
+            const p_crit_flat = getFloat('p_crit_flat');
+            const p_crit_rate_perc = getFloat('p_crit_rate_perc') / 100;
+            const p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
             const p_aspd_perc = getFloat('p_aspd_perc') / 100, p_cspd_perc = getFloat('p_cspd_perc') / 100;
 
             // Weapon
@@ -455,7 +467,14 @@
 
             // Target stats
             const t_lv = getFloat('t_lv'), t_element = getSelect('t_element');
-            const t_def = t_lv * 1.5, t_mdef = t_lv * 1.5, t_vit = t_lv * 0.5;
+            const t_critdef_flat = getFloat('t_critdef_flat');
+            const t_def_base = getFloat('t_def');
+            const t_def_perc = getFloat('t_def_perc') / 100;
+            const t_mdef_base = getFloat('t_mdef');
+            const t_mdef_perc = getFloat('t_mdef_perc') / 100;
+            const t_block_base = getFloat('t_block');
+            const t_reflect_perc = getFloat('t_reflect_perc') / 100;
+            const t_vit = t_lv * 0.5;
             const t_flee = t_lv * 2, t_luk = t_lv * 0.5;
 
             // --- BASE CALCULATIONS ---
@@ -479,17 +498,24 @@
             const aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
             const attack_delay = Math.max(0.01, (200 - aspd) / 50);
 
-            const final_crit_rate = Math.max(0, p_crit_rate_perc - (t_luk / 5)) / 100;
+            // CORRECTED: Crit Formulas
+            const base_crit_rate = (p_stats.luk / 3 + Math.floor(p_stats.luk / 10) + p_crit_flat) * (1 + p_crit_rate_perc);
+            const target_crit_def = t_luk / 5 + t_critdef_flat;
+            const final_crit_rate = Math.max(0, base_crit_rate - target_crit_def) / 100;
+            const crit_damage_multiplier = (120 + Math.floor(p_stats.luk / 10) + p_crit_dmg_perc) / 100;
 
             const final_hit = (p_stats.lv + p_stats.dex + 25);
             const hit_chance = Math.min(100, 100 + final_hit - t_flee) / 100;
 
-            const total_t_def = (t_def) * (1 + t_vit / 1000);
-            const total_t_mdef = (t_mdef) * (1 + t_vit / 1000);
+            const total_t_def = t_def_base * (1 + t_vit / 1000 + t_def_perc);
+            const total_t_mdef = t_mdef_base * (1 + t_vit / 1000 + t_mdef_perc);
+            const final_block_chance = t_block_base * (1 + p_stats.dex / 100);
 
             const auto_attack_elemental_multiplier = getElementalMultiplier(p_element, t_element);
             const phys_reduc = 100 / (total_t_def + 100);
             const mag_reduc = 100 / (total_t_mdef + 100);
+
+            const reflect_damage = t_reflect_perc * (final_atk / Math.pow(phys_reduc, 1.1) + total_t_def);
 
             let physDmgModifier = 1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc);
             const magDmgModifier = 1.0 + p_dmg_magic_perc;
@@ -497,7 +523,7 @@
 
             // Auto-Attack Damage
             const normal_hit = final_atk * phys_reduc * physDmgModifier * auto_attack_elemental_multiplier * elementDmgModifier;
-            const crit_hit = normal_hit * (p_crit_dmg_perc / 100);
+            const crit_hit = normal_hit * crit_damage_multiplier;
             const avg_hit = (normal_hit * (1 - final_crit_rate) + crit_hit * final_crit_rate) * hit_chance;
             const dps = avg_hit / attack_delay;
 
@@ -559,29 +585,25 @@
 
                     const totalDmgPercent = (baseDmg + (dmgPerLevel * level) + percentScalingBonus) / 100;
 
-                    let skillBaseDmg = 0, skillDmgReduc = 1, skillTypeModifier = 1;
+                    let skillBaseDmg = 0, skillDmgReduc = 1;
                     let avgDamagePerInstance = 0;
+
+                    const hasDmgCard = getBool(`skill-${i}-has-dmg-card`);
+                    const skillCardBonus = hasDmgCard ? (getFloat(`skill-${i}-dmg-card-perc`) / 100) : 0;
 
                     if (type === 'phys') {
                         skillBaseDmg = final_atk;
                         skillDmgReduc = phys_reduc;
-                        skillTypeModifier = physDmgModifier;
+                        const skillTypeModifier = 1 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc) + skillCardBonus;
                         const skillNormalHit = skillBaseDmg * totalDmgPercent * skillDmgReduc * skillTypeModifier * skill_ele_multiplier * elementDmgModifier;
-                        const skillCritHit = skillNormalHit * (p_crit_dmg_perc / 100);
+                        const skillCritHit = skillNormalHit * crit_damage_multiplier;
                         avgDamagePerInstance = (skillNormalHit * (1 - final_crit_rate) + skillCritHit * final_crit_rate) * hit_chance;
                     } else { // magic
                         skillBaseDmg = final_matk;
                         skillDmgReduc = mag_reduc;
-                        skillTypeModifier = magDmgModifier;
+                        const skillTypeModifier = 1 + p_dmg_magic_perc + skillCardBonus;
                         const skillNormalHit = skillBaseDmg * totalDmgPercent * skillDmgReduc * skillTypeModifier * skill_ele_multiplier * elementDmgModifier;
                         avgDamagePerInstance = skillNormalHit; // Magic cannot crit
-                    }
-
-                    // ADDED: Apply Skill Damage Card multiplier
-                    const hasDmgCard = getBool(`skill-${i}-has-dmg-card`);
-                    if (hasDmgCard) {
-                        const dmgCardPerc = getFloat(`skill-${i}-dmg-card-perc`) / 100;
-                        avgDamagePerInstance *= (1 + dmgCardPerc);
                     }
 
                     const dotResultEl = document.getElementById(`skill-${i}-dot-result`);
@@ -622,7 +644,9 @@
             document.getElementById('r_cspd').textContent = cast_speed.toFixed(2);
             document.getElementById('r_ctr').textContent = (cast_time_reduction * 100).toFixed(2) + '%';
             document.getElementById('r_crit_rate').textContent = (final_crit_rate * 100).toFixed(2) + '%';
-            document.getElementById('r_crit_dmg').textContent = p_crit_dmg_perc.toFixed(2) + '%';
+            document.getElementById('r_crit_dmg').textContent = (crit_damage_multiplier * 100).toFixed(2) + '%';
+            document.getElementById('r_block').textContent = final_block_chance.toFixed(2) + '%';
+            document.getElementById('r_reflect').textContent = Math.floor(reflect_damage).toLocaleString();
 
             document.getElementById('r_hit_chance').textContent = (hit_chance * 100).toFixed(2) + '%';
             document.getElementById('r_phys_reduc').textContent = ((1 - phys_reduc) * 100).toFixed(2) + '%';
