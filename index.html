@@ -23,38 +23,6 @@
         .calculator-panel {
              background-color: #1f2937; /* gray-800 */
         }
-        .multiselect-dropdown {
-            position: relative;
-        }
-        .multiselect-dropdown-list {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            z-index: 10;
-            background-color: #1f2937; /* gray-800 */
-            border: 1px solid #374151; /* gray-700 */
-            border-radius: 0.375rem; /* rounded-md */
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        .multiselect-dropdown-list label {
-            display: block;
-            padding: 0.5rem 0.75rem;
-            cursor: pointer;
-        }
-        .multiselect-dropdown-list label:hover {
-            background-color: #374151; /* gray-700 */
-        }
-        .multiselect-dropdown-list input {
-            margin-right: 0.5rem;
-        }
-        .multiselect-dropdown-list label:has(input:disabled) {
-            opacity: 0.5;
-            cursor: not-allowed;
-            color: #9ca3af; /* gray-400 */
-        }
     </style>
 </head>
 <body class="text-slate-300">
@@ -80,24 +48,21 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div>
                         <label for="stat1" class="block text-sm font-medium text-slate-400 mb-2">Stat 1</label>
-                        <div id="stat1-multiselect" class="multiselect-dropdown">
-                            <button class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-left">Select Stat 1</button>
-                            <div class="multiselect-dropdown-list"></div>
-                        </div>
+                        <select id="stat1" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <!-- Options will be populated by JS -->
+                        </select>
                     </div>
                     <div>
                         <label for="stat2" class="block text-sm font-medium text-slate-400 mb-2">Stat 2</label>
-                        <div id="stat2-multiselect" class="multiselect-dropdown">
-                            <button class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-left">Select Stat 2</button>
-                            <div class="multiselect-dropdown-list"></div>
-                        </div>
+                        <select id="stat2" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <!-- Options will be populated by JS -->
+                        </select>
                     </div>
                     <div>
                         <label for="stat3" class="block text-sm font-medium text-slate-400 mb-2">Stat 3</label>
-                         <div id="stat3-multiselect" class="multiselect-dropdown">
-                            <button class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition text-left">Select Stat 3</button>
-                            <div class="multiselect-dropdown-list"></div>
-                        </div>
+                        <select id="stat3" class="custom-select w-full bg-gray-900 border border-gray-700 rounded-md py-2.5 px-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+                            <!-- Options will be populated by JS -->
+                        </select>
                     </div>
                 </div>
 
@@ -119,18 +84,22 @@
                     <h2 class="text-xl font-semibold text-center mb-6 text-white">Calculation Results</h2>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         <!-- Scenario 1: Any Roll -->
-                        <div class="border border-gray-700 rounded-lg p-4 flex flex-col">
-                            <h3 class="text-md font-medium text-blue-400 mb-3 text-center">Chance for Right Stats (Any Roll)</h3>
-                            <div id="any-roll-results-container" class="space-y-4 mt-auto">
-                                <!-- Results for single and combined will be dynamically inserted here -->
+                        <div>
+                            <h3 class="text-md font-medium text-blue-400 mb-2 text-center">Chance for Right Stats (Any Roll)</h3>
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex flex-col justify-center border border-gray-700">
+                                <p class="text-3xl font-bold text-center text-white mb-2" id="any-roll-chance"></p>
+                                <p class="text-center text-slate-400" id="any-roll-fraction"></p>
+                                <p class="text-xs text-center text-slate-500 mt-2 break-words" id="any-roll-breakdown"></p>
                             </div>
                         </div>
 
                         <!-- Scenario 2: Perfect Roll -->
-                        <div class="border border-gray-700 rounded-lg p-4 flex flex-col">
-                            <h3 class="text-md font-medium text-blue-400 mb-3 text-center">Chance for Perfect Roll (Max Values)</h3>
-                             <div id="perfect-roll-results-container" class="space-y-4 mt-auto">
-                                <!-- Results for single and combined will be dynamically inserted here -->
+                        <div>
+                            <h3 class="text-md font-medium text-blue-400 mb-2 text-center">Chance for Perfect Roll (Max Values)</h3>
+                            <div class="bg-gray-900/50 p-4 rounded-lg flex flex-col justify-center border border-gray-700">
+                                <p class="text-3xl font-bold text-center text-white mb-2" id="perfect-roll-chance"></p>
+                                <p class="text-center text-slate-400" id="perfect-roll-fraction"></p>
+                                <p class="text-xs text-center text-slate-500 mt-2 break-words" id="perfect-roll-breakdown"></p>
                             </div>
                         </div>
                     </div>
@@ -244,13 +213,8 @@
             };
 
             let statDetails = {};
-            let selectedStats = [[], [], []]; // Array of arrays for selected stat names
             const equipmentSelect = document.getElementById('equipmentType');
-            const multiSelectContainers = [
-                document.getElementById('stat1-multiselect'),
-                document.getElementById('stat2-multiselect'),
-                document.getElementById('stat3-multiselect')
-            ];
+            const statSelects = [document.getElementById('stat1'), document.getElementById('stat2'), document.getElementById('stat3')];
             const calculateBtn = document.getElementById('calculateBtn');
             const resultsDiv = document.getElementById('results');
             const errorDiv = document.getElementById('error-message');
@@ -279,176 +243,118 @@
 
                 equipmentSelect.addEventListener('change', () => updateUIForEquipment(equipmentSelect.value));
                 calculateBtn.addEventListener('click', handleCalculate);
+                statSelects.forEach(sel => sel.addEventListener('change', handleSelectChange));
 
-                multiSelectContainers.forEach((container, index) => {
-                    const button = container.querySelector('button');
-                    const list = container.querySelector('.multiselect-dropdown-list');
-
-                    button.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        toggleDropdown(index);
-                    });
-
-                    // Prevent dropdown from closing when clicking inside the list
-                    list.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                    });
-                });
-
-                document.addEventListener('click', closeAllDropdowns);
                 updateUIForEquipment(equipmentSelect.value);
             }
 
             function updateUIForEquipment(equipmentName) {
                 const equipment = equipmentData[equipmentName];
                 statDetails = {}; // Clear old details
-                selectedStats = [[], [], []]; // Reset selections
 
+                // Rebuild statDetails map for current equipment
                 Object.values(equipment.pools).flat().forEach(s => statDetails[s.name] = s);
 
-                multiSelectContainers.forEach((container, index) => {
+                statSelects.forEach((select, index) => {
                     const poolName = equipment.selection[index];
                     const statList = equipment.pools[poolName];
-                    populateMultiSelect(container, statList, index);
-                    updateButtonText(index);
+                    populateSelect(select, statList, `Select Stat ${index + 1}`);
                 });
-                updateCheckboxDisabledStates();
 
                 resultsDiv.classList.add('hidden');
                 hideError();
             }
 
-            function populateMultiSelect(container, statList, selectIndex) {
-                const list = container.querySelector('.multiselect-dropdown-list');
-                list.innerHTML = '';
+            function populateSelect(select, statList, placeholder) {
+                select.innerHTML = `<option value="">${placeholder}</option>`;
                 statList.forEach(stat => {
-                    const label = document.createElement('label');
-                    const checkbox = document.createElement('input');
-                    checkbox.type = 'checkbox';
-                    checkbox.value = stat.name;
-                    checkbox.addEventListener('change', () => {
-                        handleCheckboxChange(selectIndex, stat.name, checkbox.checked);
-                    });
-                    label.appendChild(checkbox);
-                    label.append(stat.name);
-                    list.appendChild(label);
+                    const option = document.createElement('option');
+                    option.value = stat.name;
+                    option.textContent = stat.name;
+                    select.appendChild(option);
                 });
             }
 
-            function toggleDropdown(index) {
-                const list = multiSelectContainers[index].querySelector('.multiselect-dropdown-list');
-                const isVisible = list.style.display === 'block';
-                closeAllDropdowns();
-                if (!isVisible) {
-                    list.style.display = 'block';
-                }
-            }
+            function handleSelectChange() {
+                // Get all selections, including empty ones, to preserve indices
+                const allSelections = statSelects.map(s => statDetails[s.value]);
 
-            function closeAllDropdowns() {
-                multiSelectContainers.forEach(container => {
-                    container.querySelector('.multiselect-dropdown-list').style.display = 'none';
+                statSelects.forEach((currentSelect, currentIndex) => {
+                    // For the current dropdown, find selections made in OTHER dropdowns
+                    const otherSelections = allSelections.filter((sel, index) => sel && index !== currentIndex);
+
+                    // Loop through the options of the current dropdown
+                    for (const option of currentSelect.options) {
+                        if (option.value === "") continue;
+
+                        const optionStat = statDetails[option.value];
+                        if (!optionStat) continue;
+
+                        // Start by assuming the option is enabled
+                        option.disabled = false;
+
+                        // Check for conflicts with selections in OTHER dropdowns
+                        // A group is taken if another selection has the same group (and groups are defined)
+                        const isGroupTaken = otherSelections.some(sel => sel.group && optionStat.group && sel.group === optionStat.group);
+                        // A specific stat is taken if another selection is the exact same stat
+                        const isStatTaken = otherSelections.some(sel => sel.name === optionStat.name);
+
+                        if (isGroupTaken || isStatTaken) {
+                            option.disabled = true;
+                        }
+                    }
                 });
-            }
 
-            function handleCheckboxChange(selectIndex, statName, isChecked) {
-                if (isChecked) {
-                    selectedStats[selectIndex].push(statName);
-                } else {
-                    selectedStats[selectIndex] = selectedStats[selectIndex].filter(s => s !== statName);
-                }
-                updateButtonText(selectIndex);
-                updateCheckboxDisabledStates();
-            }
-
-            function updateCheckboxDisabledStates() {
-                const selectionsBySlot = selectedStats.map((slot, index) =>
-                    slot.map(statName => ({ ...statDetails[statName], slotIndex: index }))
-                );
-
-                const allSelectedStatsFlat = selectionsBySlot.flat();
-
-                multiSelectContainers.forEach((container, containerIndex) => {
-                    const list = container.querySelector('.multiselect-dropdown-list');
-
-                    list.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                        const statName = checkbox.value;
-                        const stat = statDetails[statName];
-
-                        // A stat is disabled if a stat with the same name or from the same group
-                        // is selected in a DIFFERENT slot.
-                        const isConflicting = allSelectedStatsFlat.some(selected => {
-                            // Don't check against the same slot
-                            if (selected.slotIndex === containerIndex) {
-                                return false;
-                            }
-                            // Check for conflict by group or name
-                            return (stat.group && stat.group === selected.group) || (stat.name === selected.name);
-                        });
-
-                        checkbox.disabled = isConflicting;
-                    });
+                // If a change causes a selected item to become disabled (e.g. selecting a conflicting stat in another box), reset it.
+                statSelects.forEach(select => {
+                    if (select.options[select.selectedIndex]?.disabled) {
+                        select.value = "";
+                    }
                 });
-            }
 
-            function updateButtonText(index) {
-                const button = multiSelectContainers[index].querySelector('button');
-                const currentSelections = selectedStats[index];
-                if (currentSelections.length === 0) {
-                    button.textContent = `Select Stat ${index + 1}`;
-                } else if (currentSelections.length === 1) {
-                    button.textContent = currentSelections[0];
-                } else {
-                    button.textContent = `${currentSelections.length} stats selected`;
-                }
+                // Hide placeholder if a selection is made
+                statSelects.forEach(select => {
+                    const placeholderOption = select.querySelector('option[value=""]');
+                    if (placeholderOption) {
+                        placeholderOption.hidden = !!select.value;
+                    }
+                });
             }
 
             // --- CALCULATION LOGIC ---
             function handleCalculate() {
-                // selectedStats is now an array of arrays: [[stat1a, stat1b], [stat2a], [stat3a]]
-                if (selectedStats.some(slot => slot.length === 0)) {
-                    showError("Please select at least one stat for each slot.");
+                const selectedNames = statSelects.map(s => s.value);
+                if (selectedNames.some(name => !name)) {
+                    showError("Please select three stats.");
                     return;
                 }
 
-                // For now, we will calculate based on the FIRST selection in each slot.
-                // This will be expanded in the next step.
-                const primarySelectedNames = selectedStats.map(slot => slot[0]);
-                const primarySelectedStats = primarySelectedNames.map(name => statDetails[name]);
+                const selectedStats = selectedNames.map(name => statDetails[name]);
 
                 // Custom check for weapon, which has distinct pools
                 if (equipmentData[equipmentSelect.value].selection[0] === 'line1') {
-                    const line23Groups = new Set([primarySelectedStats[1].group, primarySelectedStats[2].group]);
+                    const line1Group = selectedStats[0].group; // will be undefined
+                    const line23Groups = new Set([selectedStats[1].group, selectedStats[2].group]);
                      if (line23Groups.size < 2) {
                         showError("Stat 2 and Stat 3 must be from different groups.");
                         return;
                     }
                 } else { // Generic check for items with one big pool
-                     const uniqueGroups = new Set(primarySelectedStats.map(s => s.group));
+                     const uniqueGroups = new Set(selectedStats.map(s => s.group));
                      if (uniqueGroups.size < 3) {
                          showError("Selected stats must be from different groups.");
                          return;
                     }
                 }
 
+
                 hideError();
 
                 const equipmentName = equipmentSelect.value;
+                const anyRollProb = calculateProbability(equipmentName, selectedNames, false);
+                const perfectRollProb = calculateProbability(equipmentName, selectedNames, true);
 
-                // 1. Calculate for the "single" combination (first selected stat in each slot)
-                const singleStatNames = selectedStats.map(s => [s[0]]); // Wrap in array for the new function
-                const singleAnyRoll = calculateProbability(equipmentName, singleStatNames, false);
-                const singlePerfectRoll = calculateProbability(equipmentName, singleStatNames, true);
-
-                // 2. Calculate for the "combined" combination (all selected stats)
-                const combinedAnyRoll = calculateProbability(equipmentName, selectedStats, false);
-                const combinedPerfectRoll = calculateProbability(equipmentName, selectedStats, true);
-
-                const results = {
-                    single: { any: singleAnyRoll, perfect: singlePerfectRoll },
-                    combined: { any: combinedAnyRoll, perfect: combinedPerfectRoll }
-                };
-
-                displayResults(results);
+                displayResults(anyRollProb, perfectRollProb);
             }
 
             function getStatsInGroup(group, equipmentName, poolName) {
@@ -457,99 +363,67 @@
                  return pool.filter(s => s.group === group).length;
             }
 
-            function calculateProbability(equipmentName, statNameArrays, isPerfect) {
+            function calculateProbability(equipmentName, statNames, isPerfect) {
                 const equipment = equipmentData[equipmentName];
-                const statObjectArrays = statNameArrays.map(slot => slot.map(name => statDetails[name]));
+                const stats = statNames.map(name => statDetails[name]);
 
-                // --- Probability for Slot 1 ---
-                const slot1Options = statObjectArrays[0];
-                let probSlot1 = 0;
-                slot1Options.forEach(stat => {
-                    let p = 1 / equipment.pools.line1.length; // Chance to get the stat
-                    if (isPerfect) {
-                        p *= 1 / stat.values; // Chance for a perfect roll on that stat
-                    }
-                    probSlot1 += p;
-                });
+                let totalProb = 1;
+                let breakdown = [];
 
-                // --- Probability for Slots 2 & 3 ---
-                const slot2Options = statObjectArrays[1];
-                const slot3Options = statObjectArrays[2];
+                // All equipment now follows the same logic
+                // Line 1
+                const s1 = stats[0];
+                let p1 = 1 / equipment.pools.line1.length;
+                let p1Breakdown = `1/${equipment.pools.line1.length}`;
+                if (isPerfect) {
+                    p1 *= 1 / s1.values;
+                    p1Breakdown += ` × 1/${s1.values}`;
+                }
+                totalProb *= p1;
+                breakdown.push(`(${p1Breakdown} for ${s1.name})`);
 
-                // Since the UI now enforces that slot 2 and 3 have different, valid groups,
-                // we can simplify the calculation.
+                // Lines 2 & 3
+                const s2 = stats[1];
+                const s3 = stats[2];
                 const line23pool = equipment.pools.line23 || [];
-                const numGroupsInPool = new Set(line23pool.map(s => s.group)).size;
+                const numGroups = new Set(line23pool.map(s => s.group)).size;
+                const pGroupSelection = 1 / combinations(numGroups, 2);
 
-                // The probability of selecting the two correct groups for slot 2 and 3
-                const probOfCorrectGroupPair = 1 / combinations(numGroupsInPool, 2);
+                const s2GroupSize = getStatsInGroup(s2.group, equipmentName, 'line23');
+                const s3GroupSize = getStatsInGroup(s3.group, equipmentName, 'line23');
 
-                // Probability within the chosen groups
-                let probSlot2 = 0;
-                slot2Options.forEach(stat => {
-                    const groupSize = getStatsInGroup(stat.group, equipmentName, 'line23');
-                    let p = 1 / groupSize; // Chance to get the stat within its group
-                    if (isPerfect) {
-                        p *= 1 / stat.values;
-                    }
-                    probSlot2 += p;
-                });
+                let p2 = 1 / s2GroupSize;
+                let p3 = 1 / s3GroupSize;
 
-                let probSlot3 = 0;
-                slot3Options.forEach(stat => {
-                    const groupSize = getStatsInGroup(stat.group, equipmentName, 'line23');
-                    let p = 1 / groupSize;
-                    if (isPerfect) {
-                        p *= 1 / stat.values;
-                    }
-                    probSlot3 += p;
-                });
-
-                // The total probability for slots 2 and 3 is the chance to get the right groups,
-                // multiplied by the chances of getting the right stats within those groups.
-                const probSlots2and3 = probOfCorrectGroupPair * probSlot2 * probSlot3;
-
-                // --- Final Probability ---
-                const totalProb = probSlot1 * probSlots2and3;
-                const denominator = totalProb > 0 ? Math.round(1 / totalProb) : Infinity;
+                let p23Breakdown = `1/${combinations(numGroups, 2)} for groups`;
+                if (isPerfect) {
+                    p2 *= 1 / s2.values;
+                    p3 *= 1 / s3.values;
+                    p23Breakdown += ` × (1/${s2GroupSize} × 1/${s2.values}) × (1/${s3GroupSize} × 1/${s3.values})`;
+                } else {
+                    p23Breakdown += ` × 1/${s2GroupSize} × 1/${s3GroupSize}`;
+                }
+                totalProb *= pGroupSelection * p2 * p3;
+                breakdown.push(`(${p23Breakdown})`);
 
                 return {
                     prob: totalProb,
-                    denominator: denominator,
-                    breakdown: "Calculation refactored for clarity."
+                    denominator: Math.round(1 / totalProb),
+                    breakdown: breakdown.join(' × ')
                 };
             }
 
             // --- DISPLAY & ERROR HANDLING ---
-            function displayResults(results) {
-                const anyRollContainer = document.getElementById('any-roll-results-container');
-                const perfectRollContainer = document.getElementById('perfect-roll-results-container');
+            function displayResults(any, perfect) {
+                document.getElementById('any-roll-chance').textContent = `${(any.prob * 100).toFixed(4)}%`;
+                document.getElementById('any-roll-fraction').textContent = `1 in ${any.denominator.toLocaleString()}`;
+                document.getElementById('any-roll-breakdown').textContent = `Calc: ${any.breakdown}`;
 
-                anyRollContainer.innerHTML = createResultHTML('Single Combination', results.single.any);
-                perfectRollContainer.innerHTML = createResultHTML('Single Combination', results.single.perfect);
-
-                // Only show combined results if there's actually a multi-stat selection
-                const hasMultiSelection = selectedStats.some(s => s.length > 1);
-                if (hasMultiSelection) {
-                    anyRollContainer.innerHTML += createResultHTML('Combined (Any Selected)', results.combined.any);
-                    perfectRollContainer.innerHTML += createResultHTML('Combined (Any Selected)', results.combined.perfect);
-                }
+                document.getElementById('perfect-roll-chance').textContent = `${(perfect.prob * 100).toFixed(4)}%`;
+                document.getElementById('perfect-roll-fraction').textContent = `1 in ${perfect.denominator.toLocaleString()}`;
+                document.getElementById('perfect-roll-breakdown').textContent = `Calc: ${perfect.breakdown}`;
 
                 resultsDiv.classList.remove('hidden');
-            }
-
-            function createResultHTML(title, data) {
-                const { prob, denominator } = data;
-                const percentage = (prob * 100).toFixed(4);
-                const fraction = `1 in ${denominator.toLocaleString()}`;
-
-                return `
-                    <div class="bg-gray-900/50 p-4 rounded-lg border border-gray-700">
-                        <h4 class="text-sm font-semibold text-slate-300 mb-2 text-center">${title}</h4>
-                        <p class="text-2xl font-bold text-center text-white">${percentage}%</p>
-                        <p class="text-center text-slate-400 mt-1">${fraction}</p>
-                    </div>
-                `;
             }
 
             function showError(message) {
