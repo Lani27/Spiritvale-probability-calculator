@@ -166,7 +166,9 @@
                  <div class="card">
                     <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Weapon Setup</h2>
                     <div class="space-y-4">
-                        <div class="input-group"><label for="p_weapon_bad">Weapon (sets BAD)</label>
+                        <div class="input-group"><label for="p_dual_wield">Dual Wield</label><input id="p_dual_wield" type="checkbox" class="recalculate"></div>
+                        <div class="input-group">
+                            <label for="p_weapon_bad" id="main-weapon-label">Weapon (sets BAD)</label>
                             <select id="p_weapon_bad" class="recalculate">
                                 <option value="0.9">Unarmed</option>
                                 <option value="1">Dagger</option>
@@ -174,10 +176,31 @@
                                 <option value="1.1" selected>Sword</option>
                                 <option value="1.1">Book</option>
                                 <option value="1.15">Mace</option>
+                                <option value="1.15">Instrument</option>
                                 <option value="1.2">Spear</option>
                                 <option value="1.2">Wand</option>
+                                <option value="1.2">Scythe</option>
                                 <option value="1.3">Axe</option>
                                 <option value="1.4">Bow</option>
+                                <option value="1.4">Pistol</option>
+                            </select>
+                        </div>
+                        <div class="input-group hidden" id="offhand-weapon-group">
+                            <label for="p_weapon_bad_offhand">Off-Hand (sets BAD)</label>
+                            <select id="p_weapon_bad_offhand" class="recalculate">
+                                <option value="0.9">Unarmed</option>
+                                <option value="1" selected>Dagger</option>
+                                <option value="1">Twinblade</option>
+                                <option value="1.1">Sword</option>
+                                <option value="1.1">Book</option>
+                                <option value="1.15">Mace</option>
+                                <option value="1.15">Instrument</option>
+                                <option value="1.2">Spear</option>
+                                <option value="1.2">Wand</option>
+                                <option value="1.2">Scythe</option>
+                                <option value="1.3">Axe</option>
+                                <option value="1.4">Bow</option>
+                                <option value="1.4">Pistol</option>
                             </select>
                         </div>
                         <div class="input-group"><label for="p_element">Elemental Conversion</label>
@@ -194,7 +217,6 @@
                             </select>
                         </div>
                         <div class="input-group"><label for="p_is_ranged">Ranged Attack</label><input id="p_is_ranged" type="checkbox" class="recalculate"></div>
-                        <div class="input-group"><label for="p_twohanded">Two-Handed</label><input id="p_twohanded" type="checkbox" class="recalculate"></div>
                     </div>
                 </div>
             </div>
@@ -437,11 +459,21 @@
                 calculateAll();
             });
             document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
+            document.getElementById('p_dual_wield').addEventListener('change', toggleDualWield);
+
 
             toggleSkillSection();
+            toggleDualWield();
             generateSkillInputs();
             calculateAll();
         });
+
+        function toggleDualWield() {
+            const isDualWield = document.getElementById('p_dual_wield').checked;
+            document.getElementById('offhand-weapon-group').classList.toggle('hidden', !isDualWield);
+            document.getElementById('main-weapon-label').textContent = isDualWield ? 'Main Hand (sets BAD)' : 'Weapon (sets BAD)';
+            calculateAll();
+        }
 
         function toggleSkillSection() {
             const isEnabled = document.getElementById('simulate_skills').checked;
@@ -611,8 +643,19 @@
             const p_crit_rate_perc = getFloat('p_crit_rate_perc') / 100;
             const p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
             const p_aspd_perc = getFloat('p_aspd_perc') / 100, p_cspd_perc = getFloat('p_cspd_perc') / 100;
-            const p_bad = getFloat('p_weapon_bad'), p_element = getSelect('p_element');
-            const p_is_ranged = getBool('p_is_ranged'), p_twohanded = getBool('p_twohanded');
+
+            const p_dual_wield = getBool('p_dual_wield');
+            let p_bad;
+            if (p_dual_wield) {
+                const bad1 = getFloat('p_weapon_bad');
+                const bad2 = getFloat('p_weapon_bad_offhand');
+                p_bad = (bad1 + bad2) * 0.8;
+            } else {
+                p_bad = getFloat('p_weapon_bad');
+            }
+
+            const p_element = getSelect('p_element');
+            const p_is_ranged = getBool('p_is_ranged');
             const t_lv = getFloat('t_lv'), t_element = getSelect('t_element');
             const t_def_base = getFloat('t_def');
             const t_mdef_base = getFloat('t_mdef');
@@ -620,10 +663,12 @@
             const t_flee = t_lv * 2;
 
             const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
+            const two_handed_bonus = !p_dual_wield ? 1.25 : 1;
+
             const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + (p_weapon_atk + p_atk) * (1 + mainStat / 200)) *
-                              (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * (p_twohanded ? 1.25 : 1);
+                              (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * two_handed_bonus;
             const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + (p_weapon_matk + p_matk) * (1 + p_stats.int / 200)) *
-                               (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * (p_twohanded ? 1.25 : 1);
+                               (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * two_handed_bonus;
             const cast_speed = 200 - 50 * (1 - (p_stats.dex / 200 + p_stats.int / 400)) / (1 + p_cspd_perc) + 0.5 * Math.floor(p_stats.dex / 10);
             const cast_time_reduction = 1 - (200 - cast_speed) / 50;
             const aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
