@@ -23,11 +23,22 @@
         .calculator-panel {
              background-color: #1f2937; /* gray-800 */
         }
+        #main-content {
+            margin-left: 12rem; /* 192px */
+        }
     </style>
 </head>
-<body class="text-slate-300">
+<body class="text-slate-300 bg-gray-900">
 
-    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div style="width: 12rem;" class="fixed left-0 top-0 h-full bg-gray-800 p-4">
+        <h2 class="text-lg font-semibold text-white mb-4">Tools</h2>
+        <ul>
+            <li class="mb-2"><a href="index.html" class="text-blue-400 hover:text-blue-300 font-bold">Stat Calculator</a></li>
+            <li><a href="damage_simulator.html" class="text-blue-400 hover:text-blue-300">Damage Simulator</a></li>
+        </ul>
+    </div>
+
+    <div id="main-content" class="min-h-screen flex flex-col items-center justify-center p-4">
         <!-- Main Content -->
         <main class="w-full max-w-2xl mx-auto">
             <header class="text-center mb-8">
