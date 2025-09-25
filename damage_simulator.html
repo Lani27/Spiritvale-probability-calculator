@@ -247,8 +247,8 @@
                             <div class="result-item"><span class="result-label">Final MATK</span><span id="r_matk" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Attack Speed (ASPD)</span><span id="r_aspd" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Attack Delay</span><span id="r_atk_delay" class="result-value">0s</span></div>
-                            <div class="result-item"><span class="result-label">Cast Speed</span><span id="r_cspd" class="result-value">0</span></div>
-                            <div class="result-item"><span class="result-label">Cast Time Reduction</span><span id="r_ctr" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Cast Speed <span class="text-xs text-yellow-400 ml-1">(calc. inaccurate)</span></span><span id="r_cspd" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Cast Time Reduction <span class="text-xs text-yellow-400 ml-1">(calc. inaccurate)</span></span><span id="r_ctr" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Block Chance</span><span id="r_block" class="result-value">0%</span></div>
@@ -510,7 +510,7 @@
             const cast_time_reduction = 1 - (200 - cast_speed) / 50;
             const aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
             const attack_delay = Math.max(0.01, (200 - aspd) / 50);
-            const base_crit_rate = (p_stats.luk / 3 + Math.floor(p_stats.luk / 10) + p_crit_flat) * (1 + p_crit_rate_perc);
+            const base_crit_rate = ((p_stats.luk / 3 + Math.floor(p_stats.luk / 10) + p_crit_flat) * (1 + p_crit_rate_perc)) - 5;
             const final_crit_rate = Math.max(0, base_crit_rate - base_crit_def) / 100;
             const crit_damage_multiplier = (120 + Math.floor(p_stats.luk / 10) + p_crit_dmg_perc) / 100;
             const final_hit = (p_stats.lv + p_stats.dex + 25);
