@@ -133,6 +133,7 @@
                 <div class="card">
                     <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Character Stats</h2>
                     <div class="space-y-4">
+                        <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate"></select></div>
                         <div class="input-group"><label for="p_lv">Level (LV)</label><input id="p_lv" type="number" value="100" class="recalculate"></div>
                         <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate"></div>
                         <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate"></div>
@@ -277,8 +278,8 @@
                             <div class="result-item"><span class="result-label">Final MATK</span><span id="r_matk" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Attack Speed (ASPD)</span><span id="r_aspd" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Attack Delay</span><span id="r_atk_delay" class="result-value">0s</span></div>
-                            <div class="result-item"><span class="result-label">Cast Speed <span class="text-xs text-yellow-400 ml-1">(calc. inaccurate)</span></span><span id="r_cspd" class="result-value">0</span></div>
-                            <div class="result-item"><span class="result-label">Cast Time Reduction <span class="text-xs text-yellow-400 ml-1">(calc. inaccurate)</span></span><span id="r_ctr" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Cast Speed</span><span id="r_cspd" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Cast Time Reduction</span><span id="r_ctr" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0% (vs Target: 0%)</span></div>
                             <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Block Chance</span><span id="r_block" class="result-value">0%</span></div>
@@ -334,6 +335,7 @@
         </div>
     </div>
 
+    <script src="classes.js"></script>
     <script src="monsters.js"></script>
     <script>
         // --- DATA ---
@@ -363,6 +365,58 @@
             const tDefInput = document.getElementById('t_def');
             const tMdefInput = document.getElementById('t_mdef');
             const tBlockInput = document.getElementById('t_block');
+
+            // --- Class Selection & Stat Logic ---
+            const classSelect = document.getElementById('p_class');
+            const statInputs = {
+                'STR': document.getElementById('p_str'), 'VIT': document.getElementById('p_vit'),
+                'AGI': document.getElementById('p_agi'), 'DEX': document.getElementById('p_dex'),
+                'INT': document.getElementById('p_int'), 'LUK': document.getElementById('p_luk')
+            };
+
+            if (typeof classes !== 'undefined' && classes.length > 0) {
+                // Populate class dropdown
+                classes.forEach(cls => {
+                    const option = document.createElement('option');
+                    option.value = cls.ClassName;
+                    option.textContent = cls.ClassName;
+                    classSelect.appendChild(option);
+                });
+
+                // Function to update stats based on selected class
+                const updateStatsForClass = () => {
+                    const selectedClassName = classSelect.value;
+                    const selectedClass = classes.find(cls => cls.ClassName === selectedClassName);
+                    if (selectedClass) {
+                        for (const [stat, value] of Object.entries(selectedClass)) {
+                            if (stat !== 'ClassName' && statInputs[stat]) {
+                                statInputs[stat].value = value;
+                                statInputs[stat].min = value;
+                            }
+                        }
+                        calculateAll();
+                    }
+                };
+
+                classSelect.addEventListener('change', updateStatsForClass);
+
+                // Add event listeners to stat inputs to enforce min values
+                Object.values(statInputs).forEach(input => {
+                    input.addEventListener('blur', () => { // On losing focus
+                        const minValue = parseInt(input.min, 10);
+                        if (isNaN(minValue)) return;
+
+                        const currentValue = parseInt(input.value, 10);
+                        if (isNaN(currentValue) || currentValue < minValue) {
+                            input.value = minValue;
+                            calculateAll();
+                        }
+                    });
+                });
+
+                // Initial population of stats for the default selected class
+                updateStatsForClass();
+            }
 
             // --- Searchable Monster Selection Logic ---
             if (typeof monsters !== 'undefined') {
@@ -669,8 +723,24 @@
                               (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * two_handed_bonus;
             const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + (p_weapon_matk + p_matk) * (1 + p_stats.int / 200)) *
                                (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * two_handed_bonus;
-            const cast_speed = 200 - 50 * (1 - (p_stats.dex / 200 + p_stats.int / 400)) / (1 + p_cspd_perc) + 0.5 * Math.floor(p_stats.dex / 10);
-            const cast_time_reduction = 1 - (200 - cast_speed) / 50;
+
+            // --- New CTR Calculation ---
+            const selectedClassName = getSelect('p_class');
+            const selectedClass = typeof classes !== 'undefined' ? classes.find(cls => cls.ClassName === selectedClassName) : undefined;
+            let base_ctr_perc = 0;
+            if (selectedClass) {
+                const base_dex = selectedClass.DEX || 0;
+                const base_int = selectedClass.INT || 0;
+                // Base CTR % = ( [Total DEX] - [Class Base DEX] ) * 0.35 + ( [Total INT] - [Class Base INT] ) * 0.125
+                base_ctr_perc = ((p_stats.dex - base_dex) * 0.35) + ((p_stats.int - base_int) * 0.125);
+            }
+            // Final CTR % = [Base CTR %] + (100 - [Base CTR %]) * ([Cast Speed %] / 100)
+            const final_ctr_perc = base_ctr_perc + (100 - base_ctr_perc) * p_cspd_perc;
+            const cast_time_reduction = Math.max(0, final_ctr_perc / 100);
+            // Derive Cast Speed from the final Cast Time Reduction for display consistency
+            const cast_speed = 200 - 50 * (1 - cast_time_reduction);
+            // --- End New CTR Calculation ---
+
             const aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
             const attack_delay = Math.max(0.01, (200 - aspd) / 50);
             const base_crit_rate = ((p_stats.luk / 3 + Math.floor(p_stats.luk / 10) + p_crit_flat) * (1 + p_crit_rate_perc)) - 5;
