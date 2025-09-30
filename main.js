@@ -316,15 +316,17 @@ function handleReset() {
 }
 
 // --- UI Generation & Listeners ---
-async function initializeMonsterSearch() {
-    try {
-        const monstersResponse = await fetch('monsters.json');
-        if (!monstersResponse.ok) {
-            throw new Error(`HTTP error! status: ${monstersResponse.status}`);
-        }
-        const monsters = await monstersResponse.json();
-
+function initializeMonsterSearch() {
+    if (typeof monsters === 'undefined' || monsters.length === 0) {
+        console.error("Monster data not found or is empty. Make sure monsters.js is loaded correctly.");
         const monsterSearchInput = document.getElementById('monster_search');
+        if (monsterSearchInput) {
+            monsterSearchInput.placeholder = "Monster data missing!";
+            monsterSearchInput.disabled = true;
+        }
+        return;
+    }
+    const monsterSearchInput = document.getElementById('monster_search');
         const monsterListDiv = document.getElementById('monster_list');
         const monsterDetailsDiv = document.getElementById('monster_details');
         const monsterSelectionWrapper = document.getElementById('monster-selection-wrapper');
@@ -417,100 +419,91 @@ async function initializeMonsterSearch() {
             monsterDetailsDiv.innerHTML = '';
             calculateAll();
         };
-
-    } catch (error) {
-        console.error("Failed to load or process monster data:", error);
-        const monsterSearchInput = document.getElementById('monster_search');
-        if(monsterSearchInput) {
-            monsterSearchInput.placeholder = "Monster search disabled";
-            monsterSearchInput.disabled = true;
-        }
-    }
 }
 
-try {
-    // --- Initialize Core Functionality ---
-    initializeMonsterSearch();
-    initializeBuilds();
-    document.getElementById('reset-build-btn').addEventListener('click', handleReset);
-    document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
-
-    const classSelect = document.getElementById('p_class');
-    const statInputs = {
-        'STR': document.getElementById('p_str'), 'VIT': document.getElementById('p_vit'),
-        'AGI': document.getElementById('p_agi'), 'DEX': document.getElementById('p_dex'),
-        'INT': document.getElementById('p_int'), 'LUK': document.getElementById('p_luk')
-    };
-
-    if (typeof classes !== 'undefined' && classes.length > 0) {
-        classes.forEach(cls => {
-            const option = document.createElement('option');
-            option.value = cls.ClassName;
-            option.textContent = cls.ClassName;
-            classSelect.appendChild(option);
-        });
-
-        const updateStatsForClass = () => {
-            const selectedClassName = classSelect.value;
-            const selectedClass = classes.find(cls => cls.ClassName === selectedClassName);
-            if (selectedClass) {
-                for (const [stat, value] of Object.entries(selectedClass)) {
-                    if (stat !== 'ClassName' && statInputs[stat]) {
-                        statInputs[stat].value = value;
-                        statInputs[stat].min = value;
-                    }
-                }
-                calculateAll();
-            }
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        // --- Initialize Class Selector ---
+        const classSelect = document.getElementById('p_class');
+        const statInputs = {
+            'STR': document.getElementById('p_str'), 'VIT': document.getElementById('p_vit'),
+            'AGI': document.getElementById('p_agi'), 'DEX': document.getElementById('p_dex'),
+            'INT': document.getElementById('p_int'), 'LUK': document.getElementById('p_luk')
         };
 
-        classSelect.addEventListener('change', updateStatsForClass);
+        if (typeof classes !== 'undefined' && classes.length > 0) {
+            classes.forEach(cls => {
+                const option = document.createElement('option');
+                option.value = cls.ClassName;
+                option.textContent = cls.ClassName;
+                classSelect.appendChild(option);
+            });
 
-        Object.values(statInputs).forEach(input => {
-            input.addEventListener('blur', () => {
-                const minValue = parseInt(input.min, 10);
-                if (isNaN(minValue)) return;
-                const currentValue = parseInt(input.value, 10);
-                if (isNaN(currentValue) || currentValue < minValue) {
-                    input.value = minValue;
+            const updateStatsForClass = () => {
+                const selectedClassName = classSelect.value;
+                const selectedClass = classes.find(cls => cls.ClassName === selectedClassName);
+                if (selectedClass) {
+                    for (const [stat, value] of Object.entries(selectedClass)) {
+                        if (stat !== 'ClassName' && statInputs[stat]) {
+                            statInputs[stat].value = value;
+                            statInputs[stat].min = value;
+                        }
+                    }
                     calculateAll();
                 }
+            };
+
+            classSelect.addEventListener('change', updateStatsForClass);
+
+            Object.values(statInputs).forEach(input => {
+                input.addEventListener('blur', () => {
+                    const minValue = parseInt(input.min, 10);
+                    if (isNaN(minValue)) return;
+                    const currentValue = parseInt(input.value, 10);
+                    if (isNaN(currentValue) || currentValue < minValue) {
+                        input.value = minValue;
+                        calculateAll();
+                    }
+                });
             });
+        }
+
+        // --- Initialize Core Functionality ---
+        initializeMonsterSearch();
+        initializeBuilds();
+
+        // --- Initialize Listeners for Calculations & UI Toggles ---
+        document.getElementById('reset-build-btn').addEventListener('click', handleReset);
+        document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
+        document.querySelectorAll('.recalculate, .recalculate-skill').forEach(input => {
+            input.addEventListener('input', calculateAll);
+        });
+        document.getElementById('num_skills').addEventListener('input', () => {
+            generateSkillInputs();
+            calculateAll();
+        });
+        document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
+        document.getElementById('p_dual_wield').addEventListener('change', toggleDualWield);
+        document.getElementById('p_add_elemental_bonus').addEventListener('change', () => {
+            document.getElementById('elemental-bonus-inputs').classList.toggle('hidden', !document.getElementById('p_add_elemental_bonus').checked);
+            calculateAll();
+        });
+        document.getElementById('p_add_dmg_vs_element_bonus').addEventListener('change', () => {
+            document.getElementById('dmg-vs-element-inputs').classList.toggle('hidden', !document.getElementById('p_add_dmg_vs_element_bonus').checked);
+            calculateAll();
         });
 
-        // Initial population of stats for the default selected class
-        if (classSelect.value) { // Make sure a class is selected
-           updateStatsForClass();
-        }
-    }
-
-    // --- Initialize Listeners for Calculations & UI Toggles ---
-    document.querySelectorAll('.recalculate, .recalculate-skill').forEach(input => {
-        input.addEventListener('input', calculateAll);
-    });
-    document.getElementById('num_skills').addEventListener('input', () => {
+        // --- Final Setup Calls ---
+        // Manually trigger the change event for the class selector to set initial stats
+        document.getElementById('p_class').dispatchEvent(new Event('change'));
+        toggleSkillSection();
+        toggleDualWield();
         generateSkillInputs();
         calculateAll();
-    });
-    document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
-    document.getElementById('p_dual_wield').addEventListener('change', toggleDualWield);
-    document.getElementById('p_add_elemental_bonus').addEventListener('change', () => {
-        document.getElementById('elemental-bonus-inputs').classList.toggle('hidden', !document.getElementById('p_add_elemental_bonus').checked);
-        calculateAll();
-    });
-    document.getElementById('p_add_dmg_vs_element_bonus').addEventListener('change', () => {
-        document.getElementById('dmg-vs-element-inputs').classList.toggle('hidden', !document.getElementById('p_add_dmg_vs_element_bonus').checked);
-        calculateAll();
-    });
-
-    toggleSkillSection();
-    toggleDualWield();
-    generateSkillInputs();
-    calculateAll();
-} catch (error) {
-    console.error("An error occurred during initialization:", error);
-    alert("A critical error occurred while loading the page. Some features may not work correctly. Please check the console for more details.");
-}
+    } catch (error) {
+        console.error("An error occurred during initialization:", error);
+        alert("A critical error occurred while loading the page. Some features may not work correctly. Please check the console for more details.");
+    }
 });
 
 function toggleDualWield() {

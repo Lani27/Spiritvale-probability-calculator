@@ -1,4 +1,4 @@
-[
+const monsters = [
   {
     "MonsterName": "Angel",
     "Level": 76,
