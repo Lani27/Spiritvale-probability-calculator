@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const changelogData = [
         {
             date: '2024-07-30',
+            description: 'Added Reset and Copy Build buttons.'
+        },
+        {
+            date: '2024-07-30',
             description: 'Fixed Elemental Damage calculation.'
         },
         {
