@@ -1,0 +1,1354 @@
+[
+    {
+        "Name": "Angel Card",
+        "CardId": "Angel",
+        "Stats": "Healing: <color=#AAFF00FF>+10%</color>",
+        "Source": "Angel (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Angel Mage Card",
+        "CardId": "Angel Mage",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_2> <color=#FCE9EBFF>Holy</color> element</color>",
+        "Source": "Angel Mage (3.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Archangel Card",
+        "CardId": "Archangel",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_2> <color=#FCE9EBFF>Holy</color> element</color>",
+        "Source": "Archangel (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bat Card",
+        "CardId": "Bat",
+        "Stats": "Mana on kill: <color=#AAFF00FF>+20</color>",
+        "Source": "Bat (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bat Lord Card",
+        "CardId": "Bat Lord",
+        "Stats": "Mana on hit: <color=#AAFF00FF>+3</color>",
+        "Source": "Bat Lord (3.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Bee Card",
+        "CardId": "Bee",
+        "Stats": "Hit: <color=#AAFF00FF>+25</color>",
+        "Source": "Bee (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bird Card",
+        "CardId": "Bird",
+        "Stats": "Weapon Throw Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Bird (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bloom Card",
+        "CardId": "Bloom",
+        "Stats": "Strafing Volley Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Bloom (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Blossom Card",
+        "CardId": "Blossom",
+        "Stats": "Volatile Bolt Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Blossom (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bomb Card",
+        "CardId": "Bomb",
+        "Stats": "Atk: <color=#AAFF00FF>+5%</color>",
+        "Source": "Bomb (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bud Card",
+        "CardId": "Bud",
+        "Stats": "Weight Limit: <color=#AAFF00FF>+1000</color>",
+        "Source": "Bud (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bumble Card",
+        "CardId": "Bumble",
+        "Stats": "Total Hit: <color=#AAFF00FF>+10%</color>",
+        "Source": "Bumble (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bunny Card",
+        "CardId": "Bunny",
+        "Stats": "Atk Spd: <color=#AAFF00FF>+5%</color>",
+        "Source": "Bunny (1.0%)",
+        "Location": "Sunny Meadows",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Burrow Card",
+        "CardId": "Burrow",
+        "Stats": "Mp: <color=#FF0073FF>-25%</color>\nResistance to Stun: <color=#AAFF00FF>+100%</color>",
+        "Source": "Burrow (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Butterfly Fairy Card",
+        "CardId": "Butterfly Fairy",
+        "Stats": "Cast Spd: <color=#AAFF00FF>+15%</color>",
+        "Source": "Butterfly Fairy (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Butterfly Hue Card",
+        "CardId": "Butterfly Hue",
+        "Stats": "Cast Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Butterfly Hue (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Butterfly Pixie Card",
+        "CardId": "Butterfly Pixie",
+        "Stats": "Cast Spd: <color=#AAFF00FF>+15%</color>",
+        "Source": "Butterfly Pixie (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cacti Card",
+        "CardId": "Cacti",
+        "Stats": "Reflect Damage: <color=#AAFF00FF>+2% per level</color>",
+        "Source": "Cacti (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cactus Boss Card",
+        "CardId": "Cactus Boss",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.1 Counter Stance</color></color>",
+        "Source": "Cactus Boss (3.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Cactus Card",
+        "CardId": "Cactus",
+        "Stats": "Earth Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Cactus (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cat Bolt Card",
+        "CardId": "Cat Bolt",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_7> <color=#FFC701FF>Wind</color> element</color>",
+        "Source": "Cat Bolt (3.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Cat Lightning Card",
+        "CardId": "Cat Lightning",
+        "Stats": "Wind Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Cat Lightning (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cat Meow Card",
+        "CardId": "Cat Meow",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Thunderbolt</color></color>\nChance to autocast Thunderbolt when attacking: <color=#AAFF00FF>+10%</color>",
+        "Source": "Cat Meow (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Chick Card",
+        "CardId": "Chick",
+        "Stats": "Atk: <color=#AAFF00FF>+5</color>",
+        "Source": "Chick (1.0%)",
+        "Location": "Sunny Meadows",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Creeper Card",
+        "CardId": "Creeper",
+        "Stats": "Crit Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Creeper (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cyclops Bat Card",
+        "CardId": "Cyclops Bat",
+        "Stats": "Damage Melee: <color=#AAFF00FF>+6%</color>",
+        "Source": "Cyclops Bat (1.0%)",
+        "Location": "Abyss Castle Keep",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cyclops Bat Mage Card",
+        "CardId": "Cyclops Bat Mage",
+        "Stats": "Damage Magic: <color=#AAFF00FF>+6%</color>",
+        "Source": "Cyclops Bat Mage (1.0%)",
+        "Location": "Abyss Castle Library",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cyclops Bat Wizard Card",
+        "CardId": "Cyclops Bat Wizard",
+        "Stats": "Damage Ranged: <color=#AAFF00FF>+6%</color>",
+        "Source": "Cyclops Bat Wizard (1.0%)",
+        "Location": "Abyss Castle Keep",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cyclops Card",
+        "CardId": "Cyclops",
+        "Stats": "Mdef: <color=#AAFF00FF>+15%</color>",
+        "Source": "Cyclops (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cyclops Giant Card",
+        "CardId": "Cyclops Giant",
+        "Stats": "Mdef: <color=#AAFF00FF>+3% per level</color>",
+        "Source": "Cyclops Giant (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cyclops Minion Card",
+        "CardId": "Cyclops Minion",
+        "Stats": "Mdef: <color=#AAFF00FF>+15%</color>",
+        "Source": "Cyclops Minion (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Death Card",
+        "CardId": "Death",
+        "Stats": "Shadow Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Death (1.0%)",
+        "Location": "Abyss Castle Keep",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Death Mage Card",
+        "CardId": "Death Mage",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.1 Cloaking</color></color>",
+        "Source": "Death Mage (3.0%)",
+        "Location": "Abyss Castle Library",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Direwolf Card",
+        "CardId": "Direwolf",
+        "Stats": "<color=#FFFFFFFF>Become undetectable even by shadow monsters when invisible</color>",
+        "Source": "Direwolf (1.0%)",
+        "Location": "Abyss Castle Crypt",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dog Bark Card",
+        "CardId": "Dog Bark",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Fireball</color></color>",
+        "Source": "Dog Bark (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dog Bowwow Card",
+        "CardId": "Dog Bowwow",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_5> <color=#FF7026FF>Fire</color> element</color>",
+        "Source": "Dog Bowwow (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dog Pup Card",
+        "CardId": "Dog Pup",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Firebolt</color></color>\nChance to autocast Firebolt when attacking: <color=#AAFF00FF>+10%</color>",
+        "Source": "Dog Pup (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Blizzard Card",
+        "CardId": "Dragon Blizzard",
+        "Stats": "Resistance to Frozen: <color=#AAFF00FF>+100%</color>",
+        "Source": "Dragon Blizzard (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Darkness Card",
+        "CardId": "Dragon Darkness",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_3> <color=#755E94FF>Shadow</color> element</color>",
+        "Source": "Dragon Darkness (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Dusk Card",
+        "CardId": "Dragon Dusk",
+        "Stats": "Damage vs Shadow Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Dragon Dusk (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Fire Card",
+        "CardId": "Dragon Fire",
+        "Stats": "Fire Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Dragon Fire (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Ice Card",
+        "CardId": "Dragon Ice",
+        "Stats": "Ice Shard Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Dragon Ice (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Inferno Card",
+        "CardId": "Dragon Inferno",
+        "Stats": "Atk: <color=#AAFF00FF>+5%</color>",
+        "Source": "Dragon Inferno (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Nightfall Card",
+        "CardId": "Dragon Nightfall",
+        "Stats": "Resistance to Curse: <color=#AAFF00FF>+100%</color>",
+        "Source": "Dragon Nightfall (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragon Water Card",
+        "CardId": "Dragon Water",
+        "Stats": "Water Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Dragon Water (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragonfly Arrow Card",
+        "CardId": "Dragonfly Arrow",
+        "Stats": "Agi: <color=#AAFF00FF>+1</color>\nFlee: <color=#AAFF00FF>+10</color>",
+        "Source": "Dragonfly Arrow (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragonfly Darner Card",
+        "CardId": "Dragonfly Darner",
+        "Stats": "Flee: <color=#AAFF00FF>+15</color>",
+        "Source": "Dragonfly Darner (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Dragonfly Swift Card",
+        "CardId": "Dragonfly Swift",
+        "Stats": "Flee: <color=#AAFF00FF>+25</color>",
+        "Source": "Dragonfly Swift (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Earthworm Card",
+        "CardId": "Earthworm",
+        "Stats": "Resistance to Poison: <color=#AAFF00FF>+100%</color>",
+        "Source": "Earthworm (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Egg Card",
+        "CardId": "Egg",
+        "Stats": "Hp: <color=#AAFF00FF>+100</color>",
+        "Source": "Egg (1.0%)",
+        "Location": "Sunny Meadows",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Egglet Card",
+        "CardId": "Egglet",
+        "Stats": "Atk Spd: <color=#AAFF00FF>+5%</color>\nStr: <color=#AAFF00FF>+1</color>",
+        "Source": "Egglet (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Elder Wisp Blue Card",
+        "CardId": "Elder Wisp Blue",
+        "Stats": "Water Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Elder Wisp Blue (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Elder Wisp Purple Card",
+        "CardId": "Elder Wisp Purple",
+        "Stats": "Wind Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Elder Wisp Purple (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Elder Wisp Yellow Card",
+        "CardId": "Elder Wisp Yellow",
+        "Stats": "Fire Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Elder Wisp Yellow (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Bat Blue Card",
+        "CardId": "Eyeball Bat Blue",
+        "Stats": "Holy Light Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Eyeball Bat Blue (1.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Bat Green Card",
+        "CardId": "Eyeball Bat Green",
+        "Stats": "Undead Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Eyeball Bat Green (1.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Bat Red Card",
+        "CardId": "Eyeball Bat Red",
+        "Stats": "Chance to autocast Life Drain when hit: <color=#AAFF00FF>+1% per level</color>",
+        "Source": "Eyeball Bat Red (1.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Creep Blue Card",
+        "CardId": "Eyeball Creep Blue",
+        "Stats": "Mp: <color=#AAFF00FF>+10%</color>",
+        "Source": "Eyeball Creep Blue (1.0%)",
+        "Location": "Abyss Castle Crypt",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Creep Green Card",
+        "CardId": "Eyeball Creep Green",
+        "Stats": "Mp: <color=#AAFF00FF>+10%</color>",
+        "Source": "Eyeball Creep Green (1.0%)",
+        "Location": "Abyss Castle Crypt",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Creep Red Card",
+        "CardId": "Eyeball Creep Red",
+        "Stats": "Mp: <color=#AAFF00FF>+10%</color>",
+        "Source": "Eyeball Creep Red (1.0%)",
+        "Location": "Abyss Castle Crypt",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Mage Blue Card",
+        "CardId": "Eyeball Mage Blue",
+        "Stats": "Mana on hit: <color=#AAFF00FF>+3</color>\nMp: <color=#FF0073FF>-50%</color>",
+        "Source": "Eyeball Mage Blue (1.0%)",
+        "Location": "Abyss Castle Library",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Mage Green Card",
+        "CardId": "Eyeball Mage Green",
+        "Stats": "Exorcism Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Eyeball Mage Green (1.0%)",
+        "Location": "Abyss Castle Library",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Eyeball Mage Red Card",
+        "CardId": "Eyeball Mage Red",
+        "Stats": "Health leech chance: <color=#AAFF00FF>+10%</color>\nHealth leech power: <color=#AAFF00FF>+5%</color>",
+        "Source": "Eyeball Mage Red (1.0%)",
+        "Location": "Abyss Castle Library",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Fire Card",
+        "CardId": "Fire",
+        "Stats": "Weight Limit: <color=#AAFF00FF>+1000</color>",
+        "Source": "Fire (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Fire Mage Card",
+        "CardId": "Fire Mage",
+        "Stats": "Matk: <color=#AAFF00FF>+5%</color>",
+        "Source": "Fire Mage (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Flame Card",
+        "CardId": "Flame",
+        "Stats": "Fireball Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Flame (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Fledgling Card",
+        "CardId": "Fledgling",
+        "Stats": "Impale Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Fledgling (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Flora Card",
+        "CardId": "Flora",
+        "Stats": "Damage vs Water Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Flora (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Flower Pot Monster Card",
+        "CardId": "Flower Pot Monster",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Earth Spikes</color></color>",
+        "Source": "Flower Pot Monster (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Fungi Card",
+        "CardId": "Fungi",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Heal</color></color>",
+        "Source": "Fungi (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Ghost Card",
+        "CardId": "Ghost",
+        "Stats": "Dissonance Well Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Ghost (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Glow Wisp Blue Card",
+        "CardId": "Glow Wisp Blue",
+        "Stats": "Water Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Glow Wisp Blue (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Glow Wisp Purple Card",
+        "CardId": "Glow Wisp Purple",
+        "Stats": "Wind Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Glow Wisp Purple (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Glow Wisp Yellow Card",
+        "CardId": "Glow Wisp Yellow",
+        "Stats": "Fire Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Glow Wisp Yellow (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Giant Devil Card",
+        "CardId": "Goblin Giant Devil",
+        "Stats": "Damage vs Earth Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Goblin Giant Devil (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Giant Gold Card",
+        "CardId": "Goblin Giant Gold",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_8> <color=#BB7B2FFF>Earth</color> element</color>",
+        "Source": "Goblin Giant Gold (3.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Goblin Giant Mage Card",
+        "CardId": "Goblin Giant Mage",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_8> <color=#BB7B2FFF>Earth</color> element</color>",
+        "Source": "Goblin Giant Mage (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Minion Card",
+        "CardId": "Goblin Minion",
+        "Stats": "Bash Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Goblin Minion (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Trooper Assassin Card",
+        "CardId": "Goblin Trooper Assassin",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Shadow Step</color></color>",
+        "Source": "Goblin Trooper Assassin (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Trooper Card",
+        "CardId": "Goblin Trooper",
+        "Stats": "Earth Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Goblin Trooper (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Trooper Mage Card",
+        "CardId": "Goblin Trooper Mage",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Free Cast</color></color>",
+        "Source": "Goblin Trooper Mage (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Trooper Soldier Card",
+        "CardId": "Goblin Trooper Soldier",
+        "Stats": "Twin Cleave Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Goblin Trooper Soldier (1.0%)",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Golem Earth Card",
+        "CardId": "Golem Earth",
+        "Stats": "Def: <color=#AAFF00FF>+15%</color>",
+        "Source": "Golem Earth (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Golem Fire Card",
+        "CardId": "Golem Fire",
+        "Stats": "Def: <color=#AAFF00FF>+10%</color>",
+        "Source": "Golem Fire (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Golem Ice Card",
+        "CardId": "Golem Ice",
+        "Stats": "Def: <color=#AAFF00FF>+3% per level</color>",
+        "Source": "Golem Ice (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Hare Card",
+        "CardId": "Hare",
+        "Stats": "Move Spd: <color=#AAFF00FF>+20%</color>",
+        "Source": "Hare (3.0%)",
+        "Location": "Sunny Meadows",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Haunt Card",
+        "CardId": "Haunt",
+        "Stats": "Holy Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Haunt (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Hermit King Card",
+        "CardId": "Hermit King",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.1 Hydro Vortex</color></color>",
+        "Source": "Hermit King (3.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Horror Card",
+        "CardId": "Horror",
+        "Stats": "Crit Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Horror (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Housefly Icky Card",
+        "CardId": "Housefly Icky",
+        "Stats": "Crit: <color=#AAFF00FF>+5</color>",
+        "Source": "Housefly Icky (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Housefly Junk Card",
+        "CardId": "Housefly Junk",
+        "Stats": "Total Critical Rate: <color=#AAFF00FF>+15%</color>",
+        "Source": "Housefly Junk (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Housefly Nom Card",
+        "CardId": "Housefly Nom",
+        "Stats": "Crit: <color=#AAFF00FF>+10</color>",
+        "Source": "Housefly Nom (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Ice Card",
+        "CardId": "Ice",
+        "Stats": "<color=#FFFFFFFF>Immune to Reflect damage</color>",
+        "Source": "Ice (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Ice Mage Card",
+        "CardId": "Ice Mage",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_6> <color=#79D7FDFF>Water</color> element</color>\nResistance to Frozen: <color=#AAFF00FF>+100%</color>",
+        "Source": "Ice Mage (3.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Icicle Card",
+        "CardId": "Icicle",
+        "Stats": "Resistance to Slow: <color=#AAFF00FF>+100%</color>",
+        "Source": "Icicle (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Imp Devil Card",
+        "CardId": "Imp Devil",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Meteor</color></color>",
+        "Source": "Imp Devil (3.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Imp Mischief Card",
+        "CardId": "Imp Mischief",
+        "Stats": "Chance to reflect single target magic: <color=#AAFF00FF>+2% per level</color>",
+        "Source": "Imp Mischief (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Lurker Card",
+        "CardId": "Lurker",
+        "Stats": "Crit Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Lurker (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Mole Rat Card",
+        "CardId": "Mole Rat",
+        "Stats": "<color=#FFFFFFFF>Immune to Flinching from damage</color>\nHp: <color=#FF0073FF>-25%</color>",
+        "Source": "Mole Rat (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Mole Rat King Card",
+        "CardId": "Mole Rat King",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Stomp</color></color>",
+        "Source": "Mole Rat King (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Mosquito Bug Card",
+        "CardId": "Mosquito Bug",
+        "Stats": "Health on hit: <color=#AAFF00FF>+10</color>",
+        "Source": "Mosquito Bug (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Mosquito Pester Card",
+        "CardId": "Mosquito Pester",
+        "Stats": "Wind Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Mosquito Pester (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Mosquito Stinger Card",
+        "CardId": "Mosquito Stinger",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Haste</color></color>",
+        "Source": "Mosquito Stinger (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Moth Celestial Card",
+        "CardId": "Moth Celestial",
+        "Stats": "Holy Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Moth Celestial (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Moth Luna Card",
+        "CardId": "Moth Luna",
+        "Stats": "Damage vs Holy Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Moth Luna (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Moth Moon Card",
+        "CardId": "Moth Moon",
+        "Stats": "Healing: <color=#AAFF00FF>+10%</color>",
+        "Source": "Moth Moon (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Mushroom Card",
+        "CardId": "Mushroom",
+        "Stats": "Matk: <color=#AAFF00FF>+5</color>",
+        "Source": "Mushroom (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Nightmare Card",
+        "CardId": "Nightmare",
+        "Stats": "Shadow Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Nightmare (1.0%)",
+        "Location": "Abyss Castle Library",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Petal Card",
+        "CardId": "Petal",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_6> <color=#79D7FDFF>Water</color> element</color>",
+        "Source": "Petal (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Phantom Card",
+        "CardId": "Phantom",
+        "Stats": "Mp Cost: <color=#AAFF00FF>-15%</color>",
+        "Source": "Phantom (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Plant Chewer Card",
+        "CardId": "Plant Chewer",
+        "Stats": "Neutral Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Plant Chewer (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Poison Bomb Card",
+        "CardId": "Poison Bomb",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>",
+        "Source": "Poison Bomb (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Pollen Card",
+        "CardId": "Pollen",
+        "Stats": "Flee: <color=#AAFF00FF>+15</color>",
+        "Source": "Pollen (1.0%)",
+        "Location": "Sunny Meadows",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Posy Card",
+        "CardId": "Posy",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Icebolt</color></color>\nChance to autocast Icebolt when attacking: <color=#AAFF00FF>+10%</color>",
+        "Source": "Posy (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Queen Worm Card",
+        "CardId": "Queen Worm",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Enchant Poison</color></color>",
+        "Source": "Queen Worm (3.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Rabbit Card",
+        "CardId": "Rabbit",
+        "Stats": "Move Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Rabbit (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Scorpion Card",
+        "CardId": "Scorpion",
+        "Stats": "Fire Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Scorpion (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Scorpion King Card",
+        "CardId": "Scorpion King",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_5> <color=#FF7026FF>Fire</color> element</color>",
+        "Source": "Scorpion King (3.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Scorpling Card",
+        "CardId": "Scorpling",
+        "Stats": "Damage vs Fire Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Scorpling (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Seed Card",
+        "CardId": "Seed",
+        "Stats": "Piercing Flurry Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Seed (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Shade Card",
+        "CardId": "Shade",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>",
+        "Source": "Shade (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Shadow Card",
+        "CardId": "Shadow",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>",
+        "Source": "Shadow (1.0%)",
+        "Location": "Demon's Maw",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Shell Card",
+        "CardId": "Shell",
+        "Stats": "Neutral Resistance: <color=#AAFF00FF>+10%</color>",
+        "Source": "Shell (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Skeleton Card",
+        "CardId": "Skeleton",
+        "Stats": "Holy Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Skeleton (1.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Skeleton Giant Card",
+        "CardId": "Skeleton Giant",
+        "Stats": "Holy Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Skeleton Giant (1.0%)",
+        "Location": "Abyss Castle Keep",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Skeleton Mage Card",
+        "CardId": "Skeleton Mage",
+        "Stats": "Damage vs Undead Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Skeleton Mage (1.0%)",
+        "Location": "Abyss Castle Keep",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Snake Card",
+        "CardId": "Snake",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Venom Strike</color></color>\nChance to autocast Venom Strike when attacking: <color=#AAFF00FF>+10%</color>",
+        "Source": "Snake (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Snake Naga Card",
+        "CardId": "Snake Naga",
+        "Stats": "Double Attack: <color=#AAFF00FF>+30%</color>",
+        "Source": "Snake Naga (3.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Snakelet Card",
+        "CardId": "Snakelet",
+        "Stats": "Venom Strike Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Snakelet (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Snow Bomb Card",
+        "CardId": "Snow Bomb",
+        "Stats": "Matk: <color=#AAFF00FF>+5%</color>",
+        "Source": "Snow Bomb (1.0%)",
+        "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Soul Card",
+        "CardId": "Soul",
+        "Stats": "Soul Strike Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Soul (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Soul Mage Card",
+        "CardId": "Soul Mage",
+        "Stats": "Cast Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Soul Mage (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Spider Card",
+        "CardId": "Spider",
+        "Stats": "Shadow Step Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Spider (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Spider King Card",
+        "CardId": "Spider King",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_1> <color=#8CD470FF>Poison</color> element</color>",
+        "Source": "Spider King (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Spider Toxin Card",
+        "CardId": "Spider Toxin",
+        "Stats": "Blade Dance Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Spider Toxin (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Spike Card",
+        "CardId": "Spike",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Ice Shard</color></color>",
+        "Source": "Spike (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Spook Card",
+        "CardId": "Spook",
+        "Stats": "<color=#FFFFFFFF>Cast cannot be interrupted</color>",
+        "Source": "Spook (1.0%)",
+        "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Spore Card",
+        "CardId": "Spore",
+        "Stats": "Hp: <color=#AAFF00FF>+100</color>\nVit: <color=#AAFF00FF>+1</color>",
+        "Source": "Spore (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Sprout Card",
+        "CardId": "Sprout",
+        "Stats": "Impale Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Sprout (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Sting Card",
+        "CardId": "Sting",
+        "Stats": "Total Hit: <color=#AAFF00FF>+30%</color>",
+        "Source": "Sting (3.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Sun Blossom Card",
+        "CardId": "Sun Blossom",
+        "Stats": "Healing: <color=#AAFF00FF>+15%</color>",
+        "Source": "Sun Blossom (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Sunflora Pixie Card",
+        "CardId": "Sunflora Pixie",
+        "Stats": "Resistance to Silence: <color=#AAFF00FF>+100%</color>",
+        "Source": "Sunflora Pixie (3.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Sunflower Fairy Card",
+        "CardId": "Sunflower Fairy",
+        "Stats": "Healing: <color=#AAFF00FF>+15%</color>",
+        "Source": "Sunflower Fairy (1.0%)",
+        "Location": "Fairy Glen",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Toadstool Card",
+        "CardId": "Toadstool",
+        "Stats": "Water Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Toadstool (1.0%)",
+        "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Treant Forest Autumn Card",
+        "CardId": "Treant Forest Autumn",
+        "Stats": "Hp Regen: <color=#FF0073FF>-50%</color>\nMax mp recovered per second: <color=#AAFF00FF>+1%</color>",
+        "Source": "Treant Forest Autumn (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Treant Forest Evergreen Card",
+        "CardId": "Treant Forest Evergreen",
+        "Stats": "Hp Regen: <color=#AAFF00FF>+10% per level</color>",
+        "Source": "Treant Forest Evergreen (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Treant Minion Autumn Card",
+        "CardId": "Treant Minion Autumn",
+        "Stats": "Mp Regen: <color=#AAFF00FF>+15%</color>\nMp: <color=#AAFF00FF>+20</color>",
+        "Source": "Treant Minion Autumn (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Treant Minion Evergreen Card",
+        "CardId": "Treant Minion Evergreen",
+        "Stats": "Hp Regen: <color=#AAFF00FF>+25%</color>\nHp: <color=#AAFF00FF>+100</color>",
+        "Source": "Treant Minion Evergreen (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Treant Tree Autumn Card",
+        "CardId": "Treant Tree Autumn",
+        "Stats": "Mp: <color=#AAFF00FF>+20%</color>",
+        "Source": "Treant Tree Autumn (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Treant Tree Evergreen Card",
+        "CardId": "Treant Tree Evergreen",
+        "Stats": "Hp: <color=#AAFF00FF>+20%</color>",
+        "Source": "Treant Tree Evergreen (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Vampire Bat Card",
+        "CardId": "Vampire Bat",
+        "Stats": "Health on kill: <color=#AAFF00FF>+100</color>",
+        "Source": "Vampire Bat (1.0%)",
+        "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Werewolf Card",
+        "CardId": "Werewolf",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_3> <color=#755E94FF>Shadow</color> element</color>",
+        "Source": "Werewolf (3.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Whirlwind Card",
+        "CardId": "Whirlwind",
+        "Stats": "Damage vs Wind Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Whirlwind (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wind Card",
+        "CardId": "Wind",
+        "Stats": "Thunder Storm Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Wind (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wind Mage Card",
+        "CardId": "Wind Mage",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_7> <color=#FFC701FF>Wind</color> element</color>",
+        "Source": "Wind Mage (1.0%)",
+        "Location": "Windy Desert",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wisp Blue Card",
+        "CardId": "Wisp Blue",
+        "Stats": "Icebolt Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Wisp Blue (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wisp Purple Card",
+        "CardId": "Wisp Purple",
+        "Stats": "Thunderbolt Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Wisp Purple (1.0%)",
+        "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wisp Red Card",
+        "CardId": "Wisp Red",
+        "Stats": "Firebolt Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Wisp Red (1.0%)",
+        "Location": "Treant Trail",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wisp Yellow Card",
+        "CardId": "Wisp Yellow",
+        "Stats": "Earthbolt Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Wisp Yellow (1.0%)",
+        "Location": "Sunny Meadows",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wolf Card",
+        "CardId": "Wolf",
+        "Stats": "Shadow Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Wolf (1.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Wolf Pup Card",
+        "CardId": "Wolf Pup",
+        "Stats": "Shadow Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Wolf Pup (1.0%)",
+        "Location": "Festering Woods",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Worm Card",
+        "CardId": "Worm",
+        "Stats": "Poison Resistance: <color=#AAFF00FF>+25%</color>",
+        "Source": "Worm (1.0%)",
+        "Location": "Swamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Worm Creep Card",
+        "CardId": "Worm Creep",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Elements_1> <color=#8CD470FF>Poison</color> element</color>",
+        "Source": "Worm Creep (3.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Worm Rot Card",
+        "CardId": "Worm Rot",
+        "Stats": "Poison Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Worm Rot (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Worm Stink Card",
+        "CardId": "Worm Stink",
+        "Stats": "Damage vs Poison Enemies: <color=#AAFF00FF>+10%</color>",
+        "Source": "Worm Stink (1.0%)",
+        "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Zombie Goblin Giant Card",
+        "CardId": "Zombie Goblin Giant",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Undead> <color=#C85AE0FF>Undead</color> element</color>",
+        "Source": "Zombie Goblin Giant (1.0%)",
+        "Location": "Goblin Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Zombie Goblin King Card",
+        "CardId": "Zombie Goblin King",
+        "Stats": "<color=#FFFFFFFF>Convert to <sprite name=Undead> <color=#C85AE0FF>Undead</color> element</color>",
+        "Source": "Zombie Goblin King (3.0%)",
+        "Location": "Goblin Cave",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Zombie Goblin Minion Card",
+        "CardId": "Zombie Goblin Minion",
+        "Stats": "Undead Resistance: <color=#AAFF00FF>+15%</color>",
+        "Source": "Zombie Goblin Minion (1.0%)",
+        "Location": "Goblin Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Zombie Goblin Soldier Card",
+        "CardId": "Zombie Goblin Soldier",
+        "Stats": "Healing Received: <color=#FF0073FF>-50%</color>\nHp: <color=#AAFF00FF>+25%</color>",
+        "Source": "Zombie Goblin Soldier (1.0%)",
+        "Location": "Goblin Cave",
+        "SpriteId": "card"
+    }
+]
