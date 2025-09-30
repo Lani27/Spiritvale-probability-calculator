@@ -1,0 +1,182 @@
+[
+    {
+        "SetName": "Aethercore",
+        "SetId": "Mp",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Mp: <color=#AAFF00FF>+5% per level</color>",
+        "PerRefineBonus": "Mp: <color=#AAFF00FF>+0.5% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMp: <color=#AAFF00FF>+10%</color>",
+        "SpriteIds": "artifacts-mp2_0\nartifacts-mp2_1\nartifacts-mp2_2\nartifacts-mp2_3"
+    },
+    {
+        "SetName": "Arcanum",
+        "SetId": "Magic",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Damage Magic: <color=#AAFF00FF>+2% per level</color>",
+        "PerRefineBonus": "Damage Magic: <color=#AAFF00FF>+0.125% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Magic: <color=#AAFF00FF>+7%</color>",
+        "SpriteIds": "artifacts-magic_0\nartifacts-magic_1\nartifacts-magic_2\nartifacts-magic_3"
+    },
+    {
+        "SetName": "Arcanum Verge",
+        "SetId": "Cost",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Mp Cost: <color=#AAFF00FF>-10% per level</color>",
+        "PerRefineBonus": "Mp Cost: <color=#AAFF00FF>-0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMp Cost: <color=#AAFF00FF>-10%</color>",
+        "SpriteIds": "artifacts-mpcost_1\nartifacts-mpcost_2\nartifacts-mpcost_3\nartifacts-mpcost_4"
+    },
+    {
+        "SetName": "Blitzcore",
+        "SetId": "Auto",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Atk Spd: <color=#AAFF00FF>+2% per level</color>",
+        "PerRefineBonus": "Atk Spd: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nAtk Spd: <color=#AAFF00FF>+7%</color>\nSplash: <color=#AAFF00FF>+1</color>",
+        "SpriteIds": "artifacts-blitzcore_0\nartifacts-blitzcore_1\nartifacts-blitzcore_2\nartifacts-blitzcore_3"
+    },
+    {
+        "SetName": "Bloodbind",
+        "SetId": "Leech",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Health on kill: <color=#AAFF00FF>+10 per level</color>\nMana on kill: <color=#AAFF00FF>+5 per level</color>",
+        "PerRefineBonus": "Health on kill: <color=#AAFF00FF>+2 per level</color>\nMana on kill: <color=#AAFF00FF>+1 per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealth on kill: <color=#AAFF00FF>+10</color>\nMana on kill: <color=#AAFF00FF>+5</color>",
+        "SpriteIds": "artifacts-blood_0\nartifacts-blood_1\nartifacts-blood_2\nartifacts-blood_3"
+    },
+    {
+        "SetName": "Furybrand",
+        "SetId": "Crit",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Crit: <color=#AAFF00FF>+3 per level</color>",
+        "PerRefineBonus": "Crit Damage: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCrit Damage: <color=#AAFF00FF>+5%</color>\nCrit: <color=#AAFF00FF>+8</color>",
+        "SpriteIds": "artifacts-fury_0\nartifacts-fury_1\nartifacts-fury_2\nartifacts-fury_3"
+    },
+    {
+        "SetName": "Hawkeye",
+        "SetId": "Hit",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Hit: <color=#AAFF00FF>+10 per level</color>",
+        "PerRefineBonus": "Hit: <color=#AAFF00FF>+1 per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHit: <color=#AAFF00FF>+10</color>",
+        "SpriteIds": "artifacts-hit_0\nartifacts-hit_1\nartifacts-hit_2\nartifacts-hit_3"
+    },
+    {
+        "SetName": "Lifebloom",
+        "SetId": "Healing",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Healing: <color=#AAFF00FF>+3% per level</color>",
+        "PerRefineBonus": "Healing: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealing: <color=#AAFF00FF>+8%</color>",
+        "SpriteIds": "artifacts-heal_0\nartifacts-heal_1\nartifacts-heal_2\nartifacts-heal_3"
+    },
+    {
+        "SetName": "Nullmark",
+        "SetId": "Immune",
+        "IndividualBonus": "Resistance to Bleeding: <color=#AAFF00FF>+100%</color>\nResistance to Blind: <color=#AAFF00FF>+100%</color>\nResistance to Poison: <color=#AAFF00FF>+100%</color>\nResistance to Silence: <color=#AAFF00FF>+100%</color>",
+        "PerPieceBonus": NaN,
+        "PerRefineBonus": "Resistance to Stun: <color=#AAFF00FF>+5% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nResistance to Slow: <color=#AAFF00FF>+100%</color>",
+        "SpriteIds": "artifacts-immune_0\nartifacts-immune_1\nartifacts-immune_2\nartifacts-immune_3"
+    },
+    {
+        "SetName": "Pioneer",
+        "SetId": "Novice",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Exp Rate: <color=#AAFF00FF>+2% per level</color>",
+        "PerRefineBonus": "Exp Rate: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nExp Rate: <color=#AAFF00FF>+2%</color>",
+        "SpriteIds": "artifacts-novice_0\nartifacts-novice_1\nartifacts-novice_2\nartifacts-novice_3"
+    },
+    {
+        "SetName": "Shadebound",
+        "SetId": "Flee",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Flee: <color=#AAFF00FF>+10 per level</color>",
+        "PerRefineBonus": "Flee: <color=#AAFF00FF>+1 per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nFlee: <color=#AAFF00FF>+10</color>",
+        "SpriteIds": "artifacts-shadow_0\nartifacts-shadow_1\nartifacts-shadow_2\nartifacts-shadow_3"
+    },
+    {
+        "SetName": "Spellweaver",
+        "SetId": "Cast",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Cast Spd: <color=#AAFF00FF>+10% per level</color>",
+        "PerRefineBonus": "Cast Spd: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCast Spd: <color=#AAFF00FF>+10%</color>",
+        "SpriteIds": "artifacts-spellweaver_0\nartifacts-spellweaver_1\nartifacts-spellweaver_2\nartifacts-spellweaver_3"
+    },
+    {
+        "SetName": "Starfire",
+        "SetId": "Matk",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Hp: <color=#FF0073FF>-10% per level</color>\nMatk: <color=#AAFF00FF>+5 per level</color>\nMp: <color=#AAFF00FF>+5% per level</color>",
+        "PerRefineBonus": "Matk: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nEnergy Shield Level: <color=#AAFF00FF>+2</color>\nHp: <color=#FF0073FF>-10%</color>\nMatk: <color=#AAFF00FF>+10</color>\nMp: <color=#AAFF00FF>+5%</color>",
+        "SpriteIds": "artifacts-matk_0\nartifacts-matk_1\nartifacts-matk_2\nartifacts-matk_3"
+    },
+    {
+        "SetName": "Steelheart",
+        "SetId": "Melee",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Damage Melee: <color=#AAFF00FF>+2% per level</color>",
+        "PerRefineBonus": "Damage Melee: <color=#AAFF00FF>+0.125% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Melee: <color=#AAFF00FF>+7%</color>",
+        "SpriteIds": "artifacts-melee-2_0\nartifacts-melee-2_2\nartifacts-melee-2_3\nartifacts-melee-2_4"
+    },
+    {
+        "SetName": "Stormquiver",
+        "SetId": "Ranged",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Damage Ranged: <color=#AAFF00FF>+2% per level</color>",
+        "PerRefineBonus": "Damage Ranged: <color=#AAFF00FF>+0.125% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Ranged: <color=#AAFF00FF>+7%</color>",
+        "SpriteIds": "artifacts-stormquiver_0\nartifacts-stormquiver_1\nartifacts-stormquiver_2\nartifacts-stormquiver_3"
+    },
+    {
+        "SetName": "Titanplate",
+        "SetId": "Def",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Def: <color=#AAFF00FF>+5 per level</color>",
+        "PerRefineBonus": "Def: <color=#AAFF00FF>+1 per level</color>\nReflect Damage: <color=#AAFF00FF>+1% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDef: <color=#AAFF00FF>+30</color>\nDef: <color=#AAFF00FF>+5%</color>\nReflect Damage: <color=#AAFF00FF>+10%</color>",
+        "SpriteIds": "artifacts-titanplate_0\nartifacts-titanplate_1\nartifacts-titanplate_2\nartifacts-titanplate_3"
+    },
+    {
+        "SetName": "Veilward",
+        "SetId": "Mdef",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Mdef: <color=#AAFF00FF>+5 per level</color>",
+        "PerRefineBonus": "Chance to reflect single target magic: <color=#AAFF00FF>+0.5% per level</color>\nMdef: <color=#AAFF00FF>+1 per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nChance to reflect single target magic: <color=#AAFF00FF>+5%</color>\nMdef: <color=#AAFF00FF>+30</color>\nMdef: <color=#AAFF00FF>+5%</color>",
+        "SpriteIds": "artifacts-mdef_0\nartifacts-mdef_1\nartifacts-mdef_2\nartifacts-mdef_3"
+    },
+    {
+        "SetName": "Vitalis",
+        "SetId": "Hp",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Hp: <color=#AAFF00FF>+5% per level</color>",
+        "PerRefineBonus": "Hp: <color=#AAFF00FF>+0.5% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+10%</color>",
+        "SpriteIds": "artifacts-hp_0\nartifacts-hp_1\nartifacts-hp_2\nartifacts-hp_3"
+    },
+    {
+        "SetName": "Warglyph",
+        "SetId": "Atk",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Atk: <color=#AAFF00FF>+5 per level</color>\nHp: <color=#AAFF00FF>+5% per level</color>\nMp: <color=#FF0073FF>-15% per level</color>",
+        "PerRefineBonus": "Atk: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nAtk: <color=#AAFF00FF>+10</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#FF0073FF>-15%</color>",
+        "SpriteIds": "artifacts-atk_0\nartifacts-atk_1\nartifacts-atk_2\nartifacts-atk_3"
+    },
+    {
+        "SetName": "Windborne",
+        "SetId": "Movespeed",
+        "IndividualBonus": NaN,
+        "PerPieceBonus": "Move Spd: <color=#AAFF00FF>+5% per level</color>",
+        "PerRefineBonus": "Move Spd: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMove Spd: <color=#AAFF00FF>+10%</color>",
+        "SpriteIds": "artifacts-movespeed_0\nartifacts-movespeed_1\nartifacts-movespeed_2\nartifacts-movespeed_3"
+    }
+]
