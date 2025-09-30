@@ -156,8 +156,30 @@
                         <div class="input-group"><label for="p_dmg_melee_perc">Damage Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_ranged_perc">Damage Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_magic_perc">Damage Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_dmg_element_perc">Damage vs Element %</label><input id="p_dmg_element_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="5" class="recalculate"></div>
+
+                        <h3 class="text-lg font-semibold col-span-2 mt-4 -mb-2 border-t border-gray-700 pt-4">Elemental Damage Bonus %</h3>
+                        <div class="input-group"><label for="p_dmg_bonus_neutral">Neutral</label><input id="p_dmg_bonus_neutral" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_poison">Poison</label><input id="p_dmg_bonus_poison" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_shadow">Shadow</label><input id="p_dmg_bonus_shadow" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_holy">Holy</label><input id="p_dmg_bonus_holy" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_fire">Fire</label><input id="p_dmg_bonus_fire" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_water">Water</label><input id="p_dmg_bonus_water" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_wind">Wind</label><input id="p_dmg_bonus_wind" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_earth">Earth</label><input id="p_dmg_bonus_earth" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_bonus_undead">Undead</label><input id="p_dmg_bonus_undead" type="number" value="0" class="recalculate"></div>
+
+                        <h3 class="text-lg font-semibold col-span-2 mt-4 -mb-2 border-t border-gray-700 pt-4">Damage versus Element %</h3>
+                        <div class="input-group"><label for="p_dmg_vs_neutral">vs Neutral</label><input id="p_dmg_vs_neutral" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_poison">vs Poison</label><input id="p_dmg_vs_poison" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_shadow">vs Shadow</label><input id="p_dmg_vs_shadow" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_holy">vs Holy</label><input id="p_dmg_vs_holy" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_fire">vs Fire</label><input id="p_dmg_vs_fire" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_water">vs Water</label><input id="p_dmg_vs_water" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_wind">vs Wind</label><input id="p_dmg_vs_wind" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_earth">vs Earth</label><input id="p_dmg_vs_earth" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_dmg_vs_undead">vs Undead</label><input id="p_dmg_vs_undead" type="number" value="0" class="recalculate"></div>
+
+                        <div class="input-group col-span-2"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="5" class="recalculate"></div>
                         <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="10" class="recalculate"></div>
                         <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="20" class="recalculate"></div>
                         <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="20" class="recalculate"></div>
@@ -632,14 +654,24 @@
         function getSelect(id) { return document.getElementById(id).value; }
         function getBool(id) { return document.getElementById(id).checked; }
 
+        const elementalEffectiveness = {
+            "NEUTRAL": { "POISON": 0.75, "SHADOW": 0.75 },
+            "POISON": { "NEUTRAL": 1.25, "POISON": 0.50, "HOLY": 0.75, "UNDEAD": 0.75 },
+            "SHADOW": { "NEUTRAL": 1.25, "SHADOW": 0.50, "HOLY": 1.25, "UNDEAD": 1.25 },
+            "HOLY": { "POISON": 1.25, "SHADOW": 1.25, "HOLY": 0.50, "UNDEAD": 1.25 },
+            "UNDEAD": { "POISON": 1.25, "SHADOW": 0.75, "HOLY": 0.75, "UNDEAD": 0.50 },
+            "EARTH": { "EARTH": 0.50, "FIRE": 0.75, "WIND": 1.25 },
+            "FIRE": { "EARTH": 1.25, "FIRE": 0.50, "WATER": 0.75 },
+            "WATER": { "FIRE": 1.25, "WATER": 0.50, "WIND": 0.75 },
+            "WIND": { "EARTH": 0.75, "WATER": 1.25, "WIND": 0.50 }
+        };
+
         function getElementalMultiplier(attacker, defender) {
-            if (attacker === defender) return 1.0;
-            const advantages = {
-                'Fire':  { 'Wind': 1.5, 'Water': 0.75 }, 'Water': { 'Fire': 1.5, 'Earth': 0.75 },
-                'Wind':  { 'Earth': 1.5, 'Fire': 0.75 }, 'Earth': { 'Water': 1.5, 'Wind': 0.75 },
-                'Holy':  { 'Shadow': 2.0, 'Undead': 2.0 }, 'Shadow':{ 'Holy': 2.0 }
-            };
-            if (advantages[attacker] && advantages[attacker][defender]) return advantages[attacker][defender];
+            const attackerUpper = attacker.toUpperCase();
+            const defenderUpper = defender.toUpperCase();
+            if (elementalEffectiveness[attackerUpper] && elementalEffectiveness[attackerUpper][defenderUpper] !== undefined) {
+                return elementalEffectiveness[attackerUpper][defenderUpper];
+            }
             return 1.0;
         }
 
@@ -692,7 +724,22 @@
             const p_dmg_melee_perc = getFloat('p_dmg_melee_perc') / 100;
             const p_dmg_ranged_perc = getFloat('p_dmg_ranged_perc') / 100;
             const p_dmg_magic_perc = getFloat('p_dmg_magic_perc') / 100;
-            const p_dmg_element_perc = getFloat('p_dmg_element_perc') / 100;
+
+            const p_dmg_bonus = {
+                neutral: getFloat('p_dmg_bonus_neutral') / 100, poison: getFloat('p_dmg_bonus_poison') / 100,
+                shadow: getFloat('p_dmg_bonus_shadow') / 100, holy: getFloat('p_dmg_bonus_holy') / 100,
+                fire: getFloat('p_dmg_bonus_fire') / 100, water: getFloat('p_dmg_bonus_water') / 100,
+                wind: getFloat('p_dmg_bonus_wind') / 100, earth: getFloat('p_dmg_bonus_earth') / 100,
+                undead: getFloat('p_dmg_bonus_undead') / 100
+            };
+            const p_dmg_vs = {
+                neutral: getFloat('p_dmg_vs_neutral') / 100, poison: getFloat('p_dmg_vs_poison') / 100,
+                shadow: getFloat('p_dmg_vs_shadow') / 100, holy: getFloat('p_dmg_vs_holy') / 100,
+                fire: getFloat('p_dmg_vs_fire') / 100, water: getFloat('p_dmg_vs_water') / 100,
+                wind: getFloat('p_dmg_vs_wind') / 100, earth: getFloat('p_dmg_vs_earth') / 100,
+                undead: getFloat('p_dmg_vs_undead') / 100
+            };
+
             const p_crit_flat = getFloat('p_crit_flat');
             const p_crit_rate_perc = getFloat('p_crit_rate_perc') / 100;
             const p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
@@ -757,12 +804,16 @@
             const phys_reduc = t_def_base / (t_def_base + 100);
             const mag_reduc = t_mdef_base / (t_mdef_base + 100);
 
-            const normal_hit = final_atk * (1 - phys_reduc) * (1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc)) * auto_attack_elemental_multiplier * (1.0 + p_dmg_element_perc);
+            const auto_attack_ele_bonus = p_dmg_bonus[p_element.toLowerCase()] || 0;
+            const auto_attack_vs_ele_bonus = p_dmg_vs[t_element.toLowerCase()] || 0;
+            const total_auto_attack_ele_bonus = 1.0 + auto_attack_ele_bonus + auto_attack_vs_ele_bonus;
+
+            const normal_hit = final_atk * (1 - phys_reduc) * (1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc)) * auto_attack_elemental_multiplier * total_auto_attack_ele_bonus;
             const crit_hit = normal_hit * crit_damage_multiplier;
             const avg_hit = (normal_hit * (1 - final_crit_rate) + crit_hit * final_crit_rate) * hit_chance;
             const dps = avg_hit / attack_delay;
 
-            const normal_mhit = final_matk * (1 - mag_reduc) * (1.0 + p_dmg_magic_perc) * auto_attack_elemental_multiplier * (1.0 + p_dmg_element_perc);
+            const normal_mhit = final_matk * (1 - mag_reduc) * (1.0 + p_dmg_magic_perc) * auto_attack_elemental_multiplier * total_auto_attack_ele_bonus;
             const avg_mhit = normal_mhit;
             const mdps = avg_mhit;
 
@@ -797,14 +848,19 @@
                     const hasDmgCard = getBool(`skill-${i}-has-dmg-card`);
                     const skillCardBonus = hasDmgCard ? (getFloat(`skill-${i}-dmg-card-perc`) / 100) : 0;
                     let avgDamagePerInstance;
+
+                    const skill_ele_bonus = p_dmg_bonus[skill_element.toLowerCase()] || 0;
+                    const skill_vs_ele_bonus = p_dmg_vs[t_element.toLowerCase()] || 0;
+                    const total_skill_ele_bonus = 1.0 + skill_ele_bonus + skill_vs_ele_bonus;
+
                     if (type === 'phys') {
                         const skillTypeModifier = 1 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc) + skillCardBonus;
-                        const skillNormalHit = final_atk * totalDmgPercent * (1 - phys_reduc) * skillTypeModifier * skill_ele_multiplier * (1 + p_dmg_element_perc);
+                        const skillNormalHit = final_atk * totalDmgPercent * (1 - phys_reduc) * skillTypeModifier * skill_ele_multiplier * total_skill_ele_bonus;
                         const skillCritHit = skillNormalHit * crit_damage_multiplier;
                         avgDamagePerInstance = (skillNormalHit * (1 - final_crit_rate) + skillCritHit * final_crit_rate) * hit_chance;
                     } else {
                         const skillTypeModifier = 1 + p_dmg_magic_perc + skillCardBonus;
-                        avgDamagePerInstance = final_matk * totalDmgPercent * (1 - mag_reduc) * skillTypeModifier * skill_ele_multiplier * (1 + p_dmg_element_perc);
+                        avgDamagePerInstance = final_matk * totalDmgPercent * (1 - mag_reduc) * skillTypeModifier * skill_ele_multiplier * total_skill_ele_bonus;
                     }
                     const dotResultEl = document.getElementById(`skill-${i}-dot-result`);
                     if (isDot) {
