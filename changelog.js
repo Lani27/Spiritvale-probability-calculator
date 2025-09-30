@@ -96,11 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(style);
 
     // --- EVENT LISTENERS ---
-    changelogContainer.addEventListener('mouseenter', () => {
-        changelogPopup.classList.remove('hidden');
-    });
+    let hideTimeout;
 
-    changelogContainer.addEventListener('mouseleave', () => {
-        changelogPopup.classList.add('hidden');
-    });
+    const showPopup = () => {
+        clearTimeout(hideTimeout);
+        changelogPopup.classList.remove('hidden');
+    };
+
+    const startHideTimer = () => {
+        hideTimeout = setTimeout(() => {
+            changelogPopup.classList.add('hidden');
+        }, 100); // 100ms delay to allow moving mouse to popup
+    };
+
+    changelogContainer.addEventListener('mouseenter', showPopup);
+    changelogContainer.addEventListener('mouseleave', startHideTimer);
+
+    changelogPopup.addEventListener('mouseenter', showPopup);
+    changelogPopup.addEventListener('mouseleave', startHideTimer);
 });
