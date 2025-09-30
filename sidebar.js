@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const sidebarHtml = `
         <aside style="width: 14rem; z-index: 10;" class="fixed left-0 top-0 h-full bg-gray-800 p-4 flex flex-col">
-            <h1 class="text-xl font-bold text-white mb-6">Game Tools</h1>
+            <h1 class="text-xl font-bold text-white mb-6">SpiritVale Tools</h1>
             <nav class="flex flex-col space-y-4">
                 <div>
                     <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Simulator</h2>
