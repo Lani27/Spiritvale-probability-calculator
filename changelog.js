@@ -20,19 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     // --- ELEMENT CREATION & STYLING ---
-    const navList = document.querySelector('.fixed.left-0.top-0.h-full ul');
-    if (!navList) return;
+    const sidebar = document.querySelector('.fixed.left-0.top-0.h-full');
+    if (!sidebar) return;
 
     // Create Changelog button and its container
-    const changelogLi = document.createElement('li');
-    changelogLi.id = 'changelog-container'; // ID for positioning context
-    changelogLi.className = 'mt-4 pt-4 border-t border-gray-700';
+    const changelogContainer = document.createElement('div');
+    changelogContainer.id = 'changelog-container'; // ID for positioning context
 
     const changelogButton = document.createElement('button');
     changelogButton.id = 'changelog-button';
     changelogButton.textContent = 'Changelog';
     changelogButton.className = 'text-blue-400 hover:text-blue-300';
-    changelogLi.appendChild(changelogButton);
+    changelogContainer.appendChild(changelogButton);
 
     // Create Changelog popup
     const changelogPopup = document.createElement('div');
@@ -55,14 +54,19 @@ document.addEventListener('DOMContentLoaded', () => {
     changelogPopup.innerHTML = popupContent;
 
     // Append elements to the DOM
-    changelogLi.appendChild(changelogPopup);
-    navList.appendChild(changelogLi);
+    changelogContainer.appendChild(changelogPopup);
+    sidebar.appendChild(changelogContainer);
 
     // --- DYNAMIC STYLING ---
     const style = document.createElement('style');
     style.textContent = `
         #changelog-container {
-            position: relative; /* Set positioning context on the LI element */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            border-top: 1px solid #374151; /* gray-700 */
         }
         #changelog-popup {
             position: absolute;
@@ -92,11 +96,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(style);
 
     // --- EVENT LISTENERS ---
-    changelogLi.addEventListener('mouseenter', () => {
+    changelogContainer.addEventListener('mouseenter', () => {
         changelogPopup.classList.remove('hidden');
     });
 
-    changelogLi.addEventListener('mouseleave', () => {
+    changelogContainer.addEventListener('mouseleave', () => {
         changelogPopup.classList.add('hidden');
     });
 });
