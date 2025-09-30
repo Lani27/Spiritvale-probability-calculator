@@ -162,6 +162,12 @@
                     <div id="build-tabs-container" class="flex items-center mb-4">
                         <!-- Build tabs will be generated here -->
                     </div>
+                    <div class="flex justify-between items-center mb-4 -mt-2">
+                        <div>
+                            <button id="reset-build-btn" class="btn btn-sm btn-danger">Reset Current Page</button>
+                            <button id="copy-build-btn" class="btn btn-sm">Copy to New Page</button>
+                        </div>
+                    </div>
                     <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Character Stats</h2>
                     <div class="space-y-4">
                         <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate"></select></div>
@@ -177,21 +183,21 @@
                 <div class="card">
                     <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Equipment & Bonuses</h2>
                     <div class="space-y-4">
-                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="150" class="recalculate"></div>
-                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="100" class="recalculate"></div>
-                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="100" class="recalculate"></div>
-                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="150" class="recalculate"></div>
-                         <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="20" class="recalculate"></div>
-                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="15" class="recalculate"></div>
-                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="15" class="recalculate"></div>
+                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="0" class="recalculate"></div>
+                         <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_melee_perc">Damage Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_ranged_perc">Damage Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_dmg_magic_perc">Damage Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group col-span-2"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="5" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="10" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="20" class="recalculate"></div>
-                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="20" class="recalculate"></div>
-                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="20" class="recalculate"></div>
+                        <div class="input-group col-span-2"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="0" class="recalculate"></div>
 
                         <div class="col-span-2 border-t border-gray-700 pt-4 -mb-2">
                             <div class="checkbox-group">
@@ -470,9 +476,7 @@
             }
         }
 
-        function saveCurrentBuild() {
-            if (activeBuildIndex < 0 || activeBuildIndex >= builds.length) return;
-
+        function getCurrentBuildData() {
             const buildData = {};
             allInputIds.forEach(id => {
                 const element = document.getElementById(id);
@@ -521,43 +525,73 @@
                     buildData.skills.push(skillData);
                 }
             }
+            return buildData;
+        }
 
-
+        function saveCurrentBuild() {
+            if (activeBuildIndex < 0 || activeBuildIndex >= builds.length) return;
+            const buildData = getCurrentBuildData();
             const buildInfo = builds[activeBuildIndex];
             if (buildInfo) {
                 buildData.name = buildInfo.name;
             }
-
             setCookie(`build_${activeBuildIndex}`, JSON.stringify(buildData), 365);
+        }
+
+        function copyAndCreateNewBuild() {
+            if (builds.length >= MAX_BUILDS) {
+                alert(`You can only have a maximum of ${MAX_BUILDS} builds.`);
+                return;
+            }
+            const buildData = getCurrentBuildData();
+            const newBuildName = `Build ${builds.length + 1}`;
+            builds.push({ name: newBuildName });
+            saveBuildsMetadata();
+            const newIndex = builds.length - 1;
+            buildData.name = newBuildName;
+            setCookie(`build_${newIndex}`, JSON.stringify(buildData), 365);
+            switchBuild(newIndex);
+        }
+
+        function resetToDefaults() {
+            allInputIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (element.type === 'checkbox') {
+                        element.checked = element.defaultChecked;
+                    } else if (element.tagName === 'SELECT') {
+                        // Find the default selected option and set it
+                        const defaultOption = element.querySelector('option[selected]');
+                        element.value = defaultOption ? defaultOption.value : element.options[0].value;
+                    }
+                    else {
+                        element.value = element.defaultValue;
+                    }
+                    // Trigger change events for elements with dependent UI
+                    if (id === 'p_add_elemental_bonus' || id === 'p_add_dmg_vs_element_bonus' || id === 'p_dual_wield' || id === 'p_class') {
+                        element.dispatchEvent(new Event('change'));
+                    }
+                }
+            });
+
+            // Reset skill simulation section
+            const simulateSkillsCheckbox = document.getElementById('simulate_skills');
+            simulateSkillsCheckbox.checked = simulateSkillsCheckbox.defaultChecked;
+            toggleSkillSection();
+
+            const numSkillsInput = document.getElementById('num_skills');
+            numSkillsInput.value = numSkillsInput.defaultValue;
+            generateSkillInputs();
+
+            calculateAll();
+            saveCurrentBuild(); // Save the reset state
         }
 
         function loadBuild(index) {
             const buildDataString = getCookie(`build_${index}`);
             if (!buildDataString) {
-                // This is a new build, so we can clear/reset fields
-                allInputIds.forEach(id => {
-                    const element = document.getElementById(id);
-                    if (element) {
-                        if (element.type === 'checkbox') {
-                            element.checked = false;
-                        } else if (element.tagName === 'SELECT') {
-                            element.selectedIndex = 0;
-                        } else {
-                            element.value = element.defaultValue || '';
-                        }
-                        if (id === 'p_add_elemental_bonus' || id === 'p_add_dmg_vs_element_bonus' || id === 'p_dual_wield') {
-                            element.dispatchEvent(new Event('change'));
-                        }
-                    }
-                });
-                document.getElementById('simulate_skills').checked = false;
-                toggleSkillSection();
-                document.getElementById('num_skills').value = 0;
-                generateSkillInputs();
-                if (document.getElementById('p_class').value) {
-                    document.getElementById('p_class').dispatchEvent(new Event('change'));
-                }
-                calculateAll();
+                // This is a new build, so reset to defaults.
+                resetToDefaults();
                 return;
             }
 
@@ -684,9 +718,17 @@
             switchBuild(activeBuildIndex);
         }
 
+        function handleReset() {
+            if (confirm('Are you sure you want to reset all values on this page to their defaults? This action cannot be undone.')) {
+                resetToDefaults();
+            }
+        }
+
         // --- UI Generation & Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
             initializeBuilds();
+            document.getElementById('reset-build-btn').addEventListener('click', handleReset);
+            document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
             const monsterSearchInput = document.getElementById('monster_search');
             const monsterListDiv = document.getElementById('monster_list');
             const monsterDetailsDiv = document.getElementById('monster_details');
