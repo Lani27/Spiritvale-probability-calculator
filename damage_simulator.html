@@ -436,7 +436,7 @@
             'p_dmg_melee_perc', 'p_dmg_ranged_perc', 'p_dmg_magic_perc', 'p_crit_flat', 'p_crit_rate_perc',
             'p_crit_dmg_perc', 'p_aspd_perc', 'p_cspd_perc',
             'p_add_elemental_bonus', 'p_dmg_bonus_element', 'p_dmg_bonus_value',
-            'p_add_dmg_vs_element_bonus', 'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
+            'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
             'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged'
         ];
 
@@ -584,77 +584,81 @@
         function loadBuild(index) {
             const buildDataString = getCookie(`build_${index}`);
             if (!buildDataString) {
-                // This is a new build, so reset to defaults.
                 resetToDefaults();
                 return;
             }
 
-            const buildData = JSON.parse(buildDataString);
-            allInputIds.forEach(id => {
-                const element = document.getElementById(id);
-                if (element && buildData[id] !== undefined) {
-                    if (element.type === 'checkbox') {
-                        element.checked = buildData[id];
-                    } else {
-                        element.value = buildData[id];
-                    }
-                    if (id === 'p_add_elemental_bonus' || id === 'p_add_dmg_vs_element_bonus' || id === 'p_dual_wield') {
-                        element.dispatchEvent(new Event('change'));
-                    }
-                }
-            });
-
-            // Load skill data
-            const simulateSkillsCheckbox = document.getElementById('simulate_skills');
-            simulateSkillsCheckbox.checked = buildData.simulate_skills || false;
-            toggleSkillSection();
-
-            if (buildData.simulate_skills && buildData.num_skills) {
-                document.getElementById('num_skills').value = buildData.num_skills;
-                generateSkillInputs();
-
-                if (buildData.skills) {
-                    buildData.skills.forEach((skillData, i) => {
-                        const skillIndex = i + 1;
-                        const skillFields = [
-                            'type', 'element', 'level', 'base-dmg', 'dmg-per-level', 'cast-time', 'cooldown',
-                            'is-multihit', 'base-hits', 'hits-per-level',
-                            'is-dot', 'base-duration', 'duration-per-level',
-                            'has-dmg-card', 'dmg-card-perc'
-                        ];
-                        skillFields.forEach(field => {
-                            const id = `skill-${skillIndex}-${field}`;
-                            const el = document.getElementById(id);
-                            if (el && skillData[field] !== undefined) {
-                                if (el.type === 'checkbox') {
-                                    el.checked = skillData[field];
-                                } else {
-                                    el.value = skillData[field];
-                                }
-                            }
-                        });
-                        const scalingContainer = document.getElementById(`skill-${skillIndex}-scaling-container`);
-                        scalingContainer.innerHTML = '';
-                        if (skillData.scalingRules) {
-                            skillData.scalingRules.forEach(rule => {
-                                addScalingRule(skillIndex);
-                                const ruleDiv = scalingContainer.lastChild;
-                                ruleDiv.querySelector('input').value = rule.value;
-                                ruleDiv.querySelector('select').value = rule.stat;
-                            });
+            try {
+                const buildData = JSON.parse(buildDataString);
+                allInputIds.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element && buildData[id] !== undefined) {
+                        if (element.type === 'checkbox') {
+                            element.checked = buildData[id];
+                        } else {
+                            element.value = buildData[id];
                         }
-                        toggleSkillOptions(skillIndex);
-                    });
-                }
-            } else {
-                document.getElementById('num_skills').value = 0;
-                generateSkillInputs();
-            }
+                        if (id === 'p_add_elemental_bonus' || id === 'p_add_dmg_vs_element_bonus' || id === 'p_dual_wield') {
+                            element.dispatchEvent(new Event('change'));
+                        }
+                    }
+                });
 
-            if (document.getElementById('p_class').value) {
-                document.getElementById('p_class').dispatchEvent(new Event('change'));
+                const simulateSkillsCheckbox = document.getElementById('simulate_skills');
+                simulateSkillsCheckbox.checked = buildData.simulate_skills || false;
+                toggleSkillSection();
+
+                if (buildData.simulate_skills && buildData.num_skills) {
+                    document.getElementById('num_skills').value = buildData.num_skills;
+                    generateSkillInputs();
+
+                    if (buildData.skills) {
+                        buildData.skills.forEach((skillData, i) => {
+                            const skillIndex = i + 1;
+                            const skillFields = [
+                                'type', 'element', 'level', 'base-dmg', 'dmg-per-level', 'cast-time', 'cooldown',
+                                'is-multihit', 'base-hits', 'hits-per-level',
+                                'is-dot', 'base-duration', 'duration-per-level',
+                                'has-dmg-card', 'dmg-card-perc'
+                            ];
+                            skillFields.forEach(field => {
+                                const id = `skill-${skillIndex}-${field}`;
+                                const el = document.getElementById(id);
+                                if (el && skillData[field] !== undefined) {
+                                    if (el.type === 'checkbox') {
+                                        el.checked = skillData[field];
+                                    } else {
+                                        el.value = skillData[field];
+                                    }
+                                }
+                            });
+                            const scalingContainer = document.getElementById(`skill-${skillIndex}-scaling-container`);
+                            scalingContainer.innerHTML = '';
+                            if (skillData.scalingRules) {
+                                skillData.scalingRules.forEach(rule => {
+                                    addScalingRule(skillIndex);
+                                    const ruleDiv = scalingContainer.lastChild;
+                                    ruleDiv.querySelector('input').value = rule.value;
+                                    ruleDiv.querySelector('select').value = rule.stat;
+                                });
+                            }
+                            toggleSkillOptions(skillIndex);
+                        });
+                    }
+                } else {
+                    document.getElementById('num_skills').value = 0;
+                    generateSkillInputs();
+                }
+
+                if (document.getElementById('p_class').value) {
+                    document.getElementById('p_class').dispatchEvent(new Event('change'));
+                }
+                calculateAll();
+            } catch (e) {
+                console.error("Failed to parse build data from cookie. Resetting to defaults.", e);
+                deleteCookie(`build_${index}`);
+                resetToDefaults();
             }
-            calculateAll();
         }
 
         function switchBuild(index) {
@@ -698,7 +702,13 @@
         function initializeBuilds() {
             const savedBuildsMeta = getCookie('buildsMetadata');
             if (savedBuildsMeta) {
-                builds = JSON.parse(savedBuildsMeta);
+                try {
+                    builds = JSON.parse(savedBuildsMeta);
+                } catch (e) {
+                    console.error("Failed to parse builds metadata cookie. Starting fresh.", e);
+                    deleteCookie('buildsMetadata');
+                    builds = [];
+                }
             }
 
             if (builds.length === 0) {
@@ -719,80 +729,28 @@
         }
 
         // --- UI Generation & Listeners ---
-        document.addEventListener('DOMContentLoaded', async () => {
-            const monstersResponse = await fetch('monsters.json');
-            const monsters = await monstersResponse.json();
+        async function initializeMonsterSearch() {
+            try {
+                const monstersResponse = await fetch('monsters.json');
+                if (!monstersResponse.ok) {
+                    throw new Error(`HTTP error! status: ${monstersResponse.status}`);
+                }
+                const monsters = await monstersResponse.json();
 
-            initializeBuilds();
-            document.getElementById('reset-build-btn').addEventListener('click', handleReset);
-            document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
-            const monsterSearchInput = document.getElementById('monster_search');
-            const monsterListDiv = document.getElementById('monster_list');
-            const monsterDetailsDiv = document.getElementById('monster_details');
-            const monsterSelectionWrapper = document.getElementById('monster-selection-wrapper');
-            const tLvInput = document.getElementById('t_lv');
-            const tArchetypeSelect = document.getElementById('t_archetype');
-            const tElementSelect = document.getElementById('t_element');
-            const tDefInput = document.getElementById('t_def');
-            const tMdefInput = document.getElementById('t_mdef');
-            const tBlockInput = document.getElementById('t_block');
+                const monsterSearchInput = document.getElementById('monster_search');
+                const monsterListDiv = document.getElementById('monster_list');
+                const monsterDetailsDiv = document.getElementById('monster_details');
+                const monsterSelectionWrapper = document.getElementById('monster-selection-wrapper');
+                const tLvInput = document.getElementById('t_lv');
+                const tArchetypeSelect = document.getElementById('t_archetype');
+                const tElementSelect = document.getElementById('t_element');
+                const tDefInput = document.getElementById('t_def');
+                const tMdefInput = document.getElementById('t_mdef');
+                const tBlockInput = document.getElementById('t_block');
 
-            // --- Class Selection & Stat Logic ---
-            const classSelect = document.getElementById('p_class');
-            const statInputs = {
-                'STR': document.getElementById('p_str'), 'VIT': document.getElementById('p_vit'),
-                'AGI': document.getElementById('p_agi'), 'DEX': document.getElementById('p_dex'),
-                'INT': document.getElementById('p_int'), 'LUK': document.getElementById('p_luk')
-            };
+                monsters.sort((a, b) => a.Level - b.Level);
 
-            if (typeof classes !== 'undefined' && classes.length > 0) {
-                // Populate class dropdown
-                classes.forEach(cls => {
-                    const option = document.createElement('option');
-                    option.value = cls.ClassName;
-                    option.textContent = cls.ClassName;
-                    classSelect.appendChild(option);
-                });
-
-                // Function to update stats based on selected class
-                const updateStatsForClass = () => {
-                    const selectedClassName = classSelect.value;
-                    const selectedClass = classes.find(cls => cls.ClassName === selectedClassName);
-                    if (selectedClass) {
-                        for (const [stat, value] of Object.entries(selectedClass)) {
-                            if (stat !== 'ClassName' && statInputs[stat]) {
-                                statInputs[stat].value = value;
-                                statInputs[stat].min = value;
-                            }
-                        }
-                        calculateAll();
-                    }
-                };
-
-                classSelect.addEventListener('change', updateStatsForClass);
-
-                // Add event listeners to stat inputs to enforce min values
-                Object.values(statInputs).forEach(input => {
-                    input.addEventListener('blur', () => { // On losing focus
-                        const minValue = parseInt(input.min, 10);
-                        if (isNaN(minValue)) return;
-
-                        const currentValue = parseInt(input.value, 10);
-                        if (isNaN(currentValue) || currentValue < minValue) {
-                            input.value = minValue;
-                            calculateAll();
-                        }
-                    });
-                });
-
-                // Initial population of stats for the default selected class
-                updateStatsForClass();
-            }
-
-            // --- Searchable Monster Selection Logic ---
-            monsters.sort((a, b) => a.Level - b.Level);
-
-            const populateMonsterList = (filter = '') => {
+                const populateMonsterList = (filter = '') => {
                     monsterListDiv.innerHTML = '';
                     const filteredMonsters = monsters.filter(m => m.MonsterName.toLowerCase().includes(filter.toLowerCase()));
 
@@ -872,9 +830,74 @@
                     monsterDetailsDiv.innerHTML = '';
                     calculateAll();
                 };
+
+            } catch (error) {
+                console.error("Failed to load or process monster data:", error);
+                const monsterSearchInput = document.getElementById('monster_search');
+                if(monsterSearchInput) {
+                    monsterSearchInput.placeholder = "Monster search disabled";
+                    monsterSearchInput.disabled = true;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Initialize Core Functionality ---
+            initializeBuilds();
+            document.getElementById('reset-build-btn').addEventListener('click', handleReset);
+            document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
+
+            const classSelect = document.getElementById('p_class');
+            const statInputs = {
+                'STR': document.getElementById('p_str'), 'VIT': document.getElementById('p_vit'),
+                'AGI': document.getElementById('p_agi'), 'DEX': document.getElementById('p_dex'),
+                'INT': document.getElementById('p_int'), 'LUK': document.getElementById('p_luk')
+            };
+
+            if (typeof classes !== 'undefined' && classes.length > 0) {
+                classes.forEach(cls => {
+                    const option = document.createElement('option');
+                    option.value = cls.ClassName;
+                    option.textContent = cls.ClassName;
+                    classSelect.appendChild(option);
+                });
+
+                const updateStatsForClass = () => {
+                    const selectedClassName = classSelect.value;
+                    const selectedClass = classes.find(cls => cls.ClassName === selectedClassName);
+                    if (selectedClass) {
+                        for (const [stat, value] of Object.entries(selectedClass)) {
+                            if (stat !== 'ClassName' && statInputs[stat]) {
+                                statInputs[stat].value = value;
+                                statInputs[stat].min = value;
+                            }
+                        }
+                        calculateAll();
+                    }
+                };
+
+                classSelect.addEventListener('change', updateStatsForClass);
+
+                Object.values(statInputs).forEach(input => {
+                    input.addEventListener('blur', () => {
+                        const minValue = parseInt(input.min, 10);
+                        if (isNaN(minValue)) return;
+                        const currentValue = parseInt(input.value, 10);
+                        if (isNaN(currentValue) || currentValue < minValue) {
+                            input.value = minValue;
+                            calculateAll();
+                        }
+                    });
+                });
+
+                // Initial population of stats for the default selected class
+                if (classSelect.value) { // Make sure a class is selected
+                   updateStatsForClass();
+                }
             }
 
-            document.querySelectorAll('.recalculate').forEach(input => {
+            // --- Initialize Listeners for Calculations & UI Toggles ---
+            document.querySelectorAll('.recalculate, .recalculate-skill').forEach(input => {
                 input.addEventListener('input', calculateAll);
             });
             document.getElementById('num_skills').addEventListener('input', () => {
