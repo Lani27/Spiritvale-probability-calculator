@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Database</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for better aesthetics in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1f2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+        /* Tooltip styles */
+        #monster-tooltip {
+            position: absolute;
+            display: none;
+            padding: 10px;
+            background-color: #111827;
+            border: 1px solid #374151;
+            border-radius: 8px;
+            color: #d1d5db;
+            font-size: 0.875rem;
+            z-index: 100;
+            pointer-events: none; /* Allows mouse events to pass through */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            min-width: 200px;
+        }
+        /* Expanding Search Bar Styles */
+        .search-wrapper .search-input {
+            transition: width 0.3s ease-in-out;
+        }
+        .search-wrapper:hover .search-input,
+        .search-input:focus {
+            width: 256px; /* w-64 */
+        }
+        /* Custom select styling */
+        .filter-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%239ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l4 4 4-4"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1em;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-gray-800/50 backdrop-blur-sm border-r border-gray-700/50 flex-shrink-0 p-5 hidden md:block">
+            <h1 class="text-2xl font-bold text-white mb-8">GameDB</h1>
+            <nav class="space-y-4">
+                <div>
+                    <h2 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Database</h2>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="#" class="sidebar-link active-link" data-target="equipment">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v11.494m-5.22-6.22l10.44 0"></path><path d="M6.65 19.35l10.7-10.7"></path><path d="M6.65 8.65l10.7 10.7"></path></svg>
+                                Equipment
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-link" data-target="cards">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9-4 9 4M3 7h18"></path></svg>
+                                Cards
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-link" data-target="artifacts">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16v4m-2-2h4m5 11v4m-2-2h4M12 8a4 4 0 100 8 4 4 0 000-8z"></path></svg>
+                                Artifacts
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-link" data-target="monsters">
+                                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                                Monsters
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto p-4 md:p-8">
+            <div id="content-container">
+                <!-- Equipment Content (Visible by default) -->
+                <section id="equipment" class="content-section">
+                    <div class="flex flex-wrap items-center gap-4 mb-6">
+                        <h1 class="text-3xl font-bold text-white">Equipment</h1>
+                        <div class="search-wrapper relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="equipment-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Search Equipment...">
+                        </div>
+                        <div class="relative">
+                            <select id="equipment-type-filter" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer">
+                                <option value="all">All Types</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="equipment-list"></div>
+                </section>
+
+                <!-- Cards Content (Hidden by default) -->
+                <section id="cards" class="content-section hidden">
+                     <div class="flex flex-wrap items-center gap-4 mb-6">
+                        <h1 class="text-3xl font-bold text-white">Cards</h1>
+                        <div class="search-wrapper relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="cards-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500" placeholder="Search Cards...">
+                        </div>
+                       <div class="relative">
+                            <select id="card-slot-filter" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 cursor-pointer">
+                                <option value="all">All Slots</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="cards-list"></div>
+                </section>
+
+                <!-- Artifacts Content (Hidden by default) -->
+                <section id="artifacts" class="content-section hidden">
+                    <div class="flex items-center mb-6">
+                        <h1 class="text-3xl font-bold text-white">Artifacts</h1>
+                        <div class="search-wrapper relative ml-4">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="artifacts-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Search Artifacts...">
+                        </div>
+                    </div>
+                    <div id="artifacts-list"></div>
+                </section>
+
+                <!-- Monsters Content (Hidden by default) -->
+                <section id="monsters" class="content-section hidden">
+                    <div class="flex items-center mb-6">
+                        <h1 class="text-3xl font-bold text-white">Monsters</h1>
+                        <div class="search-wrapper relative ml-4">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="monsters-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Search Monsters...">
+                        </div>
+                    </div>
+                    <div id="monsters-list"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Tooltip Element -->
+    <div id="monster-tooltip"></div>
+
+    <script>
+        // Global variables to hold data
+        let equipmentData = [];
+        let cardData = [];
+        let artifactData = [];
+        let monsterData = [];
+
+        // --- UTILITY FUNCTIONS ---
+
+        function parseStats(statString) {
+            if (!statString) return '<span class="text-gray-500">N/A</span>';
+            return statString
+                .replace(/<color=#([A-Fa-f0-9]{6})[A-Fa-f0-9]{2}>/g, (match, color) => `<span style="color:#${color};">`)
+                .replace(/<\/color>/g, '</span>')
+                .replace(/\n/g, '<br>');
+        }
+
+        function renderSources(item, themeColor) {
+            if (!item.Source) return '';
+
+            const sources = item.Source.split('\n');
+            const droprates = item.Droprate ? item.Droprate.split('\n') : [];
+            const locations = item.Location ? item.Location.split('\n') : [];
+
+            if (sources.length === 0) return '';
+
+            let sourcesHtml = `<div class="mt-4 pt-4 border-t border-gray-700/50 text-xs text-gray-400">`;
+
+            if (sources.length === 1 && sources[0] !== '') {
+                 sourcesHtml += `<p>Source: <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${sources[0]}">${sources[0]}</span> ${droprates[0] ? `(${droprates[0]})` : ''} in ${locations[0]}</p>`;
+            } else {
+                sourcesHtml += '<p class="text-xs text-gray-500 uppercase font-semibold mb-1">Sources</p><ul class="list-disc list-inside text-sm space-y-1">';
+                sources.forEach((source, index) => {
+                    if (source === '') return;
+                    const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
+                    sourcesHtml += `<li>
+                        <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}">${source}</span>
+                        ${droprates[index] ? `<span class="text-gray-400"> (${droprates[index]})</span>` : ''}
+                        in ${locations[index]}
+                    </li>`;
+                });
+                sourcesHtml += '</ul>';
+            }
+            sourcesHtml += '</div>';
+            return sourcesHtml;
+        }
+
+        // --- RENDERING FUNCTIONS ---
+
+        function renderEquipmentList(data) {
+            const container = document.getElementById('equipment-list');
+            const itemsToRender = data || equipmentData;
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+                    ${itemsToRender.map(item => `
+                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10">
+                            <div class="flex items-start mb-4">
+                                <img src="https://placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}" alt="${item.Name}" class="w-16 h-16 rounded-md bg-gray-700 mr-4 flex-shrink-0">
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
+                                    <div class="mt-1 flex items-center flex-wrap">
+                                        <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
+                                        ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Set: ${item.Set}</span>` : ''}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow space-y-3 mb-4">
+                                ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
+                                ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
+                                ${item.SetBonuses ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Set Bonus</p><p class="text-sm font-mono">${parseStats(item.SetBonuses)}</p></div>` : ''}
+                                <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
+                            </div>
+                            <div class="mt-auto">
+                                ${renderSources(item, 'indigo')}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`;
+        }
+
+        function renderCardsList(data) {
+            const container = document.getElementById('cards-list');
+            const itemsToRender = data || cardData;
+            container.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+                    ${itemsToRender.map(card => `
+                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 flex flex-col transition-all hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10">
+                             <div class="flex items-start mb-4">
+                                <img src="https://placehold.co/40x40/1f2937/a855f7?text=C" alt="Card" class="w-10 h-10 rounded-md bg-gray-700 mr-4 flex-shrink-0">
+                                <div class="flex-1">
+                                    <p class="text-xs font-bold uppercase text-purple-400">${card.Affix}</p>
+                                    <h3 class="font-bold text-lg text-white leading-tight">${card.Name}</h3>
+                                    <div class="mt-1">
+                                        <span class="inline-block bg-purple-900/60 text-purple-300 text-xs font-semibold px-2 py-0.5 rounded">${card.Slot}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow mb-3">
+                                <p class="text-xs text-gray-500 uppercase font-semibold">Stats</p>
+                                <p class="text-sm font-mono">${parseStats(card.Stats)}</p>
+                            </div>
+                             <div class="mt-auto pt-4 border-t border-gray-700/50 text-xs text-gray-400 space-y-1">
+                                <p>Source: <span class="monster-link font-semibold text-purple-400 cursor-pointer" data-monster-name="${card.Source}">${card.Source}</span> (${card.Droprate})</p>
+                                <p>Location: ${card.Location}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>`;
+        }
+
+        function renderArtifactsList(data) {
+            const container = document.getElementById('artifacts-list');
+            const itemsToRender = data || artifactData;
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+                    ${itemsToRender.map(artifact => `
+                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 transition-all hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10">
+                            <h3 class="font-bold text-xl text-white mb-4">${artifact.SetName} Set</h3>
+                            <div class="space-y-3">
+                                ${artifact.PerPieceBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Piece Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerPieceBonus)}</p></div>` : ''}
+                                ${artifact.PerRefineBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Refine Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerRefineBonus)}</p></div>` : ''}
+                                ${artifact.FullSetBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Full Set Bonus</p><p class="text-sm font-mono">${parseStats(artifact.FullSetBonus)}</p></div>` : ''}
+                            </div>
+                            ${renderSources(artifact, 'teal')}
+                        </div>
+                    `).join('')}
+                </div>`;
+        }
+
+        function renderMonstersList(data) {
+            const container = document.getElementById('monsters-list');
+            const itemsToRender = data || monsterData;
+            container.innerHTML = `
+                <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 overflow-hidden">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-800">
+                            <tr>
+                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Name</th>
+                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Level</th>
+                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Element</th>
+                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Map</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${itemsToRender.map((monster, index) => `
+                                <tr class="border-t border-gray-700/50 ${index % 2 === 0 ? 'bg-black/10' : ''}">
+                                    <td class="p-4 font-medium text-white">${monster.MonsterName}</td>
+                                    <td class="p-4 text-gray-300">${monster.Level}</td>
+                                    <td class="p-4 text-gray-300">${monster.Element}</td>
+                                    <td class="p-4 text-gray-300">${monster.Map}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>`;
+        }
+
+        // --- FILTERING AND SEARCHING LOGIC ---
+        function applyFiltersAndSearch() {
+            // Equipment
+            const equipmentSearchTerm = document.getElementById('equipment-search').value.toLowerCase();
+            const equipmentTypeFilter = document.getElementById('equipment-type-filter').value;
+            let filteredEquipment = equipmentData;
+
+            if (equipmentTypeFilter !== 'all') {
+                filteredEquipment = filteredEquipment.filter(item => item.Type === equipmentTypeFilter);
+            }
+            if (equipmentSearchTerm) {
+                filteredEquipment = filteredEquipment.filter(item => {
+                    const searchIn = [item.Name, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
+                    return searchIn.includes(equipmentSearchTerm);
+                });
+            }
+            renderEquipmentList(filteredEquipment);
+
+            // Cards
+            const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
+            const cardSlotFilter = document.getElementById('card-slot-filter').value;
+            let filteredCards = cardData;
+
+            if (cardSlotFilter !== 'all') {
+                filteredCards = filteredCards.filter(item => item.Slot === cardSlotFilter);
+            }
+            if (cardSearchTerm) {
+                filteredCards = filteredCards.filter(item => {
+                    const searchIn = [item.Name, item.Stats, item.Source, item.Location, item.Affix, item.Slot].join(' ').toLowerCase();
+                    return searchIn.includes(cardSearchTerm);
+                });
+            }
+            renderCardsList(filteredCards);
+        }
+
+        // --- DATA LOADING and APP INITIALIZATION ---
+
+        async functioninitializeApp() {
+            try {
+                const [
+                    equipmentResponse,
+                    cardsResponse,
+                    artifactsResponse,
+                    monstersResponse
+                ] = await Promise.all([
+                    fetch('./equipment.json'),
+                    fetch('./cards.json'),
+                    fetch('./artifacts.json'),
+                    fetch('./monsters.js')
+                ]);
+
+                equipmentData = await equipmentResponse.json();
+                cardData = await cardsResponse.json();
+                artifactData = await artifactsResponse.json();
+
+                // Handle the monsters.js file which is not a pure JSON
+                const monstersText = await monstersResponse.text();
+                // Clean the text to make it a valid JSON string
+                const monstersJsonText = monstersText.replace('const monsters =', '').replace(/if \(typeof module[^]*$/, '').trim().replace(/;$/, '');
+                monsterData = JSON.parse(monstersJsonText);
+
+
+                // --- POST-DATA-LOAD INITIALIZATION ---
+
+                // Populate filters
+                const equipmentTypeFilter = document.getElementById('equipment-type-filter');
+                const uniqueEquipmentTypes = [...new Set(equipmentData.map(item => item.Type))].sort();
+                uniqueEquipmentTypes.forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type;
+                    option.textContent = type;
+                    equipmentTypeFilter.appendChild(option);
+                });
+
+                const cardSlotFilter = document.getElementById('card-slot-filter');
+                const uniqueCardSlots = [...new Set(cardData.map(item => item.Slot))].sort();
+                uniqueCardSlots.forEach(slot => {
+                    const option = document.createElement('option');
+                    option.value = slot;
+                    option.textContent = slot;
+                    cardSlotFilter.appendChild(option);
+                });
+
+                // Initial render
+                renderEquipmentList();
+                renderCardsList();
+                renderArtifactsList();
+                renderMonstersList();
+
+                const sidebarLinks = document.querySelectorAll('.sidebar-link');
+                const contentSections = document.querySelectorAll('.content-section');
+                const tooltip = document.getElementById('monster-tooltip');
+
+                // Filter and Search event listeners
+                document.getElementById('equipment-search').addEventListener('input', applyFiltersAndSearch);
+                document.getElementById('equipment-type-filter').addEventListener('change', applyFiltersAndSearch);
+                document.getElementById('cards-search').addEventListener('input', applyFiltersAndSearch);
+                document.getElementById('card-slot-filter').addEventListener('change', applyFiltersAndSearch);
+
+                document.getElementById('artifacts-search').addEventListener('keyup', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const filteredData = artifactData.filter(item => {
+                        const searchIn = [
+                            item.SetName, item.PerPieceBonus, item.PerRefineBonus,
+                            item.FullSetBonus, item.Source, item.Location
+                        ].join(' ').toLowerCase();
+                        return searchIn.includes(searchTerm);
+                    });
+                    renderArtifactsList(filteredData);
+                });
+
+                document.getElementById('monsters-search').addEventListener('keyup', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const filteredData = monsterData.filter(item => {
+                        const searchIn = [
+                            item.MonsterName, item.Element, item.Map
+                        ].join(' ').toLowerCase();
+                        return searchIn.includes(searchTerm);
+                    });
+                    renderMonstersList(filteredData);
+                });
+
+                // Sidebar navigation logic
+                sidebarLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('data-target');
+
+                        sidebarLinks.forEach(l => l.classList.remove('active-link'));
+                        link.classList.add('active-link');
+
+                        contentSections.forEach(section => {
+                            section.classList.toggle('hidden', section.id !== targetId);
+                        });
+                    });
+                });
+
+                // Tooltip logic (delegated to the content container)
+                document.getElementById('content-container').addEventListener('mouseover', (e) => {
+                    if (e.target.classList.contains('monster-link')) {
+                        const monsterName = e.target.getAttribute('data-monster-name');
+                        const monsterInfo = monsterData.find(m => m.MonsterName === monsterName);
+
+                        tooltip.innerHTML = monsterInfo
+                            ? `<h4 class="font-bold text-white text-base mb-2">${monsterInfo.MonsterName}</h4>
+                               <p><strong>Level:</strong> ${monsterInfo.Level}</p>
+                               <p><strong>Element:</strong> ${monsterInfo.Element}</p>
+                               <p><strong>Map:</strong> ${monsterInfo.Map}</p>`
+                            : `<h4 class="font-bold text-white text-base mb-2">${monsterName}</h4>
+                               <p class="text-gray-500">Details not found.</p>`;
+                        tooltip.style.display = 'block';
+                    }
+                });
+
+                document.getElementById('content-container').addEventListener('mouseout', (e) => {
+                    if (e.target.classList.contains('monster-link')) {
+                        tooltip.style.display = 'none';
+                    }
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (tooltip.style.display === 'block') {
+                        tooltip.style.left = `${e.pageX + 15}px`;
+                        tooltip.style.top = `${e.pageY + 15}px`;
+                    }
+                });
+
+            } catch (error) {
+                console.error("Failed to load game data:", error);
+                document.getElementById('content-container').innerHTML = `<p class="text-red-400">Error loading data. Make sure equipment.json, cards.json, artifacts.json, and monsters.js are in the same directory.</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeApp);
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .sidebar-link {
+                display: flex;
+                align-items: center;
+                padding: 0.75rem 1rem;
+                border-radius: 0.5rem;
+                color: #d1d5db;
+                transition: background-color 0.2s, color 0.2s;
+                font-weight: 500;
+            }
+            .sidebar-link:hover {
+                background-color: #374151;
+                color: #ffffff;
+            }
+            .sidebar-link.active-link {
+                background-color: #4f46e5;
+                color: #ffffff;
+                font-weight: 600;
+            }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>

@@ -8,10 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </ul>
             <h2 class="text-lg font-semibold text-white mb-4 mt-4">Database</h2>
             <ul>
-                <li class="mb-2"><a href="equipment.html" class="text-blue-400 hover:text-blue-300">Equipment</a></li>
-                <li class="mb-2"><a href="cards.html" class="text-blue-400 hover:text-blue-300">Cards</a></li>
-                <li class="mb-2"><a href="artifacts.html" class="text-blue-400 hover:text-blue-300">Artifacts</a></li>
-                <li class="mb-2"><a href="monsters.html" class="text-blue-400 hover:text-blue-300">Monsters</a></li>
+                <li class="mb-2"><a href="database.html" class="text-blue-400 hover:text-blue-300">Database</a></li>
             </ul>
         </div>
     `;
