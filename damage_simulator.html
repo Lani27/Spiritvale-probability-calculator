@@ -309,7 +309,7 @@
                             </div>
                             <div id="monster_details" class="hidden text-sm text-gray-400 bg-gray-800 p-3 rounded-md space-y-1"></div>
                             <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate"></div>
-                             <div class="input-group"><label for="t_archetype">Archetype</label>
+                            <div class="input-group hidden"><label for="t_archetype">Archetype</label>
                                  <select id="t_archetype" class="recalculate">
                                      <option value="Custom">Custom</option>
                                      <option value="Brute" selected>Brute</option>
@@ -814,7 +814,6 @@
                         <div class="flex justify-between"><span><strong>Name:</strong></span> <span>${monster.MonsterName}</span></div>
                         <div class="flex justify-between"><span><strong>Level:</strong></span> <span>${monster.Level}</span></div>
                         <div class="flex justify-between"><span><strong>Element:</strong></span> <span>${monster.Element}</span></div>
-                        <div class="flex justify-between"><span><strong>Archetype:</strong></span> <span>${monster.ArchetypeId}</span></div>
                         <div class="flex justify-between"><span><strong>Map:</strong></span> <span>${monster.Map}</span></div>
                     `;
                     monsterDetailsDiv.classList.remove('hidden');
