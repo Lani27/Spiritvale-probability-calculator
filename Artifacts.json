@@ -150,9 +150,9 @@
         "PerPieceBonus": "Hp: <color=#FF0073FF>-10% per level</color>\nMatk: <color=#AAFF00FF>+5 per level</color>\nMp: <color=#AAFF00FF>+5% per level</color>",
         "PerRefineBonus": "Matk: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nEnergy Shield Level: <color=#AAFF00FF>+2</color>\nHp: <color=#FF0073FF>-10%</color>\nMatk: <color=#AAFF00FF>+10</color>\nMp: <color=#AAFF00FF>+5%</color>",
-        "Source": "Gem - Cyclops Bat\nGem - Cyclops Bat Mage\nScroll - Cyclops Bat Wizard\nRune - Death\nSlot - Devil Hades\nRelic - Direwolf\nScroll - Eyeball Creep Blue\nGem - Eyeball Creep Green\nRune - Eyeball Creep Red\nScroll - Eyeball Mage Blue\nRelic - Eyeball Mage Green\nRune - Eyeball Mage Red\nRune - Nightmare\nRune - Skeleton Giant\nRelic - Skeleton Mage\nSlot - Wraith",
+        "Source": "Gem - Cyclops Bat\nGem - Cyclops Bat Mage\nScroll - Cyclops Bat Wizard\nRune - Death\nRelic - Direwolf\nScroll - Eyeball Creep Blue\nGem - Eyeball Creep Green\nRune - Eyeball Creep Red\nScroll - Eyeball Mage Blue\nRelic - Eyeball Mage Green\nRune - Eyeball Mage Red\nRune - Nightmare\nRune - Skeleton Giant\nRelic - Skeleton Mage",
         "Droprate": "3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%",
-        "Location": "Abyss Castle Keep\nAbyss Castle Library\nAbyss Castle Keep\nAbyss Castle Keep\nUnknown Map\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Keep\nAbyss Castle Keep\nUnknown Map",
+        "Location": "Abyss Castle Keep\nAbyss Castle Library\nAbyss Castle Keep\nAbyss Castle Keep\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Keep\nAbyss Castle Keep",
         "SpriteId": "artifacts-matk_0\nartifacts-matk_1\nartifacts-matk_2\nartifacts-matk_3"
     },
     {
@@ -222,9 +222,9 @@
         "PerPieceBonus": "Atk: <color=#AAFF00FF>+5 per level</color>\nHp: <color=#AAFF00FF>+5% per level</color>\nMp: <color=#FF0073FF>-15% per level</color>",
         "PerRefineBonus": "Atk: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nAtk: <color=#AAFF00FF>+10</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#FF0073FF>-15%</color>",
-        "Source": "Slot - Devil Bat\nSlot - Devil Hell\nSlot - Gloom\nScroll - Goblin Giant\nRelic - Goblin Giant Devil\nGem - Goblin Giant Mage\nRune - Goblin Minion\nRelic - Goblin Trooper\nGem - Goblin Trooper Assassin\nScroll - Goblin Trooper Mage\nRune - Goblin Trooper Soldier\nSlot - Grim Reaper",
+        "Source": "Scroll - Goblin Giant\nRelic - Goblin Giant Devil\nGem - Goblin Giant Mage\nRune - Goblin Minion\nRelic - Goblin Trooper\nGem - Goblin Trooper Assassin\nScroll - Goblin Trooper Mage\nRune - Goblin Trooper Soldier",
         "Droprate": "3.0%\n3.0%\n3.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n3.0%",
-        "Location": "Unknown Map\nUnknown Map\nUnknown Map\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nUnknown Map",
+        "Location": "Goblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village",
         "SpriteId": "artifacts-atk_0\nartifacts-atk_1\nartifacts-atk_2\nartifacts-atk_3"
     },
     {
@@ -239,4 +239,5 @@
         "Location": "Forest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth",
         "SpriteId": "artifacts-movespeed_0\nartifacts-movespeed_1\nartifacts-movespeed_2\nartifacts-movespeed_3"
     }
+
 ]
