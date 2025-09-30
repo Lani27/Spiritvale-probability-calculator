@@ -2,7 +2,7 @@
     {
         "SetName": "Aethercore",
         "SetId": "Mp",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Mp: <color=#AAFF00FF>+5% per level</color>",
         "PerRefineBonus": "Mp: <color=#AAFF00FF>+0.5% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMp: <color=#AAFF00FF>+10%</color>",
@@ -14,7 +14,7 @@
     {
         "SetName": "Arcanum",
         "SetId": "Magic",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Damage Magic: <color=#AAFF00FF>+2% per level</color>",
         "PerRefineBonus": "Damage Magic: <color=#AAFF00FF>+0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Magic: <color=#AAFF00FF>+7%</color>",
@@ -26,7 +26,7 @@
     {
         "SetName": "Arcanum Verge",
         "SetId": "Cost",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Mp Cost: <color=#AAFF00FF>-10% per level</color>",
         "PerRefineBonus": "Mp Cost: <color=#AAFF00FF>-0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMp Cost: <color=#AAFF00FF>-10%</color>",
@@ -38,7 +38,7 @@
     {
         "SetName": "Blitzcore",
         "SetId": "Auto",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Atk Spd: <color=#AAFF00FF>+2% per level</color>",
         "PerRefineBonus": "Atk Spd: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nAtk Spd: <color=#AAFF00FF>+7%</color>\nSplash: <color=#AAFF00FF>+1</color>",
@@ -50,7 +50,7 @@
     {
         "SetName": "Bloodbind",
         "SetId": "Leech",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Health on kill: <color=#AAFF00FF>+10 per level</color>\nMana on kill: <color=#AAFF00FF>+5 per level</color>",
         "PerRefineBonus": "Health on kill: <color=#AAFF00FF>+2 per level</color>\nMana on kill: <color=#AAFF00FF>+1 per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealth on kill: <color=#AAFF00FF>+10</color>\nMana on kill: <color=#AAFF00FF>+5</color>",
@@ -62,7 +62,7 @@
     {
         "SetName": "Furybrand",
         "SetId": "Crit",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Crit: <color=#AAFF00FF>+3 per level</color>",
         "PerRefineBonus": "Crit Damage: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCrit Damage: <color=#AAFF00FF>+5%</color>\nCrit: <color=#AAFF00FF>+8</color>",
@@ -74,7 +74,7 @@
     {
         "SetName": "Hawkeye",
         "SetId": "Hit",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Hit: <color=#AAFF00FF>+10 per level</color>",
         "PerRefineBonus": "Hit: <color=#AAFF00FF>+1 per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHit: <color=#AAFF00FF>+10</color>",
@@ -86,7 +86,7 @@
     {
         "SetName": "Lifebloom",
         "SetId": "Healing",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Healing: <color=#AAFF00FF>+3% per level</color>",
         "PerRefineBonus": "Healing: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealing: <color=#AAFF00FF>+8%</color>",
@@ -99,7 +99,7 @@
         "SetName": "Nullmark",
         "SetId": "Immune",
         "IndividualBonus": "Resistance to Bleeding: <color=#AAFF00FF>+100%</color>\nResistance to Blind: <color=#AAFF00FF>+100%</color>\nResistance to Poison: <color=#AAFF00FF>+100%</color>\nResistance to Silence: <color=#AAFF00FF>+100%</color>",
-        "PerPieceBonus": NaN,
+        "PerPieceBonus": null,
         "PerRefineBonus": "Resistance to Stun: <color=#AAFF00FF>+5% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nResistance to Slow: <color=#AAFF00FF>+100%</color>",
         "Source": "Relic - Bloom\nScroll - Blossom\nRune - Bud\nGem - Elder Wisp Purple\nGem - Poison Bomb\nRune - Worm Rot\nScroll - Worm Stink",
@@ -110,7 +110,7 @@
     {
         "SetName": "Pioneer",
         "SetId": "Novice",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Exp Rate: <color=#AAFF00FF>+2% per level</color>",
         "PerRefineBonus": "Exp Rate: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nExp Rate: <color=#AAFF00FF>+2%</color>",
@@ -122,7 +122,7 @@
     {
         "SetName": "Shadebound",
         "SetId": "Flee",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Flee: <color=#AAFF00FF>+10 per level</color>",
         "PerRefineBonus": "Flee: <color=#AAFF00FF>+1 per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nFlee: <color=#AAFF00FF>+10</color>",
@@ -134,7 +134,7 @@
     {
         "SetName": "Spellweaver",
         "SetId": "Cast",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Cast Spd: <color=#AAFF00FF>+10% per level</color>",
         "PerRefineBonus": "Cast Spd: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCast Spd: <color=#AAFF00FF>+10%</color>",
@@ -146,7 +146,7 @@
     {
         "SetName": "Starfire",
         "SetId": "Matk",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Hp: <color=#FF0073FF>-10% per level</color>\nMatk: <color=#AAFF00FF>+5 per level</color>\nMp: <color=#AAFF00FF>+5% per level</color>",
         "PerRefineBonus": "Matk: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nEnergy Shield Level: <color=#AAFF00FF>+2</color>\nHp: <color=#FF0073FF>-10%</color>\nMatk: <color=#AAFF00FF>+10</color>\nMp: <color=#AAFF00FF>+5%</color>",
@@ -158,7 +158,7 @@
     {
         "SetName": "Steelheart",
         "SetId": "Melee",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Damage Melee: <color=#AAFF00FF>+2% per level</color>",
         "PerRefineBonus": "Damage Melee: <color=#AAFF00FF>+0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Melee: <color=#AAFF00FF>+7%</color>",
@@ -170,7 +170,7 @@
     {
         "SetName": "Stormquiver",
         "SetId": "Ranged",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Damage Ranged: <color=#AAFF00FF>+2% per level</color>",
         "PerRefineBonus": "Damage Ranged: <color=#AAFF00FF>+0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Ranged: <color=#AAFF00FF>+7%</color>",
@@ -182,7 +182,7 @@
     {
         "SetName": "Titanplate",
         "SetId": "Def",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Def: <color=#AAFF00FF>+5 per level</color>",
         "PerRefineBonus": "Def: <color=#AAFF00FF>+1 per level</color>\nReflect Damage: <color=#AAFF00FF>+1% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDef: <color=#AAFF00FF>+30</color>\nDef: <color=#AAFF00FF>+5%</color>\nReflect Damage: <color=#AAFF00FF>+10%</color>",
@@ -194,7 +194,7 @@
     {
         "SetName": "Veilward",
         "SetId": "Mdef",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Mdef: <color=#AAFF00FF>+5 per level</color>",
         "PerRefineBonus": "Chance to reflect single target magic: <color=#AAFF00FF>+0.5% per level</color>\nMdef: <color=#AAFF00FF>+1 per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nChance to reflect single target magic: <color=#AAFF00FF>+5%</color>\nMdef: <color=#AAFF00FF>+30</color>\nMdef: <color=#AAFF00FF>+5%</color>",
@@ -206,7 +206,7 @@
     {
         "SetName": "Vitalis",
         "SetId": "Hp",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Hp: <color=#AAFF00FF>+5% per level</color>",
         "PerRefineBonus": "Hp: <color=#AAFF00FF>+0.5% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+10%</color>",
@@ -218,7 +218,7 @@
     {
         "SetName": "Warglyph",
         "SetId": "Atk",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Atk: <color=#AAFF00FF>+5 per level</color>\nHp: <color=#AAFF00FF>+5% per level</color>\nMp: <color=#FF0073FF>-15% per level</color>",
         "PerRefineBonus": "Atk: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nAtk: <color=#AAFF00FF>+10</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#FF0073FF>-15%</color>",
@@ -230,7 +230,7 @@
     {
         "SetName": "Windborne",
         "SetId": "Movespeed",
-        "IndividualBonus": NaN,
+        "IndividualBonus": null,
         "PerPieceBonus": "Move Spd: <color=#AAFF00FF>+5% per level</color>",
         "PerRefineBonus": "Move Spd: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMove Spd: <color=#AAFF00FF>+10%</color>",

@@ -369,7 +369,7 @@
 
         // --- DATA LOADING and APP INITIALIZATION ---
 
-        async functioninitializeApp() {
+        async function initializeApp() {
             try {
                 const [
                     equipmentResponse,
@@ -377,21 +377,16 @@
                     artifactsResponse,
                     monstersResponse
                 ] = await Promise.all([
-                    fetch('./equipment.json'),
-                    fetch('./cards.json'),
-                    fetch('./artifacts.json'),
-                    fetch('./monsters.js')
+                    fetch('./Equipment.json'),
+                    fetch('./Cards.json'),
+                    fetch('./Artifacts.json'),
+                    fetch('./monsters.json')
                 ]);
 
                 equipmentData = await equipmentResponse.json();
                 cardData = await cardsResponse.json();
                 artifactData = await artifactsResponse.json();
-
-                // Handle the monsters.js file which is not a pure JSON
-                const monstersText = await monstersResponse.text();
-                // Clean the text to make it a valid JSON string
-                const monstersJsonText = monstersText.replace('const monsters =', '').replace(/if \(typeof module[^]*$/, '').trim().replace(/;$/, '');
-                monsterData = JSON.parse(monstersJsonText);
+                monsterData = await monstersResponse.json();
 
 
                 // --- POST-DATA-LOAD INITIALIZATION ---
