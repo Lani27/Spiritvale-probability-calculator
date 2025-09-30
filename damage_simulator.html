@@ -109,6 +109,34 @@
         #main-content {
             margin-left: 12rem; /* 192px */
         }
+        .build-tab {
+            padding: 8px 12px;
+            border: 1px solid #4b5563;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 8px;
+            background-color: #374151;
+            color: #d1d5db;
+        }
+        .build-tab.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .add-build-btn {
+            padding: 8px;
+            border: 1px dashed #4b5563;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: transparent;
+            color: #9ca3af;
+        }
+        .edit-build-btn {
+            margin-left: 4px;
+            cursor: pointer;
+            color: #9ca3af;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body class="p-4 md:p-8 bg-gray-900">
@@ -131,6 +159,9 @@
             <!-- Player Stats Column -->
             <div class="lg:col-span-1 space-y-6">
                 <div class="card">
+                    <div id="build-tabs-container" class="flex items-center mb-4">
+                        <!-- Build tabs will be generated here -->
+                    </div>
                     <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Character Stats</h2>
                     <div class="space-y-4">
                         <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate"></select></div>
@@ -394,8 +425,267 @@
             Undead:   { str: 2,    agi: 0.25, vit: 1.5,  int: 1,    dex: 1,    luk: 0.25 }
         };
 
+        // --- Build Management ---
+        let builds = [];
+        let activeBuildIndex = 0;
+        const MAX_BUILDS = 5;
+        const allInputIds = [
+            'p_class', 'p_lv', 'p_str', 'p_agi', 'p_vit', 'p_int', 'p_dex', 'p_luk',
+            'p_weapon_atk', 'p_weapon_matk', 'p_atk', 'p_matk', 'p_mastery', 'p_atk_perc', 'p_matk_perc',
+            'p_dmg_melee_perc', 'p_dmg_ranged_perc', 'p_dmg_magic_perc', 'p_crit_flat', 'p_crit_rate_perc',
+            'p_crit_dmg_perc', 'p_aspd_perc', 'p_cspd_perc',
+            'p_add_elemental_bonus', 'p_dmg_bonus_element', 'p_dmg_bonus_value',
+            'p_add_dmg_vs_element_bonus', 'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
+            'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged'
+        ];
+
+        function saveBuildsMetadata() {
+            const buildsMetadata = builds.map(b => ({ name: b.name }));
+            setCookie('buildsMetadata', JSON.stringify(buildsMetadata), 365);
+        }
+
+        function addBuild() {
+            if (builds.length >= MAX_BUILDS) {
+                alert(`You can only have a maximum of ${MAX_BUILDS} builds.`);
+                return;
+            }
+            const newBuildName = `Build ${builds.length + 1}`;
+            builds.push({ name: newBuildName });
+            saveBuildsMetadata();
+            const newIndex = builds.length - 1;
+            switchBuild(newIndex);
+        }
+
+        function renameBuild(index) {
+            const currentName = builds[index].name;
+            const newName = prompt("Enter a new name for the build:", currentName);
+            if (newName && newName.trim() !== "") {
+                builds[index].name = newName.trim();
+                saveBuildsMetadata();
+                if (index === activeBuildIndex) {
+                    saveCurrentBuild(); // Save the new name into the build data cookie
+                }
+                renderBuildTabs();
+            }
+        }
+
+        function saveCurrentBuild() {
+            if (activeBuildIndex < 0 || activeBuildIndex >= builds.length) return;
+
+            const buildData = {};
+            allInputIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (element.type === 'checkbox') {
+                        buildData[id] = element.checked;
+                    } else {
+                        buildData[id] = element.value;
+                    }
+                }
+            });
+
+            // Save skill simulation state
+            buildData['simulate_skills'] = getBool('simulate_skills');
+            if (buildData['simulate_skills']) {
+                const numSkills = getFloat('num_skills');
+                buildData['num_skills'] = numSkills;
+                buildData.skills = [];
+                for (let i = 1; i <= numSkills; i++) {
+                    const skillData = {};
+                    const skillFields = [
+                        'type', 'element', 'level', 'base-dmg', 'dmg-per-level', 'cast-time', 'cooldown',
+                        'is-multihit', 'base-hits', 'hits-per-level',
+                        'is-dot', 'base-duration', 'duration-per-level',
+                        'has-dmg-card', 'dmg-card-perc'
+                    ];
+                    skillFields.forEach(field => {
+                        const id = `skill-${i}-${field}`;
+                        const el = document.getElementById(id);
+                        if (el) {
+                            if (el.type === 'checkbox') {
+                                skillData[field] = el.checked;
+                            } else {
+                                skillData[field] = el.value;
+                            }
+                        }
+                    });
+
+                    skillData.scalingRules = [];
+                    document.querySelectorAll(`#skill-${i}-scaling-container .scaling-rule`).forEach(rule => {
+                        const value = rule.querySelector('input').value;
+                        const stat = rule.querySelector('select').value;
+                        skillData.scalingRules.push({ value, stat });
+                    });
+
+                    buildData.skills.push(skillData);
+                }
+            }
+
+
+            const buildInfo = builds[activeBuildIndex];
+            if (buildInfo) {
+                buildData.name = buildInfo.name;
+            }
+
+            setCookie(`build_${activeBuildIndex}`, JSON.stringify(buildData), 365);
+        }
+
+        function loadBuild(index) {
+            const buildDataString = getCookie(`build_${index}`);
+            if (!buildDataString) {
+                // This is a new build, so we can clear/reset fields
+                allInputIds.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = false;
+                        } else if (element.tagName === 'SELECT') {
+                            element.selectedIndex = 0;
+                        } else {
+                            element.value = element.defaultValue || '';
+                        }
+                        if (id === 'p_add_elemental_bonus' || id === 'p_add_dmg_vs_element_bonus' || id === 'p_dual_wield') {
+                            element.dispatchEvent(new Event('change'));
+                        }
+                    }
+                });
+                document.getElementById('simulate_skills').checked = false;
+                toggleSkillSection();
+                document.getElementById('num_skills').value = 0;
+                generateSkillInputs();
+                if (document.getElementById('p_class').value) {
+                    document.getElementById('p_class').dispatchEvent(new Event('change'));
+                }
+                calculateAll();
+                return;
+            }
+
+            const buildData = JSON.parse(buildDataString);
+            allInputIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (element && buildData[id] !== undefined) {
+                    if (element.type === 'checkbox') {
+                        element.checked = buildData[id];
+                    } else {
+                        element.value = buildData[id];
+                    }
+                    if (id === 'p_add_elemental_bonus' || id === 'p_add_dmg_vs_element_bonus' || id === 'p_dual_wield') {
+                        element.dispatchEvent(new Event('change'));
+                    }
+                }
+            });
+
+            // Load skill data
+            const simulateSkillsCheckbox = document.getElementById('simulate_skills');
+            simulateSkillsCheckbox.checked = buildData.simulate_skills || false;
+            toggleSkillSection();
+
+            if (buildData.simulate_skills && buildData.num_skills) {
+                document.getElementById('num_skills').value = buildData.num_skills;
+                generateSkillInputs();
+
+                if (buildData.skills) {
+                    buildData.skills.forEach((skillData, i) => {
+                        const skillIndex = i + 1;
+                        const skillFields = [
+                            'type', 'element', 'level', 'base-dmg', 'dmg-per-level', 'cast-time', 'cooldown',
+                            'is-multihit', 'base-hits', 'hits-per-level',
+                            'is-dot', 'base-duration', 'duration-per-level',
+                            'has-dmg-card', 'dmg-card-perc'
+                        ];
+                        skillFields.forEach(field => {
+                            const id = `skill-${skillIndex}-${field}`;
+                            const el = document.getElementById(id);
+                            if (el && skillData[field] !== undefined) {
+                                if (el.type === 'checkbox') {
+                                    el.checked = skillData[field];
+                                } else {
+                                    el.value = skillData[field];
+                                }
+                            }
+                        });
+                        const scalingContainer = document.getElementById(`skill-${skillIndex}-scaling-container`);
+                        scalingContainer.innerHTML = '';
+                        if (skillData.scalingRules) {
+                            skillData.scalingRules.forEach(rule => {
+                                addScalingRule(skillIndex);
+                                const ruleDiv = scalingContainer.lastChild;
+                                ruleDiv.querySelector('input').value = rule.value;
+                                ruleDiv.querySelector('select').value = rule.stat;
+                            });
+                        }
+                        toggleSkillOptions(skillIndex);
+                    });
+                }
+            } else {
+                document.getElementById('num_skills').value = 0;
+                generateSkillInputs();
+            }
+
+            if (document.getElementById('p_class').value) {
+                document.getElementById('p_class').dispatchEvent(new Event('change'));
+            }
+            calculateAll();
+        }
+
+        function switchBuild(index) {
+            if (index < 0 || index >= builds.length) return;
+            activeBuildIndex = index;
+            setCookie('activeBuildIndex', activeBuildIndex, 365);
+            loadBuild(index);
+            renderBuildTabs();
+        }
+
+        function renderBuildTabs() {
+            const container = document.getElementById('build-tabs-container');
+            container.innerHTML = '';
+
+            builds.forEach((build, index) => {
+                const tab = document.createElement('div');
+                tab.className = `build-tab ${index === activeBuildIndex ? 'active' : ''}`;
+                tab.textContent = build.name;
+                tab.onclick = () => switchBuild(index);
+
+                const editBtn = document.createElement('span');
+                editBtn.className = 'edit-build-btn';
+                editBtn.textContent = '✏️';
+                editBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    renameBuild(index);
+                };
+                tab.appendChild(editBtn);
+                container.appendChild(tab);
+            });
+
+            if (builds.length < MAX_BUILDS) {
+                const addBtn = document.createElement('button');
+                addBtn.className = 'add-build-btn';
+                addBtn.textContent = '+';
+                addBtn.onclick = addBuild;
+                container.appendChild(addBtn);
+            }
+        }
+
+        function initializeBuilds() {
+            const savedBuildsMeta = getCookie('buildsMetadata');
+            if (savedBuildsMeta) {
+                builds = JSON.parse(savedBuildsMeta);
+            }
+
+            if (builds.length === 0) {
+                builds.push({ name: 'Build 1' });
+                saveBuildsMetadata();
+            }
+
+            const savedActiveBuildIndex = getCookie('activeBuildIndex');
+            activeBuildIndex = (savedActiveBuildIndex !== null && parseInt(savedActiveBuildIndex, 10) < builds.length) ? parseInt(savedActiveBuildIndex, 10) : 0;
+
+            switchBuild(activeBuildIndex);
+        }
+
         // --- UI Generation & Listeners ---
         document.addEventListener('DOMContentLoaded', () => {
+            initializeBuilds();
             const monsterSearchInput = document.getElementById('monster_search');
             const monsterListDiv = document.getElementById('monster_list');
             const monsterDetailsDiv = document.getElementById('monster_details');
@@ -680,6 +970,32 @@
         function getSelect(id) { return document.getElementById(id).value; }
         function getBool(id) { return document.getElementById(id).checked; }
 
+        // --- Cookie Functions ---
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax";
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + '=; Max-Age=-99999999; path=/; SameSite=Lax';
+        }
+
         const elementalEffectiveness = {
             "NEUTRAL": { "POISON": 0.75, "SHADOW": 0.75 },
             "POISON": { "NEUTRAL": 1.25, "POISON": 0.50, "HOLY": 0.75, "UNDEAD": 0.75 },
@@ -930,6 +1246,8 @@
             document.getElementById('r_avg_mhit').textContent = Math.floor(avg_mhit).toLocaleString();
             document.getElementById('r_mdps').textContent = Math.floor(mdps).toLocaleString();
             document.getElementById('r_rotation_dps').textContent = Math.floor(rotation_dps).toLocaleString();
+
+            saveCurrentBuild();
         }
     </script>
 </body>
