@@ -1174,7 +1174,18 @@
                     let totalHits = isMultiHit ? getFloat(`skill-${i}-base-hits`) + (getFloat(`skill-${i}-hits-per-level`) * level) : 1;
                     const isDot = getBool(`skill-${i}-is-dot`);
                     const finalCastTime = castTime * (1 - cast_time_reduction);
-                    totalCastTime += finalCastTime;
+
+                    if (castTime > 0) {
+                        // Skill has a cast time, add it to the rotation's cast sequence.
+                        totalCastTime += finalCastTime;
+                    } else if (cooldown === 0) {
+                        // Skill is instant and has no cooldown, so it's spammable.
+                        // Its contribution to rotation time is the base attack delay.
+                        totalCastTime += attack_delay;
+                    }
+                    // If castTime is 0 and cooldown > 0, the skill is an instant off-GCD.
+                    // It doesn't contribute to the sequence time, only to the longestCooldown.
+
                     longestCooldown = Math.max(longestCooldown, cooldown);
                     let percentScalingBonus = 0;
                     document.querySelectorAll(`#skill-${i}-scaling-container .scaling-rule`).forEach(rule => {
