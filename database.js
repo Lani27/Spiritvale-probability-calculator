@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function loadEquipment() {
-    const response = await fetch('equipment.json');
+    const response = await fetch('Equipment.json');
     const equipment = await response.json();
     const monstersResponse = await fetch('monsters.json');
     const monsters = await monstersResponse.json();
