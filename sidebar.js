@@ -1,80 +1,164 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const sidebarHtml = `
-        <aside style="width: 14rem; z-index: 10;" class="fixed left-0 top-0 h-full bg-gray-800 p-4 flex flex-col">
+    // --- Elements and State ---
+    const body = document.body;
+    const sidebarContainer = document.getElementById('sidebar');
+
+    // --- HTML Injection ---
+    const desktopSidebarHtml = `
+        <aside style="width: 14rem; z-index: 10;" class="fixed left-0 top-0 h-full bg-gray-800 p-4 flex-col">
             <h1 class="text-xl font-bold text-white mb-6">SpiritVale Tools</h1>
             <nav class="flex flex-col space-y-4">
                 <div>
                     <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Simulator</h2>
                     <ul class="space-y-1">
-                        <li><a href="index.html" class="sidebar-link"><span class="w-5 h-5 mr-3">🧮</span> Stat Calculator</a></li>
-                        <li><a href="damage_simulator.html" class="sidebar-link"><span class="w-5 h-5 mr-3">⚔️</span> Damage Simulator</a></li>
+                        <li><a href="index.html" class="sidebar-link"><span class="nav-icon">🧮</span><span class="nav-text">Stat Calculator</span></a></li>
+                        <li><a href="damage_simulator.html" class="sidebar-link"><span class="nav-icon">⚔️</span><span class="nav-text">Damage Simulator</span></a></li>
                     </ul>
                 </div>
                 <div>
                     <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Database</h2>
                     <ul class="space-y-1">
-                        <li><a href="database.html#equipment" class="sidebar-link" data-target="equipment"><span class="w-5 h-5 mr-3">🛡️</span> Equipment</a></li>
-                        <li><a href="database.html#cards" class="sidebar-link" data-target="cards"><span class="w-5 h-5 mr-3">🎴</span> Cards</a></li>
-                        <li><a href="database.html#artifacts" class="sidebar-link" data-target="artifacts"><span class="w-5 h-5 mr-3">✨</span> Artifacts</a></li>
-                        <li><a href="database.html#monsters" class="sidebar-link" data-target="monsters"><span class="w-5 h-5 mr-3">👹</span> Monsters</a></li>
+                        <li><a href="database.html#equipment" class="sidebar-link" data-target="equipment"><span class="nav-icon">🛡️</span><span class="nav-text">Equipment</span></a></li>
+                        <li><a href="database.html#cards" class="sidebar-link" data-target="cards"><span class="nav-icon">🎴</span><span class="nav-text">Cards</span></a></li>
+                        <li><a href="database.html#artifacts" class="sidebar-link" data-target="artifacts"><span class="nav-icon">✨</span><span class="nav-text">Artifacts</span></a></li>
+                        <li><a href="database.html#monsters" class="sidebar-link" data-target="monsters"><span class="nav-icon">👹</span><span class="nav-text">Monsters</span></a></li>
                     </ul>
                 </div>
             </nav>
         </aside>
     `;
 
-    const sidebarContainer = document.getElementById('sidebar');
+    const mobileBottomNavHtml = `
+        <nav id="bottom-nav">
+            <a href="index.html" class="sidebar-link">
+                <span class="nav-icon">🧮</span>
+                <span class="nav-text">Stats</span>
+            </a>
+            <a href="damage_simulator.html" class="sidebar-link">
+                <span class="nav-icon">⚔️</span>
+                <span class="nav-text">Damage</span>
+            </a>
+            <a href="database.html#equipment" class="sidebar-link" data-target="equipment">
+                <span class="nav-icon">🛡️</span>
+                <span class="nav-text">Equip</span>
+            </a>
+            <a href="database.html#cards" class="sidebar-link" data-target="cards">
+                <span class="nav-icon">🎴</span>
+                <span class="nav-text">Cards</span>
+            </a>
+            <a href="database.html#artifacts" class="sidebar-link" data-target="artifacts">
+                <span class="nav-icon">✨</span>
+                <span class="nav-text">Artifacts</span>
+            </a>
+            <a href="database.html#monsters" class="sidebar-link" data-target="monsters">
+                <span class="nav-icon">👹</span>
+                <span class="nav-text">Monsters</span>
+            </a>
+        </nav>
+    `;
+
     if (sidebarContainer) {
-        sidebarContainer.innerHTML = sidebarHtml;
+        sidebarContainer.innerHTML = desktopSidebarHtml;
+        body.insertAdjacentHTML('beforeend', mobileBottomNavHtml);
     } else {
         console.error('Sidebar container not found.');
+        return;
     }
 
+    // --- Active Link Logic ---
     function updateActiveLink() {
         const currentPath = window.location.pathname.split('/').pop() + window.location.hash;
         const links = document.querySelectorAll('.sidebar-link');
 
         links.forEach(link => {
-            link.classList.remove('active-link'); // Reset all links
+            link.classList.remove('active-link');
             const linkPath = link.getAttribute('href');
 
-            // Handle default database view (no hash or empty hash)
             if (linkPath === 'database.html#equipment' && (currentPath === 'database.html' || currentPath === 'database.html#')) {
                 link.classList.add('active-link');
-            }
-            // Handle all other links
-            else if (linkPath === currentPath) {
+            } else if (linkPath === currentPath) {
                 link.classList.add('active-link');
             }
         });
     }
 
-    // Initial update on page load
-    updateActiveLink();
-
-    // Update when the hash changes to keep the sidebar in sync
-    window.addEventListener('hashchange', updateActiveLink);
-
+    // --- Styling and Initialization ---
     const style = document.createElement('style');
     style.innerHTML = `
+        /* Default mobile styles */
+        #sidebar { display: none; }
+        #bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-around;
+            background-color: #1f2937; /* gray-800 */
+            border-top: 1px solid #374151; /* gray-700 */
+            z-index: 1000;
+            padding: 0.25rem 0;
+            padding-bottom: env(safe-area-inset-bottom); /* For iPhone X notch */
+        }
+        #main-content {
+            padding-bottom: 70px; /* Space for bottom nav */
+        }
         .sidebar-link {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding: 0.65rem 1rem;
-            border-radius: 0.5rem;
+            justify-content: center;
+            flex-grow: 1;
+            padding: 0.5rem 0.25rem;
             color: #d1d5db; /* gray-300 */
+            font-size: 0.75rem; /* text-xs */
             transition: background-color 0.2s, color 0.2s;
-            font-weight: 500;
         }
+        .sidebar-link .nav-icon {
+            font-size: 1.25rem; /* text-xl */
+            margin-bottom: 0.125rem;
+        }
+        .sidebar-link .nav-text {
+             line-height: 1.1;
+        }
+
+        /* Desktop styles */
+        @media (min-width: 768px) {
+            #sidebar { display: flex; }
+            #bottom-nav { display: none; }
+            #main-content {
+                margin-left: 14rem;
+                padding-bottom: 0; /* Reset padding */
+            }
+            .sidebar-link {
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 0.65rem 1rem;
+                border-radius: 0.5rem;
+            }
+            .sidebar-link .nav-icon {
+                font-size: 1rem; /* reset size */
+                margin-bottom: 0;
+                margin-right: 0.75rem;
+            }
+             .sidebar-link .nav-text {
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+
+        /* General link styles */
         .sidebar-link:hover {
-            background-color: #374151; /* gray-700 */
             color: #ffffff;
+            background-color: #374151; /* gray-700 */
         }
         .sidebar-link.active-link {
-            background-color: #4f46e5; /* indigo-600 */
             color: #ffffff;
-            font-weight: 600;
+            background-color: #4f46e5; /* indigo-600 */
         }
     `;
     document.head.appendChild(style);
+
+    updateActiveLink();
+    window.addEventListener('hashchange', updateActiveLink);
 });
