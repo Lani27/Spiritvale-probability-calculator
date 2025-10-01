@@ -1,1 +1,1 @@
-In the stat calculator, some equipment types (e.g., 'Axe') are aliases for more general types (e.g., 'Melee Weapon'). The `statRollData` object contains these aliases, and the stat rolling logic must resolve them to find the correct stat pools.
+In the stat calculator's "Try your luck?" feature, stat values are rolled within a min/max range. This is defined in the `statRollData` object in `index.html` using `min` and `max` properties for each stat.
