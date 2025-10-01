@@ -153,6 +153,23 @@
             try {
                 // --- UTILITY FUNCTIONS ---
 
+                const elementColors = {
+                    "Neutral": "#FFFFFFFF",
+                    "Poison": "#8CD470FF",
+                    "Holy": "#FCE9EBFF",
+                    "Shadow": "#755E94FF",
+                    "Fire": "#FF7026FF",
+                    "Water": "#79D7FDFF",
+                    "Wind": "#FFC701FF",
+                    "Earth": "#BB7B2FFF",
+                    "Undead": "#C85AE0FF",
+                };
+
+                function colorizeElement(element) {
+                    const color = elementColors[element] || elementColors['Neutral'];
+                    const hexColor = color.substring(1, 7); // Extract RRGGBB from #RRGGBBAA
+                    return `<span style="color:#${hexColor};">${element}</span>`;
+                }
                 function parseStats(statString) {
                     if (!statString) return '<span class="text-gray-500">N/A</span>';
                     return statString
@@ -470,7 +487,7 @@
 
                         if (monsterInfo) {
                             content += `<p><strong>Level:</strong> ${monsterInfo.Level}</p>
-                                      <p><strong>Element:</strong> ${monsterInfo.Element}</p>`;
+                                      <p><strong>Element:</strong> ${colorizeElement(monsterInfo.Element)}</p>`;
                             detailsFound = true;
                         }
                         if (droprate && droprate !== 'null') {
