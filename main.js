@@ -57,6 +57,46 @@ function renameBuild(index) {
     }
 }
 
+function deleteBuild(index) {
+    if (builds.length <= 1) {
+        alert("You cannot delete the last build page.");
+        return;
+    }
+
+    const buildName = builds[index].name;
+    if (confirm(`Are you sure you want to delete "${buildName}"? This action cannot be undone.`)) {
+        // Remove the build from the array
+        builds.splice(index, 1);
+
+        // Shift all subsequent build cookies up
+        for (let i = index; i < builds.length; i++) {
+            const nextBuildData = getCookie(`build_${i + 1}`);
+            if (nextBuildData) {
+                setCookie(`build_${i}`, nextBuildData, 365);
+            } else {
+                deleteCookie(`build_${i}`);
+            }
+        }
+        // Delete the last cookie that is now out of bounds
+        deleteCookie(`build_${builds.length}`);
+
+        // Save the updated metadata
+        saveBuildsMetadata();
+
+        // Adjust active build index if necessary
+        if (activeBuildIndex === index) {
+            // If we deleted the active build, switch to the previous one, or the new first one
+            activeBuildIndex = Math.max(0, index - 1);
+        } else if (activeBuildIndex > index) {
+            // If we deleted a build before the active one, decrement the active index
+            activeBuildIndex--;
+        }
+
+        // Switch to the new active build to load its data and re-render
+        switchBuild(activeBuildIndex);
+    }
+}
+
 function getCurrentBuildData() {
     const buildData = {};
     allInputIds.forEach(id => {
@@ -274,6 +314,16 @@ function renderBuildTabs() {
             renameBuild(index);
         };
         tab.appendChild(editBtn);
+
+        const deleteBtn = document.createElement('span');
+        deleteBtn.className = 'delete-build-btn';
+        deleteBtn.textContent = '×';
+        deleteBtn.onclick = (e) => {
+            e.stopPropagation();
+            deleteBuild(index);
+        };
+        tab.appendChild(deleteBtn);
+
         container.appendChild(tab);
     });
 
