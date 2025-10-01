@@ -138,6 +138,23 @@
         </main>
     </div>
 
+    <!-- Monster Details Modal -->
+    <div id="monster-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
+        <div id="monster-modal-content" class="bg-gray-800 rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col border border-gray-700">
+            <div class="p-4 border-b border-gray-700 flex justify-between items-center flex-shrink-0">
+                <h2 id="monster-modal-name" class="text-2xl font-bold text-white">Monster Details</h2>
+                <button id="monster-modal-close" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div class="p-6 flex-grow overflow-y-auto">
+                <div id="monster-modal-details" class="mb-6"></div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Loot Drops</h3>
+                    <div id="monster-modal-loot" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Tooltip Element -->
     <div id="tooltip"></div>
     <script src="sidebar.js" defer></script>
@@ -345,7 +362,11 @@
                                 <tbody>
                                     ${itemsToRender.map((monster, index) => `
                                         <tr class="border-t border-gray-700/50 ${index % 2 === 0 ? 'bg-black/10' : ''}">
-                                            <td class="p-4 font-medium text-white">${getMonsterNameHTML(monster.MonsterName, itemsToRender)}</td>
+                                            <td class="p-4 font-medium text-white">
+                                                <span class="monster-name-link text-red-400 cursor-pointer hover:underline" data-monster-name="${monster.MonsterName}">
+                                                    ${getMonsterNameHTML(monster.MonsterName, itemsToRender)}
+                                                </span>
+                                            </td>
                                             <td class="p-4 text-gray-300">${monster.Level}</td>
                                             <td class="p-4 text-gray-300">${monster.Element}</td>
                                             <td class="p-4 text-gray-300">${monster.Map}</td>
@@ -354,6 +375,103 @@
                                 </tbody>
                             </table>
                         </div>`;
+                }
+
+                // --- MONSTER MODAL LOGIC ---
+                const monsterModal = document.getElementById('monster-modal');
+                const monsterModalClose = document.getElementById('monster-modal-close');
+
+                function openMonsterModal(monsterName) {
+                    const monster = monsterData.find(m => m.MonsterName === monsterName);
+                    if (!monster) return;
+
+                    document.getElementById('monster-modal-name').innerHTML = getMonsterNameHTML(monster.MonsterName, monsterData);
+
+                    const detailsContainer = document.getElementById('monster-modal-details');
+                    detailsContainer.innerHTML = `
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                            <div>
+                                <p class="text-sm text-gray-400 uppercase">Level</p>
+                                <p class="text-lg font-semibold text-white">${monster.Level}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400 uppercase">Element</p>
+                                <p class="text-lg font-semibold">${colorizeElement(monster.Element)}</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400 uppercase">Archetype</p>
+                                <p class="text-lg font-semibold text-white">${monster.ArchetypeId || 'N/A'}</p>
+                            </div>
+                             <div>
+                                <p class="text-sm text-gray-400 uppercase">Map</p>
+                                <p class="text-lg font-semibold text-white">${monster.Map}</p>
+                            </div>
+                        </div>
+                    `;
+
+                    // Find all loot for this monster
+                    const allItems = [
+                        ...equipmentData.map(item => ({ ...item, itemType: 'Equipment', themeColor: 'indigo' })),
+                        ...cardData.map(item => ({ ...item, itemType: 'Card', themeColor: 'purple' })),
+                        ...artifactData.map(item => ({ ...item, itemType: 'Artifact', themeColor: 'teal' }))
+                    ];
+
+                    const lootItems = [];
+                    allItems.forEach(item => {
+                        if (item.Source) {
+                            const sources = item.Source.split('\n');
+                            const droprates = item.Droprate ? item.Droprate.split('\n') : [];
+                             sources.forEach((source, index) => {
+                                const cleanSource = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
+                                if (cleanSource === monster.MonsterName) {
+                                    let droprate = droprates[index] || '';
+                                    if (item.itemType === 'Card') {
+                                        droprate = formatCardDroprate(droprate);
+                                    }
+                                    lootItems.push({ ...item, droprate });
+                                }
+                            });
+                        }
+                    });
+
+                    const lootContainer = document.getElementById('monster-modal-loot');
+                    if (lootItems.length > 0) {
+                        lootContainer.innerHTML = lootItems.map(item => {
+                            let tooltipContent = '';
+                            if (item.itemType === 'Equipment') {
+                                tooltipContent = `
+                                    ${item.PrimaryStats ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Primary Stats</p><p class='text-sm font-mono'>${parseStats(item.PrimaryStats)}</p></div>` : ''}
+                                    ${item.SecondaryStats ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Secondary Stats</p><p class='text-sm font-mono'>${parseStats(item.SecondaryStats)}</p></div>` : ''}
+                                    ${item.Set ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Set</p><p class='text-sm'>${item.Set}</p></div>` : ''}
+                                `;
+                            } else if (item.itemType === 'Card') {
+                                tooltipContent = `<p class='text-sm font-mono'>${parseStats(item.Stats)}</p>`;
+                            } else if (item.itemType === 'Artifact') {
+                                 tooltipContent = `
+                                    ${item.PerPieceBonus ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Per Piece Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerPieceBonus)}</p></div>` : ''}
+                                    ${item.PerRefineBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Per Refine Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerRefineBonus)}</p></div>` : ''}
+                                    ${item.FullSetBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Full Set Bonus</p><p class='text-sm font-mono'>${parseStats(item.FullSetBonus)}</p></div>` : ''}
+                                `;
+                            }
+
+                            return `
+                                <div class="bg-gray-700/50 rounded-md p-3 flex justify-between items-center text-sm loot-item"
+                                     data-tooltip-title="${item.Name || item.SetName}"
+                                     data-tooltip-content="${encodeURIComponent(tooltipContent)}">
+                                    <span class="font-semibold text-${item.themeColor}-400">${item.Name || item.SetName}</span>
+                                    <span class="text-gray-400">${item.droprate || 'N/A'}</span>
+                                </div>
+                            `;
+                        }).join('');
+                    } else {
+                        lootContainer.innerHTML = '<p class="text-gray-500 col-span-2 text-center">No specific loot drops found for this monster.</p>';
+                    }
+
+                    monsterModal.classList.remove('hidden');
+                }
+
+                function closeMonsterModal() {
+                    monsterModal.classList.add('hidden');
                 }
 
                 // --- FILTERING AND SEARCHING LOGIC ---
@@ -491,10 +609,29 @@
                 });
 
 
-                // Tooltip logic (delegated to the content container)
-                document.getElementById('content-container').addEventListener('mouseover', (e) => {
-                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon');
+                // Monster Modal event listeners
+                monsterModalClose.addEventListener('click', closeMonsterModal);
+                monsterModal.addEventListener('click', (e) => {
+                    if (e.target === monsterModal) {
+                        closeMonsterModal();
+                    }
+                });
+                document.getElementById('monsters-list').addEventListener('click', (e) => {
+                    const target = e.target.closest('.monster-name-link');
+                    if (target) {
+                        const monsterName = target.getAttribute('data-monster-name');
+                        openMonsterModal(monsterName);
+                    }
+                });
+
+
+                // Global Tooltip Logic
+                document.body.addEventListener('mouseover', (e) => {
+                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item');
                     if (!target) return;
+
+                    let content = '';
+                    let displayTooltip = false;
 
                     if (target.classList.contains('monster-link')) {
                         const monsterName = target.getAttribute('data-monster-name');
@@ -502,7 +639,7 @@
                         const location = target.getAttribute('data-location');
                         const monsterInfo = monsterData.find(m => m.MonsterName === monsterName);
 
-                        let content = `<h4 class="font-bold text-white text-base mb-2">${getMonsterNameHTML(monsterName, monsterData)}</h4>`;
+                        content = `<h4 class="font-bold text-white text-base mb-2">${getMonsterNameHTML(monsterName, monsterData)}</h4>`;
                         let detailsFound = false;
 
                         if (monsterInfo) {
@@ -522,30 +659,39 @@
                         if (!detailsFound) {
                             content += `<p class="text-gray-500">Details not found.</p>`;
                         }
+                        displayTooltip = true;
 
-                        tooltip.innerHTML = content;
-                        tooltip.style.display = 'block';
                     } else if (target.classList.contains('set-tooltip')) {
                         const setName = target.getAttribute('data-set-name');
                         const setBonus = decodeURIComponent(target.getAttribute('data-set-bonus'));
-
                         if (setBonus) {
-                            let content = `<h4 class="font-bold text-white text-base mb-2">${setName} Set Bonus</h4>`;
+                            content = `<h4 class="font-bold text-white text-base mb-2">${setName} Set Bonus</h4>`;
                             content += `<div class="font-mono text-sm">${parseStats(setBonus)}</div>`;
-                            tooltip.innerHTML = content;
-                            tooltip.style.display = 'block';
+                            displayTooltip = true;
                         }
                     } else if (target.classList.contains('boss-icon')) {
                         const tooltipText = target.getAttribute('data-tooltip-text');
                         if (tooltipText) {
-                            tooltip.innerHTML = `<p>${tooltipText}</p>`;
-                            tooltip.style.display = 'block';
+                            content = `<p>${tooltipText}</p>`;
+                            displayTooltip = true;
                         }
+                    } else if (target.classList.contains('loot-item')) {
+                        const title = target.getAttribute('data-tooltip-title');
+                        const tooltipContent = decodeURIComponent(target.getAttribute('data-tooltip-content'));
+                         if (title && tooltipContent) {
+                            content = `<h4 class="font-bold text-white text-base mb-2">${title}</h4>${tooltipContent}`;
+                            displayTooltip = true;
+                        }
+                    }
+
+                    if (displayTooltip) {
+                        tooltip.innerHTML = content;
+                        tooltip.style.display = 'block';
                     }
                 });
 
-                document.getElementById('content-container').addEventListener('mouseout', (e) => {
-                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon');
+                document.body.addEventListener('mouseout', (e) => {
+                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item');
                      if (target) {
                         tooltip.style.display = 'none';
                     }
