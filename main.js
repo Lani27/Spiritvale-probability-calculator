@@ -32,9 +32,9 @@ function saveBuildsMetadata() {
     setCookie('buildsMetadata', JSON.stringify(buildsMetadata), 365);
 }
 
-function addBuild() {
+async function addBuild() {
     if (builds.length >= MAX_BUILDS) {
-        alert(`You can only have a maximum of ${MAX_BUILDS} builds.`);
+        await customAlert(`You can only have a maximum of ${MAX_BUILDS} builds.`, 'Max Builds Reached');
         return;
     }
     const newBuildName = `Build ${builds.length + 1}`;
@@ -44,9 +44,9 @@ function addBuild() {
     switchBuild(newIndex);
 }
 
-function renameBuild(index) {
+async function renameBuild(index) {
     const currentName = builds[index].name;
-    const newName = prompt("Enter a new name for the build:", currentName);
+    const newName = await customPrompt("Enter a new name for the build:", currentName, "Rename Build");
     if (newName && newName.trim() !== "") {
         builds[index].name = newName.trim();
         saveBuildsMetadata();
@@ -57,14 +57,15 @@ function renameBuild(index) {
     }
 }
 
-function deleteBuild(index) {
+async function deleteBuild(index) {
     if (builds.length <= 1) {
-        alert("You cannot delete the last build page.");
+        await customAlert("You cannot delete the last build page.");
         return;
     }
 
     const buildName = builds[index].name;
-    if (confirm(`Are you sure you want to delete "${buildName}"? This action cannot be undone.`)) {
+    const confirmed = await customConfirm(`Are you sure you want to delete "${buildName}"? This action cannot be undone.`, "Delete Build");
+    if (confirmed) {
         // Remove the build from the array
         builds.splice(index, 1);
 
@@ -159,9 +160,9 @@ function saveCurrentBuild() {
     setCookie(`build_${activeBuildIndex}`, JSON.stringify(buildData), 365);
 }
 
-function copyAndCreateNewBuild() {
+async function copyAndCreateNewBuild() {
     if (builds.length >= MAX_BUILDS) {
-        alert(`You can only have a maximum of ${MAX_BUILDS} builds.`);
+        await customAlert(`You can only have a maximum of ${MAX_BUILDS} builds.`, 'Max Builds Reached');
         return;
     }
     const buildData = getCurrentBuildData();
@@ -359,8 +360,9 @@ function initializeBuilds() {
     switchBuild(activeBuildIndex);
 }
 
-function handleReset() {
-    if (confirm('Are you sure you want to reset all values on this page to their defaults? This action cannot be undone.')) {
+async function handleReset() {
+    const confirmed = await customConfirm('Are you sure you want to reset all values on this page to their defaults? This action cannot be undone.', 'Reset Build');
+    if (confirmed) {
         resetToDefaults();
     }
 }
@@ -553,7 +555,7 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateAll();
     } catch (error) {
         console.error("An error occurred during initialization:", error);
-        alert("A critical error occurred while loading the page. Some features may not work correctly. Please check the console for more details.");
+        customAlert("A critical error occurred while loading the page. Some features may not work correctly. Please check the console for more details.", "Initialization Error");
     }
 });
 
