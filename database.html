@@ -141,9 +141,9 @@
     <!-- Monster Details Modal -->
     <div id="monster-modal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
         <div id="monster-modal-content" class="bg-gray-800 rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] flex flex-col border border-gray-700">
-            <div class="p-4 border-b border-gray-700 flex justify-between items-center flex-shrink-0">
-                <h2 id="monster-modal-name" class="text-2xl font-bold text-white">Monster Details</h2>
-                <button id="monster-modal-close" class="text-gray-400 hover:text-white">&times;</button>
+            <div class="p-4 border-b border-gray-700 relative flex justify-center items-center flex-shrink-0">
+                <h2 id="monster-modal-name" class="text-2xl font-bold text-white text-center">Monster Details</h2>
+                <button id="monster-modal-close" class="absolute top-0 right-0 mt-4 mr-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
             </div>
             <div class="p-6 flex-grow overflow-y-auto">
                 <div id="monster-modal-details" class="mb-6"></div>
@@ -388,8 +388,8 @@
                     document.getElementById('monster-modal-name').innerHTML = getMonsterNameHTML(monster.MonsterName, monsterData);
 
                     const detailsContainer = document.getElementById('monster-modal-details');
-                    detailsContainer.innerHTML = `
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                     detailsContainer.innerHTML = `
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
                             <div>
                                 <p class="text-sm text-gray-400 uppercase">Level</p>
                                 <p class="text-lg font-semibold text-white">${monster.Level}</p>
@@ -397,10 +397,6 @@
                             <div>
                                 <p class="text-sm text-gray-400 uppercase">Element</p>
                                 <p class="text-lg font-semibold">${colorizeElement(monster.Element)}</p>
-                            </div>
-                            <div>
-                                <p class="text-sm text-gray-400 uppercase">Archetype</p>
-                                <p class="text-lg font-semibold text-white">${monster.ArchetypeId || 'N/A'}</p>
                             </div>
                              <div>
                                 <p class="text-sm text-gray-400 uppercase">Map</p>
@@ -436,33 +432,56 @@
 
                     const lootContainer = document.getElementById('monster-modal-loot');
                     if (lootItems.length > 0) {
-                        lootContainer.innerHTML = lootItems.map(item => {
-                            let tooltipContent = '';
-                            if (item.itemType === 'Equipment') {
-                                tooltipContent = `
-                                    ${item.PrimaryStats ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Primary Stats</p><p class='text-sm font-mono'>${parseStats(item.PrimaryStats)}</p></div>` : ''}
-                                    ${item.SecondaryStats ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Secondary Stats</p><p class='text-sm font-mono'>${parseStats(item.SecondaryStats)}</p></div>` : ''}
-                                    ${item.Set ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Set</p><p class='text-sm'>${item.Set}</p></div>` : ''}
-                                `;
-                            } else if (item.itemType === 'Card') {
-                                tooltipContent = `<p class='text-sm font-mono'>${parseStats(item.Stats)}</p>`;
-                            } else if (item.itemType === 'Artifact') {
-                                 tooltipContent = `
-                                    ${item.PerPieceBonus ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Per Piece Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerPieceBonus)}</p></div>` : ''}
-                                    ${item.PerRefineBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Per Refine Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerRefineBonus)}</p></div>` : ''}
-                                    ${item.FullSetBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Full Set Bonus</p><p class='text-sm font-mono'>${parseStats(item.FullSetBonus)}</p></div>` : ''}
-                                `;
+                        // Group items by type
+                        const groupedLoot = lootItems.reduce((acc, item) => {
+                            const type = item.itemType;
+                            if (!acc[type]) {
+                                acc[type] = [];
                             }
+                            acc[type].push(item);
+                            return acc;
+                        }, {});
 
-                            return `
-                                <div class="bg-gray-700/50 rounded-md p-3 flex justify-between items-center text-sm loot-item"
-                                     data-tooltip-title="${item.Name || item.SetName}"
-                                     data-tooltip-content="${encodeURIComponent(tooltipContent)}">
-                                    <span class="font-semibold text-${item.themeColor}-400">${item.Name || item.SetName}</span>
-                                    <span class="text-gray-400">${item.droprate || 'N/A'}</span>
-                                </div>
-                            `;
-                        }).join('');
+                        let lootHtml = '';
+                        const categoryOrder = ['Equipment', 'Card', 'Artifact']; // Define order
+
+                        categoryOrder.forEach(category => {
+                            if (groupedLoot[category]) {
+                                // Add a divider for the category
+                                const plural = category === 'Card' ? 'Cards' : (category === 'Artifact' ? 'Artifacts' : 'Equipment');
+                                lootHtml += `<h4 class="text-lg font-semibold text-white mb-2 mt-4 col-span-1 md:col-span-2">${plural}</h4>`;
+
+                                groupedLoot[category].forEach(item => {
+                                    let tooltipContent = '';
+                                    if (item.itemType === 'Equipment') {
+                                        tooltipContent = `
+                                            ${item.PrimaryStats ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Primary Stats</p><p class='text-sm font-mono'>${parseStats(item.PrimaryStats)}</p></div>` : ''}
+                                            ${item.SecondaryStats ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Secondary Stats</p><p class='text-sm font-mono'>${parseStats(item.SecondaryStats)}</p></div>` : ''}
+                                            ${item.Set ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Set</p><p class='text-sm'>${item.Set}</p></div>` : ''}
+                                        `;
+                                    } else if (item.itemType === 'Card') {
+                                        tooltipContent = `<p class='text-sm font-mono'>${parseStats(item.Stats)}</p>`;
+                                    } else if (item.itemType === 'Artifact') {
+                                        tooltipContent = `
+                                            ${item.PerPieceBonus ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Per Piece Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerPieceBonus)}</p></div>` : ''}
+                                            ${item.PerRefineBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Per Refine Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerRefineBonus)}</p></div>` : ''}
+                                            ${item.FullSetBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Full Set Bonus</p><p class='text-sm font-mono'>${parseStats(item.FullSetBonus)}</p></div>` : ''}
+                                        `;
+                                    }
+
+                                    lootHtml += `
+                                        <div class="bg-gray-700/50 rounded-md p-3 flex justify-between items-center text-sm loot-item"
+                                             data-tooltip-title="${item.Name || item.SetName}"
+                                             data-tooltip-content="${encodeURIComponent(tooltipContent)}">
+                                            <span class="font-semibold text-${item.themeColor}-400">${item.Name || item.SetName}</span>
+                                            <span class="text-gray-400">${item.droprate || 'N/A'}</span>
+                                        </div>
+                                    `;
+                                });
+                            }
+                        });
+                        lootContainer.innerHTML = lootHtml;
+
                     } else {
                         lootContainer.innerHTML = '<p class="text-gray-500 col-span-2 text-center">No specific loot drops found for this monster.</p>';
                     }
