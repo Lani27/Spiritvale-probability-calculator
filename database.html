@@ -173,16 +173,14 @@
                     let sourcesHtml = `<div class="mt-4 pt-4 border-t border-gray-700/50 text-xs text-gray-400">`;
 
                     if (sources.length === 1 && sources[0] !== '') {
-                         sourcesHtml += `<p>Source: <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${sources[0]}">${sources[0]}</span> ${droprates[0] ? `(${droprates[0]})` : ''} in ${locations[0]}</p>`;
+                         sourcesHtml += `<p>Source: <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${sources[0]}" data-droprate="${droprates[0] || ''}" data-location="${locations[0] || ''}">${sources[0]}</span></p>`;
                     } else {
                         sourcesHtml += '<p class="text-xs text-gray-500 uppercase font-semibold mb-1">Sources</p><ul class="list-disc list-inside text-sm space-y-1">';
                         sources.forEach((source, index) => {
                             if (source === '') return;
                             const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
                             sourcesHtml += `<li>
-                                <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}">${source}</span>
-                                ${droprates[index] ? `<span class="text-gray-400"> (${droprates[index]})</span>` : ''}
-                                in ${locations[index]}
+                                <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}" data-droprate="${droprates[index] || ''}" data-location="${locations[index] || ''}">${source}</span>
                             </li>`;
                         });
                         sourcesHtml += '</ul>';
@@ -254,8 +252,7 @@
                                         <p class="text-sm font-mono">${parseStats(card.Stats)}</p>
                                     </div>
                                      <div class="mt-auto pt-4 border-t border-gray-700/50 text-xs text-gray-400 space-y-1">
-                                        <p>Source: <span class="monster-link font-semibold text-purple-400 cursor-pointer" data-monster-name="${card.Source}">${card.Source}</span> (${formatCardDroprate(card.Droprate)})</p>
-                                        <p>Location: ${card.Location}</p>
+                                        <p>Source: <span class="monster-link font-semibold text-purple-400 cursor-pointer" data-monster-name="${card.Source}" data-droprate="${formatCardDroprate(card.Droprate)}" data-location="${card.Location}">${card.Source}</span></p>
                                     </div>
                                 </div>
                             `).join('')}
@@ -429,15 +426,36 @@
                 document.getElementById('content-container').addEventListener('mouseover', (e) => {
                     if (e.target.classList.contains('monster-link')) {
                         const monsterName = e.target.getAttribute('data-monster-name');
+                        const droprate = e.target.getAttribute('data-droprate');
+                        const location = e.target.getAttribute('data-location');
                         const monsterInfo = monsterData.find(m => m.MonsterName === monsterName);
 
-                        tooltip.innerHTML = monsterInfo
-                            ? `<h4 class="font-bold text-white text-base mb-2">${monsterInfo.MonsterName}</h4>
-                               <p><strong>Level:</strong> ${monsterInfo.Level}</p>
-                               <p><strong>Element:</strong> ${monsterInfo.Element}</p>
-                               <p><strong>Map:</strong> ${monsterInfo.Map}</p>`
-                            : `<h4 class="font-bold text-white text-base mb-2">${monsterName}</h4>
-                               <p class="text-gray-500">Details not found.</p>`;
+                        let content = `<h4 class="font-bold text-white text-base mb-2">${monsterName}</h4>`;
+
+                        let detailsFound = false;
+
+                        if (monsterInfo) {
+                            content += `<p><strong>Level:</strong> ${monsterInfo.Level}</p>
+                                      <p><strong>Element:</strong> ${monsterInfo.Element}</p>`;
+                            detailsFound = true;
+                        }
+
+                        if (droprate && droprate !== 'null') {
+                            content += `<p><strong>Droprate:</strong> ${droprate}</p>`;
+                            detailsFound = true;
+                        }
+
+                        const mapLocation = location || (monsterInfo ? monsterInfo.Map : null);
+                        if (mapLocation && mapLocation !== 'null') {
+                            content += `<p><strong>Map:</strong> ${mapLocation}</p>`;
+                            detailsFound = true;
+                        }
+
+                        if (!detailsFound) {
+                            content += `<p class="text-gray-500">Details not found.</p>`;
+                        }
+
+                        tooltip.innerHTML = content;
                         tooltip.style.display = 'block';
                     }
                 });
