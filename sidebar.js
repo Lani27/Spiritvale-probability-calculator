@@ -30,22 +30,30 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Sidebar container not found.');
     }
 
-    const currentPage = window.location.pathname.split('/').pop();
-    const currentHash = window.location.hash;
+    function updateActiveLink() {
+        const currentPath = window.location.pathname.split('/').pop() + window.location.hash;
+        const links = document.querySelectorAll('.sidebar-link');
 
-    const links = document.querySelectorAll('.sidebar-link');
-    links.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        const linkPage = linkHref.split('#')[0];
-        const linkHash = link.getAttribute('href').includes('#') ? '#' + linkHref.split('#')[1] : '';
+        links.forEach(link => {
+            link.classList.remove('active-link'); // Reset all links
+            const linkPath = link.getAttribute('href');
 
-        // Prioritize hash for database page, otherwise match page name
-        if (currentPage === 'database.html' && linkPage === 'database.html' && linkHash === currentHash) {
-             link.classList.add('active-link');
-        } else if (currentPage !== 'database.html' && linkPage === currentPage) {
-            link.classList.add('active-link');
-        }
-    });
+            // Handle default database view (no hash or empty hash)
+            if (linkPath === 'database.html#equipment' && (currentPath === 'database.html' || currentPath === 'database.html#')) {
+                link.classList.add('active-link');
+            }
+            // Handle all other links
+            else if (linkPath === currentPath) {
+                link.classList.add('active-link');
+            }
+        });
+    }
+
+    // Initial update on page load
+    updateActiveLink();
+
+    // Update when the hash changes to keep the sidebar in sync
+    window.addEventListener('hashchange', updateActiveLink);
 
     const style = document.createElement('style');
     style.innerHTML = `

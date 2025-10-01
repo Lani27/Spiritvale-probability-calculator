@@ -11,18 +11,46 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #111827;
-            color: #d1d5db;
+        }
+        .filter-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="%239ca3af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l4 4 4-4"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1em;
         }
         .input-group {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 1rem;
             align-items: center;
         }
-        .input-group label, .checkbox-group label {
+        .input-group label {
             text-align: right;
             font-weight: 500;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        .input-base, .filter-select {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            color: #d1d5db;
+            border-radius: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+            transition: all 0.2s;
+        }
+        .input-base:focus, .filter-select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5);
+        }
+        .input-base:disabled {
+            background-color: #374151;
+            color: #6b7280;
+            cursor: not-allowed;
         }
         .checkbox-group {
             display: flex;
@@ -30,37 +58,38 @@
             align-items: center;
             gap: 0.5rem;
         }
-        input[type="number"], input[type="text"], select {
-            background-color: #374151;
-            border: 1px solid #4b5563;
-            color: #d1d5db;
-            border-radius: 0.375rem;
-            padding: 0.5rem 0.75rem;
-            width: 100%;
-        }
-        input:disabled {
+         input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
             background-color: #1f2937;
-            color: #9ca3af;
-            cursor: not-allowed;
-        }
-        input[type="checkbox"] {
-             width: 1.25rem;
-             height: 1.25rem;
-             background-color: #374151;
-             border: 1px solid #4b5563;
-             border-radius: 0.25rem;
+            border: 1px solid #374151;
+            border-radius: 0.25rem;
+            cursor: pointer;
         }
         .card {
-            background-color: #1f2937;
+            background-color: #111827;
+            border: 1px solid #374151;
             border-radius: 0.75rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.3s;
+        }
+        .card:hover {
+            border-color: #4f46e5;
+        }
+        .card-header {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #374151;
+            margin-bottom: 1rem;
         }
         .result-item {
             display: flex;
             justify-content: space-between;
-            padding: 0.75rem 0;
+            padding: 0.625rem 0;
             border-bottom: 1px solid #374151;
+            font-size: 0.875rem;
         }
         .result-item:last-child {
             border-bottom: none;
@@ -72,232 +101,144 @@
             font-weight: 600;
             color: #f9fafb;
         }
-        .btn {
-            background-color: #3b82f6;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .btn:hover {
-            background-color: #2563eb;
-        }
-        .btn-sm {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-        }
-        .btn-danger {
-            background-color: #ef4444;
-        }
-        .btn-danger:hover {
-            background-color: #dc2626;
-        }
-        .skill-card {
-            border: 1px solid #374151;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-        }
-        .scaling-rule {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            margin-top: 0.5rem;
-        }
-        #main-content {
-            margin-left: 12rem; /* 192px */
-        }
         .build-tab {
-            padding: 8px 12px;
+            padding: 0.5rem 0.75rem;
             border: 1px solid #4b5563;
-            border-radius: 6px;
+            border-radius: 0.375rem;
             cursor: pointer;
-            margin-right: 8px;
+            margin-right: 0.5rem;
             background-color: #374151;
             color: #d1d5db;
+            transition: all 0.2s;
+        }
+        .build-tab:hover {
+            background-color: #4b5563;
         }
         .build-tab.active {
-            background-color: #3b82f6;
+            background-color: #4f46e5;
             color: white;
-            border-color: #3b82f6;
+            border-color: #4f46e5;
         }
         .add-build-btn {
-            padding: 8px;
+            padding: 0.5rem;
             border: 1px dashed #4b5563;
-            border-radius: 6px;
+            border-radius: 0.375rem;
             cursor: pointer;
             background-color: transparent;
             color: #9ca3af;
+            transition: all 0.2s;
         }
-        .edit-build-btn {
-            margin-left: 4px;
-            cursor: pointer;
-            color: #9ca3af;
-            font-size: 12px;
-        }
-        .delete-build-btn {
-            margin-left: 4px;
-            cursor: pointer;
-            color: #ef4444;
-            font-size: 14px;
-            font-weight: bold;
+        .add-build-btn:hover {
+            color: white;
+            border-color: white;
         }
     </style>
 </head>
-<body class="p-4 md:p-8 bg-gray-900">
+<body class="p-4 md:p-8 bg-gray-900 text-gray-300">
 
     <div id="sidebar"></div>
 
-    <div id="main-content" class="max-w-7xl mx-auto" style="margin-left: 14rem;">
+    <main id="main-content" class="max-w-7xl mx-auto" style="margin-left: 14rem;">
         <header class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-white">Damage & Stat Simulator</h1>
-            <p class="text-lg text-gray-400 mt-2">Enter your character and target stats to see the results.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-white">Damage & Stat Simulator</h1>
+            <p class="text-slate-400 mt-2">Enter your character and target stats to see the results.</p>
         </header>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Player Stats Column -->
             <div class="lg:col-span-1 space-y-6">
                 <div class="card">
-                    <div id="build-tabs-container" class="flex items-center mb-4">
+                    <div id="build-tabs-container" class="flex items-center mb-4 flex-wrap">
                         <!-- Build tabs will be generated here -->
                     </div>
-                    <div class="flex justify-between items-center mb-4 -mt-2">
+                    <div class="flex justify-between items-center mb-4">
                         <div>
-                            <button id="reset-build-btn" class="btn btn-sm btn-danger">Reset Current Page</button>
-                            <button id="copy-build-btn" class="btn btn-sm">Copy to New Page</button>
+                            <button id="reset-build-btn" class="text-xs bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-3 rounded-md transition-colors">Reset Page</button>
+                            <button id="copy-build-btn" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-1 px-3 rounded-md transition-colors">Copy to New</button>
                         </div>
                     </div>
-                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Character Stats</h2>
-                    <div class="space-y-4">
-                        <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate"></select></div>
-                        <div class="input-group"><label for="p_lv">Level (LV)</label><input id="p_lv" type="number" value="100" class="recalculate"></div>
-                        <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate"></div>
-                        <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate"></div>
-                        <div class="input-group"><label for="p_vit">VIT</label><input id="p_vit" type="number" value="50" class="recalculate"></div>
-                        <div class="input-group"><label for="p_int">INT</label><input id="p_int" type="number" value="99" class="recalculate"></div>
-                        <div class="input-group"><label for="p_dex">DEX</label><input id="p_dex" type="number" value="99" class="recalculate"></div>
-                        <div class="input-group"><label for="p_luk">LUK</label><input id="p_luk" type="number" value="99" class="recalculate"></div>
+                    <h2 class="card-header">Character Stats</h2>
+                    <div class="space-y-3">
+                        <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate filter-select"></select></div>
+                        <div class="input-group"><label for="p_lv">Level</label><input id="p_lv" type="number" value="100" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_vit">VIT</label><input id="p_vit" type="number" value="50" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_int">INT</label><input id="p_int" type="number" value="99" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_dex">DEX</label><input id="p_dex" type="number" value="99" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_luk">LUK</label><input id="p_luk" type="number" value="99" class="recalculate input-base"></div>
                     </div>
                 </div>
                 <div class="card">
-                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Equipment & Bonuses</h2>
-                    <div class="space-y-4">
-                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="0" class="recalculate"></div>
-                         <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_dmg_melee_perc">Damage Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_dmg_ranged_perc">Damage Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_dmg_magic_perc">Damage Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group col-span-2"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="0" class="recalculate"></div>
-                        <div class="input-group"><label for="p_flat_def">Flat Def</label><input id="p_flat_def" type="number" value="0" class="recalculate"></div>
-
-                        <div class="col-span-2 border-t border-gray-700 pt-4 -mb-2">
-                            <div class="checkbox-group">
-                                <label for="p_add_elemental_bonus">Elemental Damage Bonus %</label>
-                                <input id="p_add_elemental_bonus" type="checkbox" class="recalculate">
-                            </div>
+                    <h2 class="card-header">Equipment & Bonuses</h2>
+                    <div class="space-y-3">
+                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_dmg_melee_perc">Dmg Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_dmg_ranged_perc">Dmg Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_dmg_magic_perc">Dmg Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Dmg %</label><input id="p_crit_dmg_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_flat_def">Flat Def</label><input id="p_flat_def" type="number" value="0" class="recalculate input-base"></div>
+                        <div class="flex items-center justify-between pt-3 border-t border-gray-700">
+                            <label for="p_add_elemental_bonus" class="text-sm font-medium text-gray-400">Elemental Dmg Bonus %</label>
+                            <input id="p_add_elemental_bonus" type="checkbox" class="recalculate">
                         </div>
-                        <div id="elemental-bonus-inputs" class="hidden col-span-2 grid grid-cols-2 gap-4">
-                            <select id="p_dmg_bonus_element" class="recalculate">
-                                <option value="neutral">Neutral</option>
-                                <option value="poison">Poison</option>
-                                <option value="shadow">Shadow</option>
-                                <option value="holy">Holy</option>
-                                <option value="fire">Fire</option>
-                                <option value="water">Water</option>
-                                <option value="wind">Wind</option>
-                                <option value="earth">Earth</option>
-                                <option value="undead">Undead</option>
+                        <div id="elemental-bonus-inputs" class="hidden grid grid-cols-2 gap-2">
+                            <select id="p_dmg_bonus_element" class="recalculate filter-select">
+                                <option value="neutral">Neutral</option> <option value="poison">Poison</option> <option value="shadow">Shadow</option> <option value="holy">Holy</option> <option value="fire">Fire</option> <option value="water">Water</option> <option value="wind">Wind</option> <option value="earth">Earth</option> <option value="undead">Undead</option>
                             </select>
-                            <input id="p_dmg_bonus_value" type="number" value="0" class="recalculate">
+                            <input id="p_dmg_bonus_value" type="number" value="0" class="recalculate input-base">
                         </div>
-
-                        <div class="col-span-2 border-t border-gray-700 pt-4 -mb-2">
-                            <div class="checkbox-group">
-                                <label for="p_add_dmg_vs_element_bonus">Damage versus Element %</label>
-                                <input id="p_add_dmg_vs_element_bonus" type="checkbox" class="recalculate">
-                            </div>
+                        <div class="flex items-center justify-between pt-3 border-t border-gray-700">
+                           <label for="p_add_dmg_vs_element_bonus" class="text-sm font-medium text-gray-400">Dmg vs Element %</label>
+                           <input id="p_add_dmg_vs_element_bonus" type="checkbox" class="recalculate">
                         </div>
-                        <div id="dmg-vs-element-inputs" class="hidden col-span-2 grid grid-cols-2 gap-4">
-                            <select id="p_dmg_vs_element_element" class="recalculate">
-                                <option value="neutral">vs Neutral</option>
-                                <option value="poison">vs Poison</option>
-                                <option value="shadow">vs Shadow</option>
-                                <option value="holy">vs Holy</option>
-                                <option value="fire">vs Fire</option>
-                                <option value="water">vs Water</option>
-                                <option value="wind">vs Wind</option>
-                                <option value="earth">vs Earth</option>
-                                <option value="undead">vs Undead</option>
+                        <div id="dmg-vs-element-inputs" class="hidden grid grid-cols-2 gap-2">
+                            <select id="p_dmg_vs_element_element" class="recalculate filter-select">
+                                <option value="neutral">vs Neutral</option> <option value="poison">vs Poison</option> <option value="shadow">vs Shadow</option> <option value="holy">vs Holy</option> <option value="fire">vs Fire</option> <option value="water">vs Water</option> <option value="wind">vs Wind</option> <option value="earth">vs Earth</option> <option value="undead">vs Undead</option>
                             </select>
-                            <input id="p_dmg_vs_element_value" type="number" value="0" class="recalculate">
+                            <input id="p_dmg_vs_element_value" type="number" value="0" class="recalculate input-base">
                         </div>
                     </div>
                 </div>
-                 <div class="card">
-                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Weapon Setup</h2>
-                    <div class="space-y-4">
-                        <div class="input-group"><label for="p_dual_wield">Dual Wield</label><input id="p_dual_wield" type="checkbox" class="recalculate"></div>
+                <div class="card">
+                    <h2 class="card-header">Weapon Setup</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label for="p_dual_wield" class="text-sm font-medium text-gray-400">Dual Wield</label>
+                            <input id="p_dual_wield" type="checkbox" class="recalculate">
+                        </div>
                         <div class="input-group">
-                            <label for="p_weapon_bad" id="main-weapon-label">Weapon (sets BAD)</label>
-                            <select id="p_weapon_bad" class="recalculate">
-                                <option value="0.9">Unarmed</option>
-                                <option value="1">Dagger</option>
-                                <option value="1">Twinblade</option>
-                                <option value="1.1" selected>Sword</option>
-                                <option value="1.1">Book</option>
-                                <option value="1.15">Mace</option>
-                                <option value="1.15">Instrument</option>
-                                <option value="1.2">Spear</option>
-                                <option value="1.2">Wand</option>
-                                <option value="1.2">Scythe</option>
-                                <option value="1.3">Axe</option>
-                                <option value="1.4">Bow</option>
-                                <option value="1.4">Pistol</option>
+                            <label for="p_weapon_bad" id="main-weapon-label">Weapon (BAD)</label>
+                            <select id="p_weapon_bad" class="recalculate filter-select">
+                                <option value="0.9">Unarmed</option> <option value="1">Dagger</option> <option value="1">Twinblade</option> <option value="1.1" selected>Sword</option> <option value="1.1">Book</option> <option value="1.15">Mace</option> <option value="1.15">Instrument</option> <option value="1.2">Spear</option> <option value="1.2">Wand</option> <option value="1.2">Scythe</option> <option value="1.3">Axe</option> <option value="1.4">Bow</option> <option value="1.4">Pistol</option>
                             </select>
                         </div>
                         <div class="input-group hidden" id="offhand-weapon-group">
-                            <label for="p_weapon_bad_offhand">Off-Hand (sets BAD)</label>
-                            <select id="p_weapon_bad_offhand" class="recalculate">
-                                <option value="0.9">Unarmed</option>
-                                <option value="1" selected>Dagger</option>
-                                <option value="1">Twinblade</option>
-                                <option value="1.1">Sword</option>
-                                <option value="1.1">Book</option>
-                                <option value="1.15">Mace</option>
-                                <option value="1.15">Instrument</option>
-                                <option value="1.2">Spear</option>
-                                <option value="1.2">Wand</option>
-                                <option value="1.2">Scythe</option>
-                                <option value="1.3">Axe</option>
-                                <option value="1.4">Bow</option>
-                                <option value="1.4">Pistol</option>
+                            <label for="p_weapon_bad_offhand">Off-Hand (BAD)</label>
+                            <select id="p_weapon_bad_offhand" class="recalculate filter-select">
+                                <option value="0.9">Unarmed</option> <option value="1" selected>Dagger</option> <option value="1">Twinblade</option> <option value="1.1">Sword</option> <option value="1.1">Book</option> <option value="1.15">Mace</option> <option value="1.15">Instrument</option> <option value="1.2">Spear</option> <option value="1.2">Wand</option> <option value="1.2">Scythe</option> <option value="1.3">Axe</option> <option value="1.4">Bow</option> <option value="1.4">Pistol</option>
                             </select>
                         </div>
-                        <div class="input-group"><label for="p_element">Elemental Conversion</label>
-                            <select id="p_element" class="recalculate">
-                                <option value="Neutral">Neutral</option>
-                                <option value="Poison">Poison</option>
-                                <option value="Shadow">Shadow</option>
-                                <option value="Holy">Holy</option>
-                                <option value="Fire" selected>Fire</option>
-                                <option value="Water">Water</option>
-                                <option value="Wind">Wind</option>
-                                <option value="Earth">Earth</option>
-                                <option value="Undead">Undead</option>
+                        <div class="input-group">
+                            <label for="p_element">Element Conv.</label>
+                            <select id="p_element" class="recalculate filter-select">
+                                <option value="Neutral">Neutral</option> <option value="Poison">Poison</option> <option value="Shadow">Shadow</option> <option value="Holy">Holy</option> <option value="Fire" selected>Fire</option> <option value="Water">Water</option> <option value="Wind">Wind</option> <option value="Earth">Earth</option> <option value="Undead">Undead</option>
                             </select>
                         </div>
-                        <div class="input-group"><label for="p_is_ranged">Ranged Attack</label><input id="p_is_ranged" type="checkbox" class="recalculate"></div>
+                        <div class="flex items-center justify-between">
+                            <label for="p_is_ranged" class="text-sm font-medium text-gray-400">Ranged Attack</label>
+                            <input id="p_is_ranged" type="checkbox" class="recalculate">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -305,124 +246,105 @@
             <!-- Results Column -->
             <div class="lg:col-span-2 space-y-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                     <div class="card">
-                        <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Target Stats</h2>
-                         <div class="space-y-4">
+                    <div class="card">
+                        <h2 class="card-header">Target Stats</h2>
+                        <div class="space-y-3">
                             <div class="relative" id="monster-selection-wrapper">
                                 <div class="input-group">
-                                    <label for="monster_search">Search Monster</label>
-                                    <input type="text" id="monster_search" placeholder="-- Type to search --">
+                                    <label for="monster_search">Search</label>
+                                    <input type="text" id="monster_search" placeholder="-- Type to search --" class="input-base">
                                 </div>
-                                <div id="monster_list" class="absolute z-10 w-full bg-gray-700 border border-gray-600 rounded-md mt-1 hidden max-h-60 overflow-y-auto"></div>
+                                <div id="monster_list" class="absolute z-10 w-full bg-gray-800 border border-gray-600 rounded-md mt-1 hidden max-h-60 overflow-y-auto"></div>
                             </div>
-                            <div id="monster_details" class="hidden text-sm text-gray-400 bg-gray-800 p-3 rounded-md space-y-1"></div>
-                            <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate"></div>
+                            <div id="monster_details" class="hidden text-xs text-gray-400 bg-gray-800/50 p-3 rounded-md space-y-1 border border-gray-700"></div>
+                            <div class="input-group"><label for="t_lv">Level</label><input id="t_lv" type="number" value="100" class="recalculate input-base"></div>
                             <div class="input-group hidden"><label for="t_archetype">Archetype</label>
-                                 <select id="t_archetype" class="recalculate">
-                                     <option value="Custom">Custom</option>
-                                     <option value="Brute" selected>Brute</option>
-                                     <option value="Caster">Caster</option>
-                                     <option value="Critter">Critter</option>
-                                     <option value="Defender">Defender</option>
-                                     <option value="Egg">Egg</option>
-                                     <option value="Flyer">Flyer</option>
-                                     <option value="Hybrid">Hybrid</option>
-                                     <option value="Plant">Plant</option>
-                                     <option value="Ravager">Ravager</option>
-                                     <option value="Runner">Runner</option>
-                                     <option value="Undead">Undead</option>
-                                 </select>
+                                <select id="t_archetype" class="recalculate filter-select">
+                                    <option value="Custom">Custom</option> <option value="Brute" selected>Brute</option> <option value="Caster">Caster</option> <option value="Critter">Critter</option> <option value="Defender">Defender</option> <option value="Egg">Egg</option> <option value="Flyer">Flyer</option> <option value="Hybrid">Hybrid</option> <option value="Plant">Plant</option> <option value="Ravager">Ravager</option> <option value="Runner">Runner</option> <option value="Undead">Undead</option>
+                                </select>
                             </div>
-                            <div class="input-group"><label for="t_def">DEF</label><input id="t_def" type="number" value="150" class="recalculate" disabled></div>
-                            <div class="input-group"><label for="t_mdef">MDEF</label><input id="t_mdef" type="number" value="25" class="recalculate" disabled></div>
-                            <div class="input-group"><label for="t_def_perc">DEF %</label><input id="t_def_perc" type="number" value="0" class="recalculate"></div>
-                            <div class="input-group"><label for="t_mdef_perc">MDEF %</label><input id="t_mdef_perc" type="number" value="0" class="recalculate"></div>
-                            <div class="input-group"><label for="t_reflect_perc">Reflect %</label><input id="t_reflect_perc" type="number" value="0" class="recalculate"></div>
-                            <div class="input-group"><label for="t_block">Block</label><input id="t_block" type="number" value="25" class="recalculate" disabled></div>
+                            <div class="input-group"><label for="t_def">DEF</label><input id="t_def" type="number" value="150" class="recalculate input-base" disabled></div>
+                            <div class="input-group"><label for="t_mdef">MDEF</label><input id="t_mdef" type="number" value="25" class="recalculate input-base" disabled></div>
+                            <div class="input-group"><label for="t_def_perc">DEF %</label><input id="t_def_perc" type="number" value="0" class="recalculate input-base"></div>
+                            <div class="input-group"><label for="t_mdef_perc">MDEF %</label><input id="t_mdef_perc" type="number" value="0" class="recalculate input-base"></div>
+                            <div class="input-group"><label for="t_reflect_perc">Reflect %</label><input id="t_reflect_perc" type="number" value="0" class="recalculate input-base"></div>
+                            <div class="input-group"><label for="t_block">Block</label><input id="t_block" type="number" value="25" class="recalculate input-base" disabled></div>
                             <div id="custom-stats-container" class="hidden col-span-2 grid grid-cols-2 gap-4 border-t border-gray-700 pt-4">
-                                <div class="input-group"><label for="t_vit">VIT</label><input id="t_vit_custom" type="number" value="1" class="recalculate"></div>
-                                <div class="input-group"><label for="t_dex">DEX</label><input id="t_dex_custom" type="number" value="1" class="recalculate"></div>
-                                <div class="input-group"><label for="t_critdef">CRIT DEF</label><input id="t_critdef_custom" type="number" value="0" class="recalculate"></div>
+                                <div class="input-group"><label for="t_vit">VIT</label><input id="t_vit_custom" type="number" value="1" class="recalculate input-base"></div>
+                                <div class="input-group"><label for="t_dex">DEX</label><input id="t_dex_custom" type="number" value="1" class="recalculate input-base"></div>
+                                <div class="input-group"><label for="t_critdef">CRIT DEF</label><input id="t_critdef_custom" type="number" value="0" class="recalculate input-base"></div>
                             </div>
                             <div class="input-group"><label for="t_element">Element</label>
-                                <select id="t_element" class="recalculate">
-                                    <option value="Neutral">Neutral</option>
-                                    <option value="Poison">Poison</option>
-                                    <option value="Shadow">Shadow</option>
-                                    <option value="Holy">Holy</option>
-                                    <option value="Fire">Fire</option>
-                                    <option value="Water">Water</option>
-                                    <option value="Wind" selected>Wind</option>
-                                    <option value="Earth">Earth</option>
-                                    <option value="Undead">Undead</option>
+                                <select id="t_element" class="recalculate filter-select">
+                                    <option value="Neutral">Neutral</option> <option value="Poison">Poison</option> <option value="Shadow">Shadow</option> <option value="Holy">Holy</option> <option value="Fire">Fire</option> <option value="Water">Water</option> <option value="Wind" selected>Wind</option> <option value="Earth">Earth</option> <option value="Undead">Undead</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Core Combat Stats</h2>
-                        <div class="space-y-2">
+                        <h2 class="card-header">Core Combat Stats</h2>
+                        <div class="space-y-1">
                             <div class="result-item"><span class="result-label">Final ATK</span><span id="r_atk" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Final MATK</span><span id="r_matk" class="result-value">0</span></div>
-                            <div class="result-item"><span class="result-label">Attack Speed (ASPD)</span><span id="r_aspd" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Attack Speed</span><span id="r_aspd" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Attack Delay</span><span id="r_atk_delay" class="result-value">0s</span></div>
                             <div class="result-item"><span class="result-label">Cast Speed</span><span id="r_cspd" class="result-value">0</span></div>
-                            <div class="result-item"><span class="result-label">Cast Time Reduction</span><span id="r_ctr" class="result-value">0%</span></div>
-                            <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0% (vs Target: 0%)</span></div>
+                            <div class="result-item"><span class="result-label">Cast Time Reduc.</span><span id="r_ctr" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Block Chance</span><span id="r_block" class="result-value">0%</span></div>
-                            <div class="result-item"><span class="result-label">Reflected Damage</span><span id="r_reflect" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label">Reflected Dmg</span><span id="r_reflect" class="result-value">0</span></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Damage Calculations vs. Target</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8">
+                    <h2 class="card-header">Damage Calculations vs. Target</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6">
                         <div>
-                            <h3 class="text-lg font-semibold text-blue-300 mb-2">Auto-Attack Damage</h3>
-                             <div class="result-item"><span class="result-label">Chance to Hit</span><span id="r_hit_chance" class="result-value">0%</span></div>
-                            <div class="result-item"><span class="result-label">Target Dmg. Reduction</span><span id="r_phys_reduc" class="result-value">0%</span></div>
-                            <div class="result-item"><span class="result-label">Elemental Modifier</span><span id="r_ele_mod" class="result-value">100%</span></div>
+                            <h3 class="text-base font-semibold text-indigo-400 mb-2">Auto-Attack Damage</h3>
+                            <div class="result-item"><span class="result-label">Chance to Hit</span><span id="r_hit_chance" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Target Dmg. Reduc.</span><span id="r_phys_reduc" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Element Modifier</span><span id="r_ele_mod" class="result-value">100%</span></div>
                             <div class="result-item"><span class="result-label">Normal Hit</span><span id="r_normal_hit" class="result-value">0</span></div>
                             <div class="result-item"><span class="result-label">Critical Hit</span><span id="r_crit_hit" class="result-value">0</span></div>
-                            <div class="result-item"><span class="result-label">Average Damage/Hit</span><span id="r_avg_hit" class="result-value">0</span></div>
-                            <div class="result-item font-bold text-lg"><span class="result-label text-blue-200">Auto-Attack DPS</span><span id="r_dps" class="result-value text-blue-200">0</span></div>
+                            <div class="result-item"><span class="result-label">Avg. Damage/Hit</span><span id="r_avg_hit" class="result-value">0</span></div>
+                            <div class="result-item font-bold text-lg pt-3 mt-2 border-t border-indigo-500/30"><span class="result-label text-indigo-300">Auto-Attack DPS</span><span id="r_dps" class="result-value text-indigo-300">0</span></div>
                         </div>
-                         <div>
-                             <h3 class="text-lg font-semibold text-purple-300 mb-2">Base Magic Damage (Ref)</h3>
-                             <div class="result-item"><span class="result-label">Chance to Hit</span><span class="result-value">100%</span></div>
-                             <div class="result-item"><span class="result-label">Target Dmg. Reduction</span><span id="r_mag_reduc" class="result-value">0%</span></div>
-                             <div class="result-item"><span class="result-label">Elemental Modifier</span><span id="r_ele_mod_mag" class="result-value">100%</span></div>
-                             <div class="result-item"><span class="result-label">Normal Hit</span><span id="r_normal_mhit" class="result-value">0</span></div>
-                             <div class="result-item"><span class="result-label text-gray-500">Critical Hit</span><span id="r_crit_mhit" class="result-value text-gray-500">N/A</span></div>
-                             <div class="result-item"><span class="result-label">Average Damage/Hit</span><span id="r_avg_mhit" class="result-value">0</span></div>
-                             <div class="result-item font-bold text-lg"><span class="result-label text-purple-200">Magic DPS (Ref)</span><span id="r_mdps" class="result-value text-purple-200">0</span></div>
+                        <div>
+                            <h3 class="text-base font-semibold text-purple-400 mb-2">Base Magic Damage</h3>
+                            <div class="result-item"><span class="result-label">Chance to Hit</span><span class="result-value">100%</span></div>
+                            <div class="result-item"><span class="result-label">Target Dmg. Reduc.</span><span id="r_mag_reduc" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Element Modifier</span><span id="r_ele_mod_mag" class="result-value">100%</span></div>
+                            <div class="result-item"><span class="result-label">Normal Hit</span><span id="r_normal_mhit" class="result-value">0</span></div>
+                            <div class="result-item"><span class="result-label text-gray-600">Critical Hit</span><span id="r_crit_mhit" class="result-value text-gray-600">N/A</span></div>
+                            <div class="result-item"><span class="result-label">Avg. Damage/Hit</span><span id="r_avg_mhit" class="result-value">0</span></div>
+                            <div class="result-item font-bold text-lg pt-3 mt-2 border-t border-purple-500/30"><span class="result-label text-purple-300">Magic DPS (Ref)</span><span id="r_mdps" class="result-value text-purple-300">0</span></div>
                         </div>
                     </div>
-                     <div id="rotation-results-container" class="mt-6 hidden">
-                        <h3 class="text-xl font-semibold text-yellow-300 mb-2 border-t border-gray-600 pt-4">Skill Rotation DPS</h3>
-                        <div class="result-item font-bold text-2xl"><span class="result-label text-yellow-200">Total Rotation DPS</span><span id="r_rotation_dps" class="result-value text-yellow-200">0</span></div>
+                    <div id="rotation-results-container" class="mt-6 hidden">
+                        <h3 class="text-base font-semibold text-yellow-400 mb-2 border-t border-gray-700 pt-4">Skill Rotation DPS</h3>
+                        <div class="result-item font-bold text-2xl"><span class="result-label text-yellow-300">Total Rotation DPS</span><span id="r_rotation_dps" class="result-value text-yellow-300">0</span></div>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h2 class="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Skill Rotation Simulator</h2>
-                    <div class="flex items-center space-x-4 mb-4">
-                        <input id="simulate_skills" type="checkbox">
+                    <h2 class="card-header">Skill Rotation Simulator</h2>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <input id="simulate_skills" type="checkbox" class="recalculate">
                         <label for="simulate_skills">Simulate DPS with Skills</label>
                     </div>
-                    <div id="skill-rotation-setup" class="hidden">
-                         <div class="input-group">
+                    <div id="skill-rotation-setup" class="hidden space-y-4">
+                        <div class="input-group">
                             <label for="num_skills">Number of Skills</label>
-                            <input id="num_skills" type="number" value="1" min="0">
+                            <input id="num_skills" type="number" value="1" min="0" class="input-base">
                         </div>
-                        <div id="skill-inputs-container" class="space-y-4 mt-4"></div>
+                        <div id="skill-inputs-container" class="space-y-4"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
 
     <script src="sidebar.js" defer></script>
