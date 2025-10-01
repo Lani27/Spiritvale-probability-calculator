@@ -251,6 +251,79 @@
                     return sourcesHtml;
                 }
 
+                function generateItemCardHTML(item) {
+                    if (!item) return '';
+
+                    // The tooltip should not contain the sources, so we pass a dummy theme color to avoid rendering them.
+                    const sourceFreeItem = { ...item, Source: '' };
+
+                    if (item.itemType === 'Equipment') {
+                        return `
+                            <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10" style="width: 420px;">
+                                <div class="flex items-start mb-3">
+                                    <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" onerror="this.onerror=null;this.src='https.placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
+                                    <div class="flex-1">
+                                        <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
+                                        <div class="mt-1 flex items-center flex-wrap">
+                                            <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
+                                            ${item['Stat Type'] ? `<span class="ml-2 inline-block bg-teal-900/60 text-teal-300 text-xs font-semibold px-2 py-0.5 rounded">${item['Stat Type']}</span>` : ''}
+                                            ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded set-tooltip cursor-pointer" data-set-name="${item.Set}" data-set-bonus="${encodeURIComponent(item.SetBonuses || '')}">Set: ${item.Set}</span>` : ''}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-grow space-y-3 mb-4">
+                                    ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
+                                    ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
+                                    <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
+                                </div>
+                                <div class="mt-auto">
+                                    ${renderSources(sourceFreeItem, 'indigo')}
+                                </div>
+                            </div>
+                        `;
+                    } else if (item.itemType === 'Card') {
+                        return `
+                            <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10" style="width: 320px;">
+                                 <div class="flex items-center mb-3">
+                                    <img src="Sprites/Cards/${item.Slot}.png" alt="${item.Slot} Card" class="w-14 h-14 rounded-md mr-0 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/40x40/1f2937/a855f7?text=C'; this.classList.add('bg-gray-700');">
+                                    <div class="flex-1 ml-4">
+                                        <p class="text-xs font-bold uppercase text-purple-400">${item.Affix}</p>
+                                        <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
+                                        <div class="mt-1">
+                                            <span class="inline-block bg-purple-900/60 text-purple-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Slot}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-grow mb-3">
+                                    <p class="text-xs text-gray-500 uppercase font-semibold">Stats</p>
+                                    <p class="text-sm font-mono">${parseStats(item.Stats)}</p>
+                                </div>
+                                <div class="mt-auto">
+                                    ${renderSources(sourceFreeItem, 'purple')}
+                                </div>
+                            </div>
+                        `;
+                    } else if (item.itemType === 'Artifact') {
+                         return `
+                            <div class="relative bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 transition-all hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10" style="width: 400px;">
+                                <img src="Sprites/Artifacts/${item.SetName}.png" alt="${item.SetName} Set"
+                                     class="absolute top-4 right-4 w-20 h-20 object-contain opacity-100"
+                                     onerror="this.style.display='none'">
+                                <div class="mr-20">
+                                    <h3 class="font-bold text-xl text-white mb-3">${item.SetName} Set</h3>
+                                    <div class="space-y-2">
+                                        ${item.PerPieceBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Piece Bonus</p><p class="text-sm font-mono">${parseStats(item.PerPieceBonus)}</p></div>` : ''}
+                                        ${item.PerRefineBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Refine Bonus</p><p class="text-sm font-mono">${parseStats(item.PerRefineBonus)}</p></div>` : ''}
+                                        ${item.FullSetBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Full Set Bonus</p><p class="text-sm font-mono">${parseStats(item.FullSetBonus)}</p></div>` : ''}
+                                    </div>
+                                </div>
+                                ${renderSources(sourceFreeItem, 'teal')}
+                            </div>
+                        `;
+                    }
+                    return '';
+                }
+
                 // --- RENDERING FUNCTIONS ---
 
                 function renderEquipmentList(data) {
@@ -452,27 +525,10 @@
                                 lootHtml += `<h4 class="text-lg font-semibold text-white mb-2 mt-4 col-span-1 md:col-span-2">${plural}</h4>`;
 
                                 groupedLoot[category].forEach(item => {
-                                    let tooltipContent = '';
-                                    if (item.itemType === 'Equipment') {
-                                        tooltipContent = `
-                                            ${item.PrimaryStats ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Primary Stats</p><p class='text-sm font-mono'>${parseStats(item.PrimaryStats)}</p></div>` : ''}
-                                            ${item.SecondaryStats ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Secondary Stats</p><p class='text-sm font-mono'>${parseStats(item.SecondaryStats)}</p></div>` : ''}
-                                            ${item.Set ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Set</p><p class='text-sm'>${item.Set}</p></div>` : ''}
-                                        `;
-                                    } else if (item.itemType === 'Card') {
-                                        tooltipContent = `<p class='text-sm font-mono'>${parseStats(item.Stats)}</p>`;
-                                    } else if (item.itemType === 'Artifact') {
-                                        tooltipContent = `
-                                            ${item.PerPieceBonus ? `<div><p class='text-xs text-gray-500 uppercase font-semibold'>Per Piece Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerPieceBonus)}</p></div>` : ''}
-                                            ${item.PerRefineBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Per Refine Bonus</p><p class='text-sm font-mono'>${parseStats(item.PerRefineBonus)}</p></div>` : ''}
-                                            ${item.FullSetBonus ? `<div class='mt-2'><p class='text-xs text-gray-500 uppercase font-semibold'>Full Set Bonus</p><p class='text-sm font-mono'>${parseStats(item.FullSetBonus)}</p></div>` : ''}
-                                        `;
-                                    }
-
                                     lootHtml += `
                                         <div class="bg-gray-700/50 rounded-md p-3 flex justify-between items-center text-sm loot-item"
-                                             data-tooltip-title="${item.Name || item.SetName}"
-                                             data-tooltip-content="${encodeURIComponent(tooltipContent)}">
+                                             data-item-name="${item.Name || item.SetName}"
+                                             data-item-type="${item.itemType}">
                                             <span class="font-semibold text-${item.themeColor}-400">${item.Name || item.SetName}</span>
                                             <span class="text-gray-400">${item.droprate || 'N/A'}</span>
                                         </div>
@@ -695,10 +751,24 @@
                             displayTooltip = true;
                         }
                     } else if (target.classList.contains('loot-item')) {
-                        const title = target.getAttribute('data-tooltip-title');
-                        const tooltipContent = decodeURIComponent(target.getAttribute('data-tooltip-content'));
-                         if (title && tooltipContent) {
-                            content = `<h4 class="font-bold text-white text-base mb-2">${title}</h4>${tooltipContent}`;
+                        const itemName = target.getAttribute('data-item-name');
+                        const itemType = target.getAttribute('data-item-type');
+                        let itemData = null;
+
+                        if (itemType === 'Equipment') {
+                            itemData = equipmentData.find(i => i.Name === itemName);
+                        } else if (itemType === 'Card') {
+                            itemData = cardData.find(i => i.Name === itemName);
+                        } else if (itemType === 'Artifact') {
+                            itemData = artifactData.find(i => i.SetName === itemName);
+                        }
+
+                        if (itemData) {
+                            // Add itemType to the found data object as it's used by generateItemCardHTML
+                            itemData.itemType = itemType;
+                            content = generateItemCardHTML(itemData);
+                            // The card itself has padding, so we remove it from the tooltip container
+                            tooltip.style.padding = '0';
                             displayTooltip = true;
                         }
                     }
@@ -706,6 +776,9 @@
                     if (displayTooltip) {
                         tooltip.innerHTML = content;
                         tooltip.style.display = 'block';
+                    } else {
+                        // Reset padding if no tooltip is shown or for other tooltips
+                        tooltip.style.padding = '10px';
                     }
                 });
 
