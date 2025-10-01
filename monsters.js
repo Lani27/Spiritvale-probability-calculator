@@ -1,6 +1,7 @@
 const monsters = [
   {
     "MonsterName": "Angel",
+    "IsBoss": false,
     "Level": 76,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -8,6 +9,7 @@ const monsters = [
   },
   {
     "MonsterName": "Angel Mage",
+    "IsBoss": true,
     "Level": 90,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -15,6 +17,7 @@ const monsters = [
   },
   {
     "MonsterName": "Archangel",
+    "IsBoss": false,
     "Level": 79,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -22,6 +25,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bat",
+    "IsBoss": false,
     "Level": 39,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -29,6 +33,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bat Lord",
+    "IsBoss": true,
     "Level": 55,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -36,6 +41,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bee",
+    "IsBoss": false,
     "Level": 4,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -43,6 +49,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bird",
+    "IsBoss": false,
     "Level": 15,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
@@ -50,6 +57,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bloom",
+    "IsBoss": false,
     "Level": 88,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -57,6 +65,7 @@ const monsters = [
   },
   {
     "MonsterName": "Blossom",
+    "IsBoss": false,
     "Level": 90,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -64,6 +73,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bomb",
+    "IsBoss": false,
     "Level": 81,
     "Element": "Fire",
     "ArchetypeId": "Runner",
@@ -71,6 +81,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bud",
+    "IsBoss": false,
     "Level": 86,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -78,6 +89,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bumble",
+    "IsBoss": false,
     "Level": 16,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -85,6 +97,7 @@ const monsters = [
   },
   {
     "MonsterName": "Bunny",
+    "IsBoss": false,
     "Level": 3,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
@@ -92,6 +105,7 @@ const monsters = [
   },
   {
     "MonsterName": "Burrow",
+    "IsBoss": false,
     "Level": 14,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -99,6 +113,7 @@ const monsters = [
   },
   {
     "MonsterName": "Butterfly Fairy",
+    "IsBoss": false,
     "Level": 32,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -106,6 +121,7 @@ const monsters = [
   },
   {
     "MonsterName": "Butterfly Hue",
+    "IsBoss": false,
     "Level": 19,
     "Element": "Holy",
     "ArchetypeId": "Flyer",
@@ -113,6 +129,7 @@ const monsters = [
   },
   {
     "MonsterName": "Butterfly Pixie",
+    "IsBoss": false,
     "Level": 34,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -120,6 +137,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cacti",
+    "IsBoss": false,
     "Level": 24,
     "Element": "Earth",
     "ArchetypeId": "Plant",
@@ -127,6 +145,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cactus",
+    "IsBoss": false,
     "Level": 27,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -134,6 +153,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cactus Boss",
+    "IsBoss": true,
     "Level": 35,
     "Element": "Earth",
     "ArchetypeId": "Defender",
@@ -141,6 +161,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cat Bolt",
+    "IsBoss": true,
     "Level": 30,
     "Element": "Wind",
     "ArchetypeId": "Hybrid",
@@ -148,6 +169,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cat Lightning",
+    "IsBoss": false,
     "Level": 24,
     "Element": "Wind",
     "ArchetypeId": "Hybrid",
@@ -155,6 +177,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cat Meow",
+    "IsBoss": false,
     "Level": 8,
     "Element": "Wind",
     "ArchetypeId": "Hybrid",
@@ -162,6 +185,7 @@ const monsters = [
   },
   {
     "MonsterName": "Chick",
+    "IsBoss": false,
     "Level": 4,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
@@ -169,6 +193,7 @@ const monsters = [
   },
   {
     "MonsterName": "Creeper",
+    "IsBoss": false,
     "Level": 45,
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
@@ -176,6 +201,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cyclops",
+    "IsBoss": false,
     "Level": 68,
     "Element": "Water",
     "ArchetypeId": "Brute",
@@ -183,6 +209,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cyclops Bat",
+    "IsBoss": false,
     "Level": 102,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
@@ -190,6 +217,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cyclops Bat Mage",
+    "IsBoss": false,
     "Level": 112,
     "Element": "Undead",
     "ArchetypeId": "Caster",
@@ -197,6 +225,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cyclops Bat Wizard",
+    "IsBoss": false,
     "Level": 103,
     "Element": "Undead",
     "ArchetypeId": "Caster",
@@ -204,6 +233,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cyclops Giant",
+    "IsBoss": false,
     "Level": 70,
     "Element": "Water",
     "ArchetypeId": "Brute",
@@ -211,6 +241,7 @@ const monsters = [
   },
   {
     "MonsterName": "Cyclops Minion",
+    "IsBoss": false,
     "Level": 67,
     "Element": "Water",
     "ArchetypeId": "Brute",
@@ -218,6 +249,7 @@ const monsters = [
   },
   {
     "MonsterName": "Death",
+    "IsBoss": false,
     "Level": 101,
     "Element": "Shadow",
     "ArchetypeId": "Caster",
@@ -225,6 +257,7 @@ const monsters = [
   },
   {
     "MonsterName": "Death Mage",
+    "IsBoss": true,
     "Level": 120,
     "Element": "Shadow",
     "ArchetypeId": "Caster",
@@ -232,6 +265,7 @@ const monsters = [
   },
   {
     "MonsterName": "Direwolf",
+    "IsBoss": false,
     "Level": 110,
     "Element": "Undead",
     "ArchetypeId": "Ravager",
@@ -239,6 +273,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dog Bark",
+    "IsBoss": false,
     "Level": 13,
     "Element": "Fire",
     "ArchetypeId": "Brute",
@@ -246,6 +281,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dog Bowwow",
+    "IsBoss": false,
     "Level": 28,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -253,6 +289,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dog Pup",
+    "IsBoss": false,
     "Level": 10,
     "Element": "Fire",
     "ArchetypeId": "Brute",
@@ -260,6 +297,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Blizzard",
+    "IsBoss": false,
     "Level": 69,
     "Element": "Water",
     "ArchetypeId": "Hybrid",
@@ -267,6 +305,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Darkness",
+    "IsBoss": false,
     "Level": 85,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
@@ -274,6 +313,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Dusk",
+    "IsBoss": false,
     "Level": 78,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
@@ -281,6 +321,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Fire",
+    "IsBoss": false,
     "Level": 98,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -288,6 +329,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Ice",
+    "IsBoss": false,
     "Level": 68,
     "Element": "Water",
     "ArchetypeId": "Hybrid",
@@ -295,6 +337,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Inferno",
+    "IsBoss": false,
     "Level": 99,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -302,6 +345,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Nightfall",
+    "IsBoss": false,
     "Level": 80,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
@@ -309,6 +353,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Spark",
+    "IsBoss": false,
     "Level": 97,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -316,6 +361,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragon Water",
+    "IsBoss": false,
     "Level": 67,
     "Element": "Water",
     "ArchetypeId": "Hybrid",
@@ -323,6 +369,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragonfly Arrow",
+    "IsBoss": false,
     "Level": 35,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -330,6 +377,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragonfly Darner",
+    "IsBoss": false,
     "Level": 37,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -337,6 +385,7 @@ const monsters = [
   },
   {
     "MonsterName": "Dragonfly Swift",
+    "IsBoss": false,
     "Level": 39,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -344,6 +393,7 @@ const monsters = [
   },
   {
     "MonsterName": "Earthworm",
+    "IsBoss": false,
     "Level": 36,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -351,6 +401,7 @@ const monsters = [
   },
   {
     "MonsterName": "Egg",
+    "IsBoss": false,
     "Level": 5,
     "Element": "Neutral",
     "ArchetypeId": "Egg",
@@ -358,6 +409,7 @@ const monsters = [
   },
   {
     "MonsterName": "Egglet",
+    "IsBoss": false,
     "Level": 23,
     "Element": "Neutral",
     "ArchetypeId": "Runner",
@@ -365,6 +417,7 @@ const monsters = [
   },
   {
     "MonsterName": "Elder Wisp Blue",
+    "IsBoss": false,
     "Level": 69,
     "Element": "Water",
     "ArchetypeId": "Caster",
@@ -372,6 +425,7 @@ const monsters = [
   },
   {
     "MonsterName": "Elder Wisp Purple",
+    "IsBoss": false,
     "Level": 89,
     "Element": "Wind",
     "ArchetypeId": "Caster",
@@ -379,6 +433,7 @@ const monsters = [
   },
   {
     "MonsterName": "Elder Wisp Yellow",
+    "IsBoss": false,
     "Level": 99,
     "Element": "Fire",
     "ArchetypeId": "Caster",
@@ -386,6 +441,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Bat Blue",
+    "IsBoss": false,
     "Level": 19,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
@@ -393,6 +449,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Bat Green",
+    "IsBoss": false,
     "Level": 20,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
@@ -400,6 +457,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Bat Red",
+    "IsBoss": false,
     "Level": 21,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
@@ -407,6 +465,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Creep Blue",
+    "IsBoss": false,
     "Level": 109,
     "Element": "Undead",
     "ArchetypeId": "Hybrid",
@@ -414,6 +473,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Creep Green",
+    "IsBoss": false,
     "Level": 107,
     "Element": "Undead",
     "ArchetypeId": "Hybrid",
@@ -421,6 +481,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Creep Red",
+    "IsBoss": false,
     "Level": 106,
     "Element": "Undead",
     "ArchetypeId": "Hybrid",
@@ -428,6 +489,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Mage Blue",
+    "IsBoss": false,
     "Level": 113,
     "Element": "Undead",
     "ArchetypeId": "Caster",
@@ -435,6 +497,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Mage Green",
+    "IsBoss": false,
     "Level": 114,
     "Element": "Undead",
     "ArchetypeId": "Caster",
@@ -442,6 +505,7 @@ const monsters = [
   },
   {
     "MonsterName": "Eyeball Mage Red",
+    "IsBoss": false,
     "Level": 115,
     "Element": "Undead",
     "ArchetypeId": "Caster",
@@ -449,6 +513,7 @@ const monsters = [
   },
   {
     "MonsterName": "Fire",
+    "IsBoss": false,
     "Level": 96,
     "Element": "Fire",
     "ArchetypeId": "Caster",
@@ -456,6 +521,7 @@ const monsters = [
   },
   {
     "MonsterName": "Fire Mage",
+    "IsBoss": false,
     "Level": 99,
     "Element": "Fire",
     "ArchetypeId": "Caster",
@@ -463,6 +529,7 @@ const monsters = [
   },
   {
     "MonsterName": "Flame",
+    "IsBoss": false,
     "Level": 97,
     "Element": "Fire",
     "ArchetypeId": "Caster",
@@ -470,6 +537,7 @@ const monsters = [
   },
   {
     "MonsterName": "Fledgling",
+    "IsBoss": false,
     "Level": 11,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
@@ -477,6 +545,7 @@ const monsters = [
   },
   {
     "MonsterName": "Flora",
+    "IsBoss": false,
     "Level": 32,
     "Element": "Water",
     "ArchetypeId": "Critter",
@@ -484,6 +553,7 @@ const monsters = [
   },
   {
     "MonsterName": "Flower Pot Monster",
+    "IsBoss": false,
     "Level": 25,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -491,6 +561,7 @@ const monsters = [
   },
   {
     "MonsterName": "Fungi",
+    "IsBoss": false,
     "Level": 33,
     "Element": "Water",
     "ArchetypeId": "Brute",
@@ -498,6 +569,7 @@ const monsters = [
   },
   {
     "MonsterName": "Ghost",
+    "IsBoss": false,
     "Level": 77,
     "Element": "Shadow",
     "ArchetypeId": "Flyer",
@@ -505,6 +577,7 @@ const monsters = [
   },
   {
     "MonsterName": "Glow Wisp Blue",
+    "IsBoss": false,
     "Level": 31,
     "Element": "Water",
     "ArchetypeId": "Caster",
@@ -512,6 +585,7 @@ const monsters = [
   },
   {
     "MonsterName": "Glow Wisp Purple",
+    "IsBoss": false,
     "Level": 22,
     "Element": "Wind",
     "ArchetypeId": "Caster",
@@ -519,6 +593,7 @@ const monsters = [
   },
   {
     "MonsterName": "Glow Wisp Yellow",
+    "IsBoss": false,
     "Level": 31,
     "Element": "Fire",
     "ArchetypeId": "Caster",
@@ -526,6 +601,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Giant",
+    "IsBoss": false,
     "Level": 64,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -533,6 +609,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Giant Devil",
+    "IsBoss": false,
     "Level": 65,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -540,6 +617,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Giant Gold",
+    "IsBoss": true,
     "Level": 70,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -547,6 +625,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Giant Mage",
+    "IsBoss": false,
     "Level": 63,
     "Element": "Earth",
     "ArchetypeId": "Caster",
@@ -554,6 +633,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Minion",
+    "IsBoss": false,
     "Level": 59,
     "Element": "Earth",
     "ArchetypeId": "Critter",
@@ -561,6 +641,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Trooper",
+    "IsBoss": false,
     "Level": 62,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -568,6 +649,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Trooper Assassin",
+    "IsBoss": false,
     "Level": 60,
     "Element": "Earth",
     "ArchetypeId": "Runner",
@@ -575,6 +657,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Trooper Mage",
+    "IsBoss": false,
     "Level": 61,
     "Element": "Earth",
     "ArchetypeId": "Caster",
@@ -582,6 +665,7 @@ const monsters = [
   },
   {
     "MonsterName": "Goblin Trooper Soldier",
+    "IsBoss": false,
     "Level": 62,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -589,6 +673,7 @@ const monsters = [
   },
   {
     "MonsterName": "Golem Earth",
+    "IsBoss": false,
     "Level": 30,
     "Element": "Earth",
     "ArchetypeId": "Defender",
@@ -596,6 +681,7 @@ const monsters = [
   },
   {
     "MonsterName": "Golem Fire",
+    "IsBoss": false,
     "Level": 100,
     "Element": "Fire",
     "ArchetypeId": "Defender",
@@ -603,6 +689,7 @@ const monsters = [
   },
   {
     "MonsterName": "Golem Ice",
+    "IsBoss": false,
     "Level": 70,
     "Element": "Water",
     "ArchetypeId": "Defender",
@@ -610,6 +697,7 @@ const monsters = [
   },
   {
     "MonsterName": "Hare",
+    "IsBoss": true,
     "Level": 10,
     "Element": "Neutral",
     "ArchetypeId": "Runner",
@@ -617,6 +705,7 @@ const monsters = [
   },
   {
     "MonsterName": "Haunt",
+    "IsBoss": false,
     "Level": 79,
     "Element": "Holy",
     "ArchetypeId": "Hybrid",
@@ -624,6 +713,7 @@ const monsters = [
   },
   {
     "MonsterName": "Hermit King",
+    "IsBoss": true,
     "Level": 40,
     "Element": "Water",
     "ArchetypeId": "Defender",
@@ -631,6 +721,7 @@ const monsters = [
   },
   {
     "MonsterName": "Horror",
+    "IsBoss": false,
     "Level": 50,
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
@@ -638,6 +729,7 @@ const monsters = [
   },
   {
     "MonsterName": "Housefly Icky",
+    "IsBoss": false,
     "Level": 34,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -645,6 +737,7 @@ const monsters = [
   },
   {
     "MonsterName": "Housefly Junk",
+    "IsBoss": false,
     "Level": 39,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -652,6 +745,7 @@ const monsters = [
   },
   {
     "MonsterName": "Housefly Nom",
+    "IsBoss": false,
     "Level": 36,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -659,6 +753,7 @@ const monsters = [
   },
   {
     "MonsterName": "Ice",
+    "IsBoss": false,
     "Level": 66,
     "Element": "Water",
     "ArchetypeId": "Caster",
@@ -666,6 +761,7 @@ const monsters = [
   },
   {
     "MonsterName": "Ice Mage",
+    "IsBoss": true,
     "Level": 75,
     "Element": "Water",
     "ArchetypeId": "Caster",
@@ -673,6 +769,7 @@ const monsters = [
   },
   {
     "MonsterName": "Icicle",
+    "IsBoss": false,
     "Level": 68,
     "Element": "Water",
     "ArchetypeId": "Caster",
@@ -680,6 +777,7 @@ const monsters = [
   },
   {
     "MonsterName": "Imp Demon",
+    "IsBoss": false,
     "Level": 97,
     "Element": "Fire",
     "ArchetypeId": "Runner",
@@ -687,6 +785,7 @@ const monsters = [
   },
   {
     "MonsterName": "Imp Devil",
+    "IsBoss": true,
     "Level": 105,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -694,6 +793,7 @@ const monsters = [
   },
   {
     "MonsterName": "Imp Mischief",
+    "IsBoss": false,
     "Level": 96,
     "Element": "Fire",
     "ArchetypeId": "Runner",
@@ -701,6 +801,7 @@ const monsters = [
   },
   {
     "MonsterName": "Lurker",
+    "IsBoss": false,
     "Level": 43,
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
@@ -708,6 +809,7 @@ const monsters = [
   },
   {
     "MonsterName": "Mole Rat",
+    "IsBoss": false,
     "Level": 26,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -715,6 +817,7 @@ const monsters = [
   },
   {
     "MonsterName": "Mole Rat King",
+    "IsBoss": false,
     "Level": 30,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -722,6 +825,7 @@ const monsters = [
   },
   {
     "MonsterName": "Mosquito Bug",
+    "IsBoss": false,
     "Level": 35,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -729,6 +833,7 @@ const monsters = [
   },
   {
     "MonsterName": "Mosquito Pester",
+    "IsBoss": false,
     "Level": 38,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -736,6 +841,7 @@ const monsters = [
   },
   {
     "MonsterName": "Mosquito Stinger",
+    "IsBoss": false,
     "Level": 40,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -743,6 +849,7 @@ const monsters = [
   },
   {
     "MonsterName": "Moth Celestial",
+    "IsBoss": false,
     "Level": 35,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -750,6 +857,7 @@ const monsters = [
   },
   {
     "MonsterName": "Moth Luna",
+    "IsBoss": false,
     "Level": 29,
     "Element": "Holy",
     "ArchetypeId": "Flyer",
@@ -757,6 +865,7 @@ const monsters = [
   },
   {
     "MonsterName": "Moth Moon",
+    "IsBoss": false,
     "Level": 32,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -764,6 +873,7 @@ const monsters = [
   },
   {
     "MonsterName": "Mushroom",
+    "IsBoss": false,
     "Level": 30,
     "Element": "Water",
     "ArchetypeId": "Brute",
@@ -771,6 +881,7 @@ const monsters = [
   },
   {
     "MonsterName": "Nightmare",
+    "IsBoss": false,
     "Level": 111,
     "Element": "Shadow",
     "ArchetypeId": "Caster",
@@ -778,6 +889,7 @@ const monsters = [
   },
   {
     "MonsterName": "Petal",
+    "IsBoss": false,
     "Level": 34,
     "Element": "Water",
     "ArchetypeId": "Critter",
@@ -785,6 +897,7 @@ const monsters = [
   },
   {
     "MonsterName": "Phantom",
+    "IsBoss": false,
     "Level": 83,
     "Element": "Shadow",
     "ArchetypeId": "Flyer",
@@ -792,6 +905,7 @@ const monsters = [
   },
   {
     "MonsterName": "Plant Chewer",
+    "IsBoss": false,
     "Level": 28,
     "Element": "Neutral",
     "ArchetypeId": "Plant",
@@ -799,6 +913,7 @@ const monsters = [
   },
   {
     "MonsterName": "Poison Bomb",
+    "IsBoss": false,
     "Level": 87,
     "Element": "Poison",
     "ArchetypeId": "Runner",
@@ -806,6 +921,7 @@ const monsters = [
   },
   {
     "MonsterName": "Pollen",
+    "IsBoss": false,
     "Level": 2,
     "Element": "Neutral",
     "ArchetypeId": "Flyer",
@@ -813,6 +929,7 @@ const monsters = [
   },
   {
     "MonsterName": "Posy",
+    "IsBoss": false,
     "Level": 29,
     "Element": "Water",
     "ArchetypeId": "Critter",
@@ -820,6 +937,7 @@ const monsters = [
   },
   {
     "MonsterName": "Practice Dummy",
+    "IsBoss": false,
     "Level": 0,
     "Element": "Neutral",
     "ArchetypeId": "Egg",
@@ -827,6 +945,7 @@ const monsters = [
   },
   {
     "MonsterName": "Queen Worm",
+    "IsBoss": true,
     "Level": 45,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -834,6 +953,7 @@ const monsters = [
   },
   {
     "MonsterName": "Rabbit",
+    "IsBoss": false,
     "Level": 18,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
@@ -841,6 +961,7 @@ const monsters = [
   },
   {
     "MonsterName": "Scorpion",
+    "IsBoss": false,
     "Level": 27,
     "Element": "Fire",
     "ArchetypeId": "Brute",
@@ -848,6 +969,7 @@ const monsters = [
   },
   {
     "MonsterName": "Scorpion King",
+    "IsBoss": true,
     "Level": 35,
     "Element": "Fire",
     "ArchetypeId": "Ravager",
@@ -855,6 +977,7 @@ const monsters = [
   },
   {
     "MonsterName": "Scorpling",
+    "IsBoss": false,
     "Level": 24,
     "Element": "Fire",
     "ArchetypeId": "Critter",
@@ -862,6 +985,7 @@ const monsters = [
   },
   {
     "MonsterName": "Seed",
+    "IsBoss": false,
     "Level": 6,
     "Element": "Earth",
     "ArchetypeId": "Plant",
@@ -869,6 +993,7 @@ const monsters = [
   },
   {
     "MonsterName": "Shade",
+    "IsBoss": false,
     "Level": 98,
     "Element": "Shadow",
     "ArchetypeId": "Brute",
@@ -876,6 +1001,7 @@ const monsters = [
   },
   {
     "MonsterName": "Shadow",
+    "IsBoss": false,
     "Level": 100,
     "Element": "Shadow",
     "ArchetypeId": "Brute",
@@ -883,6 +1009,7 @@ const monsters = [
   },
   {
     "MonsterName": "Shell",
+    "IsBoss": false,
     "Level": 30,
     "Element": "Water",
     "ArchetypeId": "Critter",
@@ -890,6 +1017,7 @@ const monsters = [
   },
   {
     "MonsterName": "Skeleton",
+    "IsBoss": false,
     "Level": 24,
     "Element": "Undead",
     "ArchetypeId": "Undead",
@@ -897,6 +1025,7 @@ const monsters = [
   },
   {
     "MonsterName": "Skeleton Giant",
+    "IsBoss": false,
     "Level": 105,
     "Element": "Undead",
     "ArchetypeId": "Undead",
@@ -904,6 +1033,7 @@ const monsters = [
   },
   {
     "MonsterName": "Skeleton Mage",
+    "IsBoss": false,
     "Level": 104,
     "Element": "Undead",
     "ArchetypeId": "Caster",
@@ -911,6 +1041,7 @@ const monsters = [
   },
   {
     "MonsterName": "Snake",
+    "IsBoss": false,
     "Level": 46,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -918,6 +1049,7 @@ const monsters = [
   },
   {
     "MonsterName": "Snake Naga",
+    "IsBoss": true,
     "Level": 50,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -925,6 +1057,7 @@ const monsters = [
   },
   {
     "MonsterName": "Snakelet",
+    "IsBoss": false,
     "Level": 40,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -932,6 +1065,7 @@ const monsters = [
   },
   {
     "MonsterName": "Snow Bomb",
+    "IsBoss": false,
     "Level": 66,
     "Element": "Water",
     "ArchetypeId": "Runner",
@@ -939,6 +1073,7 @@ const monsters = [
   },
   {
     "MonsterName": "Soul",
+    "IsBoss": false,
     "Level": 77,
     "Element": "Holy",
     "ArchetypeId": "Hybrid",
@@ -946,6 +1081,7 @@ const monsters = [
   },
   {
     "MonsterName": "Soul Mage",
+    "IsBoss": false,
     "Level": 84,
     "Element": "Holy",
     "ArchetypeId": "Hybrid",
@@ -953,6 +1089,7 @@ const monsters = [
   },
   {
     "MonsterName": "Spider",
+    "IsBoss": false,
     "Level": 41,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -960,6 +1097,7 @@ const monsters = [
   },
   {
     "MonsterName": "Spider King",
+    "IsBoss": false,
     "Level": 48,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -967,6 +1105,7 @@ const monsters = [
   },
   {
     "MonsterName": "Spider Toxin",
+    "IsBoss": false,
     "Level": 44,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -974,6 +1113,7 @@ const monsters = [
   },
   {
     "MonsterName": "Spike",
+    "IsBoss": false,
     "Level": 34,
     "Element": "Water",
     "ArchetypeId": "Defender",
@@ -981,6 +1121,7 @@ const monsters = [
   },
   {
     "MonsterName": "Spook",
+    "IsBoss": false,
     "Level": 82,
     "Element": "Shadow",
     "ArchetypeId": "Flyer",
@@ -988,6 +1129,7 @@ const monsters = [
   },
   {
     "MonsterName": "Spore",
+    "IsBoss": false,
     "Level": 26,
     "Element": "Neutral",
     "ArchetypeId": "Plant",
@@ -995,6 +1137,7 @@ const monsters = [
   },
   {
     "MonsterName": "Sprout",
+    "IsBoss": false,
     "Level": 20,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -1002,6 +1145,7 @@ const monsters = [
   },
   {
     "MonsterName": "Sting",
+    "IsBoss": true,
     "Level": 20,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
@@ -1009,6 +1153,7 @@ const monsters = [
   },
   {
     "MonsterName": "Sun Blossom",
+    "IsBoss": false,
     "Level": 30,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -1016,6 +1161,7 @@ const monsters = [
   },
   {
     "MonsterName": "Sunflora Pixie",
+    "IsBoss": true,
     "Level": 40,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -1023,6 +1169,7 @@ const monsters = [
   },
   {
     "MonsterName": "Sunflower Fairy",
+    "IsBoss": false,
     "Level": 33,
     "Element": "Holy",
     "ArchetypeId": "Caster",
@@ -1030,6 +1177,7 @@ const monsters = [
   },
   {
     "MonsterName": "Target Dummy",
+    "IsBoss": false,
     "Level": 0,
     "Element": "Neutral",
     "ArchetypeId": "Egg",
@@ -1037,6 +1185,7 @@ const monsters = [
   },
   {
     "MonsterName": "Toadstool",
+    "IsBoss": false,
     "Level": 35,
     "Element": "Water",
     "ArchetypeId": "Brute",
@@ -1044,6 +1193,7 @@ const monsters = [
   },
   {
     "MonsterName": "Training Dummy",
+    "IsBoss": false,
     "Level": 0,
     "Element": "Neutral",
     "ArchetypeId": "Egg",
@@ -1051,6 +1201,7 @@ const monsters = [
   },
   {
     "MonsterName": "Treant Forest Autumn",
+    "IsBoss": false,
     "Level": 15,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -1058,6 +1209,7 @@ const monsters = [
   },
   {
     "MonsterName": "Treant Forest Evergreen",
+    "IsBoss": false,
     "Level": 14,
     "Element": "Earth",
     "ArchetypeId": "Hybrid",
@@ -1065,6 +1217,7 @@ const monsters = [
   },
   {
     "MonsterName": "Treant Minion Autumn",
+    "IsBoss": false,
     "Level": 11,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
@@ -1072,6 +1225,7 @@ const monsters = [
   },
   {
     "MonsterName": "Treant Minion Evergreen",
+    "IsBoss": false,
     "Level": 10,
     "Element": "Earth",
     "ArchetypeId": "Hybrid",
@@ -1079,6 +1233,7 @@ const monsters = [
   },
   {
     "MonsterName": "Treant Tree Autumn",
+    "IsBoss": false,
     "Level": 13,
     "Element": "Fire",
     "ArchetypeId": "Brute",
@@ -1086,6 +1241,7 @@ const monsters = [
   },
   {
     "MonsterName": "Treant Tree Evergreen",
+    "IsBoss": false,
     "Level": 12,
     "Element": "Earth",
     "ArchetypeId": "Brute",
@@ -1093,6 +1249,7 @@ const monsters = [
   },
   {
     "MonsterName": "Vampire Bat",
+    "IsBoss": false,
     "Level": 44,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
@@ -1100,6 +1257,7 @@ const monsters = [
   },
   {
     "MonsterName": "Werewolf",
+    "IsBoss": true,
     "Level": 30,
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
@@ -1107,6 +1265,7 @@ const monsters = [
   },
   {
     "MonsterName": "Whirlwind",
+    "IsBoss": false,
     "Level": 19,
     "Element": "Wind",
     "ArchetypeId": "Caster",
@@ -1114,6 +1273,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wind",
+    "IsBoss": false,
     "Level": 20,
     "Element": "Wind",
     "ArchetypeId": "Caster",
@@ -1121,6 +1281,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wind Mage",
+    "IsBoss": false,
     "Level": 25,
     "Element": "Wind",
     "ArchetypeId": "Caster",
@@ -1128,6 +1289,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wisp Blue",
+    "IsBoss": false,
     "Level": 9,
     "Element": "Water",
     "ArchetypeId": "Caster",
@@ -1135,6 +1297,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wisp Purple",
+    "IsBoss": false,
     "Level": 21,
     "Element": "Wind",
     "ArchetypeId": "Caster",
@@ -1142,6 +1305,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wisp Red",
+    "IsBoss": false,
     "Level": 9,
     "Element": "Fire",
     "ArchetypeId": "Caster",
@@ -1149,6 +1313,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wisp Yellow",
+    "IsBoss": false,
     "Level": 1,
     "Element": "Earth",
     "ArchetypeId": "Caster",
@@ -1156,6 +1321,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wolf",
+    "IsBoss": false,
     "Level": 25,
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
@@ -1163,6 +1329,7 @@ const monsters = [
   },
   {
     "MonsterName": "Wolf Pup",
+    "IsBoss": false,
     "Level": 23,
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
@@ -1170,6 +1337,7 @@ const monsters = [
   },
   {
     "MonsterName": "Worm",
+    "IsBoss": false,
     "Level": 38,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -1177,6 +1345,7 @@ const monsters = [
   },
   {
     "MonsterName": "Worm Creep",
+    "IsBoss": true,
     "Level": 95,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
@@ -1184,6 +1353,7 @@ const monsters = [
   },
   {
     "MonsterName": "Worm Rot",
+    "IsBoss": false,
     "Level": 89,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -1191,6 +1361,7 @@ const monsters = [
   },
   {
     "MonsterName": "Worm Stink",
+    "IsBoss": false,
     "Level": 87,
     "Element": "Poison",
     "ArchetypeId": "Undead",
@@ -1198,6 +1369,7 @@ const monsters = [
   },
   {
     "MonsterName": "Zombie Goblin Giant",
+    "IsBoss": false,
     "Level": 55,
     "Element": "Undead",
     "ArchetypeId": "Undead",
@@ -1205,6 +1377,7 @@ const monsters = [
   },
   {
     "MonsterName": "Zombie Goblin King",
+    "IsBoss": true,
     "Level": 60,
     "Element": "Undead",
     "ArchetypeId": "Undead",
@@ -1212,6 +1385,7 @@ const monsters = [
   },
   {
     "MonsterName": "Zombie Goblin Minion",
+    "IsBoss": false,
     "Level": 49,
     "Element": "Undead",
     "ArchetypeId": "Undead",
@@ -1219,6 +1393,7 @@ const monsters = [
   },
   {
     "MonsterName": "Zombie Goblin Soldier",
+    "IsBoss": false,
     "Level": 52,
     "Element": "Undead",
     "ArchetypeId": "Undead",
