@@ -378,22 +378,16 @@
                 function showSectionBasedOnHash() {
                     let targetId = window.location.hash.substring(1);
                     if (!targetId || !document.getElementById(targetId)) {
-                        targetId = 'equipment'; // Default to equipment
+                        targetId = 'equipment';
+                         // Update hash to reflect default view
+                        if (window.location.pathname.endsWith('database.html') && !window.location.hash) {
+                           history.replaceState(null, '', '#equipment');
+                        }
                     }
 
                     // Toggle content visibility
                     contentSections.forEach(section => {
                         section.classList.toggle('hidden', section.id !== targetId);
-                    });
-
-                    // Update active link in the sidebar
-                    const sidebarLinks = document.querySelectorAll('#sidebar .sidebar-link');
-                    sidebarLinks.forEach(link => {
-                        const linkHref = link.getAttribute('href');
-                        if (linkHref && linkHref.includes('database.html')) {
-                            const linkHash = linkHref.split('#')[1];
-                            link.classList.toggle('active-link', linkHash === targetId);
-                        }
                     });
                 }
 
