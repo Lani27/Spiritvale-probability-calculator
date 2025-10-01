@@ -154,16 +154,16 @@
                 "Ranged Weapon": {
                     pools: {
                         line1: [
-                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
-                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
-                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                            { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                            { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                            { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
                         ],
                         line23: [
-                            { name: 'Atk%', group: 'percentAttack', values: 3 }, { name: 'Matk%', group: 'percentAttack', values: 3 },
-                            { name: 'Damage Ranged', group: 'damageType', values: 4 }, { name: 'Damage Magic', group: 'damageType', values: 4 },
-                            { name: 'Crit', group: 'critChance', values: 4 },
-                            { name: 'Crit Damage', group: 'critDamage', values: 4 },
-                            { name: 'Leech', group: 'leech', values: 4 },
+                            { name: 'Atk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' }, { name: 'Matk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' },
+                            { name: 'Damage Ranged', group: 'damageType', min: 7, max: 10, suffix: '%' }, { name: 'Damage Magic', group: 'damageType', min: 7, max: 10, suffix: '%' },
+                            { name: 'Crit', group: 'critChance', min: 7, max: 10, suffix: '' },
+                            { name: 'Crit Damage', group: 'critDamage', min: 7, max: 10, suffix: '%' },
+                            { name: 'Leech', group: 'leech', min: 7, max: 10, suffix: '%' },
                         ]
                     },
                     selection: ['line1', 'line23', 'line23']
@@ -179,16 +179,16 @@
                 "Melee Weapon": {
                     pools: {
                         line1: [
-                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
-                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
-                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                            { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                            { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                            { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
                         ],
                         line23: [
-                            { name: 'Atk%', group: 'percentAttack', values: 3 }, { name: 'Matk%', group: 'percentAttack', values: 3 },
-                            { name: 'Damage Melee', group: 'damageType', values: 4 }, { name: 'Damage Magic', group: 'damageType', values: 4 },
-                            { name: 'Crit', group: 'critChance', values: 4 },
-                            { name: 'Crit Damage', group: 'critDamage', values: 4 },
-                            { name: 'Leech', group: 'leech', values: 4 },
+                            { name: 'Atk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' }, { name: 'Matk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' },
+                            { name: 'Damage Melee', group: 'damageType', min: 7, max: 10, suffix: '%' }, { name: 'Damage Magic', group: 'damageType', min: 7, max: 10, suffix: '%' },
+                            { name: 'Crit', group: 'critChance', min: 7, max: 10, suffix: '' },
+                            { name: 'Crit Damage', group: 'critDamage', min: 7, max: 10, suffix: '%' },
+                            { name: 'Leech', group: 'leech', min: 7, max: 10, suffix: '%' },
                         ]
                     },
                     selection: ['line1', 'line23', 'line23']
@@ -196,15 +196,15 @@
                 "Chest": {
                     pools: {
                         line1: [
-                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
-                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
-                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                            { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                            { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                            { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
                         ],
                         line23: [
-                            { name: 'Hp%', group: 'resourcePercent', values: 4 }, { name: 'Mp%', group: 'resourcePercent', values: 4 }, // 7-10
-                            { name: 'Def', group: 'defense', values: 3 }, { name: 'Mdef', group: 'defense', values: 3 }, // 3-5
-                            { name: '-Physical Damage', group: 'damageReduction', values: 3 }, { name: '-Magical Damage', group: 'damageReduction', values: 3 }, // 3-5
-                            { name: 'Healing Received', group: 'healing', values: 4 } // 7-10
+                            { name: 'Hp%', group: 'resourcePercent', min: 7, max: 10, suffix: '%' }, { name: 'Mp%', group: 'resourcePercent', min: 7, max: 10, suffix: '%' },
+                            { name: 'Def', group: 'defense', min: 3, max: 5, suffix: '' }, { name: 'Mdef', group: 'defense', min: 3, max: 5, suffix: '' },
+                            { name: '-Physical Damage', group: 'damageReduction', min: 3, max: 5, suffix: '' }, { name: '-Magical Damage', group: 'damageReduction', min: 3, max: 5, suffix: '' },
+                            { name: 'Healing Received', group: 'healing', min: 7, max: 10, suffix: '%' }
                         ]
                     },
                     selection: ['line1', 'line23', 'line23']
@@ -212,14 +212,14 @@
                 "Feet": {
                      pools: {
                         line1: [
-                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
-                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
-                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                            { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                            { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                            { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
                         ],
                         line23: [
-                            { name: 'Atk Speed', group: 'atkSpeed', values: 4 }, // 7-10
-                            { name: 'Cast speed', group: 'castSpeed', values: 5 }, // 11-15
-                            { name: 'Movement speed', group: 'moveSpeed', values: 4 } // 7-10
+                            { name: 'Atk Speed', group: 'atkSpeed', min: 7, max: 10, suffix: '%' },
+                            { name: 'Cast speed', group: 'castSpeed', min: 11, max: 15, suffix: '%' },
+                            { name: 'Movement speed', group: 'moveSpeed', min: 7, max: 10, suffix: '%' }
                         ]
                     },
                     selection: ['line1', 'line23', 'line23']
@@ -227,15 +227,15 @@
                 "Legs": {
                     pools: {
                          line1: [
-                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
-                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
-                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                            { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                            { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                            { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
                         ],
                         line23: [
-                            { name: 'Hp Regen', group: 'regen', values: 9 }, { name: 'Mp regen', group: 'regen', values: 9 }, // 17-25
-                            { name: 'Flee', group: 'flee', values: 5 }, // 11-15
-                            { name: '-MpCost', group: 'mpCost', values: 4 }, // 7-10
-                            { name: 'Leech', group: 'leech', values: 4 } // 7-10
+                            { name: 'Hp Regen', group: 'regen', min: 17, max: 25, suffix: '%' }, { name: 'Mp regen', group: 'regen', min: 17, max: 25, suffix: '%' },
+                            { name: 'Flee', group: 'flee', min: 11, max: 15, suffix: '' },
+                            { name: '-MpCost', group: 'mpCost', min: 7, max: 10, suffix: '%' },
+                            { name: 'Leech', group: 'leech', min: 7, max: 10, suffix: '%' }
                         ]
                     },
                     selection: ['line1', 'line23', 'line23']
@@ -243,13 +243,13 @@
                 "Accessory": {
                     pools: {
                          line1: [
-                            { name: 'Agility', values: 2 }, { name: 'Dexterity', values: 2 },
-                            { name: 'Vitality', values: 2 }, { name: 'Intelligence', values: 2 },
-                            { name: 'Strength', values: 2 }, { name: 'Luck', values: 2 },
+                            { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                            { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                            { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
                         ],
                         line23: [
-                            { name: 'Hp%', group: 'resourcePercent', values: 2 }, { name: 'Mp%', group: 'resourcePercent', values: 2 }, // 1-2
-                            { name: 'Atk%', group: 'percentAttack', values: 2 }, { name: 'Matk%', group: 'percentAttack', values: 2 }, // 1-2
+                            { name: 'Hp%', group: 'resourcePercent', min: 1, max: 2, suffix: '%' }, { name: 'Mp%', group: 'resourcePercent', min: 1, max: 2, suffix: '%' },
+                            { name: 'Atk%', group: 'percentAttack', min: 1, max: 2, suffix: '%' }, { name: 'Matk%', group: 'percentAttack', min: 1, max: 2, suffix: '%' },
                         ]
                     },
                     selection: ['line1', 'line23', 'line23']
@@ -579,9 +579,23 @@
                 return arr[Math.floor(Math.random() * arr.length)];
             }
 
+            function getRandomInt(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function rollAndFormatStat(stat) {
+                if (stat.min === undefined || stat.max === undefined) {
+                    return stat.name; // Fallback for misconfigured stats
+                }
+                const value = getRandomInt(stat.min, stat.max);
+                const sign = value >= 0 ? '+' : '';
+                return `${stat.name} ${sign}${value}${stat.suffix || ''}`;
+            }
+
             function rollStatsForItem(item) {
                 // Get the rolling configuration for the item's type.
-                // `statRollData` is the configuration object defined in this script.
                 let itemConfigKey = item.Type;
                 let itemConfig = statRollData[itemConfigKey];
 
@@ -602,7 +616,7 @@
                 const line1Pool = itemConfig.pools.line1;
                 if (!line1Pool || line1Pool.length === 0) return ["Error: line1 pool is empty."];
                 const stat1 = getRandomElement(line1Pool);
-                rolledStats.push(stat1.name);
+                rolledStats.push(rollAndFormatStat(stat1));
                 if (stat1.group) usedGroups.add(stat1.group);
 
                 // Roll Stat 2 & 3 from line23 pool
@@ -613,14 +627,14 @@
                 let availablePool2 = line23Pool.filter(s => !usedGroups.has(s.group));
                 if (availablePool2.length === 0) return ["Error: Not enough stat groups for the second roll."];
                 const stat2 = getRandomElement(availablePool2);
-                rolledStats.push(stat2.name);
+                rolledStats.push(rollAndFormatStat(stat2));
                 if (stat2.group) usedGroups.add(stat2.group);
 
                 // Filter for stat 3, excluding the group from stat 2
                 let availablePool3 = availablePool2.filter(s => s.group !== stat2.group);
                 if (availablePool3.length === 0) return ["Error: Not enough stat groups for the third roll."];
                 const stat3 = getRandomElement(availablePool3);
-                rolledStats.push(stat3.name);
+                rolledStats.push(rollAndFormatStat(stat3));
 
                 return rolledStats;
             }
