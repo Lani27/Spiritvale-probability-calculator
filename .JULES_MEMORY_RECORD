@@ -1,0 +1,1 @@
+In the stat calculator, some equipment types (e.g., 'Axe') are aliases for more general types (e.g., 'Melee Weapon'). The `statRollData` object contains these aliases, and the stat rolling logic must resolve them to find the correct stat pools.
