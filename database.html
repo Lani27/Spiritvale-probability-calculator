@@ -615,13 +615,15 @@
                 const tooltip = document.getElementById('tooltip');
 
                 // --- HASH-BASED NAVIGATION ---
+                let pendingSearch = null; // Variable to hold search info during navigation
+
                 function showSectionBasedOnHash() {
                     let targetId = window.location.hash.substring(1);
                     if (!targetId || !document.getElementById(targetId)) {
                         targetId = 'equipment';
-                         // Update hash to reflect default view
+                        // Update hash to reflect default view
                         if (window.location.pathname.endsWith('database.html') && !window.location.hash) {
-                           history.replaceState(null, '', '#equipment');
+                            history.replaceState(null, '', '#equipment');
                         }
                     }
 
@@ -629,6 +631,17 @@
                     contentSections.forEach(section => {
                         section.classList.toggle('hidden', section.id !== targetId);
                     });
+
+                    // If there's a pending search after a navigation, execute it now.
+                    if (pendingSearch && document.getElementById(pendingSearch.searchId)) {
+                        const searchInput = document.getElementById(pendingSearch.searchId);
+                        if (searchInput) {
+                            searchInput.value = pendingSearch.value;
+                            searchInput.dispatchEvent(new Event('input', { bubbles: true }));
+                            searchInput.dispatchEvent(new Event('keyup', { bubbles: true }));
+                        }
+                        pendingSearch = null; // Reset after use
+                    }
                 }
 
                 showSectionBasedOnHash();
@@ -711,6 +724,37 @@
                     }
                 });
 
+                // Click handler for loot items in the monster modal
+                document.body.addEventListener('click', e => {
+                    const lootItem = e.target.closest('.loot-item');
+                    if (lootItem) {
+                        const itemName = lootItem.dataset.itemName;
+                        const itemType = lootItem.dataset.itemType;
+
+                        if (itemName && itemType) {
+                            const sectionMap = {
+                                'Equipment': { hash: 'equipment', searchId: 'equipment-search' },
+                                'Card': { hash: 'cards', searchId: 'cards-search' },
+                                'Artifact': { hash: 'artifacts', searchId: 'artifacts-search' }
+                            };
+
+                            const section = sectionMap[itemType];
+                            if (section) {
+                                closeMonsterModal();
+
+                                // Set up the pending search object
+                                pendingSearch = {
+                                    searchId: section.searchId,
+                                    value: itemName
+                                };
+
+                                // Change the hash. The 'hashchange' event listener will now handle showing the
+                                // section and then executing the pending search.
+                                window.location.hash = section.hash;
+                            }
+                        }
+                    }
+                });
 
                 // Global Tooltip Logic
                 document.body.addEventListener('mouseover', (e) => {
