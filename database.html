@@ -175,15 +175,15 @@
                     if (sources.length === 1 && sources[0] !== '') {
                          sourcesHtml += `<p>Source: <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${sources[0]}" data-droprate="${droprates[0] || ''}" data-location="${locations[0] || ''}">${sources[0]}</span></p>`;
                     } else {
-                        sourcesHtml += '<p class="text-xs text-gray-500 uppercase font-semibold mb-1">Sources</p><ul class="list-disc list-inside text-sm space-y-1">';
+                        sourcesHtml += '<p class="text-xs text-gray-500 uppercase font-semibold mb-1">Sources</p><div class="grid grid-cols-2 gap-x-4 text-sm">';
                         sources.forEach((source, index) => {
                             if (source === '') return;
                             const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
-                            sourcesHtml += `<li>
+                            sourcesHtml += `<div>
                                 <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}" data-droprate="${droprates[index] || ''}" data-location="${locations[index] || ''}">${source}</span>
-                            </li>`;
+                            </div>`;
                         });
-                        sourcesHtml += '</ul>';
+                        sourcesHtml += '</div>';
                     }
                     sourcesHtml += '</div>';
                     return sourcesHtml;
