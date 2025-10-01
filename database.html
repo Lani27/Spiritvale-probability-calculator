@@ -240,7 +240,7 @@
                             ${itemsToRender.map(card => `
                                 <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10">
                                      <div class="flex items-start mb-3">
-                                        <img src="Sprites/Cards/${card.Slot}.png" alt="${card.Slot} Card" class="w-10 h-10 rounded-md bg-gray-700 mr-3 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/40x40/1f2937/a855f7?text=C';">
+                                        <img src="Sprites/Cards/${card.Slot}.png" alt="${card.Slot} Card" class="w-12 h-12 rounded-md mr-2 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/40x40/1f2937/a855f7?text=C'; this.classList.add('bg-gray-700');">
                                         <div class="flex-1">
                                             <p class="text-xs font-bold uppercase text-purple-400">${card.Affix}</p>
                                             <h3 class="font-bold text-lg text-white leading-tight">${card.Name}</h3>
