@@ -46,7 +46,8 @@
             transition: width 0.3s ease-in-out;
         }
         .search-wrapper:hover .search-input,
-        .search-input:focus {
+        .search-input:focus,
+        .search-input.expanded {
             width: 256px; /* w-64 */
         }
         /* Custom select styling */
@@ -468,6 +469,25 @@
                         return searchIn.includes(searchTerm);
                     });
                     renderMonstersList(filteredData);
+                });
+
+                // Logic to keep search bar expanded if it has content
+                const searchInputs = document.querySelectorAll('.search-input');
+                searchInputs.forEach(input => {
+                    // Function to toggle the 'expanded' class
+                    const checkSearchContent = () => {
+                        if (input.value) {
+                            input.classList.add('expanded');
+                        } else {
+                            input.classList.remove('expanded');
+                        }
+                    };
+
+                    // Check on input event
+                    input.addEventListener('input', checkSearchContent);
+
+                    // Also check on page load in case of autofill
+                    checkSearchContent();
                 });
 
 
