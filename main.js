@@ -603,7 +603,7 @@ function createSkillCard(index) {
             <div class="input-group"><label>Skill Level</label><input id="skill-${index}-level" type="number" value="10" class="recalculate-skill"></div>
             <div class="input-group"><label>Base Damage %</label><input id="skill-${index}-base-dmg" type="number" value="200" class="recalculate-skill"></div>
             <div class="input-group"><label>Dmg % / Level</label><input id="skill-${index}-dmg-per-level" type="number" value="50" class="recalculate-skill"></div>
-            <div class="input-group"><label>Cast Time (s)</label><input id="skill-${index}-cast-time" type="number" value="1.5" class="recalculate-skill"></div>
+            <div class="input-group"><label>Cast Time (s)</label><input id="skill-${index}-cast-time" type="number" value="1.5" min="0.1" max="100.0" step="any" class="recalculate-skill"></div>
             <div class="input-group"><label>Cooldown (s)</label><input id="skill-${index}-cooldown" type="number" value="5" class="recalculate-skill"></div>
         </div>
         <div class="mt-4 border-t border-gray-600 pt-4 space-y-4">
