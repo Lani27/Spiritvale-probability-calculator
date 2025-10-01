@@ -19,10 +19,56 @@
             background-position: right 0.75rem center;
             background-size: 1em;
         }
+
+        #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999; /* Increased z-index */
+        }
+
+        .drop-animation {
+            position: absolute;
+            width: 48px; /* Adjust size as needed */
+            height: 48px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            will-change: transform, opacity;
+        }
+
+        @keyframes item-drop {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.8);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(1.2) rotate(360deg);
+            }
+        }
+
+        @keyframes item-pickup {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-100px) scale(1.5) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(200px) scale(0.5) rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-300">
 
+    <div id="animation-container"></div>
     <div id="sidebar"></div>
 
     <!-- Main Content -->
@@ -502,13 +548,65 @@
             const killCounterSpan = document.getElementById('killCounter');
             const luckItemInfo = document.getElementById('luck-item-info');
             const luckResults = document.getElementById('luck-results');
+            const animationContainer = document.getElementById('animation-container');
 
             let killCount = 0;
             let selectedLuckItem = null;
-            let selectedDropRate = 0;
+            let selectedMonsterName = null;
+            let monsterLootTable = [];
+
+            const allMonsterLoot = {}; // Cache for all monster loot tables
+
+            function buildAllMonsterLootTables() {
+                equipmentData.forEach(item => {
+                    if (!item.Source || !item.Droprate) return;
+
+                    const sources = item.Source.split('\n');
+                    const droprates = item.Droprate.split('\n');
+
+                    sources.forEach((monsterName, index) => {
+                        const trimmedName = monsterName.trim();
+                        if (!trimmedName) return;
+
+                        if (!allMonsterLoot[trimmedName]) {
+                            allMonsterLoot[trimmedName] = [];
+                        }
+
+                        const droprate = parseFloat(droprates[index]);
+                        if (!isNaN(droprate)) {
+                            allMonsterLoot[trimmedName].push({
+                                name: item.Name,
+                                droprate: droprate / 100, // Store as decimal
+                                spriteId: item.SpriteId,
+                            });
+                        }
+                    });
+                });
+            }
+
+            function triggerDropAnimation(item, startElement, isWishedItem) {
+                const rect = startElement.getBoundingClientRect();
+                const startX = rect.left + rect.width / 2;
+                const startY = rect.top + rect.height / 2;
+
+                const sprite = document.createElement('div');
+                sprite.className = 'drop-animation';
+                sprite.style.left = `${startX}px`;
+                sprite.style.top = `${startY}px`;
+                sprite.style.backgroundImage = `url('Sprites/Equipment/${item.spriteId}.png')`;
+
+                const animationName = isWishedItem ? 'item-pickup' : 'item-drop';
+                sprite.style.animation = `${animationName} 1s ease-out forwards`;
+
+                animationContainer.appendChild(sprite);
+
+                setTimeout(() => {
+                    sprite.remove();
+                }, 1000);
+            }
 
             function initLuckFeature() {
-                // Populate the datalist with equipment that can be rolled
+                buildAllMonsterLootTables();
                 const rollableTypes = Object.keys(statRollData);
                 const validEquipment = equipmentData.filter(item => {
                     const baseType = item.Type;
@@ -540,7 +638,8 @@
                 luckMonsterList.classList.add('hidden');
                 luckControls.classList.add('hidden');
                 rollBtn.disabled = true;
-                selectedDropRate = 0;
+                selectedMonsterName = null;
+                monsterLootTable = [];
 
                 if (selectedLuckItem && selectedLuckItem.Source && selectedLuckItem.Droprate) {
                     const sources = selectedLuckItem.Source.split('\n');
@@ -550,14 +649,15 @@
                         let monsterHtml = '<p class="block text-sm font-medium text-gray-400 mb-2">Choose a Monster to Hunt:</p><div class="grid grid-cols-2 md:grid-cols-3 gap-2">';
 
                         sources.forEach((source, index) => {
-                            if (source.trim() === '') return;
+                            const trimmedSource = source.trim();
+                            if (trimmedSource === '') return;
                             const droprate = parseFloat(droprates[index]);
                             if (isNaN(droprate)) return;
 
                             monsterHtml += `
                                 <label class="flex items-center bg-gray-700 p-3 rounded-md cursor-pointer hover:bg-gray-600">
-                                    <input type="radio" name="monster" value="${droprate}" class="h-4 w-4 text-purple-600 bg-gray-600 border-gray-500 focus:ring-purple-500">
-                                    <span class="ml-3 text-sm text-white">${source} (${droprate}%)</span>
+                                    <input type="radio" name="monster" value="${trimmedSource}" class="h-4 w-4 text-purple-600 bg-gray-600 border-gray-500 focus:ring-purple-500">
+                                    <span class="ml-3 text-sm text-white">${trimmedSource} (${droprate}%)</span>
                                 </label>
                             `;
                         });
@@ -571,7 +671,9 @@
 
             function handleMonsterSelect(event) {
                 if (event.target.name === 'monster') {
-                    selectedDropRate = parseFloat(event.target.value) / 100;
+                    selectedMonsterName = event.target.value;
+                    monsterLootTable = allMonsterLoot[selectedMonsterName] || [];
+
                     luckControls.classList.remove('hidden');
                     rollBtn.disabled = false;
                     luckResults.innerHTML = '';
@@ -581,14 +683,25 @@
             }
 
             function handleRoll() {
-                if (!selectedLuckItem || selectedDropRate <= 0) return;
+                if (!selectedLuckItem || !selectedMonsterName) return;
 
                 killCount++;
                 killCounterSpan.textContent = killCount;
 
-                const didDrop = Math.random() < selectedDropRate;
+                let wishedItemDropped = false;
+                luckResults.innerHTML = ''; // Clear previous results on each roll
 
-                if (didDrop) {
+                monsterLootTable.forEach(item => {
+                    if (Math.random() < item.droprate) {
+                        const isWished = item.name === selectedLuckItem.Name;
+                        if (isWished) {
+                            wishedItemDropped = true;
+                        }
+                        triggerDropAnimation(item, rollBtn, isWished);
+                    }
+                });
+
+                if (wishedItemDropped) {
                     const rolledStats = rollStatsForItem(selectedLuckItem);
                     luckResults.innerHTML = `
                         <div class="bg-green-900/50 border border-green-700 text-green-300 px-4 py-4 rounded-lg">
