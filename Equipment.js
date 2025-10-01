@@ -11,7 +11,7 @@ const equipmentData = [
         "Source": "Queen Worm\nWorm",
         "Droprate": "30.0%\n1.0%",
         "Location": "Swamp\nSwamp",
-        "SpriteId": "V1_Wield_Gear_Right_20"
+        "SpriteId": "Wield_Gear_Right_20"
     },
     {
         "Name": "Adventurer's Kit",
@@ -25,7 +25,7 @@ const equipmentData = [
         "Source": "Bee\nBurrow\nButterfly Hue\nSting\nWisp Blue",
         "Droprate": "3.0%\n3.0%\n3.0%\n15.0%\n3.0%",
         "Location": "Forest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth",
-        "SpriteId": "V1_Back_13"
+        "SpriteId": "Back_13"
     },
     {
         "Name": "Amber Bow",
@@ -179,7 +179,7 @@ const equipmentData = [
         "Source": "Hermit King\nPetal",
         "Droprate": "30.0%\n1.0%",
         "Location": "Mystic Lake\nMystic Lake",
-        "SpriteId": "V1_Wield_Gear_Right_11"
+        "SpriteId": "Wield_Gear_Right_11"
     },
     {
         "Name": "Azure Prism",
@@ -193,7 +193,7 @@ const equipmentData = [
         "Source": "Elder Wisp Blue\nGolem Ice\nIce Mage\nIcicle\nSnow Bomb",
         "Droprate": "1.0%\n1.0%\n5.0%\n1.0%\n1.0%",
         "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave",
-        "SpriteId": "V1_Earring_6"
+        "SpriteId": "Earring_6"
     },
     {
         "Name": "Azure Tag",
@@ -333,7 +333,7 @@ const equipmentData = [
         "Source": "Dragonfly Swift\nEarthworm\nHousefly Icky\nMosquito Pester\nQueen Worm",
         "Droprate": "6.0%\n6.0%\n6.0%\n6.0%\n30.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp\nSwamp",
-        "SpriteId": "V2_Chest_1"
+        "SpriteId": "Chest_1"
     },
     {
         "Name": "Breezeguard Legs",
@@ -347,7 +347,7 @@ const equipmentData = [
         "Source": "Dragonfly Arrow\nHousefly Nom\nMosquito Stinger\nWorm",
         "Droprate": "6.0%\n6.0%\n6.0%\n6.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp",
-        "SpriteId": "V2_Leg_1"
+        "SpriteId": "Leg_1"
     },
     {
         "Name": "Breezeguard Shoes",
@@ -361,7 +361,7 @@ const equipmentData = [
         "Source": "Dragonfly Darner\nHousefly Junk\nMosquito Bug\nQueen Worm",
         "Droprate": "6.0%\n6.0%\n6.0%\n30.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp",
-        "SpriteId": "V2_Foot_1"
+        "SpriteId": "Foot_1"
     },
     {
         "Name": "Brimblade",
@@ -403,7 +403,7 @@ const equipmentData = [
         "Source": "Cyclops Bat\nDirewolf\nEyeball Creep Green\nSkeleton Mage",
         "Droprate": "1.0%\n1.0%\n1.0%\n1.0%",
         "Location": "Abyss Castle Keep\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Keep",
-        "SpriteId": "V1_Earring_8"
+        "SpriteId": "Earring_8"
     },
     {
         "Name": "Bronze Plugs",
@@ -417,7 +417,7 @@ const equipmentData = [
         "Source": "Goblin Giant Gold\nGoblin Giant Mage\nGoblin Trooper Mage",
         "Droprate": "10.0%\n2.0%\n2.0%",
         "Location": "Goblin Village\nGoblin Village\nGoblin Village",
-        "SpriteId": "V1_Earring_4"
+        "SpriteId": "Earring_4"
     },
     {
         "Name": "Bubblebeast Hood",
@@ -501,7 +501,7 @@ const equipmentData = [
         "Source": "Angel Mage\nDragon Nightfall",
         "Droprate": "30.0%\n1.0%",
         "Location": "Sanctum of Light\nSanctum of Light",
-        "SpriteId": "V1_Wield_Gear_Right_7"
+        "SpriteId": "Wield_Gear_Right_7"
     },
     {
         "Name": "Chicky Hood",
@@ -669,7 +669,7 @@ const equipmentData = [
         "Source": "Cacti\nCactus\nCactus Boss\nGolem Earth",
         "Droprate": "3.0%\n3.0%\n15.0%\n3.0%",
         "Location": "Windy Desert\nWindy Desert\nWindy Desert\nWindy Desert",
-        "SpriteId": "V1_Back_1"
+        "SpriteId": "Back_1"
     },
     {
         "Name": "Crystal Cache",
@@ -683,7 +683,7 @@ const equipmentData = [
         "Source": "Cyclops\nCyclops Giant\nCyclops Minion\nIce\nIce Mage",
         "Droprate": "1.0%\n1.0%\n1.0%\n1.0%\n5.0%",
         "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave",
-        "SpriteId": "V1_Back_5"
+        "SpriteId": "Back_5"
     },
     {
         "Name": "Crystal Slammer",
@@ -697,7 +697,7 @@ const equipmentData = [
         "Source": "Elder Wisp Blue\nGolem Ice\nIce Mage\nIcicle\nSnow Bomb",
         "Droprate": "2.0%\n2.0%\n10.0%\n2.0%\n2.0%",
         "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave",
-        "SpriteId": "V1_Wield_Gear_Right_2"
+        "SpriteId": "Wield_Gear_Right_2"
     },
     {
         "Name": "Curse Tag",
@@ -753,7 +753,7 @@ const equipmentData = [
         "Source": "Direwolf\nSkeleton Mage",
         "Droprate": "1.0%\n1.0%",
         "Location": "Abyss Castle Crypt\nAbyss Castle Keep",
-        "SpriteId": "V1_Wield_Gear_Right_18"
+        "SpriteId": "Wield_Gear_Right_18"
     },
     {
         "Name": "Digger's Flask",
@@ -767,7 +767,7 @@ const equipmentData = [
         "Source": "Bat\nBat Lord\nHorror\nLurker\nSnake Naga\nVampire Bat",
         "Droprate": "2.0%\n10.0%\n2.0%\n2.0%\n10.0%\n2.0%",
         "Location": "Forgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths",
-        "SpriteId": "V1_Back_14"
+        "SpriteId": "Back_14"
     },
     {
         "Name": "Direwolf Chest",
@@ -837,7 +837,7 @@ const equipmentData = [
         "Source": "Dragonfly Arrow\nDragonfly Darner\nDragonfly Swift\nQueen Worm",
         "Droprate": "3.0%\n3.0%\n3.0%\n15.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp",
-        "SpriteId": "V1_Wield_Gear_Right_16"
+        "SpriteId": "Wield_Gear_Right_16"
     },
     {
         "Name": "Doom Keg",
@@ -851,7 +851,7 @@ const equipmentData = [
         "Source": "Goblin Giant\nGoblin Giant Gold\nGoblin Minion\nGoblin Trooper",
         "Droprate": "2.0%\n10.0%\n2.0%\n2.0%",
         "Location": "Goblin Village\nGoblin Village\nGoblin Village\nGoblin Village",
-        "SpriteId": "V1_Back_3"
+        "SpriteId": "Back_3"
     },
     {
         "Name": "Drooping Bat",
@@ -907,7 +907,7 @@ const equipmentData = [
         "Source": "Dragonfly Arrow\nHousefly Nom\nMosquito Stinger\nQueen Worm\nWorm",
         "Droprate": "2.0%\n2.0%\n2.0%\n10.0%\n2.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp\nSwamp",
-        "SpriteId": "V1_Back_18"
+        "SpriteId": "Back_18"
     },
     {
         "Name": "Duskfang",
@@ -977,7 +977,7 @@ const equipmentData = [
         "Source": "Earthworm\nQueen Worm\nWorm",
         "Droprate": "3.0%\n15.0%\n3.0%",
         "Location": "Swamp\nSwamp\nSwamp",
-        "SpriteId": "V1_Wield_Gear_Right_8"
+        "SpriteId": "Wield_Gear_Right_8"
     },
     {
         "Name": "Eyepatch",
@@ -1061,7 +1061,7 @@ const equipmentData = [
         "Source": "Dragon Spark\nElder Wisp Yellow\nFire\nImp Demon\nImp Devil\nShade\nShadow",
         "Droprate": "1.0%\n1.0%\n1.0%\n1.0%\n5.0%\n1.0%\n1.0%",
         "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
-        "SpriteId": "V1_Back_6"
+        "SpriteId": "Back_6"
     },
     {
         "Name": "Flame Tongue Kunai",
@@ -1131,7 +1131,7 @@ const equipmentData = [
         "Source": "Moth Celestial\nMoth Moon\nSun Blossom\nSunflora Pixie",
         "Droprate": "3.0%\n3.0%\n3.0%\n15.0%",
         "Location": "Fairy Glen\nFairy Glen\nFairy Glen\nFairy Glen",
-        "SpriteId": "V1_Back_12"
+        "SpriteId": "Back_12"
     },
     {
         "Name": "Glimmerthorn",
@@ -1215,7 +1215,7 @@ const equipmentData = [
         "Source": "Egg\nHare\nPollen\nTreant Minion Evergreen\nTreant Tree Autumn",
         "Droprate": "6.0%\n30.0%\n6.0%\n3.0%\n3.0%",
         "Location": "Sunny Meadows\nSunny Meadows\nSunny Meadows\nTreant Trail\nTreant Trail",
-        "SpriteId": "V1_Earring_3"
+        "SpriteId": "Earring_3"
     },
     {
         "Name": "Gravestone Breaker",
@@ -1285,7 +1285,7 @@ const equipmentData = [
         "Source": "Crafted",
         "Droprate": null,
         "Location": "Sanctum of Light",
-        "SpriteId": "V1_Head_19"
+        "SpriteId": "Head_19"
     },
     {
         "Name": "Hawkeye Crossbow",
@@ -1299,7 +1299,7 @@ const equipmentData = [
         "Source": "Zombie Goblin Giant\nZombie Goblin King\nZombie Goblin Minion",
         "Droprate": "3.0%\n15.0%\n3.0%",
         "Location": "Goblin Cave\nGoblin Cave\nGoblin Cave",
-        "SpriteId": "V3_Wield_Gear_Right_11"
+        "SpriteId": "Wield_Gear_Right_11"
     },
     {
         "Name": "Heartloop Earring",
@@ -1369,7 +1369,7 @@ const equipmentData = [
         "Source": "Death Mage\nEyeball Mage Red",
         "Droprate": "5.0%\n1.0%",
         "Location": "Abyss Castle Library\nAbyss Castle Library",
-        "SpriteId": "V1_Wield_Gear_Right_6"
+        "SpriteId": "Wield_Gear_Right_6"
     },
     {
         "Name": "Hornbrand",
@@ -1397,7 +1397,7 @@ const equipmentData = [
         "Source": "Cyclops Bat Mage\nDeath Mage\nEyeball Mage Green",
         "Droprate": "1.0%\n5.0%\n1.0%",
         "Location": "Abyss Castle Library\nAbyss Castle Library\nAbyss Castle Library",
-        "SpriteId": "V1_Earring_9"
+        "SpriteId": "Earring_9"
     },
     {
         "Name": "Iron Bulwark",
@@ -1411,7 +1411,7 @@ const equipmentData = [
         "Source": "Fledgling\nSeed\nSting",
         "Droprate": "6.0%\n6.0%\n30.0%",
         "Location": "Forest Labyrinth\nForest Labyrinth\nForest Labyrinth",
-        "SpriteId": "V1_Wield_Gear_Right_17"
+        "SpriteId": "Wield_Gear_Right_17"
     },
     {
         "Name": "Iron Halo",
@@ -1425,7 +1425,7 @@ const equipmentData = [
         "Source": "Angel Mage\nBomb\nSoul Mage",
         "Droprate": "5.0%\n1.0%\n1.0%",
         "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light",
-        "SpriteId": "V1_Back_9"
+        "SpriteId": "Back_9"
     },
     {
         "Name": "Iron Morningstar",
@@ -1537,7 +1537,7 @@ const equipmentData = [
         "Source": "Bat Lord\nHorror\nVampire Bat",
         "Droprate": "15.0%\n3.0%\n3.0%",
         "Location": "Forgotten Depths\nForgotten Depths\nForgotten Depths",
-        "SpriteId": "V1_Wield_Gear_Right_10"
+        "SpriteId": "Wield_Gear_Right_10"
     },
     {
         "Name": "Knuckleband",
@@ -1593,7 +1593,7 @@ const equipmentData = [
         "Source": "Eyeball Bat Green\nSkeleton\nWerewolf",
         "Droprate": "6.0%\n6.0%\n30.0%",
         "Location": "Festering Woods\nFestering Woods\nFestering Woods",
-        "SpriteId": "V2_Wield_Gear_Right_10"
+        "SpriteId": "Wield_Gear_Right_10"
     },
     {
         "Name": "Lucky Drops",
@@ -1691,7 +1691,7 @@ const equipmentData = [
         "Source": "Dragon Dusk",
         "Droprate": "2.0%",
         "Location": "Sanctum of Light",
-        "SpriteId": "V1_Wield_Gear_Right_13"
+        "SpriteId": "Wield_Gear_Right_13"
     },
     {
         "Name": "Master Spear",
@@ -1705,7 +1705,7 @@ const equipmentData = [
         "Source": "Ghost\nHaunt",
         "Droprate": "2.0%\n2.0%",
         "Location": "Sanctum of Light\nSanctum of Light",
-        "SpriteId": "V1_Wield_Gear_Right_19"
+        "SpriteId": "Wield_Gear_Right_19"
     },
     {
         "Name": "Master Sword",
@@ -1873,7 +1873,7 @@ const equipmentData = [
         "Source": "Glow Wisp Yellow\nSunflora Pixie\nSunflower Fairy",
         "Droprate": "6.0%\n30.0%\n6.0%",
         "Location": "Fairy Glen\nFairy Glen\nFairy Glen",
-        "SpriteId": "V2_Wield_Gear_Right_10"
+        "SpriteId": "Wield_Gear_Right_10"
     },
     {
         "Name": "Oathbound Helm",
@@ -1915,7 +1915,7 @@ const equipmentData = [
         "Source": "Scorpion\nScorpion King",
         "Droprate": "3.0%\n15.0%",
         "Location": "Windy Desert\nWindy Desert",
-        "SpriteId": "V1_Earring_2"
+        "SpriteId": "Earring_2"
     },
     {
         "Name": "Onyx Bolt",
@@ -2027,7 +2027,7 @@ const equipmentData = [
         "Source": "Angel Mage\nArchangel\nDragon Darkness\nGhost\nSpook",
         "Droprate": "5.0%\n1.0%\n1.0%\n1.0%\n1.0%",
         "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light",
-        "SpriteId": "V1_Earring_7"
+        "SpriteId": "Earring_7"
     },
     {
         "Name": "Potions",
@@ -2120,12 +2120,12 @@ const equipmentData = [
         "Set": null,
         "SetBonuses": null,
         "CardSlots": 3,
-        "PrimaryStats": "Atk: <color=#AAFF00FF>+15 + 1.5 per level</color>",
-        "SecondaryStats": "Atk Spd: <color=#AAFF00FF>+1% per level</color>\nDex: <color=#AAFF00FF>+1 per level</color>\nRange: <color=#AAFF00FF>+10</color>\nStrafing Volley Damage: <color=#AAFF00FF>+1% per level</color>",
-        "Source": "Glow Wisp Yellow\nSunflora Pixie\nSunflower Fairy",
-        "Droprate": "6.0%\n30.0%\n6.0%",
-        "Location": "Fairy Glen\nFairy Glen\nFairy Glen",
-        "SpriteId": "V2_Wield_Gear_Right_10"
+        "PrimaryStats": "Atk: <color=#AAFF00FF>+10 + 1 per level</color>",
+        "SecondaryStats": "Atk Spd: <color=#AAFF00FF>+3% per level</color>\nCrit: <color=#AAFF00FF>+3 per level</color>\nRange: <color=#AAFF00FF>+10</color>",
+        "Source": "Dragon Blizzard\nDragon Ice\nDragon Water\nIce Mage",
+        "Droprate": "2.0%\n2.0%\n2.0%\n10.0%",
+        "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave",
+        "SpriteId": "Wield_Gear_Right_10"
     },
     {
         "Name": "Reindeer Hood",
@@ -2153,7 +2153,7 @@ const equipmentData = [
         "Source": "Flora\nHermit King\nPosy\nToadstool",
         "Droprate": "6.0%\n30.0%\n6.0%\n6.0%",
         "Location": "Mystic Lake\nMystic Lake\nMystic Lake\nMystic Lake",
-        "SpriteId": "V1_Wield_Gear_Right_3"
+        "SpriteId": "Wield_Gear_Right_3"
     },
     {
         "Name": "Repeater Crossbow",
@@ -2167,7 +2167,7 @@ const equipmentData = [
         "Source": "Mosquito Bug\nMosquito Pester\nMosquito Stinger\nQueen Worm",
         "Droprate": "3.0%\n3.0%\n3.0%\n15.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp",
-        "SpriteId": "V3_Wield_Gear_Right_11"
+        "SpriteId": "Wield_Gear_Right_11"
     },
     {
         "Name": "Resonant Headphones",
@@ -2223,7 +2223,7 @@ const equipmentData = [
         "Source": "Skeleton Giant",
         "Droprate": "1.0%",
         "Location": "Abyss Castle Keep",
-        "SpriteId": "V1_Wield_Gear_Right_9"
+        "SpriteId": "Wield_Gear_Right_9"
     },
     {
         "Name": "Royal Dagger",
@@ -2251,7 +2251,7 @@ const equipmentData = [
         "Source": "Bud\nWorm Creep\nWorm Rot",
         "Droprate": "2.0%\n10.0%\n2.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern",
-        "SpriteId": "V1_Wield_Gear_Right_5"
+        "SpriteId": "Wield_Gear_Right_5"
     },
     {
         "Name": "Runeborn Visor",
@@ -2377,7 +2377,7 @@ const equipmentData = [
         "Source": "Scorpion\nScorpion King",
         "Droprate": "6.0%\n30.0%",
         "Location": "Windy Desert\nWindy Desert",
-        "SpriteId": "V1_Wield_Gear_Right_15"
+        "SpriteId": "Wield_Gear_Right_15"
     },
     {
         "Name": "Scroll Charm",
@@ -2405,7 +2405,7 @@ const equipmentData = [
         "Source": "Sunflora Pixie\nSunflower Fairy",
         "Droprate": "30.0%\n1.0%",
         "Location": "Fairy Glen\nFairy Glen",
-        "SpriteId": "V1_Back_11"
+        "SpriteId": "Back_11"
     },
     {
         "Name": "Shadowsteel Guard",
@@ -2461,7 +2461,7 @@ const equipmentData = [
         "Source": "Poison Bomb\nWorm Creep\nWorm Rot",
         "Droprate": "1.0%\n5.0%\n1.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern",
-        "SpriteId": "V1_Back_17"
+        "SpriteId": "Back_17"
     },
     {
         "Name": "Skull Pendant",
@@ -2475,7 +2475,7 @@ const equipmentData = [
         "Source": "Bat Lord\nSnake\nSnake Naga\nSnakelet\nSpider Toxin",
         "Droprate": "10.0%\n2.0%\n10.0%\n2.0%\n2.0%",
         "Location": "Forgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths",
-        "SpriteId": "V1_Earring_10"
+        "SpriteId": "Earring_10"
     },
     {
         "Name": "Skullhacker",
@@ -2671,7 +2671,7 @@ const equipmentData = [
         "Source": "Zombie Goblin King\nZombie Goblin Soldier",
         "Droprate": "15.0%\n3.0%",
         "Location": "Goblin Cave\nGoblin Cave",
-        "SpriteId": "V1_Wield_Gear_Right_14"
+        "SpriteId": "Wield_Gear_Right_14"
     },
     {
         "Name": "Spikesteel Helm",
@@ -2783,7 +2783,7 @@ const equipmentData = [
         "Source": "Cyclops Bat Wizard\nEyeball Creep Blue",
         "Droprate": "1.0%\n1.0%",
         "Location": "Abyss Castle Keep\nAbyss Castle Crypt",
-        "SpriteId": "V3_Wield_Gear_Right_11"
+        "SpriteId": "Wield_Gear_Right_11"
     },
     {
         "Name": "Stormcall Kunai",
@@ -2825,7 +2825,7 @@ const equipmentData = [
         "Source": "Bloom\nBlossom\nBud",
         "Droprate": "3.0%\n3.0%\n3.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern",
-        "SpriteId": "V1_Chest_13"
+        "SpriteId": "Chest_13"
     },
     {
         "Name": "Stormplate Legs",
@@ -2839,7 +2839,7 @@ const equipmentData = [
         "Source": "Poison Bomb\nWorm Creep\nWorm Rot",
         "Droprate": "3.0%\n15.0%\n3.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern",
-        "SpriteId": "V1_Leg_13"
+        "SpriteId": "Leg_13"
     },
     {
         "Name": "Stormplate Shoes",
@@ -2853,7 +2853,7 @@ const equipmentData = [
         "Source": "Elder Wisp Purple\nWorm Creep\nWorm Stink",
         "Droprate": "3.0%\n15.0%\n3.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern",
-        "SpriteId": "V1_Foot_13"
+        "SpriteId": "Foot_13"
     },
     {
         "Name": "Sun Emblem",
@@ -2867,7 +2867,7 @@ const equipmentData = [
         "Source": "Moth Celestial\nMoth Moon\nSun Blossom\nSunflora Pixie",
         "Droprate": "6.0%\n6.0%\n6.0%\n30.0%",
         "Location": "Fairy Glen\nFairy Glen\nFairy Glen\nFairy Glen",
-        "SpriteId": "V1_Wield_Gear_Right_4"
+        "SpriteId": "Wield_Gear_Right_4"
     },
     {
         "Name": "Sun Lion Crest",
@@ -2937,7 +2937,7 @@ const equipmentData = [
         "Source": "Mole Rat\nMole Rat King\nScorpion King",
         "Droprate": "6.0%\n6.0%\n30.0%",
         "Location": "Windy Desert\nWindy Desert\nWindy Desert",
-        "SpriteId": "V1_Wield_Gear_Right_1"
+        "SpriteId": "Wield_Gear_Right_1"
     },
     {
         "Name": "Sword",
@@ -3063,7 +3063,7 @@ const equipmentData = [
         "Source": "Mole Rat\nMole Rat King\nScorpion King",
         "Droprate": "3.0%\n3.0%\n15.0%",
         "Location": "Windy Desert\nWindy Desert\nWindy Desert",
-        "SpriteId": "V1_Back_8"
+        "SpriteId": "Back_8"
     },
     {
         "Name": "Tribal Mask",
@@ -3077,7 +3077,7 @@ const equipmentData = [
         "Source": "Zombie Goblin King\nZombie Goblin Soldier",
         "Droprate": "30.0%\n1.0%",
         "Location": "Goblin Cave\nGoblin Cave",
-        "SpriteId": "V1_Head_6"
+        "SpriteId": "Head_6"
     },
     {
         "Name": "Turtle Shell",
@@ -3161,7 +3161,7 @@ const equipmentData = [
         "Source": "Goblin Giant Devil\nGoblin Giant Gold\nGoblin Trooper Assassin\nGoblin Trooper Soldier",
         "Droprate": "2.0%\n10.0%\n2.0%\n2.0%",
         "Location": "Goblin Village\nGoblin Village\nGoblin Village\nGoblin Village",
-        "SpriteId": "V1_Back_10"
+        "SpriteId": "Back_10"
     },
     {
         "Name": "Warborn Aegis",
@@ -3175,7 +3175,7 @@ const equipmentData = [
         "Source": "Cyclops Bat Wizard\nDeath\nEyeball Creep Blue\nEyeball Creep Red\nEyeball Mage Blue\nEyeball Mage Red\nNightmare\nSkeleton Giant",
         "Droprate": "1.0%\n1.0%\n1.0%\n1.0%\n1.0%\n1.0%\n1.0%\n1.0%",
         "Location": "Abyss Castle Keep\nAbyss Castle Keep\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Keep",
-        "SpriteId": "V1_Back_19"
+        "SpriteId": "Back_19"
     },
     {
         "Name": "Warlord Emblem Shield",
@@ -3287,7 +3287,7 @@ const equipmentData = [
         "Source": "Worm Creep\nWorm Rot",
         "Droprate": "30.0%\n1.0%",
         "Location": "Underground Cavern\nUnderground Cavern",
-        "SpriteId": "V1_Back_15"
+        "SpriteId": "Back_15"
     },
     {
         "Name": "Wildroot Veil",
@@ -3371,7 +3371,7 @@ const equipmentData = [
         "Source": "Angel Mage\nDragon Darkness",
         "Droprate": "30.0%\n1.0%",
         "Location": "Sanctum of Light\nSanctum of Light",
-        "SpriteId": "V1_Back_2"
+        "SpriteId": "Back_2"
     },
     {
         "Name": "Witch's Whisk",
@@ -3385,7 +3385,7 @@ const equipmentData = [
         "Source": "Bat\nLurker\nSnake Naga",
         "Droprate": "3.0%\n3.0%\n15.0%",
         "Location": "Forgotten Depths\nForgotten Depths\nForgotten Depths",
-        "SpriteId": "V1_Wield_Gear_Right_12"
+        "SpriteId": "Wield_Gear_Right_12"
     },
     {
         "Name": "Witchsteps",
