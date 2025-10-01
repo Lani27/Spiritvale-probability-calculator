@@ -785,11 +785,7 @@ function calculateAll() {
     const t_flee = t_lv * 2;
     const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
 
-    const weaponSelect = document.getElementById('p_weapon_bad');
-    const selectedWeaponName = weaponSelect.options[weaponSelect.selectedIndex].text;
-    const twoHandedWeapons = ["Spear", "Scythe", "Axe", "Bow"];
-    const isTwoHanded = twoHandedWeapons.includes(selectedWeaponName);
-    const two_handed_bonus = !p_dual_wield && isTwoHanded ? 1.25 : 1;
+    const two_handed_bonus = !p_dual_wield ? 1.25 : 1;
 
     const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + p_atk + p_weapon_atk * (1 + mainStat / 200)) *
                       (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * two_handed_bonus;

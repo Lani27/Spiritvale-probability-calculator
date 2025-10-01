@@ -1,0 +1,5 @@
+127.0.0.1 - - [01/Oct/2025 07:23:22] "GET /damage_simulator.html HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2025 07:23:22] "GET /sidebar.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2025 07:23:22] "GET /classes.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2025 07:23:22] "GET /monsters.js HTTP/1.1" 200 -
+127.0.0.1 - - [01/Oct/2025 07:23:22] "GET /main.js HTTP/1.1" 200 -
