@@ -596,13 +596,13 @@
                 sprite.style.backgroundImage = `url('Sprites/Equipment/${item.spriteId}.png')`;
 
                 const animationName = isWishedItem ? 'item-pickup' : 'item-drop';
-                sprite.style.animation = `${animationName} 1s ease-out forwards`;
+                sprite.style.animation = `${animationName} 1.5s ease-out forwards`;
 
                 animationContainer.appendChild(sprite);
 
                 setTimeout(() => {
                     sprite.remove();
-                }, 1000);
+                }, 1500);
             }
 
             function initLuckFeature() {
@@ -689,10 +689,11 @@
                 killCounterSpan.textContent = killCount;
 
                 let wishedItemDropped = false;
-                luckResults.innerHTML = ''; // Clear previous results on each roll
+                let itemsDropped = [];
 
                 monsterLootTable.forEach(item => {
                     if (Math.random() < item.droprate) {
+                        itemsDropped.push(item);
                         const isWished = item.name === selectedLuckItem.Name;
                         if (isWished) {
                             wishedItemDropped = true;
@@ -711,12 +712,14 @@
                                 ${rolledStats.map(stat => `<li>${stat}</li>`).join('')}
                             </ul>
                         </div>`;
-                } else {
+                } else if (itemsDropped.length === 0) {
+                    // Only show the failure message if nothing dropped at all
                     luckResults.innerHTML = `
                         <div class="bg-red-900/50 border border-red-700 text-red-300 px-4 py-3 rounded-lg">
-                            <p>You did not get the weapon you wanted from this kill.</p>
+                            <p>You did not get any items from this kill.</p>
                         </div>`;
                 }
+                // If items dropped but not the wished one, we don't update the text, just show the animations.
             }
 
             function getRandomElement(arr) {
