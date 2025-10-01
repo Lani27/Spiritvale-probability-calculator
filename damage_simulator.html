@@ -192,6 +192,7 @@
                         <div class="input-group"><label for="p_crit_dmg_perc">Crit Damage %</label><input id="p_crit_dmg_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="0" class="recalculate"></div>
                         <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="0" class="recalculate"></div>
+                        <div class="input-group"><label for="p_flat_def">Flat Def</label><input id="p_flat_def" type="number" value="0" class="recalculate"></div>
 
                         <div class="col-span-2 border-t border-gray-700 pt-4 -mb-2">
                             <div class="checkbox-group">
@@ -327,7 +328,15 @@
                             </div>
                             <div class="input-group"><label for="t_def">DEF</label><input id="t_def" type="number" value="150" class="recalculate" disabled></div>
                             <div class="input-group"><label for="t_mdef">MDEF</label><input id="t_mdef" type="number" value="25" class="recalculate" disabled></div>
+                            <div class="input-group"><label for="t_def_perc">DEF %</label><input id="t_def_perc" type="number" value="0" class="recalculate"></div>
+                            <div class="input-group"><label for="t_mdef_perc">MDEF %</label><input id="t_mdef_perc" type="number" value="0" class="recalculate"></div>
+                            <div class="input-group"><label for="t_reflect_perc">Reflect %</label><input id="t_reflect_perc" type="number" value="0" class="recalculate"></div>
                             <div class="input-group"><label for="t_block">Block</label><input id="t_block" type="number" value="25" class="recalculate" disabled></div>
+                            <div id="custom-stats-container" class="hidden col-span-2 grid grid-cols-2 gap-4 border-t border-gray-700 pt-4">
+                                <div class="input-group"><label for="t_vit">VIT</label><input id="t_vit_custom" type="number" value="1" class="recalculate"></div>
+                                <div class="input-group"><label for="t_dex">DEX</label><input id="t_dex_custom" type="number" value="1" class="recalculate"></div>
+                                <div class="input-group"><label for="t_critdef">CRIT DEF</label><input id="t_critdef_custom" type="number" value="0" class="recalculate"></div>
+                            </div>
                             <div class="input-group"><label for="t_element">Element</label>
                                 <select id="t_element" class="recalculate">
                                     <option value="Neutral">Neutral</option>
@@ -355,6 +364,7 @@
                             <div class="result-item"><span class="result-label">Crit Rate</span><span id="r_crit_rate" class="result-value">0% (vs Target: 0%)</span></div>
                             <div class="result-item"><span class="result-label">Crit Damage</span><span id="r_crit_dmg" class="result-value">0%</span></div>
                             <div class="result-item"><span class="result-label">Block Chance</span><span id="r_block" class="result-value">0%</span></div>
+                            <div class="result-item"><span class="result-label">Reflected Damage</span><span id="r_reflect" class="result-value">0</span></div>
                         </div>
                     </div>
                 </div>

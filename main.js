@@ -24,7 +24,7 @@ const allInputIds = [
     'p_crit_dmg_perc', 'p_aspd_perc', 'p_cspd_perc',
     'p_add_elemental_bonus', 'p_dmg_bonus_element', 'p_dmg_bonus_value',
     'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
-    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged'
+    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged', 'p_flat_def'
 ];
 
 function saveBuildsMetadata() {
@@ -492,6 +492,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('dmg-vs-element-inputs').classList.toggle('hidden', !document.getElementById('p_add_dmg_vs_element_bonus').checked);
             calculateAll();
         });
+        document.getElementById('t_archetype').addEventListener('change', calculateAll);
 
         // --- Final Setup Calls ---
         // Manually trigger the change event for the class selector to set initial stats
@@ -666,20 +667,40 @@ function getElementalMultiplier(attacker, defender) {
 function updateTargetStatsFromArchetype() {
     const archetype = getSelect('t_archetype');
     const level = getFloat('t_lv');
-    const defInput = document.getElementById('t_def');
-    const mdefInput = document.getElementById('t_mdef');
-    const blockInput = document.getElementById('t_block');
+    const customStatsContainer = document.getElementById('custom-stats-container');
+    const isCustom = archetype === 'Custom' || !archetypeData[archetype];
 
-    if (archetype === 'Custom' || !archetypeData[archetype]) {
-        defInput.disabled = false;
-        mdefInput.disabled = false;
-        blockInput.disabled = false;
-        return { base_crit_def: 0, t_luk: level * 0.5 };
+    // Toggle visibility of custom stat inputs
+    customStatsContainer.classList.toggle('hidden', !isCustom);
+
+    // Enable/disable inputs based on archetype selection
+    const inputsToToggle = ['t_def', 't_mdef', 't_block', 't_def_perc', 't_mdef_perc', 't_vit_custom', 't_dex_custom', 't_critdef_custom'];
+    inputsToToggle.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.disabled = !isCustom;
+    });
+
+
+    if (isCustom) {
+        // For custom, base stats are what the user inputs.
+        const t_vit = getFloat('t_vit_custom');
+        const t_dex = getFloat('t_dex_custom');
+        const t_luk = level * 0.5; // Default LUK for custom targets
+        return {
+            base_def: getFloat('t_def'),
+            base_mdef: getFloat('t_mdef'),
+            base_block: getFloat('t_block'),
+            t_vit: t_vit,
+            t_dex: t_dex,
+            base_crit_def: (t_luk / 5) + getFloat('t_critdef_custom'),
+            t_luk: t_luk
+        };
     }
 
-    defInput.disabled = true;
-    mdefInput.disabled = true;
-    blockInput.disabled = true;
+    // For archetypes, disable main stat inputs and calculate everything
+    document.getElementById('t_def').disabled = true;
+    document.getElementById('t_mdef').disabled = true;
+    document.getElementById('t_block').disabled = true;
 
     const multipliers = archetypeData[archetype];
     const t_luk = level * multipliers.luk;
@@ -688,20 +709,22 @@ function updateTargetStatsFromArchetype() {
     const t_dex = level * multipliers.dex;
 
     const base_def = level * multipliers.vit;
-    defInput.value = Math.floor(base_def * (1 + t_vit / 1000));
-
     const base_mdef = level * multipliers.int;
-    // NOTE: Assuming MDEF scales with INT, not VIT as in user-provided formula.
-    mdefInput.value = Math.floor(base_mdef * (1 + t_int / 1000));
-
     const base_block = level * multipliers.dex / 4;
-    blockInput.value = Math.floor(base_block * (1 + t_dex / 100));
 
-    return { base_crit_def: t_luk / 5, t_luk };
+    return {
+        base_def,
+        base_mdef,
+        base_block,
+        t_vit,
+        t_dex,
+        base_crit_def: t_luk / 5,
+        t_luk
+    };
 }
 
 function calculateAll() {
-    const { base_crit_def, t_luk } = updateTargetStatsFromArchetype();
+    const targetBaseStats = updateTargetStatsFromArchetype();
     const p_stats = {
         lv: getFloat('p_lv'), str: getFloat('p_str'), agi: getFloat('p_agi'),
         vit: getFloat('p_vit'), int: getFloat('p_int'), dex: getFloat('p_dex'), luk: getFloat('p_luk')
@@ -728,6 +751,7 @@ function calculateAll() {
     const p_crit_flat = getFloat('p_crit_flat');
     const p_crit_rate_perc = getFloat('p_crit_rate_perc') / 100;
     const p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
+    const p_flat_def = getFloat('p_flat_def');
     const p_aspd_perc = getFloat('p_aspd_perc') / 100, p_cspd_perc = getFloat('p_cspd_perc') / 100;
 
     const p_dual_wield = getBool('p_dual_wield');
@@ -743,11 +767,22 @@ function calculateAll() {
     const p_element = getSelect('p_element');
     const p_is_ranged = getBool('p_is_ranged');
     const t_lv = getFloat('t_lv'), t_element = getSelect('t_element');
-    const t_def_base = getFloat('t_def');
-    const t_mdef_base = getFloat('t_mdef');
-    const t_block_base = getFloat('t_block');
-    const t_flee = t_lv * 2;
+    const t_def_perc = getFloat('t_def_perc') / 100;
+    const t_mdef_perc = getFloat('t_mdef_perc') / 100;
+    const t_reflect_perc = getFloat('t_reflect_perc') / 100;
 
+    const final_t_def = targetBaseStats.base_def * (1 + targetBaseStats.t_vit / 1000 + t_def_perc);
+    const final_t_mdef = targetBaseStats.base_mdef * (1 + targetBaseStats.t_vit / 1000 + t_mdef_perc);
+    const final_t_block = targetBaseStats.base_block * (1 + targetBaseStats.t_dex / 100);
+
+    // Only update the display for calculated archetypes, not for custom user input
+    if (getSelect('t_archetype') !== 'Custom') {
+        document.getElementById('t_def').value = Math.floor(final_t_def);
+        document.getElementById('t_mdef').value = Math.floor(final_t_mdef);
+        document.getElementById('t_block').value = Math.floor(final_t_block);
+    }
+
+    const t_flee = t_lv * 2;
     const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
 
     const weaponSelect = document.getElementById('p_weapon_bad');
@@ -756,9 +791,9 @@ function calculateAll() {
     const isTwoHanded = twoHandedWeapons.includes(selectedWeaponName);
     const two_handed_bonus = !p_dual_wield && isTwoHanded ? 1.25 : 1;
 
-    const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + (p_weapon_atk + p_atk) * (1 + mainStat / 200)) *
+    const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + p_atk + p_weapon_atk * (1 + mainStat / 200)) *
                       (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * two_handed_bonus;
-    const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + (p_weapon_matk + p_matk) * (1 + p_stats.int / 200)) *
+    const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + p_matk + p_weapon_matk * (1 + p_stats.int / 200)) *
                        (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * two_handed_bonus;
 
     // --- New CTR Calculation ---
@@ -779,30 +814,31 @@ function calculateAll() {
     // --- End New CTR Calculation ---
 
     let aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
-    aspd = Math.min(aspd, 193); // Cap ASPD at 193
-    const attack_delay = Math.max(0.01, (200 - aspd) / 50);
+    const attack_delay = (200 - aspd) / 50;
     const base_crit_rate = ((p_stats.luk / 3 + Math.floor(p_stats.luk / 10) + p_crit_flat) * (1 + p_crit_rate_perc));
-    const final_crit_rate = Math.max(0, base_crit_rate - base_crit_def) / 100;
+    const final_crit_rate = Math.max(0, base_crit_rate - targetBaseStats.base_crit_def) / 100;
     const crit_damage_multiplier = (120 + Math.floor(p_stats.luk / 10) + p_crit_dmg_perc) / 100;
     const final_hit = (p_stats.lv + p_stats.dex + 25);
     const hit_chance = Math.min(100, 100 + final_hit - t_flee) / 100;
-    const final_block_chance = Math.min(75, t_block_base); // Cap at 75%
+    const final_block_chance = Math.min(75, final_t_block); // Cap at 75%
     const auto_attack_elemental_multiplier = getElementalMultiplier(p_element, t_element);
 
-    // Damage Reduction is now scaled with player level.
-    const phys_reduc = t_def_base / (t_def_base + p_stats.lv * 10);
-    const mag_reduc = t_mdef_base / (t_mdef_base + p_stats.lv * 10);
+    // DamageReduction = 100 / (DEF + 100). This is a damage multiplier.
+    const phys_dmg_multiplier = 100 / (final_t_def + 100);
+    const mag_dmg_multiplier = 100 / (final_t_mdef + 100);
 
     const auto_attack_ele_bonus = p_dmg_bonus[p_element.toLowerCase()] || 0;
     const auto_attack_vs_ele_bonus = p_dmg_vs[t_element.toLowerCase()] || 0;
     const total_auto_attack_ele_bonus = 1.0 + auto_attack_ele_bonus + auto_attack_vs_ele_bonus;
 
-    const normal_hit = final_atk * (1 - phys_reduc) * (1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc)) * auto_attack_elemental_multiplier * total_auto_attack_ele_bonus;
+    const normal_hit = final_atk * phys_dmg_multiplier * (1.0 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc)) * auto_attack_elemental_multiplier * total_auto_attack_ele_bonus;
     const crit_hit = normal_hit * crit_damage_multiplier;
     const avg_hit = (normal_hit * (1 - final_crit_rate) + crit_hit * final_crit_rate) * hit_chance;
     const dps = avg_hit / attack_delay;
 
-    const normal_mhit = final_matk * (1 - mag_reduc) * (1.0 + p_dmg_magic_perc) * auto_attack_elemental_multiplier * total_auto_attack_ele_bonus;
+    const reflected_damage = Math.max(0, (avg_hit * t_reflect_perc) - p_flat_def);
+
+    const normal_mhit = final_matk * mag_dmg_multiplier * (1.0 + p_dmg_magic_perc) * auto_attack_elemental_multiplier * total_auto_attack_ele_bonus;
     const avg_mhit = normal_mhit;
     const mdps = avg_mhit;
 
@@ -855,12 +891,12 @@ function calculateAll() {
 
             if (type === 'phys') {
                 const skillTypeModifier = 1 + (p_is_ranged ? p_dmg_ranged_perc : p_dmg_melee_perc) + skillCardBonus;
-                const skillNormalHit = final_atk * totalDmgPercent * (1 - phys_reduc) * skillTypeModifier * skill_ele_multiplier * total_skill_ele_bonus;
+                const skillNormalHit = final_atk * totalDmgPercent * phys_dmg_multiplier * skillTypeModifier * skill_ele_multiplier * total_skill_ele_bonus;
                 const skillCritHit = skillNormalHit * crit_damage_multiplier;
                 avgDamagePerInstance = (skillNormalHit * (1 - final_crit_rate) + skillCritHit * final_crit_rate) * hit_chance;
             } else {
                 const skillTypeModifier = 1 + p_dmg_magic_perc + skillCardBonus;
-                avgDamagePerInstance = final_matk * totalDmgPercent * (1 - mag_reduc) * skillTypeModifier * skill_ele_multiplier * total_skill_ele_bonus;
+                avgDamagePerInstance = final_matk * totalDmgPercent * mag_dmg_multiplier * skillTypeModifier * skill_ele_multiplier * total_skill_ele_bonus;
             }
             const dotResultEl = document.getElementById(`skill-${i}-dot-result`);
             if (isDot) {
@@ -894,18 +930,19 @@ function calculateAll() {
     document.getElementById('r_crit_dmg').textContent = (crit_damage_multiplier * 100).toFixed(2) + '%';
     document.getElementById('r_block').textContent = final_block_chance.toFixed(2) + '%';
     document.getElementById('r_hit_chance').textContent = (hit_chance * 100).toFixed(2) + '%';
-    document.getElementById('r_phys_reduc').textContent = (phys_reduc * 100).toFixed(2) + '%';
+    document.getElementById('r_phys_reduc').textContent = ((1 - phys_dmg_multiplier) * 100).toFixed(2) + '%';
     document.getElementById('r_ele_mod').textContent = (auto_attack_elemental_multiplier * 100).toFixed(0) + '%';
     document.getElementById('r_normal_hit').textContent = Math.floor(normal_hit).toLocaleString();
     document.getElementById('r_crit_hit').textContent = Math.floor(crit_hit).toLocaleString();
     document.getElementById('r_avg_hit').textContent = Math.floor(avg_hit).toLocaleString();
     document.getElementById('r_dps').textContent = Math.floor(dps).toLocaleString();
-    document.getElementById('r_mag_reduc').textContent = (mag_reduc * 100).toFixed(2) + '%';
+    document.getElementById('r_mag_reduc').textContent = ((1 - mag_dmg_multiplier) * 100).toFixed(2) + '%';
     document.getElementById('r_ele_mod_mag').textContent = (auto_attack_elemental_multiplier * 100).toFixed(0) + '%';
     document.getElementById('r_normal_mhit').textContent = Math.floor(normal_mhit).toLocaleString();
     document.getElementById('r_avg_mhit').textContent = Math.floor(avg_mhit).toLocaleString();
     document.getElementById('r_mdps').textContent = Math.floor(mdps).toLocaleString();
     document.getElementById('r_rotation_dps').textContent = Math.floor(rotation_dps).toLocaleString();
+    document.getElementById('r_reflect').textContent = Math.floor(reflected_damage).toLocaleString();
 
     saveCurrentBuild();
 }
