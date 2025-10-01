@@ -204,6 +204,7 @@
                                             <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
                                             <div class="mt-1 flex items-center flex-wrap">
                                                 <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
+                                                ${item['Stat Type'] ? `<span class="ml-2 inline-block bg-teal-900/60 text-teal-300 text-xs font-semibold px-2 py-0.5 rounded">${item['Stat Type']}</span>` : ''}
                                                 ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded set-tooltip cursor-pointer" data-set-name="${item.Set}" data-set-bonus="${encodeURIComponent(item.SetBonuses || '')}">Set: ${item.Set}</span>` : ''}
                                             </div>
                                         </div>
