@@ -595,14 +595,47 @@
                 sprite.style.top = `${startY}px`;
                 sprite.style.backgroundImage = `url('Sprites/Equipment/${item.spriteId}.png')`;
 
-                const animationName = isWishedItem ? 'item-pickup' : 'item-drop';
-                sprite.style.animation = `${animationName} 1.5s ease-out forwards`;
+                if (isWishedItem) {
+                    const duration = 2500; // 2.5 seconds
+                    sprite.style.animation = `item-pickup 2.5s ease-out forwards`;
+                    animationContainer.appendChild(sprite);
 
-                animationContainer.appendChild(sprite);
+                    setTimeout(() => {
+                        sprite.remove();
+                    }, duration);
+                } else {
+                    // Randomized general animation
+                    const duration = (Math.random() * 0.8 + 0.8).toFixed(2); // 0.8s to 1.6s
+                    const endY = -(Math.random() * 80 + 120); // -120px to -200px
+                    const endX = (Math.random() * 160 - 80); // -80px to +80px
+                    const rotation = (Math.random() * 540 - 270); // -270deg to +270deg
+                    const scale = (Math.random() * 0.4 + 1.0).toFixed(2); // 1.0 to 1.4
 
-                setTimeout(() => {
-                    sprite.remove();
-                }, 1500);
+                    const animationName = `item-drop-dynamic-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+                    const styleSheet = document.createElement("style");
+                    styleSheet.type = "text/css";
+                    styleSheet.innerText = `
+                        @keyframes ${animationName} {
+                            0% {
+                                opacity: 1;
+                                transform: translateY(0) translateX(0) scale(0.8) rotate(0deg);
+                            }
+                            100% {
+                                opacity: 0;
+                                transform: translateY(${endY}px) translateX(${endX}px) scale(${scale}) rotate(${rotation}deg);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(styleSheet);
+
+                    sprite.style.animation = `${animationName} ${duration}s ease-out forwards`;
+                    animationContainer.appendChild(sprite);
+
+                    setTimeout(() => {
+                        sprite.remove();
+                        document.head.removeChild(styleSheet);
+                    }, duration * 1000);
+                }
             }
 
             function initLuckFeature() {
@@ -703,6 +736,11 @@
                 });
 
                 if (wishedItemDropped) {
+                    rollBtn.disabled = true;
+                    setTimeout(() => {
+                        rollBtn.disabled = false;
+                    }, 2000);
+
                     const rolledStats = rollStatsForItem(selectedLuckItem);
                     luckResults.innerHTML = `
                         <div class="bg-green-900/50 border border-green-700 text-green-300 px-4 py-4 rounded-lg">
