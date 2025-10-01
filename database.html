@@ -27,7 +27,7 @@
             background: #6b7280;
         }
         /* Tooltip styles */
-        #monster-tooltip {
+        #tooltip {
             position: absolute;
             display: none;
             padding: 10px;
@@ -138,7 +138,7 @@
     </div>
 
     <!-- Tooltip Element -->
-    <div id="monster-tooltip"></div>
+    <div id="tooltip"></div>
     <script src="sidebar.js" defer></script>
     <script src="Equipment.js" defer></script>
     <script src="Cards.js" defer></script>
@@ -204,14 +204,13 @@
                                             <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
                                             <div class="mt-1 flex items-center flex-wrap">
                                                 <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
-                                                ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Set: ${item.Set}</span>` : ''}
+                                                ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded set-tooltip cursor-pointer" data-set-name="${item.Set}" data-set-bonus="${encodeURIComponent(item.SetBonuses || '')}">Set: ${item.Set}</span>` : ''}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex-grow space-y-3 mb-4">
                                         ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
                                         ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
-                                        ${item.SetBonuses ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Set Bonus</p><p class="text-sm font-mono">${parseStats(item.SetBonuses)}</p></div>` : ''}
                                         <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
                                     </div>
                                     <div class="mt-auto">
@@ -369,7 +368,7 @@
                 renderMonstersList();
 
                 const contentSections = document.querySelectorAll('.content-section');
-                const tooltip = document.getElementById('monster-tooltip');
+                const tooltip = document.getElementById('tooltip');
 
                 // --- HASH-BASED NAVIGATION ---
                 function showSectionBasedOnHash() {
@@ -431,7 +430,6 @@
                         const monsterInfo = monsterData.find(m => m.MonsterName === monsterName);
 
                         let content = `<h4 class="font-bold text-white text-base mb-2">${monsterName}</h4>`;
-
                         let detailsFound = false;
 
                         if (monsterInfo) {
@@ -439,29 +437,36 @@
                                       <p><strong>Element:</strong> ${monsterInfo.Element}</p>`;
                             detailsFound = true;
                         }
-
                         if (droprate && droprate !== 'null') {
                             content += `<p><strong>Droprate:</strong> ${droprate}</p>`;
                             detailsFound = true;
                         }
-
                         const mapLocation = location || (monsterInfo ? monsterInfo.Map : null);
                         if (mapLocation && mapLocation !== 'null') {
                             content += `<p><strong>Map:</strong> ${mapLocation}</p>`;
                             detailsFound = true;
                         }
-
                         if (!detailsFound) {
                             content += `<p class="text-gray-500">Details not found.</p>`;
                         }
 
                         tooltip.innerHTML = content;
                         tooltip.style.display = 'block';
+                    } else if (e.target.classList.contains('set-tooltip')) {
+                        const setName = e.target.getAttribute('data-set-name');
+                        const setBonus = decodeURIComponent(e.target.getAttribute('data-set-bonus'));
+
+                        if (setBonus) {
+                            let content = `<h4 class="font-bold text-white text-base mb-2">${setName} Set Bonus</h4>`;
+                            content += `<div class="font-mono text-sm">${parseStats(setBonus)}</div>`;
+                            tooltip.innerHTML = content;
+                            tooltip.style.display = 'block';
+                        }
                     }
                 });
 
                 document.getElementById('content-container').addEventListener('mouseout', (e) => {
-                    if (e.target.classList.contains('monster-link')) {
+                    if (e.target.classList.contains('monster-link') || e.target.classList.contains('set-tooltip')) {
                         tooltip.style.display = 'none';
                     }
                 });
