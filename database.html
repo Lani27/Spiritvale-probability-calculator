@@ -139,228 +139,210 @@
 
     <!-- Tooltip Element -->
     <div id="monster-tooltip"></div>
-    <script src="sidebar.js"></script>
+    <script src="sidebar.js" defer></script>
+    <script src="Equipment.js" defer></script>
+    <script src="Cards.js" defer></script>
+    <script src="Artifacts.js" defer></script>
+    <script src="monsters.js" defer></script>
     <script>
-        // Global variables to hold data
-        let equipmentData = [];
-        let cardData = [];
-        let artifactData = [];
-        let monsterData = [];
+        document.addEventListener('DOMContentLoaded', () => {
+            // Data is now loaded from the deferred scripts above.
+            // Assign 'monsters' from monsters.js to 'monsterData' for compatibility with existing code.
+            const monsterData = monsters;
 
-        // --- UTILITY FUNCTIONS ---
-
-        function parseStats(statString) {
-            if (!statString) return '<span class="text-gray-500">N/A</span>';
-            return statString
-                .replace(/<color=#([A-Fa-f0-9]{6})[A-Fa-f0-9]{2}>/g, (match, color) => `<span style="color:#${color};">`)
-                .replace(/<\/color>/g, '</span>')
-                .replace(/\n/g, '<br>');
-        }
-
-        function renderSources(item, themeColor) {
-            if (!item.Source) return '';
-
-            const sources = item.Source.split('\n');
-            const droprates = item.Droprate ? item.Droprate.split('\n') : [];
-            const locations = item.Location ? item.Location.split('\n') : [];
-
-            if (sources.length === 0) return '';
-
-            let sourcesHtml = `<div class="mt-4 pt-4 border-t border-gray-700/50 text-xs text-gray-400">`;
-
-            if (sources.length === 1 && sources[0] !== '') {
-                 sourcesHtml += `<p>Source: <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${sources[0]}">${sources[0]}</span> ${droprates[0] ? `(${droprates[0]})` : ''} in ${locations[0]}</p>`;
-            } else {
-                sourcesHtml += '<p class="text-xs text-gray-500 uppercase font-semibold mb-1">Sources</p><ul class="list-disc list-inside text-sm space-y-1">';
-                sources.forEach((source, index) => {
-                    if (source === '') return;
-                    const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
-                    sourcesHtml += `<li>
-                        <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}">${source}</span>
-                        ${droprates[index] ? `<span class="text-gray-400"> (${droprates[index]})</span>` : ''}
-                        in ${locations[index]}
-                    </li>`;
-                });
-                sourcesHtml += '</ul>';
-            }
-            sourcesHtml += '</div>';
-            return sourcesHtml;
-        }
-
-        // --- RENDERING FUNCTIONS ---
-
-        function renderEquipmentList(data) {
-            const container = document.getElementById('equipment-list');
-            const itemsToRender = data || equipmentData;
-            container.innerHTML = `
-                <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
-                    ${itemsToRender.map(item => `
-                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10">
-                            <div class="flex items-start mb-4">
-                                <img src="https://placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}" alt="${item.Name}" class="w-16 h-16 rounded-md bg-gray-700 mr-4 flex-shrink-0">
-                                <div class="flex-1">
-                                    <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
-                                    <div class="mt-1 flex items-center flex-wrap">
-                                        <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
-                                        ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Set: ${item.Set}</span>` : ''}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-grow space-y-3 mb-4">
-                                ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
-                                ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
-                                ${item.SetBonuses ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Set Bonus</p><p class="text-sm font-mono">${parseStats(item.SetBonuses)}</p></div>` : ''}
-                                <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
-                            </div>
-                            <div class="mt-auto">
-                                ${renderSources(item, 'indigo')}
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>`;
-        }
-
-        function formatCardDroprate(droprate) {
-            if (!droprate) return '';
-            const rate = parseFloat(droprate.replace('%', ''));
-            if (isNaN(rate)) return droprate;
-            // Adjust for floating point inaccuracies and remove unnecessary trailing zeros
-            return Number((rate / 100).toFixed(2)) + '%';
-        }
-
-        function renderCardsList(data) {
-            const container = document.getElementById('cards-list');
-            const itemsToRender = data || cardData;
-            container.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
-                    ${itemsToRender.map(card => `
-                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 flex flex-col transition-all hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10">
-                             <div class="flex items-start mb-4">
-                                <img src="https://placehold.co/40x40/1f2937/a855f7?text=C" alt="Card" class="w-10 h-10 rounded-md bg-gray-700 mr-4 flex-shrink-0">
-                                <div class="flex-1">
-                                    <p class="text-xs font-bold uppercase text-purple-400">${card.Affix}</p>
-                                    <h3 class="font-bold text-lg text-white leading-tight">${card.Name}</h3>
-                                    <div class="mt-1">
-                                        <span class="inline-block bg-purple-900/60 text-purple-300 text-xs font-semibold px-2 py-0.5 rounded">${card.Slot}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-grow mb-3">
-                                <p class="text-xs text-gray-500 uppercase font-semibold">Stats</p>
-                                <p class="text-sm font-mono">${parseStats(card.Stats)}</p>
-                            </div>
-                             <div class="mt-auto pt-4 border-t border-gray-700/50 text-xs text-gray-400 space-y-1">
-                                <p>Source: <span class="monster-link font-semibold text-purple-400 cursor-pointer" data-monster-name="${card.Source}">${card.Source}</span> (${formatCardDroprate(card.Droprate)})</p>
-                                <p>Location: ${card.Location}</p>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>`;
-        }
-
-        function renderArtifactsList(data) {
-            const container = document.getElementById('artifacts-list');
-            const itemsToRender = data || artifactData;
-            container.innerHTML = `
-                <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
-                    ${itemsToRender.map(artifact => `
-                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 transition-all hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10">
-                            <h3 class="font-bold text-xl text-white mb-4">${artifact.SetName} Set</h3>
-                            <div class="space-y-3">
-                                ${artifact.PerPieceBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Piece Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerPieceBonus)}</p></div>` : ''}
-                                ${artifact.PerRefineBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Refine Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerRefineBonus)}</p></div>` : ''}
-                                ${artifact.FullSetBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Full Set Bonus</p><p class="text-sm font-mono">${parseStats(artifact.FullSetBonus)}</p></div>` : ''}
-                            </div>
-                            ${renderSources(artifact, 'teal')}
-                        </div>
-                    `).join('')}
-                </div>`;
-        }
-
-        function renderMonstersList(data) {
-            const container = document.getElementById('monsters-list');
-            const itemsToRender = data || monsterData;
-            container.innerHTML = `
-                <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 overflow-hidden">
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-800">
-                            <tr>
-                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Name</th>
-                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Level</th>
-                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Element</th>
-                                <th class="p-4 text-xs font-semibold uppercase text-gray-400">Map</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${itemsToRender.map((monster, index) => `
-                                <tr class="border-t border-gray-700/50 ${index % 2 === 0 ? 'bg-black/10' : ''}">
-                                    <td class="p-4 font-medium text-white">${monster.MonsterName}</td>
-                                    <td class="p-4 text-gray-300">${monster.Level}</td>
-                                    <td class="p-4 text-gray-300">${monster.Element}</td>
-                                    <td class="p-4 text-gray-300">${monster.Map}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                </div>`;
-        }
-
-        // --- FILTERING AND SEARCHING LOGIC ---
-        function applyFiltersAndSearch() {
-            // Equipment
-            const equipmentSearchTerm = document.getElementById('equipment-search').value.toLowerCase();
-            const equipmentTypeFilter = document.getElementById('equipment-type-filter').value;
-            let filteredEquipment = equipmentData;
-
-            if (equipmentTypeFilter !== 'all') {
-                filteredEquipment = filteredEquipment.filter(item => item.Type === equipmentTypeFilter);
-            }
-            if (equipmentSearchTerm) {
-                filteredEquipment = filteredEquipment.filter(item => {
-                    const searchIn = [item.Name, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
-                    return searchIn.includes(equipmentSearchTerm);
-                });
-            }
-            renderEquipmentList(filteredEquipment);
-
-            // Cards
-            const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
-            const cardSlotFilter = document.getElementById('card-slot-filter').value;
-            let filteredCards = cardData;
-
-            if (cardSlotFilter !== 'all') {
-                filteredCards = filteredCards.filter(item => item.Slot === cardSlotFilter);
-            }
-            if (cardSearchTerm) {
-                filteredCards = filteredCards.filter(item => {
-                    const searchIn = [item.Name, item.Stats, item.Source, item.Location, item.Affix, item.Slot].join(' ').toLowerCase();
-                    return searchIn.includes(cardSearchTerm);
-                });
-            }
-            renderCardsList(filteredCards);
-        }
-
-        // --- DATA LOADING and APP INITIALIZATION ---
-
-        async function initializeApp() {
             try {
-                const [
-                    equipmentResponse,
-                    cardsResponse,
-                    artifactsResponse,
-                    monstersResponse
-                ] = await Promise.all([
-                    fetch('./Equipment.json'),
-                    fetch('./Cards.json'),
-                    fetch('./Artifacts.json'),
-                    fetch('./monsters.json')
-                ]);
+                // --- UTILITY FUNCTIONS ---
 
-                equipmentData = await equipmentResponse.json();
-                cardData = await cardsResponse.json();
-                artifactData = await artifactsResponse.json();
-                monsterData = await monstersResponse.json();
+                function parseStats(statString) {
+                    if (!statString) return '<span class="text-gray-500">N/A</span>';
+                    return statString
+                        .replace(/<color=#([A-Fa-f0-9]{6})[A-Fa-f0-9]{2}>/g, (match, color) => `<span style="color:#${color};">`)
+                        .replace(/<\/color>/g, '</span>')
+                        .replace(/\n/g, '<br>');
+                }
 
+                function renderSources(item, themeColor) {
+                    if (!item.Source) return '';
+
+                    const sources = item.Source.split('\n');
+                    const droprates = item.Droprate ? item.Droprate.split('\n') : [];
+                    const locations = item.Location ? item.Location.split('\n') : [];
+
+                    if (sources.length === 0) return '';
+
+                    let sourcesHtml = `<div class="mt-4 pt-4 border-t border-gray-700/50 text-xs text-gray-400">`;
+
+                    if (sources.length === 1 && sources[0] !== '') {
+                         sourcesHtml += `<p>Source: <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${sources[0]}">${sources[0]}</span> ${droprates[0] ? `(${droprates[0]})` : ''} in ${locations[0]}</p>`;
+                    } else {
+                        sourcesHtml += '<p class="text-xs text-gray-500 uppercase font-semibold mb-1">Sources</p><ul class="list-disc list-inside text-sm space-y-1">';
+                        sources.forEach((source, index) => {
+                            if (source === '') return;
+                            const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
+                            sourcesHtml += `<li>
+                                <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}">${source}</span>
+                                ${droprates[index] ? `<span class="text-gray-400"> (${droprates[index]})</span>` : ''}
+                                in ${locations[index]}
+                            </li>`;
+                        });
+                        sourcesHtml += '</ul>';
+                    }
+                    sourcesHtml += '</div>';
+                    return sourcesHtml;
+                }
+
+                // --- RENDERING FUNCTIONS ---
+
+                function renderEquipmentList(data) {
+                    const container = document.getElementById('equipment-list');
+                    const itemsToRender = data || equipmentData;
+                    container.innerHTML = `
+                        <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+                            ${itemsToRender.map(item => `
+                                <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10">
+                                    <div class="flex items-start mb-4">
+                                        <img src="https://placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}" alt="${item.Name}" class="w-16 h-16 rounded-md bg-gray-700 mr-4 flex-shrink-0">
+                                        <div class="flex-1">
+                                            <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
+                                            <div class="mt-1 flex items-center flex-wrap">
+                                                <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
+                                                ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Set: ${item.Set}</span>` : ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow space-y-3 mb-4">
+                                        ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
+                                        ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
+                                        ${item.SetBonuses ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Set Bonus</p><p class="text-sm font-mono">${parseStats(item.SetBonuses)}</p></div>` : ''}
+                                        <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
+                                    </div>
+                                    <div class="mt-auto">
+                                        ${renderSources(item, 'indigo')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>`;
+                }
+
+                function formatCardDroprate(droprate) {
+                    if (!droprate) return '';
+                    const rate = parseFloat(droprate.replace('%', ''));
+                    if (isNaN(rate)) return droprate;
+                    // Adjust for floating point inaccuracies and remove unnecessary trailing zeros
+                    return Number((rate / 100).toFixed(2)) + '%';
+                }
+
+                function renderCardsList(data) {
+                    const container = document.getElementById('cards-list');
+                    const itemsToRender = data || cardData;
+                    container.innerHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
+                            ${itemsToRender.map(card => `
+                                <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 flex flex-col transition-all hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10">
+                                     <div class="flex items-start mb-4">
+                                        <img src="https://placehold.co/40x40/1f2937/a855f7?text=C" alt="Card" class="w-10 h-10 rounded-md bg-gray-700 mr-4 flex-shrink-0">
+                                        <div class="flex-1">
+                                            <p class="text-xs font-bold uppercase text-purple-400">${card.Affix}</p>
+                                            <h3 class="font-bold text-lg text-white leading-tight">${card.Name}</h3>
+                                            <div class="mt-1">
+                                                <span class="inline-block bg-purple-900/60 text-purple-300 text-xs font-semibold px-2 py-0.5 rounded">${card.Slot}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow mb-3">
+                                        <p class="text-xs text-gray-500 uppercase font-semibold">Stats</p>
+                                        <p class="text-sm font-mono">${parseStats(card.Stats)}</p>
+                                    </div>
+                                     <div class="mt-auto pt-4 border-t border-gray-700/50 text-xs text-gray-400 space-y-1">
+                                        <p>Source: <span class="monster-link font-semibold text-purple-400 cursor-pointer" data-monster-name="${card.Source}">${card.Source}</span> (${formatCardDroprate(card.Droprate)})</p>
+                                        <p>Location: ${card.Location}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>`;
+                }
+
+                function renderArtifactsList(data) {
+                    const container = document.getElementById('artifacts-list');
+                    const itemsToRender = data || artifactData;
+                    container.innerHTML = `
+                        <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+                            ${itemsToRender.map(artifact => `
+                                <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-5 transition-all hover:border-teal-500/50 hover:shadow-2xl hover:shadow-teal-500/10">
+                                    <h3 class="font-bold text-xl text-white mb-4">${artifact.SetName} Set</h3>
+                                    <div class="space-y-3">
+                                        ${artifact.PerPieceBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Piece Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerPieceBonus)}</p></div>` : ''}
+                                        ${artifact.PerRefineBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Refine Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerRefineBonus)}</p></div>` : ''}
+                                        ${artifact.FullSetBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Full Set Bonus</p><p class="text-sm font-mono">${parseStats(artifact.FullSetBonus)}</p></div>` : ''}
+                                    </div>
+                                    ${renderSources(artifact, 'teal')}
+                                </div>
+                            `).join('')}
+                        </div>`;
+                }
+
+                function renderMonstersList(data) {
+                    const container = document.getElementById('monsters-list');
+                    const itemsToRender = data || monsterData;
+                    container.innerHTML = `
+                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 overflow-hidden">
+                            <table class="w-full text-left">
+                                <thead class="bg-gray-800">
+                                    <tr>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Name</th>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Level</th>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Element</th>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Map</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${itemsToRender.map((monster, index) => `
+                                        <tr class="border-t border-gray-700/50 ${index % 2 === 0 ? 'bg-black/10' : ''}">
+                                            <td class="p-4 font-medium text-white">${monster.MonsterName}</td>
+                                            <td class="p-4 text-gray-300">${monster.Level}</td>
+                                            <td class="p-4 text-gray-300">${monster.Element}</td>
+                                            <td class="p-4 text-gray-300">${monster.Map}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>`;
+                }
+
+                // --- FILTERING AND SEARCHING LOGIC ---
+                function applyFiltersAndSearch() {
+                    // Equipment
+                    const equipmentSearchTerm = document.getElementById('equipment-search').value.toLowerCase();
+                    const equipmentTypeFilter = document.getElementById('equipment-type-filter').value;
+                    let filteredEquipment = equipmentData;
+
+                    if (equipmentTypeFilter !== 'all') {
+                        filteredEquipment = filteredEquipment.filter(item => item.Type === equipmentTypeFilter);
+                    }
+                    if (equipmentSearchTerm) {
+                        filteredEquipment = filteredEquipment.filter(item => {
+                            const searchIn = [item.Name, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
+                            return searchIn.includes(equipmentSearchTerm);
+                        });
+                    }
+                    renderEquipmentList(filteredEquipment);
+
+                    // Cards
+                    const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
+                    const cardSlotFilter = document.getElementById('card-slot-filter').value;
+                    let filteredCards = cardData;
+
+                    if (cardSlotFilter !== 'all') {
+                        filteredCards = filteredCards.filter(item => item.Slot === cardSlotFilter);
+                    }
+                    if (cardSearchTerm) {
+                        filteredCards = filteredCards.filter(item => {
+                            const searchIn = [item.Name, item.Stats, item.Source, item.Location, item.Affix, item.Slot].join(' ').toLowerCase();
+                            return searchIn.includes(cardSearchTerm);
+                        });
+                    }
+                    renderCardsList(filteredCards);
+                }
 
                 // --- POST-DATA-LOAD INITIALIZATION ---
 
@@ -481,11 +463,9 @@
 
             } catch (error) {
                 console.error("Failed to load game data:", error);
-                document.getElementById('content-container').innerHTML = `<p class="text-red-400">Error loading data. Make sure equipment.json, cards.json, artifacts.json, and monsters.json are in the same directory.</p>`;
+                document.getElementById('content-container').innerHTML = `<p class="text-red-400">Error loading data. Please ensure all data scripts are loaded correctly.</p>`;
             }
-        }
-
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        });
     </script>
 </body>
 </html>
