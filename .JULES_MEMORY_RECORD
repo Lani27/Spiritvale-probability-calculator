@@ -1,1 +1,1 @@
-In the stat calculator's "Try your luck?" feature, stat values are rolled within a min/max range. This is defined in the `statRollData` object in `index.html` using `min` and `max` properties for each stat.
+In the 'Try your luck?' feature, when a user selects a piece of equipment, a list of monsters that drop the item is dynamically generated as radio buttons, allowing the user to select a specific monster and its associated drop rate for the simulation.

@@ -126,6 +126,10 @@
                         </div>
                     </div>
 
+                    <div id="luck-monster-list" class="hidden mt-4">
+                        <!-- Monster radio buttons will be injected here -->
+                    </div>
+
                     <div id="luck-controls" class="hidden text-center mt-4">
                          <div class="flex items-center justify-center gap-4">
                             <button id="rollBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-5 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-green-500" disabled>
@@ -493,6 +497,7 @@
             const luckSearchInput = document.getElementById('luck-equipment-search');
             const luckDatalist = document.getElementById('equipment-luck-list');
             const luckControls = document.getElementById('luck-controls');
+            const luckMonsterList = document.getElementById('luck-monster-list');
             const rollBtn = document.getElementById('rollBtn');
             const killCounterSpan = document.getElementById('killCounter');
             const luckItemInfo = document.getElementById('luck-item-info');
@@ -500,13 +505,12 @@
 
             let killCount = 0;
             let selectedLuckItem = null;
-            let highestDropRate = 0;
+            let selectedDropRate = 0;
 
             function initLuckFeature() {
                 // Populate the datalist with equipment that can be rolled
                 const rollableTypes = Object.keys(statRollData);
                 const validEquipment = equipmentData.filter(item => {
-                    // Check if the item's direct type or its aliased type is in statRollData
                     const baseType = item.Type;
                     const aliasedType = statRollData[baseType] ? statRollData[baseType].type : null;
                     return rollableTypes.includes(baseType) || (aliasedType && rollableTypes.includes(aliasedType));
@@ -523,6 +527,7 @@
                 });
 
                 luckSearchInput.addEventListener('input', handleLuckEquipmentSelect);
+                luckMonsterList.addEventListener('change', handleMonsterSelect);
                 rollBtn.addEventListener('click', handleRoll);
             }
 
@@ -530,32 +535,58 @@
                 const itemName = luckSearchInput.value;
                 selectedLuckItem = equipmentData.find(item => item.Name === itemName);
 
-                if (selectedLuckItem && selectedLuckItem.Droprate) {
-                    // Find the highest drop rate
-                    const droprates = selectedLuckItem.Droprate.split('\n').map(r => parseFloat(r));
-                    highestDropRate = Math.max(...droprates) / 100; // Convert to decimal for calculation
+                // Reset state
+                luckMonsterList.innerHTML = '';
+                luckMonsterList.classList.add('hidden');
+                luckControls.classList.add('hidden');
+                rollBtn.disabled = true;
+                selectedDropRate = 0;
 
-                    luckItemInfo.textContent = `Selected: ${selectedLuckItem.Name} (Highest Drop Chance: ${(highestDropRate * 100).toFixed(2)}%)`;
+                if (selectedLuckItem && selectedLuckItem.Source && selectedLuckItem.Droprate) {
+                    const sources = selectedLuckItem.Source.split('\n');
+                    const droprates = selectedLuckItem.Droprate.split('\n');
+
+                    if (sources.length > 0) {
+                        let monsterHtml = '<p class="block text-sm font-medium text-gray-400 mb-2">Choose a Monster to Hunt:</p><div class="grid grid-cols-2 md:grid-cols-3 gap-2">';
+
+                        sources.forEach((source, index) => {
+                            if (source.trim() === '') return;
+                            const droprate = parseFloat(droprates[index]);
+                            if (isNaN(droprate)) return;
+
+                            monsterHtml += `
+                                <label class="flex items-center bg-gray-700 p-3 rounded-md cursor-pointer hover:bg-gray-600">
+                                    <input type="radio" name="monster" value="${droprate}" class="h-4 w-4 text-purple-600 bg-gray-600 border-gray-500 focus:ring-purple-500">
+                                    <span class="ml-3 text-sm text-white">${source} (${droprate}%)</span>
+                                </label>
+                            `;
+                        });
+                        monsterHtml += '</div>';
+
+                        luckMonsterList.innerHTML = monsterHtml;
+                        luckMonsterList.classList.remove('hidden');
+                    }
+                }
+            }
+
+            function handleMonsterSelect(event) {
+                if (event.target.name === 'monster') {
+                    selectedDropRate = parseFloat(event.target.value) / 100;
                     luckControls.classList.remove('hidden');
                     rollBtn.disabled = false;
-                    luckResults.innerHTML = ''; // Clear previous results
-                    killCount = 0; // Reset counter
+                    luckResults.innerHTML = '';
+                    killCount = 0;
                     killCounterSpan.textContent = killCount;
-                } else {
-                    luckControls.classList.add('hidden');
-                    rollBtn.disabled = true;
-                    selectedLuckItem = null;
-                    highestDropRate = 0;
                 }
             }
 
             function handleRoll() {
-                if (!selectedLuckItem) return;
+                if (!selectedLuckItem || selectedDropRate <= 0) return;
 
                 killCount++;
                 killCounterSpan.textContent = killCount;
 
-                const didDrop = Math.random() < highestDropRate;
+                const didDrop = Math.random() < selectedDropRate;
 
                 if (didDrop) {
                     const rolledStats = rollStatsForItem(selectedLuckItem);
