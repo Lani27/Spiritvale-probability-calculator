@@ -1,4 +1,4 @@
-const cardData = [
+window.cardData = [
     {
         "Name": "Angel Card",
         "CardId": "Angel",

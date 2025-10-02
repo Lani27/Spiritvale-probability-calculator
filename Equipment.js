@@ -1,4 +1,4 @@
-const equipmentData = [
+window.equipmentData = [
     {
         "Name": "Abyss Shard",
         "EquipmentId": "Abyss Shard",
