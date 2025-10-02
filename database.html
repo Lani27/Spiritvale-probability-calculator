@@ -132,13 +132,23 @@
 
                 <!-- Monsters Content (Hidden by default) -->
                 <section id="monsters" class="content-section hidden">
-                    <div class="sticky top-0 z-10 bg-gray-900 py-4 flex items-center mb-6">
+                    <div class="sticky top-0 z-10 bg-gray-900 py-4 flex flex-wrap items-center gap-4 mb-6">
                         <h1 class="text-3xl font-bold text-white">Monsters</h1>
-                        <div class="search-wrapper relative ml-4">
+                        <div class="search-wrapper relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
                             <input type="search" id="monsters-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500" placeholder="Search Monsters...">
+                        </div>
+                        <div class="relative">
+                            <select id="monster-element-filter" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 cursor-pointer">
+                                <option value="all">All Elements</option>
+                            </select>
+                        </div>
+                        <div class="relative">
+                            <select id="monster-map-filter" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 cursor-pointer">
+                                <option value="all">All Maps</option>
+                            </select>
                         </div>
                     </div>
                     <div id="monsters-list"></div>
@@ -455,16 +465,22 @@
                         </div>`;
                 }
 
+                let levelSortDirection = 'asc'; // 'asc', 'desc'
+
                 function renderMonstersList(data) {
                     const container = document.getElementById('monsters-list');
                     const itemsToRender = data || monsterData;
+
+                    const sortIndicator = levelSortDirection === 'asc' ? '▲' : '▼';
+                    const levelHeader = `Level <span class="text-red-400 ml-1">${sortIndicator}</span>`;
+
                     container.innerHTML = `
                         <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 overflow-hidden">
                             <table class="w-full text-left">
                                 <thead class="bg-gray-800">
                                     <tr>
                                         <th class="p-4 text-xs font-semibold uppercase text-gray-400">Name</th>
-                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Level</th>
+                                        <th id="monster-level-sort" class="p-4 text-xs font-semibold uppercase text-gray-400 cursor-pointer">${levelHeader}</th>
                                         <th class="p-4 text-xs font-semibold uppercase text-gray-400">Element</th>
                                         <th class="p-4 text-xs font-semibold uppercase text-gray-400">Map</th>
                                     </tr>
@@ -702,6 +718,40 @@
                     renderCardsList(filteredCards);
                 }
 
+                function applyMonsterFiltersAndSearch() {
+                    const searchTerm = document.getElementById('monsters-search').value.toLowerCase();
+                    const elementFilter = document.getElementById('monster-element-filter').value;
+                    const mapFilter = document.getElementById('monster-map-filter').value;
+
+                    let filteredMonsters = monsterData;
+
+                    if (elementFilter !== 'all') {
+                        filteredMonsters = filteredMonsters.filter(monster => monster.Element === elementFilter);
+                    }
+                    if (mapFilter !== 'all') {
+                        filteredMonsters = filteredMonsters.filter(monster => monster.Map === mapFilter);
+                    }
+                    if (searchTerm) {
+                        filteredMonsters = filteredMonsters.filter(item => {
+                            const searchIn = [item.MonsterName, item.Element, item.Map].join(' ').toLowerCase();
+                            return searchIn.includes(searchTerm);
+                        });
+                    }
+
+                    // Sort by level
+                    filteredMonsters.sort((a, b) => {
+                        const levelA = parseInt(a.Level, 10);
+                        const levelB = parseInt(b.Level, 10);
+                        if (levelSortDirection === 'asc') {
+                            return levelA - levelB;
+                        } else {
+                            return levelB - levelA;
+                        }
+                    });
+
+                    renderMonstersList(filteredMonsters);
+                }
+
                 // --- POST-DATA-LOAD INITIALIZATION ---
 
                 // Populate filters
@@ -721,6 +771,28 @@
                     option.value = slot;
                     option.textContent = slot;
                     cardSlotFilter.appendChild(option);
+                });
+
+                const monsterElementFilter = document.getElementById('monster-element-filter');
+                const uniqueElements = [...new Set(monsterData.map(m => m.Element))].sort();
+                uniqueElements.forEach(element => {
+                    if(element) {
+                        const option = document.createElement('option');
+                        option.value = element;
+                        option.textContent = element;
+                        monsterElementFilter.appendChild(option);
+                    }
+                });
+
+                const monsterMapFilter = document.getElementById('monster-map-filter');
+                const uniqueMaps = [...new Set(monsterData.map(m => m.Map))].sort();
+                uniqueMaps.forEach(map => {
+                    if(map){
+                        const option = document.createElement('option');
+                        option.value = map;
+                        option.textContent = map;
+                        monsterMapFilter.appendChild(option);
+                    }
                 });
 
                 // Initial render
@@ -799,16 +871,9 @@
                     renderArtifactsList(filteredData);
                 });
 
-                document.getElementById('monsters-search').addEventListener('keyup', (e) => {
-                    const searchTerm = e.target.value.toLowerCase();
-                    const filteredData = monsterData.filter(item => {
-                        const searchIn = [
-                            item.MonsterName, item.Element, item.Map
-                        ].join(' ').toLowerCase();
-                        return searchIn.includes(searchTerm);
-                    });
-                    renderMonstersList(filteredData);
-                });
+                document.getElementById('monsters-search').addEventListener('input', applyMonsterFiltersAndSearch);
+                document.getElementById('monster-element-filter').addEventListener('change', applyMonsterFiltersAndSearch);
+                document.getElementById('monster-map-filter').addEventListener('change', applyMonsterFiltersAndSearch);
 
                 document.getElementById('maps-search').addEventListener('input', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
@@ -850,10 +915,17 @@
                     }
                 });
                 document.getElementById('monsters-list').addEventListener('click', (e) => {
-                    const target = e.target.closest('.monster-name-link');
-                    if (target) {
-                        const monsterName = target.getAttribute('data-monster-name');
+                    const nameLink = e.target.closest('.monster-name-link');
+                    if (nameLink) {
+                        const monsterName = nameLink.getAttribute('data-monster-name');
                         openMonsterModal(monsterName);
+                        return; // Prioritize name link click
+                    }
+
+                    const sortHeader = e.target.closest('#monster-level-sort');
+                    if (sortHeader) {
+                        levelSortDirection = levelSortDirection === 'asc' ? 'desc' : 'asc';
+                        applyMonsterFiltersAndSearch();
                     }
                 });
 
