@@ -659,6 +659,88 @@ function initializeMonsterSearch() {
         };
 }
 
+let classSelect;
+let statInputs = {};
+
+function getStatPointCost(addedPoints) {
+    let cost = 0;
+    for (let i = 1; i <= addedPoints; i++) {
+        if (i <= 50) {
+            cost += 1;
+        } else if (i <= 98) {
+            cost += 2;
+        } else {
+            cost += 3;
+        }
+    }
+    return cost;
+}
+
+function updateAndValidateStatPoints(changedInput = null) {
+    const level = getFloat('p_lv');
+    let totalPoints = 0;
+    if (level >= 130) totalPoints = 377;
+    else if (level >= 100) totalPoints = 357;
+    else if (level >= 1) totalPoints = 297;
+
+    const selectedClass = classes.find(cls => cls.ClassName === classSelect.value);
+    if (!selectedClass) return;
+
+    let totalCost = 0;
+    const addedPoints = {};
+
+    for (const [stat, input] of Object.entries(statInputs)) {
+        const baseStat = selectedClass[stat] || 0;
+        const bonus = gearBonuses[stat] || 0;
+        const effectiveBase = baseStat + bonus;
+        let currentValue = parseInt(input.value, 10);
+        if (isNaN(currentValue)) currentValue = effectiveBase;
+
+        if (currentValue < effectiveBase) {
+            currentValue = effectiveBase;
+            input.value = effectiveBase;
+        }
+
+        let pointsAdded = currentValue - effectiveBase;
+        if (pointsAdded > 99) {
+            pointsAdded = 99;
+            input.value = effectiveBase + 99;
+        }
+        addedPoints[stat] = pointsAdded;
+        totalCost += getStatPointCost(pointsAdded);
+    }
+
+    while (totalCost > totalPoints) {
+        const inputToReduce = changedInput || Object.values(statInputs).find(i => {
+            const statName = Object.keys(statInputs).find(k => statInputs[k] === i);
+            const effectiveBase = (selectedClass[statName] || 0) + (gearBonuses[statName] || 0);
+            return parseInt(i.value) > effectiveBase;
+        });
+        if (!inputToReduce) break;
+
+        const statName = Object.keys(statInputs).find(key => statInputs[key] === inputToReduce);
+        const baseStat = selectedClass[statName] || 0;
+        const bonus = gearBonuses[statName] || 0;
+        const effectiveBase = baseStat + bonus;
+        const currentValue = parseInt(inputToReduce.value, 10);
+
+        if (currentValue > effectiveBase) {
+            const currentAdded = currentValue - effectiveBase;
+            const costBefore = getStatPointCost(currentAdded);
+            const costAfter = getStatPointCost(currentAdded - 1);
+            inputToReduce.value = currentValue - 1;
+            totalCost -= (costBefore - costAfter);
+        } else {
+            if (changedInput) changedInput = null;
+            else break;
+        }
+    }
+
+    document.getElementById('total-points').textContent = totalPoints;
+    document.getElementById('available-points').textContent = Math.max(0, totalPoints - totalCost);
+    calculateAll();
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     try {
         // Hide the old manual stat input section
@@ -670,93 +752,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         initializeGearSlots();
         // --- Initialize Class Selector ---
-        const classSelect = document.getElementById('p_class');
-        const statInputs = {
+        classSelect = document.getElementById('p_class');
+        statInputs = {
             'STR': document.getElementById('p_str'), 'VIT': document.getElementById('p_vit'),
             'AGI': document.getElementById('p_agi'), 'DEX': document.getElementById('p_dex'),
             'INT': document.getElementById('p_int'), 'LUK': document.getElementById('p_luk')
         };
-
-        // --- Stat Point Allocation Logic ---
-        function getStatPointCost(addedPoints) {
-            let cost = 0;
-            for (let i = 1; i <= addedPoints; i++) {
-                if (i <= 50) {
-                    cost += 1;
-                } else if (i <= 98) {
-                    cost += 2;
-                } else {
-                    cost += 3;
-                }
-            }
-            return cost;
-        }
-
-        function updateAndValidateStatPoints(changedInput = null) {
-            const level = getFloat('p_lv');
-            let totalPoints = 0;
-            if (level >= 130) totalPoints = 377;
-            else if (level >= 100) totalPoints = 357;
-            else if (level >= 1) totalPoints = 297;
-
-            const selectedClass = classes.find(cls => cls.ClassName === classSelect.value);
-            if (!selectedClass) return;
-
-            let totalCost = 0;
-            const addedPoints = {};
-
-            for (const [stat, input] of Object.entries(statInputs)) {
-                const baseStat = selectedClass[stat] || 0;
-                const bonus = gearBonuses[stat] || 0;
-                const effectiveBase = baseStat + bonus;
-                let currentValue = parseInt(input.value, 10);
-                if (isNaN(currentValue)) currentValue = effectiveBase;
-
-                if (currentValue < effectiveBase) {
-                    currentValue = effectiveBase;
-                    input.value = effectiveBase;
-                }
-
-                let pointsAdded = currentValue - effectiveBase;
-                if (pointsAdded > 99) {
-                    pointsAdded = 99;
-                    input.value = effectiveBase + 99;
-                }
-                addedPoints[stat] = pointsAdded;
-                totalCost += getStatPointCost(pointsAdded);
-            }
-
-            while (totalCost > totalPoints) {
-                const inputToReduce = changedInput || Object.values(statInputs).find(i => {
-                    const statName = Object.keys(statInputs).find(k => statInputs[k] === i);
-                    const effectiveBase = (selectedClass[statName] || 0) + (gearBonuses[statName] || 0);
-                    return parseInt(i.value) > effectiveBase;
-                });
-                if (!inputToReduce) break;
-
-                const statName = Object.keys(statInputs).find(key => statInputs[key] === inputToReduce);
-                const baseStat = selectedClass[statName] || 0;
-                const bonus = gearBonuses[statName] || 0;
-                const effectiveBase = baseStat + bonus;
-                const currentValue = parseInt(inputToReduce.value, 10);
-
-                if (currentValue > effectiveBase) {
-                    const currentAdded = currentValue - effectiveBase;
-                    const costBefore = getStatPointCost(currentAdded);
-                    const costAfter = getStatPointCost(currentAdded - 1);
-                    inputToReduce.value = currentValue - 1;
-                    totalCost -= (costBefore - costAfter);
-                } else {
-                    if (changedInput) changedInput = null;
-                    else break;
-                }
-            }
-
-            document.getElementById('total-points').textContent = totalPoints;
-            document.getElementById('available-points').textContent = Math.max(0, totalPoints - totalCost);
-            calculateAll();
-        }
-
 
         if (typeof classes !== 'undefined' && classes.length > 0) {
             classes.forEach(cls => {
