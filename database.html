@@ -770,8 +770,16 @@
                                 };
                                 console.log('pendingHighlight set:', pendingHighlight);
 
-                                // Change the hash. The 'hashchange' event listener will handle scrolling and highlighting.
-                                window.location.hash = section.hash;
+                                const targetHash = `#${section.hash}`;
+                                // If we are already on the correct section, the hash won't change,
+                                // so the 'hashchange' event won't fire. We need to trigger the
+                                // highlight logic manually in this case.
+                                if (window.location.hash === targetHash) {
+                                    showSectionBasedOnHash();
+                                } else {
+                                    // Otherwise, changing the hash will trigger the event listener.
+                                    window.location.hash = section.hash;
+                                }
                             }
                         }
                     }
