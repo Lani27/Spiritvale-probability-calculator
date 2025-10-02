@@ -684,31 +684,45 @@
                         }
                     }
 
-                    let effectivenessHtml = '<div class="mt-6 pt-4 border-t border-gray-700 text-sm">';
+                    let effectivenessHtml = '<div class="mt-6 pt-4 border-t border-gray-700 text-sm text-center">';
+                    effectivenessHtml += `<h4 class="text-lg font-semibold text-white mb-4">Elemental Effectiveness vs ${colorizeElement(monsterElement)}</h4>`;
+                    effectivenessHtml += '<div class="grid grid-cols-1 md:grid-cols-3 gap-4">';
 
                     if (effectiveness.super.length > 0) {
                         effectivenessHtml += `
-                            <div class="mb-2">
-                                <strong class="text-green-400">Super Effective vs ${colorizeElement(monsterElement)} (125%):</strong>
-                                <span class="ml-2">${effectiveness.super.map(el => colorizeElement(el)).join(', ')}</span>
+                            <div class="bg-gray-700/50 rounded-lg p-4 flex flex-col items-center justify-center">
+                                <div class="flex items-center mb-2">
+                                    <svg class="w-6 h-6 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                                    <h5 class="font-bold text-green-400 text-md">Super Effective</h5>
+                                </div>
+                                <p class="text-2xl font-bold text-white">125%</p>
+                                <div class="mt-2 text-center">${effectiveness.super.map(el => colorizeElement(el)).join(', ')}</div>
                             </div>`;
                     }
                     if (effectiveness.notVery.length > 0) {
                         effectivenessHtml += `
-                            <div class="mb-2">
-                                <strong class="text-yellow-400">Not Very Effective (75%):</strong>
-                                <span class="ml-2">${effectiveness.notVery.map(el => colorizeElement(el)).join(', ')}</span>
+                            <div class="bg-gray-700/50 rounded-lg p-4 flex flex-col items-center justify-center">
+                                <div class="flex items-center mb-2">
+                                     <svg class="w-6 h-6 text-yellow-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17l-5-5m0 0l5-5m-5 5h12"></path></svg>
+                                    <h5 class="font-bold text-yellow-400 text-md">Not Very Effective</h5>
+                                </div>
+                                <p class="text-2xl font-bold text-white">75%</p>
+                                <div class="mt-2 text-center">${effectiveness.notVery.map(el => colorizeElement(el)).join(', ')}</div>
                             </div>`;
                     }
                     if (effectiveness.veryIneffective.length > 0) {
                         effectivenessHtml += `
-                            <div class="mb-2">
-                                <strong class="text-red-400">Very Ineffective (50%):</strong>
-                                <span class="ml-2">${effectiveness.veryIneffective.map(el => colorizeElement(el)).join(', ')}</span>
+                           <div class="bg-gray-700/50 rounded-lg p-4 flex flex-col items-center justify-center">
+                                <div class="flex items-center mb-2">
+                                    <svg class="w-6 h-6 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                    <h5 class="font-bold text-red-400 text-md">Very Ineffective</h5>
+                                </div>
+                                <p class="text-2xl font-bold text-white">50%</p>
+                                <div class="mt-2 text-center">${effectiveness.veryIneffective.map(el => colorizeElement(el)).join(', ')}</div>
                             </div>`;
                     }
 
-                    effectivenessHtml += '</div>';
+                    effectivenessHtml += '</div></div>';
 
                     if (effectiveness.super.length > 0 || effectiveness.notVery.length > 0 || effectiveness.veryIneffective.length > 0) {
                         detailsContainer.innerHTML += effectivenessHtml;
