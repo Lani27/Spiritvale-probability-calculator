@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <li><a href="database.html#cards" class="sidebar-link" data-target="cards"><span class="nav-icon">🎴</span><span class="nav-text">Cards</span></a></li>
                         <li><a href="database.html#artifacts" class="sidebar-link" data-target="artifacts"><span class="nav-icon">✨</span><span class="nav-text">Artifacts</span></a></li>
                         <li><a href="database.html#monsters" class="sidebar-link" data-target="monsters"><span class="nav-icon">👹</span><span class="nav-text">Monsters</span></a></li>
+                        <li><a href="database.html#maps" class="sidebar-link" data-target="maps"><span class="nav-icon">🗺️</span><span class="nav-text">Maps</span></a></li>
                     </ul>
                 </div>
             </nav>
@@ -53,6 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="database.html#monsters" class="sidebar-link" data-target="monsters">
                 <span class="nav-icon">👹</span>
                 <span class="nav-text">Monsters</span>
+            </a>
+            <a href="database.html#maps" class="sidebar-link" data-target="maps">
+                <span class="nav-icon">🗺️</span>
+                <span class="nav-text">Maps</span>
             </a>
         </nav>
     `;

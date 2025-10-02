@@ -143,6 +143,20 @@
                     </div>
                     <div id="monsters-list"></div>
                 </section>
+
+                <!-- Maps Content (Hidden by default) -->
+                <section id="maps" class="content-section hidden">
+                    <div class="sticky top-0 z-10 bg-gray-900 py-4 flex items-center mb-6">
+                        <h1 class="text-3xl font-bold text-white">Maps</h1>
+                        <div class="search-wrapper relative ml-4">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="maps-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Search Maps...">
+                        </div>
+                    </div>
+                    <div id="maps-list"></div>
+                </section>
             </div>
         </main>
     </div>
@@ -171,6 +185,7 @@
     <script src="Cards.js" defer></script>
     <script src="Artifacts.js" defer></script>
     <script src="monsters.js" defer></script>
+    <script src="Maps.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Data is now loaded from the deferred scripts above.
@@ -472,6 +487,34 @@
                         </div>`;
                 }
 
+                function renderMapsList(data) {
+                    const container = document.getElementById('maps-list');
+                    const itemsToRender = data || mapData;
+                    container.innerHTML = `
+                        <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 overflow-hidden">
+                            <table class="w-full text-left">
+                                <thead class="bg-gray-800">
+                                    <tr>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Name</th>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Level Range</th>
+                                        <th class="p-4 text-xs font-semibold uppercase text-gray-400">Monsters</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${itemsToRender.map((map, index) => `
+                                        <tr class="border-t border-gray-700/50 ${index % 2 === 0 ? 'bg-black/10' : ''}">
+                                            <td class="p-4 font-medium text-white">${map.Name}</td>
+                                            <td class="p-4 text-gray-300">${map.MinLevel} - ${map.MaxLevel}</td>
+                                            <td class="p-4 text-gray-300">
+                                                ${map.Monsters ? map.Monsters.map(monsterName => `<span class="monster-name-link text-blue-400 cursor-pointer hover:underline" data-monster-name="${monsterName}">${monsterName}</span>`).join(', ') : 'N/A'}
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>`;
+                }
+
                 // --- MONSTER MODAL LOGIC ---
                 const monsterModal = document.getElementById('monster-modal');
                 const monsterModalClose = document.getElementById('monster-modal-close');
@@ -685,6 +728,7 @@
                 renderCardsList();
                 renderArtifactsList();
                 renderMonstersList();
+                renderMapsList();
 
                 const contentSections = document.querySelectorAll('.content-section');
                 const tooltip = document.getElementById('tooltip');
@@ -766,6 +810,18 @@
                     renderMonstersList(filteredData);
                 });
 
+                document.getElementById('maps-search').addEventListener('input', (e) => {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const filteredData = mapData.filter(item => {
+                        const monsterList = item.Monsters ? item.Monsters.join(' ') : '';
+                        const searchIn = [
+                            item.Name, monsterList
+                        ].join(' ').toLowerCase();
+                        return searchIn.includes(searchTerm);
+                    });
+                    renderMapsList(filteredData);
+                });
+
                 // Logic to keep search bar expanded if it has content
                 const searchInputs = document.querySelectorAll('.search-input');
                 searchInputs.forEach(input => {
@@ -794,6 +850,14 @@
                     }
                 });
                 document.getElementById('monsters-list').addEventListener('click', (e) => {
+                    const target = e.target.closest('.monster-name-link');
+                    if (target) {
+                        const monsterName = target.getAttribute('data-monster-name');
+                        openMonsterModal(monsterName);
+                    }
+                });
+
+                document.getElementById('maps-list').addEventListener('click', (e) => {
                     const target = e.target.closest('.monster-name-link');
                     if (target) {
                         const monsterName = target.getAttribute('data-monster-name');
