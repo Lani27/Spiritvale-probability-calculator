@@ -83,15 +83,26 @@ const allInputIds = [
     'p_crit_dmg_perc', 'p_aspd_perc', 'p_cspd_perc',
     'p_add_elemental_bonus', 'p_dmg_bonus_element', 'p_dmg_bonus_value',
     'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
-    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged', 'p_flat_def',
-    'refine-head', 'refine-back', 'refine-weapon', 'refine-legs', 'refine-accessory1',
-    'refine-eyewear', 'refine-chest', 'refine-offhand', 'refine-feet', 'refine-accessory2'
+    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged', 'p_flat_def'
 ];
 
-const gearSlots = [
-    'head', 'back', 'weapon', 'legs', 'accessory1',
-    'eyewear', 'chest', 'offhand', 'feet', 'accessory2'
-];
+const gearSlotLayout = {
+    left: [
+        { id: 'head', name: 'Head' },
+        { id: 'back', name: 'Back' },
+        { id: 'weapon', name: 'Weapon (Main-Hand)' },
+        { id: 'legs', name: 'Legs' },
+        { id: 'accessory1', name: 'Accessory' }
+    ],
+    right: [
+        { id: 'eyewear', name: 'Eyewear' },
+        { id: 'chest', name: 'Chest' },
+        { id: 'offhand', name: 'Off-Hand' },
+        { id: 'feet', name: 'Feet' },
+        { id: 'accessory2', name: 'Accessory' }
+    ]
+};
+
 
 // This object will hold the state of the currently equipped gear
 let equippedGear = {};
@@ -283,20 +294,22 @@ function resetToDefaults() {
     saveCurrentBuild(); // Save the reset state
 }
 
-function updateGearSlotUI(slotId, equipmentId) {
-    const slotElement = document.getElementById(`gear-slot-${slotId}`);
-    if (!slotElement) return;
+function updateGearSlotUI(slotId) {
+    const gearInfo = equippedGear[slotId];
+    const slotWrapper = document.getElementById(`gear-slot-wrapper-${slotId}`);
+    if (!slotWrapper) return;
 
-    if (!slotElement.dataset.defaultText) {
-        slotElement.dataset.defaultText = slotElement.textContent;
-    }
+    const slotElement = slotWrapper.querySelector('.gear-slot');
+    const refineControls = slotWrapper.querySelector('.refine-controls');
+    const refineDisplay = slotWrapper.querySelector('.refine-display');
 
-    if (!equipmentId) {
+    if (!gearInfo || !gearInfo.itemId) {
         slotElement.innerHTML = `<span>${slotElement.dataset.defaultText}</span>`;
         slotElement.classList.add('justify-center', 'text-gray-500');
         slotElement.classList.remove('justify-start', 'p-2', 'space-x-2', 'items-center');
+        refineControls.classList.add('hidden');
     } else {
-        const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
+        const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
         if (item) {
             slotElement.innerHTML = `
                 <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-10 h-10" style="image-rendering: pixelated;" onerror="this.src='Sprites/Equipment/notfound.png';">
@@ -304,30 +317,31 @@ function updateGearSlotUI(slotId, equipmentId) {
             `;
             slotElement.classList.remove('justify-center', 'text-gray-500');
             slotElement.classList.add('justify-start', 'p-2', 'space-x-2', 'items-center');
+            refineControls.classList.remove('hidden');
+            refineDisplay.textContent = `+${gearInfo.refine || 0}`;
         }
     }
 }
 
+
 function updateAllGearSlotsUI() {
-    gearSlots.forEach(slotId => {
-        const gearInfo = equippedGear[slotId];
-        const equipmentId = gearInfo ? gearInfo.itemId : null;
-        updateGearSlotUI(slotId, equipmentId);
+    Object.keys(gearSlotLayout.left).concat(Object.keys(gearSlotLayout.right)).forEach(slotId => {
+        updateGearSlotUI(slotId);
     });
 }
 
 window.equipItem = function(slotId, equipmentId) {
     if (!equippedGear[slotId]) {
-        equippedGear[slotId] = { refine: 0 };
+        equippedGear[slotId] = { itemId: null, refine: 0 };
     }
     equippedGear[slotId].itemId = equipmentId;
-    updateGearSlotUI(slotId, equipmentId);
+    updateGearSlotUI(slotId);
     calculateAll();
 }
 
 window.unequipItem = function(slotId) {
     delete equippedGear[slotId];
-    updateGearSlotUI(slotId, null);
+    updateGearSlotUI(slotId);
     calculateAll();
 }
 
@@ -494,6 +508,50 @@ async function handleReset() {
 }
 
 // --- UI Generation & Listeners ---
+function initializeGearSlots() {
+    const leftCol = document.getElementById('gear-column-left');
+    const rightCol = document.getElementById('gear-column-right');
+
+    const createSlot = (slot) => {
+        const wrapper = document.createElement('div');
+        wrapper.id = `gear-slot-wrapper-${slot.id}`;
+        wrapper.className = 'flex items-center space-x-2';
+        wrapper.innerHTML = `
+            <div id="gear-slot-${slot.id}" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500" data-default-text="${slot.name}">${slot.name}</div>
+            <div id="refine-controls-${slot.id}" class="refine-controls hidden flex flex-col items-center space-y-1">
+                <button class="refine-btn refine-plus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">+</button>
+                <span class="refine-display font-bold text-indigo-400">+0</span>
+                <button class="refine-btn refine-minus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">-</button>
+            </div>
+        `;
+        return wrapper;
+    };
+
+    gearSlotLayout.left.forEach(slot => leftCol.appendChild(createSlot(slot)));
+    gearSlotLayout.right.forEach(slot => rightCol.appendChild(createSlot(slot)));
+
+    document.querySelectorAll('.refine-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const wrapper = e.target.closest('.flex');
+            const slotId = wrapper.id.replace('gear-slot-wrapper-', '').replace('refine-controls-','');
+
+            if (!equippedGear[slotId] || !equippedGear[slotId].itemId) return;
+
+            let currentRefine = equippedGear[slotId].refine || 0;
+
+            if (e.target.classList.contains('refine-plus')) {
+                currentRefine = Math.min(10, currentRefine + 1);
+            } else if (e.target.classList.contains('refine-minus')) {
+                currentRefine = Math.max(0, currentRefine - 1);
+            }
+
+            equippedGear[slotId].refine = currentRefine;
+            wrapper.querySelector('.refine-display').textContent = `+${currentRefine}`;
+            calculateAll();
+        });
+    });
+}
+
 function initializeMonsterSearch() {
     if (typeof monsters === 'undefined' || monsters.length === 0) {
         console.error("Monster data not found or is empty. Make sure monsters.js is loaded correctly.");
@@ -606,6 +664,7 @@ document.addEventListener('DOMContentLoaded', function() {
             processAllData();
         }
 
+        initializeGearSlots();
         // --- Initialize Class Selector ---
         const classSelect = document.getElementById('p_class');
         const statInputs = {
