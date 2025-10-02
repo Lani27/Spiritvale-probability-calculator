@@ -76,15 +76,12 @@ const archetypeData = {
 let builds = [];
 let activeBuildIndex = 0;
 const MAX_BUILDS = 5;
+// Remove the old manual stat inputs, they are now derived from gear
 const allInputIds = [
     'p_class', 'p_lv', 'p_str', 'p_agi', 'p_vit', 'p_int', 'p_dex', 'p_luk',
-    'p_weapon_atk', 'p_weapon_matk', 'p_atk', 'p_matk', 'p_mastery', 'p_atk_perc', 'p_matk_perc',
-    'p_dmg_melee_perc', 'p_dmg_ranged_perc', 'p_dmg_magic_perc', 'p_crit_flat', 'p_crit_rate_perc',
-    'p_crit_dmg_perc', 'p_aspd_perc', 'p_cspd_perc',
-    'p_add_elemental_bonus', 'p_dmg_bonus_element', 'p_dmg_bonus_value',
-    'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
-    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged', 'p_flat_def'
+    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged'
 ];
+
 
 const gearSlotLayout = {
     left: [
@@ -659,10 +656,12 @@ function initializeMonsterSearch() {
 
 document.addEventListener('DOMContentLoaded', function() {
     try {
-        // Ensure all data is processed before initializing the rest of the app
-        if (typeof processAllData === 'function') {
-            processAllData();
+        // Hide the old manual stat input section
+        const otherBonusesContainer = document.getElementById('other-bonuses-container');
+        if (otherBonusesContainer) {
+            otherBonusesContainer.style.display = 'none';
         }
+
 
         initializeGearSlots();
         // --- Initialize Class Selector ---
@@ -790,7 +789,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- Initialize Listeners for Calculations & UI Toggles ---
         document.getElementById('reset-build-btn').addEventListener('click', handleReset);
         document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
-        document.querySelectorAll('.recalculate, .refine-input').forEach(input => {
+        document.querySelectorAll('.recalculate').forEach(input => {
             input.addEventListener('input', calculateAll);
         });
         document.getElementById('num_skills').addEventListener('input', () => {
@@ -799,14 +798,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
         document.getElementById('p_dual_wield').addEventListener('change', toggleDualWield);
-        document.getElementById('p_add_elemental_bonus').addEventListener('change', () => {
-            document.getElementById('elemental-bonus-inputs').classList.toggle('hidden', !document.getElementById('p_add_elemental_bonus').checked);
-            calculateAll();
-        });
-        document.getElementById('p_add_dmg_vs_element_bonus').addEventListener('change', () => {
-            document.getElementById('dmg-vs-element-inputs').classList.toggle('hidden', !document.getElementById('p_add_dmg_vs_element_bonus').checked);
-            calculateAll();
-        });
         document.getElementById('t_archetype').addEventListener('change', calculateAll);
 
         // --- Final Setup Calls ---
@@ -822,7 +813,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const slotId = slot.id.replace('gear-slot-', '');
                 const gearInfo = equippedGear[slotId];
                 if (gearInfo && gearInfo.itemId) {
-                    const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
+                    const item = window.equipmentData.find(e => e.EquipmentId == gearInfo.itemId);
                     if (item) {
                         tooltip.innerHTML = generateItemCardHTML(item);
                         tooltip.style.display = 'block';
@@ -1077,43 +1068,79 @@ function updateTargetStatsFromArchetype() {
 }
 
 function calculateAll() {
+    console.log("Sword data at start of calculateAll:", JSON.stringify(window.equipmentData.find(e => e.EquipmentId == 'Sword')));
     const targetBaseStats = updateTargetStatsFromArchetype();
 
-    // --- Calculate Bonuses from Equipped Gear ---
     const gearBonuses = {
         'STR': 0, 'AGI': 0, 'VIT': 0, 'INT': 0, 'DEX': 0, 'LUK': 0,
-        'Weapon ATK': 0, 'Weapon MATK': 0, 'Bonus ATK': 0, 'Bonus MATK': 0,
-        'Mastery': 0, 'ATK %': 0, 'MATK %': 0, 'Dmg Melee %': 0, 'Dmg Ranged %': 0,
-        'Dmg Magic %': 0, 'Flat CRIT': 0, 'Crit Rate %': 0, 'Crit Dmg %': 0,
-        'AtkSpeed %': 0, 'CastSpeed %': 0, 'Flat Def': 0
+        'Weapon ATK': 0, 'Weapon MATK': 0,
+        'Bonus ATK': 0, 'Bonus MATK': 0,
+        'Mastery': 0,
+        'ATK %': 0, 'MATK %': 0,
+        'Dmg Melee %': 0, 'Dmg Ranged %': 0, 'Dmg Magic %': 0,
+        'Flat CRIT': 0, 'Crit Rate %': 0, 'Crit Dmg %': 0,
+        'AtkSpeed %': 0, 'CastSpeed %': 0,
+        'Flat Def': 0, 'Flat Mdef': 0,
+        'Block %': 0,
     };
 
     const statNameMapping = {
-        'Atk': 'Bonus ATK', 'Matk': 'Bonus MATK', 'Def': 'Flat Def', 'Mdef': 'Flat Mdef',
-        'ATK %': 'ATK %', 'MATK %': 'MATK %', 'Crit': 'Flat CRIT', 'Crit Dmg': 'Crit Dmg %',
-        'Atk Spd': 'AtkSpeed %', 'Cast Spd': 'CastSpeed %', 'Dmg Melee %': 'Dmg Melee %',
-        'Dmg Ranged %': 'Dmg Ranged %', 'Dmg Magic %': 'Dmg Magic %', 'Crit Rate %': 'Crit Rate %',
-        'Mastery': 'Mastery'
+        'Atk': 'Bonus ATK', 'Matk': 'Bonus MATK',
+        'Def': 'Flat Def', 'Mdef': 'Flat Mdef',
+        'Def Flat': 'Flat Def', 'Mdef Flat': 'Flat Mdef',
+        'Crit': 'Flat CRIT',
+        'Crit Damage': 'Crit Dmg %',
+        'Atk Spd %': 'AtkSpeed %', 'Cast Spd %': 'CastSpeed %',
+        'Block': 'Block %'
     };
-    const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book', 'Twinblade', 'Scythe', 'Instrument', 'Pistol'];
+    const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book'];
 
-    Object.entries(equippedGear).forEach(([slotId, gearInfo]) => {
+    console.log("--- New Calculation Cycle ---");
+    console.log("Equipped Gear object:", JSON.stringify(equippedGear, null, 2));
+
+    Object.entries(equippedGear).forEach(([slot, gearInfo]) => {
         if (!gearInfo || !gearInfo.itemId) return;
 
-        const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
-        if (!item || !item.ProcessedStats) return;
+        console.log(`Processing slot: ${slot}`, gearInfo);
+        const item = window.equipmentData.find(e => e.EquipmentId == gearInfo.itemId);
+
+        if (!item) {
+            console.log(`Item with ID ${gearInfo.itemId} not found!`);
+            return;
+        }
+        console.log(`Found item: ${item.Name}`, item);
+
+        if (!item.ProcessedStats) {
+            console.log(`Item ${item.Name} has no ProcessedStats!`);
+            return;
+        };
 
         const refineLevel = gearInfo.refine || 0;
         const allStats = [...item.ProcessedStats.primary, ...item.ProcessedStats.secondary];
 
         allStats.forEach(stat => {
+            if (!stat || !stat.stat) return;
+
             let statName = stat.stat;
+            let isWeaponStat = false;
+
             if (weaponTypes.includes(item.Type)) {
-                if (statName === 'Atk') statName = 'Weapon ATK';
-                if (statName === 'Matk') statName = 'Weapon MATK';
+                if (statName === 'Atk') {
+                    statName = 'Weapon ATK';
+                    isWeaponStat = true;
+                } else if (statName === 'Matk') {
+                    statName = 'Weapon MATK';
+                    isWeaponStat = true;
+                }
             }
 
-            const mappedStatName = statNameMapping[statName] || statName;
+            let mappedStatName = isWeaponStat ? statName : (statNameMapping[statName] || statName);
+
+            const baseStats = ['STR', 'AGI', 'VIT', 'INT', 'DEX', 'LUK'];
+            if (baseStats.includes(mappedStatName.toUpperCase())) {
+                mappedStatName = mappedStatName.toUpperCase();
+            }
+
             const totalValue = stat.value + (stat.perLevel * refineLevel);
 
             if (gearBonuses[mappedStatName] !== undefined) {
@@ -1122,53 +1149,73 @@ function calculateAll() {
         });
     });
 
-    // Update the UI for the disabled bonus fields
-    document.querySelectorAll('.stat-bonus-input').forEach(input => {
-        const statName = input.dataset.statName;
-        const value = gearBonuses[statName] || 0;
-        input.value = value;
+    const setCounts = {};
+    const equippedItems = Object.values(equippedGear)
+        .map(info => info ? window.equipmentData.find(e => e.EquipmentId == info.itemId) : null)
+        .filter(item => item && item.Set);
+
+    equippedItems.forEach(item => {
+        setCounts[item.Set] = (setCounts[item.Set] || 0) + 1;
     });
-    // --- End Gear Bonus Calculation ---
+
+    console.log("Equipped Set Counts:", setCounts);
+
+    Object.entries(setCounts).forEach(([setName, count]) => {
+        // Assuming 3 pieces are required for a set bonus. This might need to be more flexible.
+        const piecesRequired = 3;
+        if (count >= piecesRequired) {
+            console.log(`Applying set bonus for: ${setName}`);
+            const setItem = equippedItems.find(item => item.Set === setName);
+
+            if (setItem && setItem.ProcessedStats && setItem.ProcessedStats.setBonuses) {
+                setItem.ProcessedStats.setBonuses.forEach(stat => {
+                    if (!stat || !stat.stat) return;
+
+                    let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                    const baseStats = ['STR', 'AGI', 'VIT', 'INT', 'DEX', 'LUK'];
+                    if (baseStats.includes(mappedStatName.toUpperCase())) {
+                        mappedStatName = mappedStatName.toUpperCase();
+                    }
+
+                    const finalValue = stat.value; // Set bonuses don't have per-level scaling in this data
+
+                    if (gearBonuses[mappedStatName] !== undefined) {
+                        gearBonuses[mappedStatName] += finalValue;
+                    }
+                });
+            }
+        }
+    });
+
+    console.log("Gear Bonuses after Sets:", JSON.stringify(gearBonuses, null, 2));
+
 
     const p_stats = {
         lv: getFloat('p_lv'),
-        str: getFloat('p_str') + (gearBonuses['STR'] || 0),
-        agi: getFloat('p_agi') + (gearBonuses['AGI'] || 0),
-        vit: getFloat('p_vit') + (gearBonuses['VIT'] || 0),
-        int: getFloat('p_int') + (gearBonuses['INT'] || 0),
-        dex: getFloat('p_dex') + (gearBonuses['DEX'] || 0),
-        luk: getFloat('p_luk') + (gearBonuses['LUK'] || 0)
+        str: getFloat('p_str') + gearBonuses['STR'],
+        agi: getFloat('p_agi') + gearBonuses['AGI'],
+        vit: getFloat('p_vit') + gearBonuses['VIT'],
+        int: getFloat('p_int') + gearBonuses['INT'],
+        dex: getFloat('p_dex') + gearBonuses['DEX'],
+        luk: getFloat('p_luk') + gearBonuses['LUK']
     };
 
-    const p_weapon_atk = gearBonuses['Weapon ATK'] || 0;
-    const p_weapon_matk = gearBonuses['Weapon MATK'] || 0;
-    const p_atk = gearBonuses['Bonus ATK'] || 0;
-    const p_matk = gearBonuses['Bonus MATK'] || 0;
-    const p_mastery = gearBonuses['Mastery'] || 0;
-    const p_atk_perc = (gearBonuses['ATK %'] || 0) / 100;
-    const p_matk_perc = (gearBonuses['MATK %'] || 0) / 100;
-    const p_dmg_melee_perc = (gearBonuses['Dmg Melee %'] || 0) / 100;
-    const p_dmg_ranged_perc = (gearBonuses['Dmg Ranged %'] || 0) / 100;
-    const p_dmg_magic_perc = (gearBonuses['Dmg Magic %'] || 0) / 100;
-
-    const p_dmg_bonus = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
-    if (getBool('p_add_elemental_bonus')) {
-        const element = getSelect('p_dmg_bonus_element');
-        p_dmg_bonus[element] = getFloat('p_dmg_bonus_value') / 100;
-    }
-
-    const p_dmg_vs = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
-    if (getBool('p_add_dmg_vs_element_bonus')) {
-        const element = getSelect('p_dmg_vs_element_element');
-        p_dmg_vs[element] = getFloat('p_dmg_vs_element_value') / 100;
-    }
-
-    const p_crit_flat = gearBonuses['Flat CRIT'] || 0;
-    const p_crit_rate_perc = (gearBonuses['Crit Rate %'] || 0) / 100;
-    const p_crit_dmg_perc = gearBonuses['Crit Dmg %'] || 0;
-    const p_flat_def = gearBonuses['Flat Def'] || 0;
-    const p_aspd_perc = (gearBonuses['AtkSpeed %'] || 0) / 100;
-    const p_cspd_perc = (gearBonuses['CastSpeed %'] || 0) / 100;
+    const p_weapon_atk = gearBonuses['Weapon ATK'];
+    const p_weapon_matk = gearBonuses['Weapon MATK'];
+    const p_atk = gearBonuses['Bonus ATK'];
+    const p_matk = gearBonuses['Bonus MATK'];
+    const p_mastery = gearBonuses['Mastery'];
+    const p_atk_perc = gearBonuses['ATK %'] / 100;
+    const p_matk_perc = gearBonuses['MATK %'] / 100;
+    const p_dmg_melee_perc = gearBonuses['Dmg Melee %'] / 100;
+    const p_dmg_ranged_perc = gearBonuses['Dmg Ranged %'] / 100;
+    const p_dmg_magic_perc = gearBonuses['Dmg Magic %'] / 100;
+    const p_crit_flat = gearBonuses['Flat CRIT'];
+    const p_crit_rate_perc = gearBonuses['Crit Rate %'] / 100;
+    const p_crit_dmg_perc = gearBonuses['Crit Dmg %'];
+    const p_flat_def = gearBonuses['Flat Def'];
+    const p_aspd_perc = gearBonuses['AtkSpeed %'] / 100;
+    const p_cspd_perc = gearBonuses['CastSpeed %'] / 100;
 
     const p_dual_wield = getBool('p_dual_wield');
     let p_bad;
@@ -1191,7 +1238,6 @@ function calculateAll() {
     const final_t_mdef = targetBaseStats.base_mdef * (1 + targetBaseStats.t_vit / 1000 + t_mdef_perc);
     const final_t_block = targetBaseStats.base_block * (1 + targetBaseStats.t_dex / 100);
 
-    // Only update the display for calculated archetypes, not for custom user input
     if (getSelect('t_archetype') !== 'Custom') {
         document.getElementById('t_def').value = Math.floor(final_t_def);
         document.getElementById('t_mdef').value = Math.floor(final_t_mdef);
@@ -1200,30 +1246,25 @@ function calculateAll() {
 
     const t_flee = t_lv * 2;
     const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
-
     const two_handed_bonus = !p_dual_wield ? 1.25 : 1;
 
     const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + p_atk + p_weapon_atk * (1 + mainStat / 200)) *
                       (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * two_handed_bonus;
+    console.log(`Final ATK calculated: ${final_atk}`);
     const final_matk = (p_stats.lv / 4 + p_stats.int * 1.5 + Math.floor(p_stats.dex / 10) * 2 + p_mastery + p_matk + p_weapon_matk * (1 + p_stats.int / 200)) *
                        (1 + p_matk_perc + Math.floor(p_stats.int / 10) / 100) * two_handed_bonus;
 
-    // --- New CTR Calculation ---
     const selectedClassName = getSelect('p_class');
     const selectedClass = typeof classes !== 'undefined' ? classes.find(cls => cls.ClassName === selectedClassName) : undefined;
     let base_ctr_perc = 0;
     if (selectedClass) {
         const base_dex = selectedClass.DEX || 0;
         const base_int = selectedClass.INT || 0;
-        // Base CTR % = ( [Total DEX] - [Class Base DEX] ) * 0.35 + ( [Total INT] - [Class Base INT] ) * 0.125
         base_ctr_perc = ((p_stats.dex - base_dex) * 0.35) + ((p_stats.int - base_int) * 0.125);
     }
-    // Final CTR % = [Base CTR %] + (100 - [Base CTR %]) * ([Cast Speed %] / 100)
     const final_ctr_perc = base_ctr_perc + (100 - base_ctr_perc) * p_cspd_perc;
-    const cast_time_reduction = Math.min(0.9, Math.max(0, final_ctr_perc / 100)); // Cap at 90%
-    // Derive Cast Speed from the final Cast Time Reduction for display consistency
+    const cast_time_reduction = Math.min(0.9, Math.max(0, final_ctr_perc / 100));
     const cast_speed = 200 - 50 * (1 - cast_time_reduction);
-    // --- End New CTR Calculation ---
 
     let aspd = 200 - 50 * p_bad * (1 - (p_stats.agi / 250 + p_stats.dex / 1000)) / (1 + p_aspd_perc) + 0.5 * Math.floor(p_stats.agi / 10);
     const attack_delay = (200 - aspd) / 50;
@@ -1232,12 +1273,14 @@ function calculateAll() {
     const crit_damage_multiplier = (120 + Math.floor(p_stats.luk / 10) + p_crit_dmg_perc) / 100;
     const final_hit = (p_stats.lv + p_stats.dex + 25);
     const hit_chance = Math.min(100, 100 + final_hit - t_flee) / 100;
-    const final_block_chance = Math.min(75, final_t_block); // Cap at 75%
+    const final_block_chance = Math.min(75, final_t_block + (gearBonuses['Block %'] || 0));
     const auto_attack_elemental_multiplier = getElementalMultiplier(p_element, t_element);
 
-    // DamageReduction = 100 / (DEF + 100). This is a damage multiplier.
     const phys_dmg_multiplier = 100 / (final_t_def + 100);
     const mag_dmg_multiplier = 100 / (final_t_mdef + 100);
+
+    const p_dmg_bonus = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
+    const p_dmg_vs = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
 
     const auto_attack_ele_bonus = p_dmg_bonus[p_element.toLowerCase()] || 0;
     const auto_attack_vs_ele_bonus = p_dmg_vs[t_element.toLowerCase()] || 0;
@@ -1274,15 +1317,10 @@ function calculateAll() {
             const finalCastTime = castTime * (1 - cast_time_reduction);
 
             if (castTime > 0) {
-                // Skill has a cast time, add it to the rotation's cast sequence.
                 totalCastTime += finalCastTime;
             } else if (cooldown === 0) {
-                // Skill is instant and has no cooldown, so it's spammable.
-                // Its contribution to rotation time is the base attack delay.
                 totalCastTime += attack_delay;
             }
-            // If castTime is 0 and cooldown > 0, the skill is an instant off-GCD.
-            // It doesn't contribute to the sequence time, only to the longestCooldown.
 
             longestCooldown = Math.max(longestCooldown, cooldown);
             let percentScalingBonus = 0;
