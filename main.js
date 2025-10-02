@@ -1,3 +1,62 @@
+// --- Tooltip & Card Generation ---
+function parseStats(statString) {
+    if (!statString) return '<span class="text-gray-500">N/A</span>';
+    return statString
+        .replace(/<color=#([A-Fa-f0-9]{6})[A-Fa-f0-9]{2}>/g, (match, color) => `<span style="color:#${color};">`)
+        .replace(/<\/color>/g, '</span>')
+        .replace(/\n/g, '<br>');
+}
+
+function renderSources(item) {
+    if (!item.Source) return '';
+
+    const sources = item.Source.split('\n').filter(s => s.trim() !== '');
+    if (sources.length === 0) return '';
+
+    const droprates = item.Droprate ? item.Droprate.split('\n') : [];
+
+    let sourcesHtml = `<div class="mt-4 pt-4 border-t border-gray-700/50 text-xs text-gray-400">
+                           <p class="text-xs text-gray-500 uppercase font-semibold mb-1">${sources.length === 1 ? 'Source' : 'Sources'}</p>
+                           <ul class="text-sm list-disc list-inside ${sources.length > 1 ? 'grid grid-cols-2 gap-x-4' : ''}">`;
+
+    sources.forEach((source, index) => {
+        sourcesHtml += `<li class="break-words">
+                            <span class="font-semibold text-indigo-400">${source}</span>
+                            ${droprates[index] ? `<span class="text-gray-500 ml-1">(${droprates[index]})</span>` : ''}
+                        </li>`;
+    });
+    sourcesHtml += '</ul></div>';
+    return sourcesHtml;
+}
+
+
+function generateItemCardHTML(item) {
+    if (!item) return '';
+    return `
+        <div class="bg-gray-800/95 rounded-lg border border-gray-700/50 p-4 flex flex-col" style="width: 380px;">
+            <div class="flex items-start mb-3">
+                <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" style="image-rendering: pixelated;" onerror="this.onerror=null;this.src='Sprites/Equipment/notfound.png';">
+                <div class="flex-1">
+                    <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
+                    <div class="mt-1 flex items-center flex-wrap">
+                        <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
+                        ${item['Stat Type'] ? `<span class="ml-2 inline-block bg-teal-900/60 text-teal-300 text-xs font-semibold px-2 py-0.5 rounded">${item['Stat Type']}</span>` : ''}
+                        ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Set: ${item.Set}</span>` : ''}
+                    </div>
+                </div>
+            </div>
+            <div class="flex-grow space-y-3 mb-4">
+                ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
+                ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
+                <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
+            </div>
+            <div class="mt-auto">
+                ${renderSources(item)}
+            </div>
+        </div>
+    `;
+}
+
 // --- DATA ---
 const archetypeData = {
     Brute:    { str: 1.75, agi: 0.75, vit: 1.5,  int: 0.25, dex: 1,    luk: 0.75 },
@@ -26,6 +85,14 @@ const allInputIds = [
     'p_dmg_vs_element_element', 'p_dmg_vs_element_value',
     'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged', 'p_flat_def'
 ];
+
+const gearSlots = [
+    'head', 'back', 'weapon', 'legs', 'accessory1',
+    'eyewear', 'chest', 'offhand', 'feet', 'accessory2'
+];
+
+// This object will hold the state of the currently equipped gear
+let equippedGear = {};
 
 function saveBuildsMetadata() {
     const buildsMetadata = builds.map(b => ({ name: b.name }));
@@ -147,6 +214,7 @@ function getCurrentBuildData() {
             buildData.skills.push(skillData);
         }
     }
+    buildData.equippedGear = equippedGear;
     return buildData;
 }
 
@@ -205,8 +273,56 @@ function resetToDefaults() {
     numSkillsInput.value = numSkillsInput.defaultValue;
     generateSkillInputs();
 
+    // Reset gear
+    equippedGear = {};
+    updateAllGearSlotsUI();
+
     calculateAll();
     saveCurrentBuild(); // Save the reset state
+}
+
+function updateGearSlotUI(slotId, equipmentId) {
+    const slotElement = document.getElementById(`gear-slot-${slotId}`);
+    if (!slotElement) return;
+
+    if (!slotElement.dataset.defaultText) {
+        slotElement.dataset.defaultText = slotElement.textContent;
+    }
+
+    if (!equipmentId) {
+        slotElement.innerHTML = `<span>${slotElement.dataset.defaultText}</span>`;
+        slotElement.classList.add('justify-center', 'text-gray-500');
+        slotElement.classList.remove('justify-start', 'p-2', 'space-x-2', 'items-center');
+    } else {
+        const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
+        if (item) {
+            slotElement.innerHTML = `
+                <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-10 h-10" style="image-rendering: pixelated;" onerror="this.src='Sprites/Equipment/notfound.png';">
+                <span class="text-sm text-white truncate">${item.Name}</span>
+            `;
+            slotElement.classList.remove('justify-center', 'text-gray-500');
+            slotElement.classList.add('justify-start', 'p-2', 'space-x-2', 'items-center');
+        }
+    }
+}
+
+function updateAllGearSlotsUI() {
+    gearSlots.forEach(slotId => {
+        const equipmentId = equippedGear[slotId];
+        updateGearSlotUI(slotId, equipmentId);
+    });
+}
+
+window.equipItem = function(slotId, equipmentId) {
+    equippedGear[slotId] = equipmentId;
+    updateGearSlotUI(slotId, equipmentId);
+    calculateAll();
+}
+
+window.unequipItem = function(slotId) {
+    delete equippedGear[slotId];
+    updateGearSlotUI(slotId, null);
+    calculateAll();
 }
 
 function loadBuild(index) {
@@ -277,6 +393,10 @@ function loadBuild(index) {
             document.getElementById('num_skills').value = 0;
             generateSkillInputs();
         }
+
+        // Load equipped gear
+        equippedGear = buildData.equippedGear || {};
+        updateAllGearSlotsUI();
 
         if (document.getElementById('p_class').value) {
             document.getElementById('p_class').dispatchEvent(new Event('change'));
@@ -553,6 +673,47 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleDualWield();
         generateSkillInputs();
         calculateAll();
+
+        // --- Tooltip Logic ---
+        const tooltip = document.getElementById('tooltip');
+        document.querySelectorAll('.gear-slot').forEach(slot => {
+            slot.addEventListener('mouseover', (e) => {
+                const slotId = slot.id.replace('gear-slot-', '');
+                const equipmentId = equippedGear[slotId];
+                if (equipmentId) {
+                    const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
+                    if (item) {
+                        tooltip.innerHTML = generateItemCardHTML(item);
+                        tooltip.style.display = 'block';
+                    }
+                }
+            });
+
+            slot.addEventListener('mouseout', () => {
+                tooltip.style.display = 'none';
+                tooltip.innerHTML = '';
+            });
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (tooltip.style.display === 'block') {
+                // Add some logic to keep the tooltip within the viewport
+                const tooltipRect = tooltip.getBoundingClientRect();
+                let left = e.pageX + 15;
+                let top = e.pageY + 15;
+
+                if (left + tooltipRect.width > window.innerWidth) {
+                    left = e.pageX - tooltipRect.width - 15;
+                }
+                if (top + tooltipRect.height > window.innerHeight) {
+                    top = e.pageY - tooltipRect.height - 15;
+                }
+
+                tooltip.style.left = `${left}px`;
+                tooltip.style.top = `${top}px`;
+            }
+        });
+
     } catch (error) {
         console.error("An error occurred during initialization:", error);
         customAlert("A critical error occurred while loading the page. Some features may not work correctly. Please check the console for more details.", "Initialization Error");
@@ -777,16 +938,104 @@ function updateTargetStatsFromArchetype() {
 
 function calculateAll() {
     const targetBaseStats = updateTargetStatsFromArchetype();
-    const p_stats = {
-        lv: getFloat('p_lv'), str: getFloat('p_str'), agi: getFloat('p_agi'),
-        vit: getFloat('p_vit'), int: getFloat('p_int'), dex: getFloat('p_dex'), luk: getFloat('p_luk')
+
+    // --- Calculate Bonuses from Equipped Gear ---
+    const gearBonuses = {
+        'STR': 0, 'AGI': 0, 'VIT': 0, 'INT': 0, 'DEX': 0, 'LUK': 0,
+        'Weapon ATK': 0, 'Weapon MATK': 0, 'Bonus ATK': 0, 'Bonus MATK': 0,
+        'Mastery': 0, 'ATK %': 0, 'MATK %': 0, 'Dmg Melee %': 0, 'Dmg Ranged %': 0,
+        'Dmg Magic %': 0, 'Flat CRIT': 0, 'Crit Rate %': 0, 'Crit Dmg %': 0,
+        'AtkSpeed %': 0, 'CastSpeed %': 0, 'Flat Def': 0
+        // Note: Special bonuses like elemental damage are handled separately.
     };
-    const p_weapon_atk = getFloat('p_weapon_atk'), p_weapon_matk = getFloat('p_weapon_matk');
-    const p_atk = getFloat('p_atk'), p_matk = getFloat('p_matk'), p_mastery = getFloat('p_mastery');
-    const p_atk_perc = getFloat('p_atk_perc') / 100, p_matk_perc = getFloat('p_matk_perc') / 100;
-    const p_dmg_melee_perc = getFloat('p_dmg_melee_perc') / 100;
-    const p_dmg_ranged_perc = getFloat('p_dmg_ranged_perc') / 100;
-    const p_dmg_magic_perc = getFloat('p_dmg_magic_perc') / 100;
+
+    const p_level = getFloat('p_lv');
+
+    const statNameMapping = {
+        'Atk': 'Bonus ATK', 'Matk': 'Bonus MATK', 'Def': 'Flat Def', 'Mdef': 'Flat Mdef', // This will be ignored for now but good to have
+        'ATK %': 'ATK %', 'MATK %': 'MATK %', 'Crit': 'Flat CRIT', 'Crit Dmg': 'Crit Dmg %',
+        'Atk Spd': 'AtkSpeed %', 'Cast Spd': 'CastSpeed %', 'Dmg Melee %': 'Dmg Melee %',
+        'Dmg Ranged %': 'Dmg Ranged %', 'Dmg Magic %': 'Dmg Magic %', 'Crit Rate %': 'Crit Rate %'
+    };
+    const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book', 'Twinblade', 'Scythe', 'Instrument', 'Pistol'];
+
+    Object.values(equippedGear).forEach(equipmentId => {
+        if (!equipmentId) return;
+        const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
+        if (!item || !item.ProcessedStats) return;
+
+        const allStats = [...item.ProcessedStats.primary, ...item.ProcessedStats.secondary];
+        // TODO: Add set bonuses later
+        allStats.forEach(stat => {
+            let statName = stat.stat;
+            // Handle weapon ATK/MATK specifically
+            if (weaponTypes.includes(item.Type)) {
+                if (statName === 'Atk') statName = 'Weapon ATK';
+                if (statName === 'Matk') statName = 'Weapon MATK';
+            }
+
+            const mappedStatName = statNameMapping[statName] || statName;
+            const totalValue = stat.value + (stat.perLevel * p_level);
+
+            if (gearBonuses[mappedStatName] !== undefined) {
+                gearBonuses[mappedStatName] += totalValue;
+            }
+        });
+    });
+    // --- End Gear Bonus Calculation ---
+
+    const p_stats = {
+        lv: p_level,
+        str: getFloat('p_str') + (gearBonuses['STR'] || 0),
+        agi: getFloat('p_agi') + (gearBonuses['AGI'] || 0),
+        vit: getFloat('p_vit') + (gearBonuses['VIT'] || 0),
+        int: getFloat('p_int') + (gearBonuses['INT'] || 0),
+        dex: getFloat('p_dex') + (gearBonuses['DEX'] || 0),
+        luk: getFloat('p_luk') + (gearBonuses['LUK'] || 0)
+    };
+
+    // --- Update Stat Inputs ---
+    // Disable inputs that are being provided by gear
+    const providedStats = new Set();
+    Object.values(equippedGear).forEach(equipmentId => {
+        if (!equipmentId) return;
+        const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
+        if (!item || !item.ProcessedStats) return;
+
+        [...item.ProcessedStats.primary, ...item.ProcessedStats.secondary].forEach(stat => {
+            if (stat.value !== 0 || stat.perLevel !== 0) {
+                let statName = stat.stat;
+                if (weaponTypes.includes(item.Type)) {
+                    if (statName === 'Atk') statName = 'Weapon ATK';
+                    if (statName === 'Matk') statName = 'Weapon MATK';
+                }
+                const mappedStatName = statNameMapping[statName] || statName;
+                providedStats.add(mappedStatName);
+            }
+        });
+    });
+
+    document.querySelectorAll('.stat-input').forEach(input => {
+        const statName = input.dataset.statName;
+        const parentGroup = input.parentElement;
+        if (providedStats.has(statName)) {
+            parentGroup.classList.add('hidden');
+        } else {
+            parentGroup.classList.remove('hidden');
+        }
+    });
+
+
+    const p_weapon_atk = getFloat('p_weapon_atk') + (gearBonuses['Weapon ATK'] || 0);
+    const p_weapon_matk = getFloat('p_weapon_matk') + (gearBonuses['Weapon MATK'] || 0);
+    const p_atk = getFloat('p_atk') + (gearBonuses['Bonus ATK'] || 0);
+    const p_matk = getFloat('p_matk') + (gearBonuses['Bonus MATK'] || 0);
+    const p_mastery = getFloat('p_mastery') + (gearBonuses['Mastery'] || 0);
+    const p_atk_perc = (getFloat('p_atk_perc') + (gearBonuses['ATK %'] || 0)) / 100;
+    const p_matk_perc = (getFloat('p_matk_perc') + (gearBonuses['MATK %'] || 0)) / 100;
+    const p_dmg_melee_perc = (getFloat('p_dmg_melee_perc') + (gearBonuses['Dmg Melee %'] || 0)) / 100;
+    const p_dmg_ranged_perc = (getFloat('p_dmg_ranged_perc') + (gearBonuses['Dmg Ranged %'] || 0)) / 100;
+    const p_dmg_magic_perc = (getFloat('p_dmg_magic_perc') + (gearBonuses['Dmg Magic %'] || 0)) / 100;
 
     const p_dmg_bonus = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
     if (getBool('p_add_elemental_bonus')) {
@@ -800,11 +1049,12 @@ function calculateAll() {
         p_dmg_vs[element] = getFloat('p_dmg_vs_element_value') / 100;
     }
 
-    const p_crit_flat = getFloat('p_crit_flat');
-    const p_crit_rate_perc = getFloat('p_crit_rate_perc') / 100;
-    const p_crit_dmg_perc = getFloat('p_crit_dmg_perc');
-    const p_flat_def = getFloat('p_flat_def');
-    const p_aspd_perc = getFloat('p_aspd_perc') / 100, p_cspd_perc = getFloat('p_cspd_perc') / 100;
+    const p_crit_flat = getFloat('p_crit_flat') + (gearBonuses['Flat CRIT'] || 0);
+    const p_crit_rate_perc = (getFloat('p_crit_rate_perc') + (gearBonuses['Crit Rate %'] || 0)) / 100;
+    const p_crit_dmg_perc = getFloat('p_crit_dmg_perc') + (gearBonuses['Crit Dmg %'] || 0);
+    const p_flat_def = getFloat('p_flat_def') + (gearBonuses['Flat Def'] || 0);
+    const p_aspd_perc = (getFloat('p_aspd_perc') + (gearBonuses['AtkSpeed %'] || 0)) / 100;
+    const p_cspd_perc = (getFloat('p_cspd_perc') + (gearBonuses['CastSpeed %'] || 0)) / 100;
 
     const p_dual_wield = getBool('p_dual_wield');
     let p_bad;
