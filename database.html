@@ -192,6 +192,19 @@
                     "Undead": "#C85AE0FF",
                 };
 
+                const elementalChart = {
+                    // Attacker: { Defender: Multiplier }
+                    "Neutral": { "Shadow": 1.25, "Holy": 0.75 },
+                    "Poison": { "Neutral": 1.25, "Holy": 0.75, "Undead": 0.75, "Poison": 0.5 },
+                    "Holy": { "Undead": 1.25, "Shadow": 1.25, "Holy": 0.5 },
+                    "Shadow": { "Holy": 1.25, "Poison": 0.75, "Shadow": 0.5 },
+                    "Fire": { "Earth": 1.25, "Poison": 1.25, "Water": 0.75, "Wind": 0.75, "Fire": 0.5 },
+                    "Water": { "Fire": 1.25, "Undead": 0.75, "Earth": 0.75, "Water": 0.5 },
+                    "Wind": { "Water": 1.25, "Neutral": 0.75, "Fire": 0.75, "Wind": 0.5 },
+                    "Earth": { "Wind": 1.25, "Fire": 0.75, "Water": 0.75, "Earth": 0.5 },
+                    "Undead": { "Poison": 1.25, "Holy": 0.75, "Undead": 0.5 },
+                };
+
                 function colorizeElement(element) {
                     const color = elementColors[element] || elementColors['Neutral'];
                     const hexColor = color.substring(1, 7); // Extract RRGGBB from #RRGGBBAA
@@ -486,6 +499,59 @@
                             </div>
                         </div>
                     `;
+
+                    // Elemental Effectiveness Logic
+                    const monsterElement = monster.Element;
+                    const effectiveness = {
+                        super: [],
+                        notVery: [],
+                        veryIneffective: []
+                    };
+
+                    for (const attackerElement in elementalChart) {
+                        const defenderChart = elementalChart[attackerElement];
+                        if (defenderChart[monsterElement]) {
+                            const multiplier = defenderChart[monsterElement];
+                            if (multiplier === 1.25) {
+                                effectiveness.super.push(attackerElement);
+                            } else if (multiplier === 0.75) {
+                                effectiveness.notVery.push(attackerElement);
+                            } else if (multiplier === 0.5) {
+                                effectiveness.veryIneffective.push(attackerElement);
+                            }
+                        }
+                    }
+
+                    let effectivenessHtml = '<div class="mt-6 pt-4 border-t border-gray-700 text-sm">';
+
+                    if (effectiveness.super.length > 0) {
+                        effectivenessHtml += `
+                            <div class="mb-2">
+                                <strong class="text-green-400">Super Effective vs ${colorizeElement(monsterElement)} (125%):</strong>
+                                <span class="ml-2">${effectiveness.super.map(el => colorizeElement(el)).join(', ')}</span>
+                            </div>`;
+                    }
+                    if (effectiveness.notVery.length > 0) {
+                        effectivenessHtml += `
+                            <div class="mb-2">
+                                <strong class="text-yellow-400">Not Very Effective (75%):</strong>
+                                <span class="ml-2">${effectiveness.notVery.map(el => colorizeElement(el)).join(', ')}</span>
+                            </div>`;
+                    }
+                    if (effectiveness.veryIneffective.length > 0) {
+                        effectivenessHtml += `
+                            <div class="mb-2">
+                                <strong class="text-red-400">Very Ineffective (50%):</strong>
+                                <span class="ml-2">${effectiveness.veryIneffective.map(el => colorizeElement(el)).join(', ')}</span>
+                            </div>`;
+                    }
+
+                    effectivenessHtml += '</div>';
+
+                    if (effectiveness.super.length > 0 || effectiveness.notVery.length > 0 || effectiveness.veryIneffective.length > 0) {
+                        detailsContainer.innerHTML += effectivenessHtml;
+                    }
+
 
                     // Find all loot for this monster
                     const allItems = [
