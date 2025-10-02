@@ -187,7 +187,6 @@
                 </div>
             </div>
             <div class="p-6 flex-grow overflow-y-auto">
-                <div id="monster-modal-route-container" class="hidden mb-6"></div>
                 <div id="monster-modal-details" class="mb-6"></div>
                 <div>
                     <h3 class="text-xl font-semibold text-white mb-4">Loot Drops</h3>
@@ -626,12 +625,6 @@
                 const monsterModal = document.getElementById('monster-modal');
                 const monsterModalClose = document.getElementById('monster-modal-close');
                 const monsterModalFindBtn = document.getElementById('monster-modal-find-btn');
-                const routeContainer = document.getElementById('monster-modal-route-container');
-
-                monsterModalFindBtn.addEventListener('click', () => {
-                    routeContainer.classList.toggle('hidden');
-                });
-
 
                 function openMonsterModal(monsterName) {
                     const monster = monsterData.find(m => m.MonsterName === monsterName);
@@ -639,19 +632,17 @@
 
                     document.getElementById('monster-modal-name').innerHTML = getMonsterNameHTML(monster.MonsterName, monsterData);
 
-                    // --- Route Finding ---
+                    // --- Route Data Setup ---
                     const monsterMapInfo = mapData.find(m => m.Name === monster.Map);
                     if (monsterMapInfo) {
-                        const path = findShortestPath('Nevaris', monsterMapInfo.Id);
-                        routeContainer.innerHTML = renderRoute(path, monster.Map);
+                        monsterModalFindBtn.setAttribute('data-monster-map-id', monsterMapInfo.Id);
+                        monsterModalFindBtn.setAttribute('data-monster-map-name', monster.Map);
                         monsterModalFindBtn.classList.remove('hidden');
                     } else {
-                        routeContainer.innerHTML = '';
+                        monsterModalFindBtn.removeAttribute('data-monster-map-id');
+                        monsterModalFindBtn.removeAttribute('data-monster-map-name');
                         monsterModalFindBtn.classList.add('hidden');
                     }
-                    // Hide route by default on open
-                    routeContainer.classList.add('hidden');
-
 
                     const detailsContainer = document.getElementById('monster-modal-details');
                      detailsContainer.innerHTML = `
@@ -1101,13 +1092,22 @@
 
                 // Global Tooltip Logic
                 document.body.addEventListener('mouseover', (e) => {
-                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item');
+                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item, #monster-modal-find-btn');
                     if (!target) return;
 
                     let content = '';
                     let displayTooltip = false;
 
-                    if (target.classList.contains('monster-link')) {
+                    if (target.id === 'monster-modal-find-btn') {
+                        const mapId = target.getAttribute('data-monster-map-id');
+                        const mapName = target.getAttribute('data-monster-map-name');
+                        if (mapId && mapName) {
+                            const path = findShortestPath('Nevaris', mapId);
+                            content = renderRoute(path, mapName);
+                            tooltip.style.padding = '10px'; // Ensure standard padding
+                            displayTooltip = true;
+                        }
+                    } else if (target.classList.contains('monster-link')) {
                         const monsterName = target.getAttribute('data-monster-name');
                         const droprate = target.getAttribute('data-droprate');
                         const location = target.getAttribute('data-location');
@@ -1182,7 +1182,7 @@
                 });
 
                 document.body.addEventListener('mouseout', (e) => {
-                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item');
+                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item, #monster-modal-find-btn');
                      if (target) {
                         tooltip.style.display = 'none';
                     }
