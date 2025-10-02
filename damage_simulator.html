@@ -242,12 +242,48 @@
                     <div class="space-y-3">
                         <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate filter-select"></select></div>
                         <div class="input-group"><label for="p_lv">Level</label><input id="p_lv" type="number" value="100" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate input-base stat-point-input"></div>
-                        <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate input-base stat-point-input"></div>
-                        <div class="input-group"><label for="p_vit">VIT</label><input id="p_vit" type="number" value="50" class="recalculate input-base stat-point-input"></div>
-                        <div class="input-group"><label for="p_int">INT</label><input id="p_int" type="number" value="99" class="recalculate input-base stat-point-input"></div>
-                        <div class="input-group"><label for="p_dex">DEX</label><input id="p_dex" type="number" value="99" class="recalculate input-base stat-point-input"></div>
-                        <div class="input-group"><label for="p_luk">LUK</label><input id="p_luk" type="number" value="99" class="recalculate input-base stat-point-input"></div>
+                        <div class="input-group">
+                            <label for="p_str">STR</label>
+                            <div class="flex items-center">
+                                <input id="p_str" type="number" value="99" class="recalculate input-base stat-point-input">
+                                <span id="p_str_bonus" class="ml-2 text-green-400 font-semibold w-8"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p_agi">AGI</label>
+                            <div class="flex items-center">
+                                <input id="p_agi" type="number" value="99" class="recalculate input-base stat-point-input">
+                                <span id="p_agi_bonus" class="ml-2 text-green-400 font-semibold w-8"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p_vit">VIT</label>
+                            <div class="flex items-center">
+                                <input id="p_vit" type="number" value="50" class="recalculate input-base stat-point-input">
+                                <span id="p_vit_bonus" class="ml-2 text-green-400 font-semibold w-8"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p_int">INT</label>
+                            <div class="flex items-center">
+                                <input id="p_int" type="number" value="99" class="recalculate input-base stat-point-input">
+                                <span id="p_int_bonus" class="ml-2 text-green-400 font-semibold w-8"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p_dex">DEX</label>
+                            <div class="flex items-center">
+                                <input id="p_dex" type="number" value="99" class="recalculate input-base stat-point-input">
+                                <span id="p_dex_bonus" class="ml-2 text-green-400 font-semibold w-8"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="p_luk">LUK</label>
+                            <div class="flex items-center">
+                                <input id="p_luk" type="number" value="99" class="recalculate input-base stat-point-input">
+                                <span id="p_luk_bonus" class="ml-2 text-green-400 font-semibold w-8"></span>
+                            </div>
+                        </div>
                     </div>
                     <div id="stat-point-allocator" class="mt-4 pt-4 border-t border-gray-700/50 text-center">
                         <p class="text-sm text-gray-400">Available Points: <span id="available-points" class="font-bold text-white">0</span> / <span id="total-points" class="font-bold text-white">0</span></p>
