@@ -509,44 +509,47 @@ function initializeGearSlots() {
     const leftCol = document.getElementById('gear-column-left');
     const rightCol = document.getElementById('gear-column-right');
 
-    const createSlot = (slot) => {
-        const wrapper = document.createElement('div');
-        wrapper.id = `gear-slot-wrapper-${slot.id}`;
-        wrapper.className = 'flex items-center space-x-2';
-        wrapper.innerHTML = `
+    const createSlotHTML = (slot) => `
+        <div id="gear-slot-wrapper-${slot.id}" class="flex items-center space-x-2" data-slot-id="${slot.id}">
             <div id="gear-slot-${slot.id}" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500" data-default-text="${slot.name}">${slot.name}</div>
-            <div id="refine-controls-${slot.id}" class="refine-controls hidden flex flex-col items-center space-y-1">
+            <div class="refine-controls hidden flex-col items-center space-y-1">
                 <button class="refine-btn refine-plus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">+</button>
                 <span class="refine-display font-bold text-indigo-400">+0</span>
                 <button class="refine-btn refine-minus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">-</button>
             </div>
-        `;
-        return wrapper;
+        </div>
+    `;
+
+    leftCol.innerHTML = gearSlotLayout.left.map(createSlotHTML).join('');
+    rightCol.innerHTML = gearSlotLayout.right.map(createSlotHTML).join('');
+
+    const handleRefineClick = (e) => {
+        const button = e.target.closest('.refine-btn');
+        if (!button) return;
+
+        const wrapper = e.target.closest('[data-slot-id]');
+        if (!wrapper) return;
+
+        const slotId = wrapper.dataset.slotId;
+
+        if (!equippedGear[slotId] || !equippedGear[slotId].itemId) return;
+
+        let currentRefine = equippedGear[slotId].refine || 0;
+
+        if (button.classList.contains('refine-plus')) {
+            currentRefine = Math.min(10, currentRefine + 1);
+        } else if (button.classList.contains('refine-minus')) {
+            currentRefine = Math.max(0, currentRefine - 1);
+        }
+
+        equippedGear[slotId].refine = currentRefine;
+        wrapper.querySelector('.refine-display').textContent = `+${currentRefine}`;
+        calculateAll();
+        saveCurrentBuild();
     };
 
-    gearSlotLayout.left.forEach(slot => leftCol.appendChild(createSlot(slot)));
-    gearSlotLayout.right.forEach(slot => rightCol.appendChild(createSlot(slot)));
-
-    document.querySelectorAll('.refine-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const wrapper = e.target.closest('.flex');
-            const slotId = wrapper.id.replace('gear-slot-wrapper-', '').replace('refine-controls-','');
-
-            if (!equippedGear[slotId] || !equippedGear[slotId].itemId) return;
-
-            let currentRefine = equippedGear[slotId].refine || 0;
-
-            if (e.target.classList.contains('refine-plus')) {
-                currentRefine = Math.min(10, currentRefine + 1);
-            } else if (e.target.classList.contains('refine-minus')) {
-                currentRefine = Math.max(0, currentRefine - 1);
-            }
-
-            equippedGear[slotId].refine = currentRefine;
-            wrapper.querySelector('.refine-display').textContent = `+${currentRefine}`;
-            calculateAll();
-        });
-    });
+    leftCol.addEventListener('click', handleRefineClick);
+    rightCol.addEventListener('click', handleRefineClick);
 }
 
 function initializeMonsterSearch() {
