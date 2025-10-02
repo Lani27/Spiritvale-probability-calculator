@@ -56,7 +56,7 @@ function parseStats(statsStr) {
                 }
 
                 if (statName === 'All Stats') {
-                    ['Str', 'Agi', 'Vit', 'Int', 'Dex', 'Luk'].forEach(s => {
+                    ['STR', 'AGI', 'VIT', 'INT', 'DEX', 'LUK'].forEach(s => {
                         processedStats.push({
                             stat: s,
                             value: finalValue,
@@ -120,13 +120,11 @@ function processCardsData(data) {
     });
 }
 
-// Process data immediately when the script is loaded.
-if (typeof window.equipmentData !== 'undefined' && Array.isArray(window.equipmentData)) {
-    window.equipmentData = processEquipmentData(window.equipmentData);
-    console.log('Equipment data has been processed and converted.');
-}
-
-if (typeof window.cardData !== 'undefined' && Array.isArray(window.cardData)) {
-    window.cardData = processCardsData(window.cardData);
-    console.log('Card data has been processed and converted.');
+function processAllData() {
+    if (typeof window.equipmentData !== 'undefined' && Array.isArray(window.equipmentData)) {
+        window.equipmentData = processEquipmentData(window.equipmentData);
+    }
+    if (typeof window.cardData !== 'undefined' && Array.isArray(window.cardData)) {
+        window.cardData = processCardsData(window.cardData);
+    }
 }

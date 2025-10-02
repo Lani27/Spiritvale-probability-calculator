@@ -217,22 +217,52 @@
         </header>
 
         <div id="gear-builder" class="mb-8">
-            <div class="grid grid-cols-2 gap-x-4 max-w-md mx-auto">
+            <div class="grid grid-cols-2 gap-x-4 max-w-lg mx-auto">
                 <!-- Left Column -->
                 <div class="space-y-2">
-                    <div id="gear-slot-head" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Head</div>
-                    <div id="gear-slot-back" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Back</div>
-                    <div id="gear-slot-weapon" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Weapon (Main-Hand)</div>
-                    <div id="gear-slot-legs" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Legs</div>
-                    <div id="gear-slot-accessory1" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Accessory</div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-head" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Head</div>
+                        <input type="number" id="refine-head" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-back" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Back</div>
+                        <input type="number" id="refine-back" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-weapon" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Weapon (Main-Hand)</div>
+                        <input type="number" id="refine-weapon" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-legs" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Legs</div>
+                        <input type="number" id="refine-legs" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-accessory1" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Accessory</div>
+                        <input type="number" id="refine-accessory1" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
                 </div>
                 <!-- Right Column -->
                 <div class="space-y-2">
-                    <div id="gear-slot-eyewear" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Eyewear</div>
-                    <div id="gear-slot-chest" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Chest</div>
-                    <div id="gear-slot-offhand" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Off-Hand</div>
-                    <div id="gear-slot-feet" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Feet</div>
-                    <div id="gear-slot-accessory2" class="gear-slot h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Accessory</div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-eyewear" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Eyewear</div>
+                        <input type="number" id="refine-eyewear" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-chest" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Chest</div>
+                        <input type="number" id="refine-chest" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-offhand" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Off-Hand</div>
+                        <input type="number" id="refine-offhand" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-feet" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Feet</div>
+                        <input type="number" id="refine-feet" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <div id="gear-slot-accessory2" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500">Accessory</div>
+                        <input type="number" id="refine-accessory2" min="0" max="10" value="0" class="refine-input w-16 input-base text-center" title="Refinement Level">
+                    </div>
                 </div>
             </div>
         </div>
@@ -254,33 +284,36 @@
                     <div class="space-y-3">
                         <div class="input-group"><label for="p_class">Class</label><select id="p_class" class="recalculate filter-select"></select></div>
                         <div class="input-group"><label for="p_lv">Level</label><input id="p_lv" type="number" value="100" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_vit">VIT</label><input id="p_vit" type="number" value="50" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_int">INT</label><input id="p_int" type="number" value="99" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_dex">DEX</label><input id="p_dex" type="number" value="99" class="recalculate input-base"></div>
-                        <div class="input-group"><label for="p_luk">LUK</label><input id="p_luk" type="number" value="99" class="recalculate input-base"></div>
+                        <div class="input-group"><label for="p_str">STR</label><input id="p_str" type="number" value="99" class="recalculate input-base stat-point-input"></div>
+                        <div class="input-group"><label for="p_agi">AGI</label><input id="p_agi" type="number" value="99" class="recalculate input-base stat-point-input"></div>
+                        <div class="input-group"><label for="p_vit">VIT</label><input id="p_vit" type="number" value="50" class="recalculate input-base stat-point-input"></div>
+                        <div class="input-group"><label for="p_int">INT</label><input id="p_int" type="number" value="99" class="recalculate input-base stat-point-input"></div>
+                        <div class="input-group"><label for="p_dex">DEX</label><input id="p_dex" type="number" value="99" class="recalculate input-base stat-point-input"></div>
+                        <div class="input-group"><label for="p_luk">LUK</label><input id="p_luk" type="number" value="99" class="recalculate input-base stat-point-input"></div>
+                    </div>
+                    <div id="stat-point-allocator" class="mt-4 pt-4 border-t border-gray-700/50 text-center">
+                        <p class="text-sm text-gray-400">Available Points: <span id="available-points" class="font-bold text-white">0</span> / <span id="total-points" class="font-bold text-white">0</span></p>
                     </div>
                 </div>
                 <div class="card">
                     <h2 class="card-header">Other Bonuses & Buffs</h2>
                     <div class="space-y-3">
-                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Weapon ATK"></div>
-                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Weapon MATK"></div>
-                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Bonus ATK"></div>
-                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Bonus MATK"></div>
-                        <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Mastery"></div>
-                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="ATK %"></div>
-                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="MATK %"></div>
-                        <div class="input-group"><label for="p_dmg_melee_perc">Dmg Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Dmg Melee %"></div>
-                        <div class="input-group"><label for="p_dmg_ranged_perc">Dmg Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Dmg Ranged %"></div>
-                        <div class="input-group"><label for="p_dmg_magic_perc">Dmg Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Dmg Magic %"></div>
-                        <div class="input-group"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Flat CRIT"></div>
-                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Crit Rate %"></div>
-                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Dmg %</label><input id="p_crit_dmg_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Crit Dmg %"></div>
-                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="AtkSpeed %"></div>
-                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="CastSpeed %"></div>
-                        <div class="input-group"><label for="p_flat_def">Flat Def</label><input id="p_flat_def" type="number" value="0" class="recalculate input-base stat-input" data-stat-name="Flat Def"></div>
+                        <div class="input-group"><label for="p_weapon_atk">Weapon ATK</label><input id="p_weapon_atk" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Weapon ATK" disabled></div>
+                        <div class="input-group"><label for="p_weapon_matk">Weapon MATK</label><input id="p_weapon_matk" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Weapon MATK" disabled></div>
+                        <div class="input-group"><label for="p_atk">Bonus ATK</label><input id="p_atk" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Bonus ATK" disabled></div>
+                        <div class="input-group"><label for="p_matk">Bonus MATK</label><input id="p_matk" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Bonus MATK" disabled></div>
+                        <div class="input-group"><label for="p_mastery">Mastery</label><input id="p_mastery" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Mastery" disabled></div>
+                        <div class="input-group"><label for="p_atk_perc">ATK %</label><input id="p_atk_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="ATK %" disabled></div>
+                        <div class="input-group"><label for="p_matk_perc">MATK %</label><input id="p_matk_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="MATK %" disabled></div>
+                        <div class="input-group"><label for="p_dmg_melee_perc">Dmg Melee %</label><input id="p_dmg_melee_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Dmg Melee %" disabled></div>
+                        <div class="input-group"><label for="p_dmg_ranged_perc">Dmg Ranged %</label><input id="p_dmg_ranged_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Dmg Ranged %" disabled></div>
+                        <div class="input-group"><label for="p_dmg_magic_perc">Dmg Magic %</label><input id="p_dmg_magic_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Dmg Magic %" disabled></div>
+                        <div class="input-group"><label for="p_crit_flat">Flat CRIT</label><input id="p_crit_flat" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Flat CRIT" disabled></div>
+                        <div class="input-group"><label for="p_crit_rate_perc">Crit Rate %</label><input id="p_crit_rate_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Crit Rate %" disabled></div>
+                        <div class="input-group"><label for="p_crit_dmg_perc">Crit Dmg %</label><input id="p_crit_dmg_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Crit Dmg %" disabled></div>
+                        <div class="input-group"><label for="p_aspd_perc">AtkSpeed %</label><input id="p_aspd_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="AtkSpeed %" disabled></div>
+                        <div class="input-group"><label for="p_cspd_perc">CastSpeed %</label><input id="p_cspd_perc" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="CastSpeed %" disabled></div>
+                        <div class="input-group"><label for="p_flat_def">Flat Def</label><input id="p_flat_def" type="number" value="0" class="recalculate input-base stat-bonus-input" data-stat-name="Flat Def" disabled></div>
                         <div class="flex items-center justify-between pt-3 border-t border-gray-700">
                             <label for="p_add_elemental_bonus" class="text-sm font-medium text-gray-400">Elemental Dmg Bonus %</label>
                             <input id="p_add_elemental_bonus" type="checkbox" class="recalculate">

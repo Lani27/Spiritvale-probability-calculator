@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'equipment-card';
             card.dataset.equipmentId = item.EquipmentId;
+            card.dataset.itemName = item.Name;
 
             const img = document.createElement('img');
             img.src = `Sprites/Equipment/${item.SpriteId}.png`;
