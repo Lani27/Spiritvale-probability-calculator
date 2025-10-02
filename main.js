@@ -1081,7 +1081,12 @@ function calculateGearBonuses() {
     const statNameMapping = {
         'Atk': 'Bonus ATK', 'Matk': 'Bonus MATK', 'Def': 'Flat Def', 'Mdef': 'Flat Mdef',
         'Def Flat': 'Flat Def', 'Mdef Flat': 'Flat Mdef', 'Crit': 'Flat CRIT', 'Crit Damage': 'Crit Dmg %',
-        'Atk Spd %': 'AtkSpeed %', 'Cast Spd %': 'CastSpeed %', 'Block': 'Block %'
+        'Atk Spd %': 'AtkSpeed %', 'Cast Spd %': 'CastSpeed %', 'Block': 'Block %',
+        // Additions for percentage stats from accessories
+        'Atk %': 'ATK %',
+        'Matk %': 'MATK %',
+        'Crit Damage %': 'Crit Dmg %',
+        'Crit Rate %': 'Crit Rate %'
     };
     const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book'];
 
