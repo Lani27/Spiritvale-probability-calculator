@@ -1,37 +1,45 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const gearSlots = document.querySelectorAll('.gear-slot');
     const modalOverlay = document.getElementById('equipment-modal-overlay');
     const modalCloseBtn = document.getElementById('equipment-modal-close-btn');
     const modalTitle = document.getElementById('equipment-modal-title');
     const equipmentGrid = document.getElementById('equipment-modal-grid');
     const searchInput = document.getElementById('equipment-modal-search');
+    const gearBuilder = document.getElementById('gear-builder');
 
     let currentSlotId = '';
     let currentSlotType = '';
 
-    // Define what equipment types are valid for each slot
     const slotTypeMapping = {
-        'head': 'Head',
-        'back': 'Back',
+        'head': 'Head', 'back': 'Back', 'legs': 'Legs', 'feet': 'Feet',
+        'eyewear': 'Eyewear', 'chest': 'Chest', 'offhand': 'Shield',
+        'accessory1': 'Accessory', 'accessory2': 'Accessory',
         'weapon': ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book', 'Twinblade', 'Scythe', 'Instrument', 'Pistol'],
-        'legs': 'Legs',
-        'accessory1': 'Accessory',
-        'accessory2': 'Accessory',
-        'eyewear': 'Eyewear',
-        'chest': 'Chest',
-        'offhand': 'Shield',
-        'feet': 'Feet'
     };
 
-    gearSlots.forEach(slot => {
-        slot.addEventListener('click', () => {
+    if (gearBuilder) {
+        gearBuilder.addEventListener('click', (e) => {
+            const slot = e.target.closest('.gear-slot');
+            if (!slot) return;
+
             const slotId = slot.id.replace('gear-slot-', '');
             currentSlotId = slotId;
+            // Default to the mapping
             currentSlotType = slotTypeMapping[slotId];
+
+            // If the offhand slot is clicked, check if we are dual-wielding
+            if (slotId === 'offhand') {
+                // This assumes a checkbox with id 'p_dual_wield' exists and is current.
+                const isDualWielding = document.getElementById('p_dual_wield')?.checked;
+                if (isDualWielding) {
+                    // If dual-wielding, the offhand can be a weapon
+                    currentSlotType = slotTypeMapping['weapon'];
+                }
+            }
+
             const titleText = slot.dataset.defaultText || slot.textContent;
             openModal(currentSlotType, titleText);
         });
-    });
+    }
 
     function openModal(slotType, titleText) {
         modalTitle.textContent = `Select ${titleText}`;
@@ -49,17 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
         equipmentGrid.innerHTML = '';
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
 
-        // Add an "Unequip" option
-        const unequipCard = document.createElement('div');
-        unequipCard.className = 'equipment-card';
-        unequipCard.innerHTML = `<span class="equipment-card-name text-red-400">Unequip Item</span>`;
-        unequipCard.addEventListener('click', () => {
-            if (window.unequipItem) {
-                window.unequipItem(currentSlotId);
-            }
-            closeModal();
-        });
-        equipmentGrid.appendChild(unequipCard);
+        const unequipCardHTML = `
+            <div class="equipment-card" data-action="unequip">
+                <span class="equipment-card-name text-red-400">Unequip Item</span>
+            </div>`;
+        equipmentGrid.insertAdjacentHTML('beforeend', unequipCardHTML);
 
         const filteredEquipment = window.equipmentData.filter(item => {
             const typeMatch = Array.isArray(slotType) ? slotType.includes(item.Type) : item.Type === slotType;
@@ -68,33 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         filteredEquipment.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'equipment-card';
-            card.dataset.equipmentId = item.EquipmentId;
-            card.dataset.itemName = item.Name;
-
-            const img = document.createElement('img');
-            img.src = `Sprites/Equipment/${item.SpriteId}.png`;
-            img.alt = item.Name;
-            img.onerror = function() { this.src = 'Sprites/Equipment/notfound.png'; };
-
-            const name = document.createElement('span');
-            name.className = 'equipment-card-name';
-            name.textContent = item.Name;
-
-            card.appendChild(img);
-            card.appendChild(name);
-
-            card.addEventListener('click', () => {
-                if (window.equipItem) {
-                    window.equipItem(currentSlotId, item.EquipmentId);
-                }
-                closeModal();
-            });
-
-            equipmentGrid.appendChild(card);
+            const cardHTML = `
+                <div class="equipment-card" data-action="equip" data-equipment-id="${item.EquipmentId}">
+                    <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" onerror="this.src='Sprites/Equipment/notfound.png';">
+                    <span class="equipment-card-name">${item.Name}</span>
+                </div>`;
+            equipmentGrid.insertAdjacentHTML('beforeend', cardHTML);
         });
     }
+
+    equipmentGrid.addEventListener('click', (e) => {
+        const card = e.target.closest('.equipment-card');
+        if (!card) return;
+
+        const action = card.dataset.action;
+        if (action === 'equip') {
+            const equipmentId = card.dataset.equipmentId;
+            if (window.equipItem && equipmentId) {
+                window.equipItem(currentSlotId, equipmentId);
+            }
+        } else if (action === 'unequip') {
+            if (window.unequipItem) {
+                window.unequipItem(currentSlotId);
+            }
+        }
+        closeModal();
+    });
 
     modalCloseBtn.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', (event) => {

@@ -10,7 +10,8 @@ function parseStats(statsStr) {
 
     const processedStats = [];
     const lines = statsStr.split('\n');
-    const valueRegex = /([+-])\s*(\d+\.?\d*)\s*(%?)/;
+    // Regex updated to make the sign optional.
+    const valueRegex = /([+-])?\s*(\d+\.?\d*)\s*(%?)/;
 
     for (const originalLine of lines) {
         if (!originalLine.trim()) continue;
@@ -20,7 +21,8 @@ function parseStats(statsStr) {
             const statName = parts[0].replace(/<[^>]*>/g, '').trim();
             let valuesStr = parts.slice(1).join(':').replace(/<[^>]*>/g, '').trim();
 
-            const perLevelRegex = /([+-]\s*\d+\.?\d*%?)\s*per level/i;
+            // Regex updated to make the sign optional for per-level stats.
+            const perLevelRegex = /([+-]?\s*\d+\.?\d*%?)\s*per level/i;
             const perLevelMatch = valuesStr.match(perLevelRegex);
 
             let perLevelPart = null;
@@ -40,19 +42,26 @@ function parseStats(statsStr) {
                 let isPercentage = false;
 
                 if (baseValueMatch) {
-                    const baseSign = baseValueMatch[1] === '+' ? 1 : -1;
+                    // Sign is assumed to be positive if not explicitly negative.
+                    const baseSign = baseValueMatch[1] === '-' ? -1 : 1;
                     const baseValue = parseFloat(baseValueMatch[2]);
                     isPercentage = baseValueMatch[3] === '%';
                     finalValue = baseValue * baseSign;
                 }
 
                 if (perLevelValueMatch) {
-                    const perLevelSign = perLevelValueMatch[1] === '+' ? 1 : -1;
+                    // Sign is assumed to be positive if not explicitly negative.
+                    const perLevelSign = perLevelValueMatch[1] === '-' ? -1 : 1;
                     const perLevelValue = parseFloat(perLevelValueMatch[2]);
                     if (!isPercentage) {
                         isPercentage = perLevelValueMatch[3] === '%';
                     }
                     finalPerLevel = perLevelValue * perLevelSign;
+                }
+
+                let finalStatName = statName;
+                if (isPercentage) {
+                    finalStatName += ' %';
                 }
 
                 if (statName === 'All Stats') {
@@ -61,12 +70,12 @@ function parseStats(statsStr) {
                             stat: s,
                             value: finalValue,
                             perLevel: finalPerLevel,
-                            isPercentage: isPercentage,
+                            isPercentage: false, // "All Stats" provides flat values
                         });
                     });
                 } else {
                     processedStats.push({
-                        stat: statName,
+                        stat: finalStatName,
                         value: finalValue,
                         perLevel: finalPerLevel,
                         isPercentage: isPercentage,
@@ -121,10 +130,17 @@ function processCardsData(data) {
 }
 
 function processAllData() {
+    console.log("--- Starting data processing ---");
     if (typeof window.equipmentData !== 'undefined' && Array.isArray(window.equipmentData)) {
         window.equipmentData = processEquipmentData(window.equipmentData);
+        console.log("Equipment data processed.");
     }
     if (typeof window.cardData !== 'undefined' && Array.isArray(window.cardData)) {
         window.cardData = processCardsData(window.cardData);
+        console.log("Card data processed.");
     }
+    console.log("--- Data processing finished ---");
 }
+
+// Automatically process the data when the script is loaded
+processAllData();
