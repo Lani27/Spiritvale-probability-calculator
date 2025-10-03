@@ -1739,6 +1739,11 @@ function calculateGearBonuses() {
         'Bonus ATK': 0, 'Bonus MATK': 0, 'Mastery': 0, 'ATK %': 0, 'MATK %': 0, 'Dmg Melee %': 0,
         'Dmg Ranged %': 0, 'Dmg Magic %': 0, 'Flat CRIT': 0, 'Crit Rate %': 0, 'Crit Dmg %': 0,
         'AtkSpeed %': 0, 'CastSpeed %': 0, 'Flat Def': 0, 'Flat Mdef': 0, 'Block %': 0,
+        'Neutral Damage %': 0, 'Poison Damage %': 0, 'Shadow Damage %': 0, 'Holy Damage %': 0,
+        'Fire Damage %': 0, 'Water Damage %': 0, 'Wind Damage %': 0, 'Earth Damage %': 0, 'Undead Damage %': 0,
+        'Damage vs Neutral Enemies %': 0, 'Damage vs Poison Enemies %': 0, 'Damage vs Shadow Enemies %': 0,
+        'Damage vs Holy Enemies %': 0, 'Damage vs Fire Enemies %': 0, 'Damage vs Water Enemies %': 0,
+        'Damage vs Wind Enemies %': 0, 'Damage vs Earth Enemies %': 0, 'Damage vs Undead Enemies %': 0,
     };
     const statNameMapping = {
         'Atk': 'Bonus ATK', 'Matk': 'Bonus MATK', 'Def': 'Flat Def', 'Mdef': 'Flat Mdef',
@@ -1749,7 +1754,23 @@ function calculateGearBonuses() {
         'Matk %': 'MATK %',
         'Crit Damage %': 'Crit Dmg %',
         'Crit Rate %': 'Crit Rate %',
-        'Total Critical Rate %': 'Crit Rate %'
+        'Total Critical Rate %': 'Crit Rate %',
+        // Elemental Damage
+        'Neutral Damage %': 'Neutral Damage %', 'Poison Damage %': 'Poison Damage %',
+        'Shadow Damage %': 'Shadow Damage %', 'Holy Damage %': 'Holy Damage %',
+        'Fire Damage %': 'Fire Damage %', 'Water Damage %': 'Water Damage %',
+        'Wind Damage %': 'Wind Damage %', 'Earth Damage %': 'Earth Damage %',
+        'Undead Damage %': 'Undead Damage %',
+        // Damage vs Element
+        'Damage vs Neutral Enemies %': 'Damage vs Neutral Enemies %',
+        'Damage vs Poison Enemies %': 'Damage vs Poison Enemies %',
+        'Damage vs Shadow Enemies %': 'Damage vs Shadow Enemies %',
+        'Damage vs Holy Enemies %': 'Damage vs Holy Enemies %',
+        'Damage vs Fire Enemies %': 'Damage vs Fire Enemies %',
+        'Damage vs Water Enemies %': 'Damage vs Water Enemies %',
+        'Damage vs Wind Enemies %': 'Damage vs Wind Enemies %',
+        'Damage vs Earth Enemies %': 'Damage vs Earth Enemies %',
+        'Damage vs Undead Enemies %': 'Damage vs Undead Enemies %',
     };
     const selectedStatNameMapping = {
         'Strength': 'STR', 'Agility': 'AGI', 'Vitality': 'VIT', 'Intelligence': 'INT', 'Dexterity': 'DEX', 'Luck': 'LUK',
@@ -2054,8 +2075,28 @@ function calculateAll() {
     const phys_dmg_multiplier = 100 / (final_t_def + 100);
     const mag_dmg_multiplier = 100 / (final_t_mdef + 100);
 
-    const p_dmg_bonus = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
-    const p_dmg_vs = { neutral: 0, poison: 0, shadow: 0, holy: 0, fire: 0, water: 0, wind: 0, earth: 0, undead: 0 };
+    const p_dmg_bonus = {
+        neutral: (gearBonuses['Neutral Damage %'] || 0) / 100,
+        poison: (gearBonuses['Poison Damage %'] || 0) / 100,
+        shadow: (gearBonuses['Shadow Damage %'] || 0) / 100,
+        holy: (gearBonuses['Holy Damage %'] || 0) / 100,
+        fire: (gearBonuses['Fire Damage %'] || 0) / 100,
+        water: (gearBonuses['Water Damage %'] || 0) / 100,
+        wind: (gearBonuses['Wind Damage %'] || 0) / 100,
+        earth: (gearBonuses['Earth Damage %'] || 0) / 100,
+        undead: (gearBonuses['Undead Damage %'] || 0) / 100,
+    };
+    const p_dmg_vs = {
+        neutral: (gearBonuses['Damage vs Neutral Enemies %'] || 0) / 100,
+        poison: (gearBonuses['Damage vs Poison Enemies %'] || 0) / 100,
+        shadow: (gearBonuses['Damage vs Shadow Enemies %'] || 0) / 100,
+        holy: (gearBonuses['Damage vs Holy Enemies %'] || 0) / 100,
+        fire: (gearBonuses['Damage vs Fire Enemies %'] || 0) / 100,
+        water: (gearBonuses['Damage vs Water Enemies %'] || 0) / 100,
+        wind: (gearBonuses['Damage vs Wind Enemies %'] || 0) / 100,
+        earth: (gearBonuses['Damage vs Earth Enemies %'] || 0) / 100,
+        undead: (gearBonuses['Damage vs Undead Enemies %'] || 0) / 100,
+    };
 
     const auto_attack_ele_bonus = p_dmg_bonus[p_element.toLowerCase()] || 0;
     const auto_attack_vs_ele_bonus = p_dmg_vs[t_element.toLowerCase()] || 0;
