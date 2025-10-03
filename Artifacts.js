@@ -108,18 +108,6 @@ window.artifactData = [
         "SpriteId": "artifacts-hit_0\nartifacts-hit_1\nartifacts-hit_2\nartifacts-hit_3"
     },
     {
-        "SetName": "Hexbrand",
-        "SetId": "Hexbrand",
-        "IndividualBonus": null,
-        "PerPieceBonus": "Status Damage: <color=#AAFF00FF>+10%</color>",
-        "PerRefineBonus": "Status Damage: <color=#AAFF00FF>+0.125% per level</color>",
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nStatus Damage: <color=#AAFF00FF>+10%</color>",
-        "Source": "Rune - Devil Bat\nRune - Devil Hades\nScroll - Devil Hell\nGem - Gloom\nRelic - Grim Reaper\nScroll - Practice Dummy\nGem - Target Dummy\nRelic - Training Dummy",
-        "Droprate": "2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%",
-        "Location": "Dark Fortress\nDark Fortress\nDark Fortress\nDark Fortress\nDark Fortress\nUnknown Map\nUnknown Map\nUnknown Map",
-        "SpriteId": "artifacts-hexbrand_0\nartifacts-hexbrand_1\nartifacts-hexbrand_2\nartifacts-hexbrand_3"
-    },
-    {
         "SetName": "Lifebloom",
         "SetId": "Healing",
         "IndividualBonus": null,
@@ -142,18 +130,6 @@ window.artifactData = [
         "Droprate": "6.0%\n6.0%\n6.0%\n6.0%\n6.0%\n6.0%\n6.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern",
         "SpriteId": "artifacts-immune_0\nartifacts-immune_1\nartifacts-immune_2\nartifacts-immune_3"
-    },
-    {
-        "SetName": "Oathbound",
-        "SetId": "Oathbound",
-        "IndividualBonus": null,
-        "PerPieceBonus": "Status Duration: <color=#AAFF00FF>+10%</color>",
-        "PerRefineBonus": "Status Duration: <color=#AAFF00FF>+0.125% per level</color>",
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nStatus Duration: <color=#AAFF00FF>+10%</color>",
-        "Source": null,
-        "Droprate": null,
-        "Location": null,
-        "SpriteId": "artifacts-oathbound_0\nartifacts-oathbound_2\nartifacts-oathbound_3\nartifacts-oathbound_4"
     },
     {
         "SetName": "Pioneer",
@@ -312,3 +288,4 @@ window.artifactData = [
         "SpriteId": "artifacts-movespeed_0\nartifacts-movespeed_1\nartifacts-movespeed_2\nartifacts-movespeed_3"
     }
 ];
+
