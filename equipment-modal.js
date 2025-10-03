@@ -23,16 +23,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const slotId = slot.id.replace('gear-slot-', '');
             currentSlotId = slotId;
-            // Default to the mapping
-            currentSlotType = slotTypeMapping[slotId];
+            currentSlotType = slotTypeMapping[slotId]; // Default behavior
 
-            // If the offhand slot is clicked, check if we are dual-wielding
             if (slotId === 'offhand') {
-                // This assumes a checkbox with id 'p_dual_wield' exists and is current.
-                const isDualWielding = document.getElementById('p_dual_wield')?.checked;
-                if (isDualWielding) {
-                    // If dual-wielding, the offhand can be a weapon
-                    currentSlotType = slotTypeMapping['weapon'];
+                const mainHandGear = window.equippedGear['weapon'];
+                const mainHandItem = mainHandGear ? window.equipmentData.find(i => i.EquipmentId === mainHandGear.itemId) : null;
+
+                if (mainHandItem && mainHandItem.Type === 'Bow') {
+                    return; // Can't equip anything in off-hand with a bow
+                }
+
+                const playerClass = document.getElementById('p_class').value;
+                const dualWieldClasses = ['Rogue', 'Warrior'];
+
+                if (dualWieldClasses.includes(playerClass)) {
+                    // Rogues and Warriors can dual-wield or use a shield
+                    currentSlotType = [...slotTypeMapping['weapon'], 'Shield'];
+                } else {
+                    // Other classes can only use a shield
+                    currentSlotType = 'Shield';
                 }
             }
 
