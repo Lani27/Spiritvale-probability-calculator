@@ -36,18 +36,6 @@ window.artifactData = [
         "SpriteId": "artifacts-mpcost_1\nartifacts-mpcost_2\nartifacts-mpcost_3\nartifacts-mpcost_4"
     },
     {
-        "SetName": "Bastion",
-        "SetId": "Bastion",
-        "IndividualBonus": "<color=#FFFFFFFF>Cast cannot be interrupted</color>\n<color=#FFFFFFFF>Immune to Flinching from damage</color>\n<color=#FFFFFFFF>Immune to Knockback</color>\n<color=#FFFFFFFF>Immune to Reflect damage</color>",
-        "PerPieceBonus": null,
-        "PerRefineBonus": null,
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+5</color>",
-        "Source": null,
-        "Droprate": null,
-        "Location": null,
-        "SpriteId": "artifacts-bastion_0\nartifacts-bastion_1\nartifacts-bastion_2\nartifacts-bastion_3"
-    },
-    {
         "SetName": "Blitzcore",
         "SetId": "Auto",
         "IndividualBonus": null,
@@ -262,18 +250,6 @@ window.artifactData = [
         "Droprate": "12.0%\n12.0%\n12.0%\n12.0%\n12.0%",
         "Location": "Windy Desert\nWindy Desert\nWindy Desert\nWindy Desert\nWindy Desert",
         "SpriteId": "artifacts-titanplate_0\nartifacts-titanplate_1\nartifacts-titanplate_2\nartifacts-titanplate_3"
-    },
-    {
-        "SetName": "Unstable Magic",
-        "SetId": "Wizard_1",
-        "IndividualBonus": null,
-        "PerPieceBonus": null,
-        "PerRefineBonus": "Earthquake Damage: <color=#AAFF00FF>+10%</color>\nFreezing Field Damage: <color=#AAFF00FF>+10%</color>\nMeteor Damage: <color=#AAFF00FF>+10%</color>\nTempest Damage: <color=#AAFF00FF>+10%</color>",
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCast Spd: <color=#FF0073FF>-100%</color>\nMatk: <color=#AAFF00FF>+25%</color>",
-        "Source": null,
-        "Droprate": null,
-        "Location": null,
-        "SpriteId": null
     },
     {
         "SetName": "Vampiric",
