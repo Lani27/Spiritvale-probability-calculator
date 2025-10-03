@@ -441,7 +441,6 @@ function updateGearSlotUI(slotId) {
     const refineDisplay = slotWrapper.querySelector('.refine-display');
     const cardSlotsContainer = slotWrapper.querySelector('.card-slots-container');
     const selectStatsBtn = slotWrapper.querySelector('.select-stats-btn');
-    const selectedStatsContainer = slotWrapper.querySelector('.selected-stats-container');
 
     if (!gearInfo || !gearInfo.itemId) {
         slotElement.innerHTML = `<span class="text-gray-500">${slotElement.dataset.defaultText}</span>`;
@@ -451,7 +450,6 @@ function updateGearSlotUI(slotId) {
         cardSlotsContainer.classList.add('hidden');
         cardSlotsContainer.innerHTML = '';
         selectStatsBtn.classList.add('hidden');
-        selectedStatsContainer.innerHTML = '';
 
     } else {
         const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
@@ -477,30 +475,33 @@ function updateGearSlotUI(slotId) {
                 }
             }
 
+            // Generate selected stats HTML
+            const itemStatDetails = getStatDetailsForItem(item);
+            let selectedStatsHtml = '';
+            if (gearInfo.selectedStats && gearInfo.selectedStats.length > 0) {
+                selectedStatsHtml = `
+                    <div class="text-xs text-cyan-400 font-mono">
+                        ${gearInfo.selectedStats.map(stat => {
+                            const detail = itemStatDetails[stat.name] || {};
+                            const sign = stat.value > 0 ? '+' : '';
+                            return `<div>${stat.name} ${sign}${stat.value}${detail.suffix || ''}</div>`;
+                        }).join('')}
+                    </div>
+                `;
+            }
+
             slotElement.innerHTML = `
                 <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-10 h-10" style="image-rendering: pixelated;" onerror="this.src='Sprites/Equipment/notfound.png';">
                 <div class="flex-1 truncate pl-2">
                     ${namePrefix}
                     <span class="text-sm text-white truncate">${item.Name}</span>
+                    ${selectedStatsHtml}
                 </div>
             `;
             slotElement.classList.remove('justify-center');
             slotElement.classList.add('justify-start', 'items-center', 'w-full');
             refineControls.classList.remove('hidden');
             refineDisplay.textContent = `+${gearInfo.refine || 0}`;
-
-            // Display Selected Stats
-            const itemStatDetails = getStatDetailsForItem(item);
-            if (gearInfo.selectedStats && gearInfo.selectedStats.length > 0) {
-                selectedStatsContainer.innerHTML = gearInfo.selectedStats.map(stat => {
-                    const detail = itemStatDetails[stat.name] || {};
-                    const sign = stat.value > 0 ? '+' : '';
-                    return `<div>${stat.name} ${sign}${stat.value}${detail.suffix || ''}</div>`;
-                }).join('');
-            } else {
-                selectedStatsContainer.innerHTML = '';
-            }
-
 
             // Handle Card Slots
             if (item.CardSlots > 0) {
@@ -781,7 +782,6 @@ function initializeGearSlots() {
                     <button class="refine-btn refine-minus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">-</button>
                 </div>
             </div>
-            <div class="selected-stats-container text-xs text-cyan-400 pl-10 -mt-1 space-y-0.5 font-mono"></div>
             <div class="flex items-center justify-between mt-1">
                 <div class="card-slots-container hidden flex justify-start items-center space-x-1"></div>
                 <button class="select-stats-btn hidden text-xs bg-indigo-900/60 hover:bg-indigo-900/80 text-indigo-300 font-semibold py-1 px-2 rounded">+ Select Stats</button>
