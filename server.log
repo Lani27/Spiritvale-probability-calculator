@@ -1,0 +1,13 @@
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /damage_simulator.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /equipment-modal.css HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /sidebar.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /classes.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /monsters.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /Equipment.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /Cards.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /Artifacts.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /database-converter.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /main.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /card-modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 10:03:33] "GET /equipment-modal.js HTTP/1.1" 200 -
