@@ -147,6 +147,7 @@ function processCardsData(data) {
 function processArtifactData(data) {
     return data.map(item => {
         item.ProcessedStats = {
+            perPiece: parseStats(item.PerPieceBonus),
             perRefine: parseStats(item.PerRefineBonus),
             fullSet: parseStats(item.FullSetBonus)
         };
