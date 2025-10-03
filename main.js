@@ -1839,37 +1839,39 @@ function calculateGearBonuses() {
     if (equippedArtifacts.setId && typeof artifactData !== 'undefined') {
         const artifactSet = artifactData.find(set => set.SetId === equippedArtifacts.setId);
         if (artifactSet && artifactSet.ProcessedStats) {
-            let equippedPieceCount = 0;
-            let totalRefineLevels = 0;
 
-            Object.values(equippedArtifacts.pieces).forEach(piece => {
-                if (piece.level > 0) {
-                    equippedPieceCount++;
-                    totalRefineLevels += piece.level;
-
-                    if (piece.selectedStats && piece.selectedStats.length > 0) {
-                        piece.selectedStats.forEach(stat => {
-                            if (!stat || !stat.name) return;
-                            const mappedStatName = selectedStatNameMapping[stat.name] || stat.name;
-                            if (newGearBonuses[mappedStatName] !== undefined) {
-                                newGearBonuses[mappedStatName] += stat.value;
-                            }
-                        });
-                    }
+            // Per-piece bonus applies for all 4 pieces if the set is selected.
+            artifactSet.ProcessedStats.perPiece.forEach(stat => {
+                if (!stat || !stat.stat || stat.value === 0) return;
+                let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                 if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
+                if (newGearBonuses[mappedStatName] !== undefined) {
+                    newGearBonuses[mappedStatName] += stat.value * 4;
                 }
             });
 
-            // Apply Per-Piece bonuses for each equipped piece
-            if (equippedPieceCount > 0) {
-                artifactSet.ProcessedStats.perPiece.forEach(stat => {
-                    if (!stat || !stat.stat || stat.value === 0) return;
-                    let mappedStatName = statNameMapping[stat.stat] || stat.stat;
-                     if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
-                    if (newGearBonuses[mappedStatName] !== undefined) {
-                        newGearBonuses[mappedStatName] += stat.value * equippedPieceCount;
-                    }
-                });
-            }
+            let equippedPieceCount = 0;
+            let totalRefineLevels = 0;
+
+            // Calculate total refine levels and add selected stats
+            Object.values(equippedArtifacts.pieces).forEach(piece => {
+                // Selected stats apply regardless of level
+                if (piece.selectedStats && piece.selectedStats.length > 0) {
+                    piece.selectedStats.forEach(stat => {
+                        if (!stat || !stat.name) return;
+                        const mappedStatName = selectedStatNameMapping[stat.name] || stat.name;
+                        if (newGearBonuses[mappedStatName] !== undefined) {
+                            newGearBonuses[mappedStatName] += stat.value;
+                        }
+                    });
+                }
+
+                // Refine and full set bonuses depend on level
+                if (piece.level > 0) {
+                    equippedPieceCount++;
+                    totalRefineLevels += piece.level;
+                }
+            });
 
             // Apply Per-Refine bonuses based on the total level of all pieces
             if (totalRefineLevels > 0) {
@@ -1883,7 +1885,7 @@ function calculateGearBonuses() {
                 });
             }
 
-            // Apply Full Set bonus only if all 4 pieces are equipped
+            // Apply Full Set bonus only if all 4 pieces have level > 0
             if (equippedPieceCount === 4) {
                 artifactSet.ProcessedStats.fullSet.forEach(stat => {
                     if (!stat || !stat.stat) return;
