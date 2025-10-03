@@ -241,6 +241,7 @@ const gearSlotLayout = {
 
 // This object will hold the state of the currently equipped gear
 let equippedGear = {};
+let activeEquipmentSets = [];
 let equippedArtifacts = {
     setId: null,
     levels: {
@@ -872,6 +873,31 @@ function updateArtifactUI() {
     } else {
         bonusDisplay.classList.add('hidden');
     }
+}
+
+function updateEquipmentSetBonusUI() {
+    const bonusDisplay = document.getElementById('equipment-set-bonus-display');
+    if (!bonusDisplay) return;
+
+    if (activeEquipmentSets.length === 0) {
+        bonusDisplay.classList.add('hidden');
+        bonusDisplay.innerHTML = '';
+        return;
+    }
+
+    let html = '<p class="font-semibold mb-1 text-indigo-300">Active Equipment Set Bonuses:</p>';
+    activeEquipmentSets.forEach(set => {
+        const setItem = window.equipmentData.find(item => item.Set === set.setName);
+        if (setItem && setItem.SetBonuses) {
+            html += `<div class="pl-2">
+                        <span class="font-semibold text-white">${set.setName} (${set.count} pieces):</span>
+                        <span class="font-mono text-gray-300">${parseStats(setItem.SetBonuses)}</span>
+                     </div>`;
+        }
+    });
+
+    bonusDisplay.innerHTML = html;
+    bonusDisplay.classList.remove('hidden');
 }
 
 function initializeGearSlots() {
@@ -1617,6 +1643,7 @@ function updateTargetStatsFromArchetype() {
 }
 
 function calculateGearBonuses() {
+    activeEquipmentSets = [];
     const newGearBonuses = {
         'STR': 0, 'AGI': 0, 'VIT': 0, 'INT': 0, 'DEX': 0, 'LUK': 0, 'Weapon ATK': 0, 'Weapon MATK': 0,
         'Bonus ATK': 0, 'Bonus MATK': 0, 'Mastery': 0, 'ATK %': 0, 'MATK %': 0, 'Dmg Melee %': 0,
@@ -1703,6 +1730,7 @@ function calculateGearBonuses() {
 
     Object.entries(setCounts).forEach(([setName, count]) => {
         if (count >= 3) {
+            activeEquipmentSets.push({ setName, count });
             const setItem = equippedItems.find(item => item.Set === setName);
             if (setItem && setItem.ProcessedStats && setItem.ProcessedStats.setBonuses) {
                 setItem.ProcessedStats.setBonuses.forEach(stat => {
@@ -2040,5 +2068,6 @@ function calculateAll() {
     document.getElementById('r_rotation_dps').textContent = Math.floor(rotation_dps).toLocaleString();
     document.getElementById('r_reflect').textContent = Math.floor(reflected_damage).toLocaleString();
 
+    updateEquipmentSetBonusUI();
     saveCurrentBuild();
 }

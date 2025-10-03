@@ -245,9 +245,14 @@
         <div id="gear-builder" class="mb-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
                 <!-- Gear Container -->
-                <div class="md:col-span-2 grid grid-cols-2 gap-4">
-                    <div id="gear-column-left" class="space-y-2"></div>
-                    <div id="gear-column-right" class="space-y-2"></div>
+                <div class="md:col-span-2 flex flex-col gap-2">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div id="gear-column-left" class="space-y-2"></div>
+                        <div id="gear-column-right" class="space-y-2"></div>
+                    </div>
+                    <div id="equipment-set-bonus-display" class="text-xs text-gray-400 p-2 bg-gray-900/50 rounded-md border border-gray-700/50 hidden">
+                        <!-- Active set bonuses will be shown here -->
+                    </div>
                 </div>
 
                 <!-- Artifact Column -->
