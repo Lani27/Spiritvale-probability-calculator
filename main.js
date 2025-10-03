@@ -98,6 +98,7 @@ const statRollData = {
         selection: ['line1', 'line23', 'line23']
     },
     "Ranged": { "type": "Ranged Weapon" },
+    "Melee": { "type": "Melee Weapon" },
     "Axe": { "type": "Melee Weapon" },
     "Dagger": { "type": "Melee Weapon" },
     "Mace": { "type": "Melee Weapon" },
