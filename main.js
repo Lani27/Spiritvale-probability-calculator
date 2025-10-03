@@ -79,6 +79,116 @@ function generateItemCardHTML(item) {
 }
 
 // --- DATA ---
+const statRollData = {
+    "Ranged Weapon": {
+        pools: {
+            line1: [
+                { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
+            ],
+            line23: [
+                { name: 'Atk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' }, { name: 'Matk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' },
+                { name: 'Damage Ranged', group: 'damageType', min: 7, max: 10, suffix: '%' }, { name: 'Damage Magic', group: 'damageType', min: 7, max: 10, suffix: '%' },
+                { name: 'Crit', group: 'critChance', min: 7, max: 10, suffix: '' },
+                { name: 'Crit Damage', group: 'critDamage', min: 7, max: 10, suffix: '%' },
+                { name: 'Leech', group: 'leech', min: 7, max: 10, suffix: '%' },
+            ]
+        },
+        selection: ['line1', 'line23', 'line23']
+    },
+    "Axe": { "type": "Melee Weapon" },
+    "Dagger": { "type": "Melee Weapon" },
+    "Mace": { "type": "Melee Weapon" },
+    "Spear": { "type": "Melee Weapon" },
+    "Sword": { "type": "Melee Weapon" },
+    "Wand": { "type": "Melee Weapon" },
+    "Book": { "type": "Melee Weapon" },
+    "Bow": { "type": "Ranged Weapon" },
+    "Melee Weapon": {
+        pools: {
+            line1: [
+                { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
+            ],
+            line23: [
+                { name: 'Atk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' }, { name: 'Matk%', group: 'percentAttack', min: 3, max: 5, suffix: '%' },
+                { name: 'Damage Melee', group: 'damageType', min: 7, max: 10, suffix: '%' }, { name: 'Damage Magic', group: 'damageType', min: 7, max: 10, suffix: '%' },
+                { name: 'Crit', group: 'critChance', min: 7, max: 10, suffix: '' },
+                { name: 'Crit Damage', group: 'critDamage', min: 7, max: 10, suffix: '%' },
+                { name: 'Leech', group: 'leech', min: 7, max: 10, suffix: '%' },
+            ]
+        },
+        selection: ['line1', 'line23', 'line23']
+    },
+    "Chest": {
+        pools: {
+            line1: [
+                { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
+            ],
+            line23: [
+                { name: 'Hp%', group: 'resourcePercent', min: 7, max: 10, suffix: '%' }, { name: 'Mp%', group: 'resourcePercent', min: 7, max: 10, suffix: '%' },
+                { name: 'Def', group: 'defense', min: 3, max: 5, suffix: '' }, { name: 'Mdef', group: 'defense', min: 3, max: 5, suffix: '' },
+                { name: '-Physical Damage', group: 'damageReduction', min: 3, max: 5, suffix: '' }, { name: '-Magical Damage', group: 'damageReduction', min: 3, max: 5, suffix: '' },
+                { name: 'Healing Received', group: 'healing', min: 7, max: 10, suffix: '%' }
+            ]
+        },
+        selection: ['line1', 'line23', 'line23']
+    },
+    "Feet": {
+         pools: {
+            line1: [
+                { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
+            ],
+            line23: [
+                { name: 'Atk Speed', group: 'atkSpeed', min: 7, max: 10, suffix: '%' },
+                { name: 'Cast speed', group: 'castSpeed', min: 11, max: 15, suffix: '%' },
+                { name: 'Movement speed', group: 'moveSpeed', min: 7, max: 10, suffix: '%' }
+            ]
+        },
+        selection: ['line1', 'line23', 'line23']
+    },
+    "Legs": {
+        pools: {
+             line1: [
+                { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
+            ],
+            line23: [
+                { name: 'Hp Regen', group: 'regen', min: 17, max: 25, suffix: '%' }, { name: 'Mp regen', group: 'regen', min: 17, max: 25, suffix: '%' },
+                { name: 'Flee', group: 'flee', min: 11, max: 15, suffix: '' },
+                { name: '-MpCost', group: 'mpCost', min: 7, max: 10, suffix: '%' },
+                { name: 'Leech', group: 'leech', min: 7, max: 10, suffix: '%' }
+            ]
+        },
+        selection: ['line1', 'line23', 'line23']
+    },
+    "Accessory": {
+        pools: {
+             line1: [
+                { name: 'Agility', min: 2, max: 3, suffix: '' }, { name: 'Dexterity', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
+            ],
+            line23: [
+                { name: 'Hp%', group: 'resourcePercent', min: 1, max: 2, suffix: '%' }, { name: 'Mp%', group: 'resourcePercent', min: 1, max: 2, suffix: '%' },
+                { name: 'Atk%', group: 'percentAttack', min: 1, max: 2, suffix: '%' }, { name: 'Matk%', group: 'percentAttack', min: 1, max: 2, suffix: '%' },
+            ]
+        },
+        selection: ['line1', 'line23', 'line23']
+    },
+     "Back": { "type": "Accessory" },
+     "Eyewear": { "type": "Accessory" },
+     "Head": { "type": "Accessory" },
+     "Shield": { "type": "Accessory" },
+};
+let statDetails = {};
 const archetypeData = {
     Brute:    { str: 1.75, agi: 0.75, vit: 1.5,  int: 0.25, dex: 1,    luk: 0.75 },
     Caster:   { str: 0.5,  agi: 0.5,  vit: 0.5,  int: 1.75, dex: 1.75, luk: 1 },
@@ -305,6 +415,22 @@ function resetToDefaults() {
     saveCurrentBuild();
 }
 
+function getStatDetailsForItem(item) {
+    if (!item) return {};
+    let itemConfigKey = item.Type;
+    let itemConfig = statRollData[itemConfigKey];
+    if (itemConfig && itemConfig.type) {
+        itemConfigKey = itemConfig.type;
+        itemConfig = statRollData[itemConfigKey];
+    }
+    if (!itemConfig || !itemConfig.pools) {
+        return {};
+    }
+    const details = {};
+    Object.values(itemConfig.pools).flat().forEach(s => details[s.name] = s);
+    return details;
+}
+
 function updateGearSlotUI(slotId) {
     const gearInfo = equippedGear[slotId];
     const slotWrapper = document.getElementById(`gear-slot-wrapper-${slotId}`);
@@ -314,17 +440,23 @@ function updateGearSlotUI(slotId) {
     const refineControls = slotWrapper.querySelector('.refine-controls');
     const refineDisplay = slotWrapper.querySelector('.refine-display');
     const cardSlotsContainer = slotWrapper.querySelector('.card-slots-container');
+    const selectStatsBtn = slotWrapper.querySelector('.select-stats-btn');
+    const selectedStatsContainer = slotWrapper.querySelector('.selected-stats-container');
 
     if (!gearInfo || !gearInfo.itemId) {
-        slotElement.innerHTML = `<span>${slotElement.dataset.defaultText}</span>`;
-        slotElement.classList.add('justify-center', 'text-gray-500');
-        slotElement.classList.remove('justify-start', 'p-2', 'space-x-2', 'items-center');
+        slotElement.innerHTML = `<span class="text-gray-500">${slotElement.dataset.defaultText}</span>`;
+        slotElement.classList.add('justify-center');
+        slotElement.classList.remove('justify-start', 'items-center', 'w-full');
         refineControls.classList.add('hidden');
         cardSlotsContainer.classList.add('hidden');
         cardSlotsContainer.innerHTML = '';
+        selectStatsBtn.classList.add('hidden');
+        selectedStatsContainer.innerHTML = '';
+
     } else {
         const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
         if (item) {
+            selectStatsBtn.classList.remove('hidden');
             let namePrefix = '';
             if (gearInfo.cards && gearInfo.cards.some(c => c !== null)) {
                 const affixCounts = {};
@@ -347,15 +479,28 @@ function updateGearSlotUI(slotId) {
 
             slotElement.innerHTML = `
                 <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-10 h-10" style="image-rendering: pixelated;" onerror="this.src='Sprites/Equipment/notfound.png';">
-                <div class="flex-1 truncate">
+                <div class="flex-1 truncate pl-2">
                     ${namePrefix}
                     <span class="text-sm text-white truncate">${item.Name}</span>
                 </div>
             `;
-            slotElement.classList.remove('justify-center', 'text-gray-500');
-            slotElement.classList.add('justify-start', 'p-2', 'space-x-2', 'items-center');
+            slotElement.classList.remove('justify-center');
+            slotElement.classList.add('justify-start', 'items-center', 'w-full');
             refineControls.classList.remove('hidden');
             refineDisplay.textContent = `+${gearInfo.refine || 0}`;
+
+            // Display Selected Stats
+            const itemStatDetails = getStatDetailsForItem(item);
+            if (gearInfo.selectedStats && gearInfo.selectedStats.length > 0) {
+                selectedStatsContainer.innerHTML = gearInfo.selectedStats.map(stat => {
+                    const detail = itemStatDetails[stat.name] || {};
+                    const sign = stat.value > 0 ? '+' : '';
+                    return `<div>${stat.name} ${sign}${stat.value}${detail.suffix || ''}</div>`;
+                }).join('');
+            } else {
+                selectedStatsContainer.innerHTML = '';
+            }
+
 
             // Handle Card Slots
             if (item.CardSlots > 0) {
@@ -625,16 +770,22 @@ function initializeGearSlots() {
     const rightCol = document.getElementById('gear-column-right');
 
     const createSlotHTML = (slot) => `
-        <div id="gear-slot-wrapper-${slot.id}" class="flex flex-col space-y-1" data-slot-id="${slot.id}">
+        <div id="gear-slot-wrapper-${slot.id}" class="bg-gray-800 rounded-md border border-gray-700 p-2 space-y-2" data-slot-id="${slot.id}">
             <div class="flex items-center space-x-2">
-                <div id="gear-slot-${slot.id}" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500" data-default-text="${slot.name}">${slot.name}</div>
+                <div id="gear-slot-${slot.id}" class="gear-slot flex-1 cursor-pointer flex items-center" data-default-text="${slot.name}">
+                    <span class="text-gray-500">${slot.name}</span>
+                </div>
                 <div class="refine-controls hidden flex-col items-center space-y-1">
                     <button class="refine-btn refine-plus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">+</button>
                     <span class="refine-display font-bold text-indigo-400">+0</span>
                     <button class="refine-btn refine-minus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">-</button>
                 </div>
             </div>
-            <div class="card-slots-container hidden flex justify-start items-center space-x-1 pl-1"></div>
+            <div class="selected-stats-container text-xs text-cyan-400 pl-10 -mt-1 space-y-0.5 font-mono"></div>
+            <div class="flex items-center justify-between mt-1">
+                <div class="card-slots-container hidden flex justify-start items-center space-x-1"></div>
+                <button class="select-stats-btn hidden text-xs bg-indigo-900/60 hover:bg-indigo-900/80 text-indigo-300 font-semibold py-1 px-2 rounded">+ Select Stats</button>
+            </div>
         </div>
     `;
 
@@ -666,8 +817,147 @@ function initializeGearSlots() {
         saveCurrentBuild();
     };
 
+    const handleStatSelectClick = (e) => {
+        const button = e.target.closest('.select-stats-btn');
+        if (!button) return;
+        const wrapper = e.target.closest('[data-slot-id]');
+        if (!wrapper) return;
+        const slotId = wrapper.dataset.slotId;
+        openStatSelectionModal(slotId);
+    };
+
     leftCol.addEventListener('click', handleRefineClick);
     rightCol.addEventListener('click', handleRefineClick);
+    leftCol.addEventListener('click', handleStatSelectClick);
+    rightCol.addEventListener('click', handleStatSelectClick);
+}
+
+// --- Stat Selection Modal Logic ---
+let currentStatSelectionSlot = null;
+const statSelectionModalOverlay = document.getElementById('stat-selection-modal-overlay');
+const statSelectionModal = document.getElementById('stat-selection-modal');
+const statSelects = [document.getElementById('stat-select-1'), document.getElementById('stat-select-2'), document.getElementById('stat-select-3')];
+const statValues = [document.getElementById('stat-value-1'), document.getElementById('stat-value-2'), document.getElementById('stat-value-3')];
+const statError = document.getElementById('stat-selection-error');
+
+function openStatSelectionModal(slotId) {
+    currentStatSelectionSlot = slotId;
+    const gearInfo = equippedGear[slotId];
+    if (!gearInfo || !gearInfo.itemId) return;
+
+    const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
+    if (!item) return;
+
+    let itemConfigKey = item.Type;
+    let itemConfig = statRollData[itemConfigKey];
+    if (itemConfig && itemConfig.type) {
+        itemConfigKey = itemConfig.type;
+        itemConfig = statRollData[itemConfigKey];
+    }
+
+    if (!itemConfig || !itemConfig.pools) {
+        customAlert("This item cannot have additional stats.", "Stat Selection");
+        return;
+    }
+
+    statDetails = {};
+    Object.values(itemConfig.pools).flat().forEach(s => statDetails[s.name] = s);
+
+    statSelects.forEach((select, index) => {
+        const poolName = itemConfig.selection[index];
+        const statList = itemConfig.pools[poolName];
+        populateStatSelect(select, statList, `Select Stat ${index + 1}`);
+    });
+
+    // Load existing selected stats
+    const selectedStats = gearInfo.selectedStats || [];
+    selectedStats.forEach((stat, index) => {
+        if (stat && stat.name && stat.value) {
+            statSelects[index].value = stat.name;
+            statValues[index].value = stat.value;
+        } else {
+            statSelects[index].value = '';
+            statValues[index].value = '';
+        }
+    });
+
+    handleStatConflict();
+    statSelectionModalOverlay.classList.remove('hidden');
+}
+
+function closeStatSelectionModal() {
+    statSelectionModalOverlay.classList.add('hidden');
+    currentStatSelectionSlot = null;
+    statError.classList.add('hidden');
+    statSelects.forEach(s => s.innerHTML = '');
+    statValues.forEach(v => v.value = '');
+}
+
+function saveSelectedStats() {
+    if (!currentStatSelectionSlot) return;
+
+    const selected = statSelects.map((s, i) => ({
+        name: s.value,
+        value: parseInt(statValues[i].value, 10) || 0,
+        statInfo: statDetails[s.value]
+    })).filter(s => s.name); // Filter out empty selections
+
+    // Validate
+    for (const stat of selected) {
+        if (stat.value < stat.statInfo.min || stat.value > stat.statInfo.max) {
+            statError.textContent = `Value for ${stat.name} must be between ${stat.statInfo.min} and ${stat.statInfo.max}.`;
+            statError.classList.remove('hidden');
+            return;
+        }
+    }
+    statError.classList.add('hidden');
+
+
+    equippedGear[currentStatSelectionSlot].selectedStats = selected.map(s => ({ name: s.name, value: s.value }));
+
+    updateGearSlotUI(currentStatSelectionSlot);
+    recalculateEverything();
+    saveCurrentBuild();
+    closeStatSelectionModal();
+}
+
+function populateStatSelect(select, statList, placeholder) {
+    select.innerHTML = `<option value="">-- ${placeholder} --</option>`;
+    statList.forEach(stat => {
+        const option = document.createElement('option');
+        option.value = stat.name;
+        option.textContent = `${stat.name} (${stat.min}-${stat.max}${stat.suffix || ''})`;
+        select.appendChild(option);
+    });
+}
+
+function handleStatConflict() {
+    const allSelections = statSelects.map(s => statDetails[s.value]);
+
+    statSelects.forEach((currentSelect, currentIndex) => {
+        const otherSelections = allSelections.filter((sel, index) => sel && index !== currentIndex);
+
+        for (const option of currentSelect.options) {
+            if (option.value === "") continue;
+            const optionStat = statDetails[option.value];
+            if (!optionStat) continue;
+
+            option.disabled = false;
+
+            const isGroupTaken = otherSelections.some(sel => sel.group && optionStat.group && sel.group === optionStat.group);
+            const isStatTaken = otherSelections.some(sel => sel.name === optionStat.name);
+
+            if (isGroupTaken || isStatTaken) {
+                option.disabled = true;
+            }
+        }
+    });
+
+    statSelects.forEach(select => {
+        if (select.options[select.selectedIndex]?.disabled) {
+            select.value = "";
+        }
+    });
 }
 
 function initializeMonsterSearch() {
@@ -908,6 +1198,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- Initialize Listeners for Calculations & UI Toggles ---
         document.getElementById('reset-build-btn').addEventListener('click', handleReset);
         document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
+
+        // Stat Selection Modal Listeners
+        document.getElementById('stat-selection-save-btn').addEventListener('click', saveSelectedStats);
+        document.getElementById('stat-selection-cancel-btn').addEventListener('click', closeStatSelectionModal);
+        statSelects.forEach(sel => sel.addEventListener('change', handleStatConflict));
+
+
         document.querySelectorAll('.recalculate').forEach(input => {
              if (input.id !== 'p_lv' && !input.classList.contains('stat-point-input')) {
                 input.addEventListener('input', calculateAll);
@@ -1205,6 +1502,14 @@ function calculateGearBonuses() {
         'Crit Rate %': 'Crit Rate %',
         'Total Critical Rate %': 'Crit Rate %'
     };
+    const selectedStatNameMapping = {
+        'Strength': 'STR', 'Agility': 'AGI', 'Vitality': 'VIT', 'Intelligence': 'INT', 'Dexterity': 'DEX', 'Luck': 'LUK',
+        'Atk%': 'ATK %', 'Matk%': 'MATK %',
+        'Damage Melee': 'Dmg Melee %', 'Damage Ranged': 'Dmg Ranged %', 'Damage Magic': 'Dmg Magic %',
+        'Crit': 'Flat CRIT', 'Crit Damage': 'Crit Dmg %',
+        'Atk Speed': 'AtkSpeed %', 'Cast speed': 'CastSpeed %',
+        'Def': 'Flat Def', 'Mdef': 'Flat Mdef',
+    };
     const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book'];
 
     Object.values(equippedGear).forEach(gearInfo => {
@@ -1242,6 +1547,17 @@ function calculateGearBonuses() {
                             newGearBonuses[mappedStatName] += stat.value; // Cards don't have refine levels
                         }
                     });
+                }
+            });
+        }
+
+        // Add selected stats
+        if (gearInfo.selectedStats && gearInfo.selectedStats.length > 0) {
+            gearInfo.selectedStats.forEach(stat => {
+                if (!stat || !stat.name) return;
+                const mappedStatName = selectedStatNameMapping[stat.name] || stat.name;
+                if (newGearBonuses[mappedStatName] !== undefined) {
+                    newGearBonuses[mappedStatName] += stat.value;
                 }
             });
         }
