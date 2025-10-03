@@ -33,6 +33,17 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
+        "Name": "Ashrend Card",
+        "CardId": "Alien Wreck",
+        "Affix": "Swift",
+        "Slot": "Feet",
+        "Stats": "Move Spd: <color=#AAFF00FF>+20%</color>\nMp: <color=#FF0073FF>-20%</color>",
+        "Source": "Alien Wreck",
+        "Droprate": "100%",
+        "Location": "Night Garden",
+        "SpriteId": "card"
+    },
+    {
         "Name": "Bat Card",
         "CardId": "Bat",
         "Affix": "Leeching",
@@ -107,6 +118,17 @@ window.cardData = [
         "Source": "Bomb",
         "Droprate": "100%",
         "Location": "Sanctum of Light",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Boxy Robot Card",
+        "CardId": "Boxy Robot",
+        "Affix": "Energy",
+        "Slot": "Eyewear",
+        "Stats": "Hp Regen: <color=#AAFF00FF>+25%</color>\nMp Regen: <color=#AAFF00FF>+25%</color>",
+        "Source": "Boxy Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
         "SpriteId": "card"
     },
     {
@@ -198,17 +220,6 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
-        "Name": "Cactus Boss Card",
-        "CardId": "Cactus Boss",
-        "Affix": "Counter",
-        "Slot": "Shield",
-        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.1 Counter Stance</color></color>",
-        "Source": "Cactus Boss",
-        "Droprate": "300%",
-        "Location": "Windy Desert",
-        "SpriteId": "card_gold"
-    },
-    {
         "Name": "Cactus Card",
         "CardId": "Cactus",
         "Affix": "Mudproof",
@@ -218,6 +229,17 @@ window.cardData = [
         "Droprate": "100%",
         "Location": "Windy Desert",
         "SpriteId": "card"
+    },
+    {
+        "Name": "Cactus King Card",
+        "CardId": "Cactus Boss",
+        "Affix": "Steadfast",
+        "Slot": "Feet",
+        "Stats": "<color=#FFFFFFFF>Immune to Flinching from damage</color>",
+        "Source": "Cactus Boss",
+        "Droprate": "300%",
+        "Location": "Windy Desert",
+        "SpriteId": "card_gold"
     },
     {
         "Name": "Cat Bolt Card",
@@ -262,6 +284,28 @@ window.cardData = [
         "Droprate": "100%",
         "Location": "Sunny Meadows",
         "SpriteId": "card"
+    },
+    {
+        "Name": "Cinderspike Card",
+        "CardId": "Alien Spike",
+        "Affix": "Swift",
+        "Slot": "Legs",
+        "Stats": "Move Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Alien Spike",
+        "Droprate": "100%",
+        "Location": "Dark Forest",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Cosmic Entity Card",
+        "CardId": "Alien Big Blink",
+        "Affix": "Cosmic",
+        "Slot": "Eyewear",
+        "Stats": "Atk: <color=#AAFF00FF>+10%</color>\nHp: <color=#FF0073FF>-25%</color>\nMatk: <color=#AAFF00FF>+10%</color>\nMp: <color=#FF0073FF>-25%</color>",
+        "Source": "Alien Big Blink",
+        "Droprate": "300%",
+        "Location": "Night Garden",
+        "SpriteId": "card_gold"
     },
     {
         "Name": "Creeper Card",
@@ -361,6 +405,17 @@ window.cardData = [
         "Droprate": "300%",
         "Location": "Abyss Castle Library",
         "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Delivery Robot Card",
+        "CardId": "Delivery Robot",
+        "Affix": "Energy",
+        "Slot": "Back",
+        "Stats": "Mp Regen: <color=#AAFF00FF>+25%</color>",
+        "Source": "Delivery Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
+        "SpriteId": "card"
     },
     {
         "Name": "Direwolf Card",
@@ -554,7 +609,7 @@ window.cardData = [
         "CardId": "Egglet",
         "Affix": "Rapid",
         "Slot": "Weapon",
-        "Stats": "Atk Spd: <color=#AAFF00FF>+5%</color>\nStr: <color=#AAFF00FF>+1</color>",
+        "Stats": "Agi: <color=#AAFF00FF>+1</color>\nAtk Spd: <color=#AAFF00FF>+5%</color>",
         "Source": "Egglet",
         "Droprate": "100%",
         "Location": "Forest Labyrinth",
@@ -825,7 +880,18 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
-        "Name": "Goblin Giant Gold Card",
+        "Name": "Goblin Giant Mage Card",
+        "CardId": "Goblin Giant Mage",
+        "Affix": "Earthen",
+        "Slot": "Weapon",
+        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_8> <color=#BB7B2FFF>Earth</color> element</color>",
+        "Source": "Goblin Giant Mage",
+        "Droprate": "100%",
+        "Location": "Goblin Village",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin King Card",
         "CardId": "Goblin Giant Gold",
         "Affix": "Earthen",
         "Slot": "Chest",
@@ -834,17 +900,6 @@ window.cardData = [
         "Droprate": "300%",
         "Location": "Goblin Village",
         "SpriteId": "card_gold"
-    },
-    {
-        "Name": "Goblin Giant Mage Card",
-        "CardId": "Goblin Giant Mage",
-        "Affix": "Quaking",
-        "Slot": "Weapon",
-        "Stats": "<color=#FFFFFFFF>Enchant weapon with <sprite name=Elements_8> <color=#BB7B2FFF>Earth</color> element</color>",
-        "Source": "Goblin Giant Mage",
-        "Droprate": "100%",
-        "Location": "Goblin Village",
-        "SpriteId": "card"
     },
     {
         "Name": "Goblin Minion Card",
@@ -902,6 +957,39 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
+        "Name": "Goblin Warchief Card",
+        "CardId": "Goblin Warchief",
+        "Affix": "Elemental",
+        "Slot": "Weapon",
+        "Stats": "Earth Damage: <color=#AAFF00FF>+7%</color>\nFire Damage: <color=#AAFF00FF>+7%</color>\nWater Damage: <color=#AAFF00FF>+7%</color>\nWind Damage: <color=#AAFF00FF>+7%</color>",
+        "Source": "Goblin Warchief",
+        "Droprate": "300%",
+        "Location": "Goblin Warcamp",
+        "SpriteId": "card_gold"
+    },
+    {
+        "Name": "Goblin Warcrusher Card",
+        "CardId": "Goblin Warcrusher",
+        "Affix": "Seismic",
+        "Slot": "Accessory",
+        "Stats": "Earth Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Goblin Warcrusher",
+        "Droprate": "100%",
+        "Location": "Goblin Warcamp",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Goblin Warlock Card",
+        "CardId": "Goblin Warlock",
+        "Affix": "Wizardry",
+        "Slot": "Eyewear",
+        "Stats": "Cast Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Goblin Warlock",
+        "Droprate": "100%",
+        "Location": "Goblin Warcamp",
+        "SpriteId": "card"
+    },
+    {
         "Name": "Golem Earth Card",
         "CardId": "Golem Earth",
         "Affix": "Stone",
@@ -932,6 +1020,17 @@ window.cardData = [
         "Source": "Golem Ice",
         "Droprate": "100%",
         "Location": "Crystal Cave",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Gripper Robot Card",
+        "CardId": "Gripper Robot",
+        "Affix": "Immune",
+        "Slot": "Chest",
+        "Stats": "Hp: <color=#AAFF00FF>+10%</color>\nNeutral Resistance: <color=#AAFF00FF>+10%</color>",
+        "Source": "Gripper Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
         "SpriteId": "card"
     },
     {
@@ -1049,7 +1148,7 @@ window.cardData = [
         "CardId": "Imp Devil",
         "Affix": "Meteoric",
         "Slot": "Eyewear",
-        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Meteor</color></color>",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.6 Meteor</color></color>",
         "Source": "Imp Devil",
         "Droprate": "300%",
         "Location": "Demon's Maw",
@@ -1080,9 +1179,9 @@ window.cardData = [
     {
         "Name": "Mole Rat Card",
         "CardId": "Mole Rat",
-        "Affix": "Steadfast",
-        "Slot": "Feet",
-        "Stats": "<color=#FFFFFFFF>Immune to Flinching from damage</color>\nHp: <color=#FF0073FF>-25%</color>",
+        "Affix": "Seismic",
+        "Slot": "Weapon",
+        "Stats": "Earth Damage: <color=#AAFF00FF>+8%</color>",
         "Source": "Mole Rat",
         "Droprate": "100%",
         "Location": "Windy Desert",
@@ -1093,7 +1192,7 @@ window.cardData = [
         "CardId": "Mole Rat King",
         "Affix": "Stomping",
         "Slot": "Back",
-        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.3 Stomp</color></color>",
+        "Stats": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.1 Stomp</color></color>",
         "Source": "Mole Rat King",
         "Droprate": "100%",
         "Location": "Windy Desert",
@@ -1214,7 +1313,7 @@ window.cardData = [
         "CardId": "Plant Chewer",
         "Affix": "Immune",
         "Slot": "Shield",
-        "Stats": "Neutral Resistance: <color=#AAFF00FF>+25%</color>",
+        "Stats": "Neutral Resistance: <color=#AAFF00FF>+20%</color>",
         "Source": "Plant Chewer",
         "Droprate": "100%",
         "Location": "Windy Desert",
@@ -1225,7 +1324,7 @@ window.cardData = [
         "CardId": "Poison Bomb",
         "Affix": "Mystery",
         "Slot": "Weapon",
-        "Stats": "All Stats: <color=#AAFF00FF>+1</color>",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#AAFF00FF>+5%</color>",
         "Source": "Poison Bomb",
         "Droprate": "100%",
         "Location": "Underground Cavern",
@@ -1273,6 +1372,17 @@ window.cardData = [
         "Source": "Rabbit",
         "Droprate": "100%",
         "Location": "Forest Labyrinth",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Razor Robot Card",
+        "CardId": "Razor Robot",
+        "Affix": "Rapid",
+        "Slot": "Feet",
+        "Stats": "Atk Spd: <color=#AAFF00FF>+5%</color>\nMove Spd: <color=#AAFF00FF>+5%</color>",
+        "Source": "Razor Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
         "SpriteId": "card"
     },
     {
@@ -1324,7 +1434,7 @@ window.cardData = [
         "CardId": "Shade",
         "Affix": "Mystery",
         "Slot": "Back",
-        "Stats": "All Stats: <color=#AAFF00FF>+1</color>",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#AAFF00FF>+5%</color>",
         "Source": "Shade",
         "Droprate": "100%",
         "Location": "Demon's Maw",
@@ -1335,7 +1445,7 @@ window.cardData = [
         "CardId": "Shadow",
         "Affix": "Mystery",
         "Slot": "Accessory",
-        "Stats": "All Stats: <color=#AAFF00FF>+1</color>",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#AAFF00FF>+5%</color>",
         "Source": "Shadow",
         "Droprate": "100%",
         "Location": "Demon's Maw",
@@ -1350,6 +1460,17 @@ window.cardData = [
         "Source": "Shell",
         "Droprate": "100%",
         "Location": "Mystic Lake",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Shell Robot Card",
+        "CardId": "Shell Robot",
+        "Affix": "Rapid",
+        "Slot": "Legs",
+        "Stats": "Atk Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Shell Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
         "SpriteId": "card"
     },
     {
@@ -1416,6 +1537,17 @@ window.cardData = [
         "Source": "Snakelet",
         "Droprate": "100%",
         "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Snout Robot Card",
+        "CardId": "Snout Robot",
+        "Affix": "Pillar",
+        "Slot": "Legs",
+        "Stats": "Fire Pillar Damage: <color=#AAFF00FF>+12%</color>",
+        "Source": "Snout Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
         "SpriteId": "card"
     },
     {
@@ -1496,6 +1628,17 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
+        "Name": "Spike Robot Card",
+        "CardId": "Spike Robot",
+        "Affix": "Rapid",
+        "Slot": "Head",
+        "Stats": "Atk Spd: <color=#AAFF00FF>+10%</color>",
+        "Source": "Spike Robot",
+        "Droprate": "100%",
+        "Location": "The Forge",
+        "SpriteId": "card"
+    },
+    {
         "Name": "Spook Card",
         "CardId": "Spook",
         "Affix": "Unbreaking",
@@ -1531,9 +1674,9 @@ window.cardData = [
     {
         "Name": "Sting Card",
         "CardId": "Sting",
-        "Affix": "Sniper",
+        "Affix": "Frenzy",
         "Slot": "Weapon",
-        "Stats": "Total Hit: <color=#AAFF00FF>+30%</color>",
+        "Stats": "Atk Spd: <color=#AAFF00FF>+15%</color>",
         "Source": "Sting",
         "Droprate": "300%",
         "Location": "Forest Labyrinth",
@@ -1658,6 +1801,28 @@ window.cardData = [
         "Source": "Vampire Bat",
         "Droprate": "100%",
         "Location": "Forgotten Depths",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Voidgazer Card",
+        "CardId": "Alien One Eye",
+        "Affix": "Mystery",
+        "Slot": "Eyewear",
+        "Stats": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#AAFF00FF>+5%</color>",
+        "Source": "Alien One Eye",
+        "Droprate": "100%",
+        "Location": "Night Garden",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Voidspawn Card",
+        "CardId": "Alien Cyclops",
+        "Affix": "Gaze",
+        "Slot": "Eyewear",
+        "Stats": "<color=#FFFFFFFF>Reveals invisible units</color>",
+        "Source": "Alien Cyclops",
+        "Droprate": "100%",
+        "Location": "Dark Forest",
         "SpriteId": "card"
     },
     {
@@ -1815,6 +1980,17 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
+        "Name": "Wraith Card",
+        "CardId": "Wraith",
+        "Affix": "Reaper",
+        "Slot": "Eyewear",
+        "Stats": "Health leech chance: <color=#AAFF00FF>+10%</color>\nHealth leech power: <color=#AAFF00FF>+5%</color>",
+        "Source": "Wraith",
+        "Droprate": "300%",
+        "Location": "Dark Fortress",
+        "SpriteId": "card_gold"
+    },
+    {
         "Name": "Zombie Goblin Giant Card",
         "CardId": "Zombie Goblin Giant",
         "Affix": "Undead",
@@ -1826,7 +2002,7 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
-        "Name": "Zombie Goblin King Card",
+        "Name": "Zombie Goblin Lord Card",
         "CardId": "Zombie Goblin King",
         "Affix": "Undead",
         "Slot": "Chest",
