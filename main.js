@@ -252,7 +252,7 @@ const gearSlotLayout = {
 
 
 // This object will hold the state of the currently equipped gear
-let equippedGear = {};
+window.equippedGear = {};
 let activeEquipmentSets = [];
 let equippedArtifacts = {
     setId: null,
