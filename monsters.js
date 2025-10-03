@@ -1,5 +1,77 @@
 const monsters = [
   {
+    "MonsterName": "Alien Big Blink",
+    "IsBoss": true,
+    "Level": 135,
+    "Element": "Holy",
+    "ArchetypeId": "Hybrid",
+    "Map": "Night Garden"
+  },
+  {
+    "MonsterName": "Alien Biteroot",
+    "IsBoss": false,
+    "Level": 100,
+    "Element": "Poison",
+    "ArchetypeId": "Plant",
+    "Map": "Dark Forest"
+  },
+  {
+    "MonsterName": "Alien Cyclops",
+    "IsBoss": false,
+    "Level": 98,
+    "Element": "Holy",
+    "ArchetypeId": "Hybrid",
+    "Map": "Dark Forest"
+  },
+  {
+    "MonsterName": "Alien One Eye",
+    "IsBoss": false,
+    "Level": 126,
+    "Element": "Holy",
+    "ArchetypeId": "Hybrid",
+    "Map": "Night Garden"
+  },
+  {
+    "MonsterName": "Alien Plant",
+    "IsBoss": false,
+    "Level": 130,
+    "Element": "Poison",
+    "ArchetypeId": "Plant",
+    "Map": "Night Garden"
+  },
+  {
+    "MonsterName": "Alien Spike",
+    "IsBoss": false,
+    "Level": 96,
+    "Element": "Fire",
+    "ArchetypeId": "Runner",
+    "Map": "Dark Forest"
+  },
+  {
+    "MonsterName": "Alien Sporella",
+    "IsBoss": false,
+    "Level": 97,
+    "Element": "Poison",
+    "ArchetypeId": "Plant",
+    "Map": "Dark Forest"
+  },
+  {
+    "MonsterName": "Alien Wheel",
+    "IsBoss": false,
+    "Level": 99,
+    "Element": "Fire",
+    "ArchetypeId": "Runner",
+    "Map": "Dark Forest"
+  },
+  {
+    "MonsterName": "Alien Wreck",
+    "IsBoss": false,
+    "Level": 127,
+    "Element": "Fire",
+    "ArchetypeId": "Runner",
+    "Map": "Night Garden"
+  },
+  {
     "MonsterName": "Angel",
     "IsBoss": false,
     "Level": 76,
@@ -1325,7 +1397,7 @@ const monsters = [
     "Level": 0,
     "Element": "Neutral",
     "ArchetypeId": "Egg",
-    "Map": "Unknown"
+    "Map": "Nevaris"
   },
   {
     "MonsterName": "Tentacles Robot",
