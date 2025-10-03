@@ -187,6 +187,16 @@ const statRollData = {
      "Eyewear": { "type": "Accessory" },
      "Head": { "type": "Accessory" },
      "Shield": { "type": "Accessory" },
+    "Artifact": {
+        pools: {
+            line1: [
+                { name: 'Strength', min: 1, max: 5, suffix: '' }, { name: 'Agility', min: 1, max: 5, suffix: '' },
+                { name: 'Vitality', min: 1, max: 5, suffix: '' }, { name: 'Intelligence', min: 1, max: 5, suffix: '' },
+                { name: 'Dexterity', min: 1, max: 5, suffix: '' }, { name: 'Luck', min: 1, max: 5, suffix: '' },
+            ]
+        },
+        selection: ['line1']
+    },
 };
 let statDetails = {};
 const archetypeData = {
@@ -244,11 +254,11 @@ let equippedGear = {};
 let activeEquipmentSets = [];
 let equippedArtifacts = {
     setId: null,
-    levels: {
-        Rune: 0,
-        Relic: 0,
-        Scroll: 0,
-        Gem: 0
+    pieces: {
+        Rune: { level: 0, selectedStats: [] },
+        Relic: { level: 0, selectedStats: [] },
+        Scroll: { level: 0, selectedStats: [] },
+        Gem: { level: 0, selectedStats: [] }
     }
 };
 
@@ -424,7 +434,15 @@ function resetToDefaults() {
     generateSkillInputs();
 
     equippedGear = {};
-    equippedArtifacts = { setId: null, levels: { Rune: 0, Relic: 0, Scroll: 0, Gem: 0 } };
+    equippedArtifacts = {
+        setId: null,
+        pieces: {
+            Rune: { level: 0, selectedStats: [] },
+            Relic: { level: 0, selectedStats: [] },
+            Scroll: { level: 0, selectedStats: [] },
+            Gem: { level: 0, selectedStats: [] }
+        }
+    };
     updateAllGearSlotsUI();
     updateArtifactUI();
     toggleDualWield();
@@ -694,7 +712,15 @@ function loadBuild(index) {
         }
 
         equippedGear = buildData.equippedGear || {};
-        equippedArtifacts = buildData.equippedArtifacts || { setId: null, levels: { Rune: 0, Relic: 0, Scroll: 0, Gem: 0 } };
+        equippedArtifacts = buildData.equippedArtifacts || {
+            setId: null,
+            pieces: {
+                Rune: { level: 0, selectedStats: [] },
+                Relic: { level: 0, selectedStats: [] },
+                Scroll: { level: 0, selectedStats: [] },
+                Gem: { level: 0, selectedStats: [] }
+            }
+        };
         updateAllGearSlotsUI();
         updateArtifactUI();
         toggleDualWield();
@@ -807,8 +833,13 @@ function initializeArtifacts() {
         const selectedSetId = e.target.value;
         if (selectedSetId) {
             equippedArtifacts.setId = selectedSetId;
-            // Reset levels when a new set is chosen
-            equippedArtifacts.levels = { Rune: 0, Relic: 0, Scroll: 0, Gem: 0 };
+            // Reset pieces when a new set is chosen
+            equippedArtifacts.pieces = {
+                Rune: { level: 0, selectedStats: [] },
+                Relic: { level: 0, selectedStats: [] },
+                Scroll: { level: 0, selectedStats: [] },
+                Gem: { level: 0, selectedStats: [] }
+            };
         } else {
             equippedArtifacts.setId = null;
         }
@@ -841,27 +872,47 @@ function updateArtifactUI() {
 
     piecesContainer.innerHTML = '';
     const pieceTypes = ['Rune', 'Relic', 'Scroll', 'Gem'];
+    const artifactStatDetails = getStatDetailsForItem({ Type: 'Artifact' });
+
     pieceTypes.forEach(type => {
-        const level = equippedArtifacts.levels[type] || 0;
+        const pieceData = equippedArtifacts.pieces[type] || { level: 0, selectedStats: [] };
         const pieceDiv = document.createElement('div');
-        pieceDiv.className = 'bg-gray-900/50 p-2 rounded-md';
+        pieceDiv.className = 'bg-gray-900/50 p-2 rounded-md space-y-2';
+
+        let selectedStatsHtml = '';
+        if (pieceData.selectedStats && pieceData.selectedStats.length > 0) {
+            selectedStatsHtml = `
+                <div class="text-xs text-cyan-400 font-mono mt-1">
+                    ${pieceData.selectedStats.map(stat => {
+                        const detail = artifactStatDetails[stat.name] || {};
+                        const sign = stat.value > 0 ? '+' : '';
+                        return `<div>${stat.name} ${sign}${stat.value}${detail.suffix || ''}</div>`;
+                    }).join('')}
+                </div>
+            `;
+        }
 
         const perPieceBonusHTML = artifactSet.PerPieceBonus ? `<div class="text-xs text-gray-400 font-mono">${parseStats(artifactSet.PerPieceBonus)}</div>` : '';
         const perRefineBonusHTML = artifactSet.PerRefineBonus ? `<div class="text-xs text-gray-400 font-mono">${parseStats(artifactSet.PerRefineBonus)}</div>` : '';
 
-
         pieceDiv.innerHTML = `
-            <div class="flex items-center justify-between">
-                <span class="font-semibold text-sm text-white">${type}</span>
-                <div class="flex items-center space-x-2">
-                    <button class="artifact-refine-btn artifact-minus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">-</button>
-                    <span class="artifact-refine-display font-bold text-indigo-400 w-5 text-center">+${level}</span>
-                    <button class="artifact-refine-btn artifact-plus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">+</button>
+            <div>
+                <div class="flex items-center justify-between">
+                    <span class="font-semibold text-sm text-white">${type}</span>
+                    <div class="flex items-center space-x-2">
+                        <button class="artifact-refine-btn artifact-minus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">-</button>
+                        <span class="artifact-refine-display font-bold text-indigo-400 w-5 text-center">+${pieceData.level}</span>
+                        <button class="artifact-refine-btn artifact-plus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">+</button>
+                    </div>
+                </div>
+                <div class="space-y-1 mt-1">
+                    ${perPieceBonusHTML}
+                    ${perRefineBonusHTML}
+                    ${selectedStatsHtml}
                 </div>
             </div>
-            <div class="space-y-1 mt-2 -mb-1">
-                ${perPieceBonusHTML}
-                ${perRefineBonusHTML}
+            <div class="flex justify-end mt-1">
+                 <button class="select-stats-btn text-xs bg-indigo-900/60 hover:bg-indigo-900/80 text-indigo-300 font-semibold py-1 px-2 rounded ${pieceData.level > 0 ? '' : 'hidden'}" data-artifact-type="${type}">+ Select Stat</button>
             </div>
         `;
         piecesContainer.appendChild(pieceDiv);
@@ -968,26 +1019,42 @@ function initializeGearSlots() {
 
 // --- Stat Selection Modal Logic ---
 let currentStatSelectionSlot = null;
+let isSelectingForArtifact = false;
 const statSelectionModalOverlay = document.getElementById('stat-selection-modal-overlay');
 const statSelectionModal = document.getElementById('stat-selection-modal');
 const statSelects = [document.getElementById('stat-select-1'), document.getElementById('stat-select-2'), document.getElementById('stat-select-3')];
 const statValues = [document.getElementById('stat-value-1'), document.getElementById('stat-value-2'), document.getElementById('stat-value-3')];
 const statError = document.getElementById('stat-selection-error');
 
-function openStatSelectionModal(slotId) {
+function openStatSelectionModal(slotId, isArtifact = false) {
     currentStatSelectionSlot = slotId;
-    const gearInfo = equippedGear[slotId];
-    if (!gearInfo || !gearInfo.itemId) return;
+    isSelectingForArtifact = isArtifact;
+    let item, itemConfig, selectedStats;
 
-    const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
-    if (!item) return;
+    if (isArtifact) {
+        const pieceData = equippedArtifacts.pieces[slotId];
+        if (!pieceData || pieceData.level === 0) return;
+        itemConfig = statRollData["Artifact"];
+        selectedStats = pieceData.selectedStats || [];
+        document.getElementById('stat-selection-modal-title').textContent = `Select Stat for ${slotId}`;
 
-    let itemConfigKey = item.Type;
-    let itemConfig = statRollData[itemConfigKey];
-    if (itemConfig && itemConfig.type) {
-        itemConfigKey = itemConfig.type;
+    } else {
+        const gearInfo = equippedGear[slotId];
+        if (!gearInfo || !gearInfo.itemId) return;
+        item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
+        if (!item) return;
+        document.getElementById('stat-selection-modal-title').textContent = `Select Stats for ${item.Name}`;
+
+
+        let itemConfigKey = item.Type;
         itemConfig = statRollData[itemConfigKey];
+        if (itemConfig && itemConfig.type) {
+            itemConfigKey = itemConfig.type;
+            itemConfig = statRollData[itemConfigKey];
+        }
+        selectedStats = gearInfo.selectedStats || [];
     }
+
 
     if (!itemConfig || !itemConfig.pools) {
         customAlert("This item cannot have additional stats.", "Stat Selection");
@@ -998,13 +1065,20 @@ function openStatSelectionModal(slotId) {
     Object.values(itemConfig.pools).flat().forEach(s => statDetails[s.name] = s);
 
     statSelects.forEach((select, index) => {
-        const poolName = itemConfig.selection[index];
-        const statList = itemConfig.pools[poolName];
-        populateStatSelect(select, statList, `Select Stat ${index + 1}`);
+        const statRow = select.parentElement;
+        if (index < itemConfig.selection.length) {
+            const poolName = itemConfig.selection[index];
+            const statList = itemConfig.pools[poolName];
+            populateStatSelect(select, statList, `Select Stat ${index + 1}`);
+            statRow.classList.remove('hidden');
+        } else {
+            statRow.classList.add('hidden');
+            select.innerHTML = '';
+            statValues[index].value = '';
+        }
     });
 
     // Load existing selected stats
-    const selectedStats = gearInfo.selectedStats || [];
     selectedStats.forEach((stat, index) => {
         if (stat && stat.name && stat.value) {
             statSelects[index].value = stat.name;
@@ -1022,6 +1096,7 @@ function openStatSelectionModal(slotId) {
 function closeStatSelectionModal() {
     statSelectionModalOverlay.classList.add('hidden');
     currentStatSelectionSlot = null;
+    isSelectingForArtifact = false;
     statError.classList.add('hidden');
     statSelects.forEach(s => s.innerHTML = '');
     statValues.forEach(v => v.value = '');
@@ -1034,10 +1109,10 @@ function saveSelectedStats() {
         name: s.value,
         value: parseInt(statValues[i].value, 10) || 0,
         statInfo: statDetails[s.value]
-    })).filter(s => s.name); // Filter out empty selections
+    })).filter(s => s.name);
 
-    // Validate
     for (const stat of selected) {
+        if (!stat.statInfo) continue;
         if (stat.value < stat.statInfo.min || stat.value > stat.statInfo.max) {
             statError.textContent = `Value for ${stat.name} must be between ${stat.statInfo.min} and ${stat.statInfo.max}.`;
             statError.classList.remove('hidden');
@@ -1046,10 +1121,21 @@ function saveSelectedStats() {
     }
     statError.classList.add('hidden');
 
+    const statsToSave = selected.map(s => ({ name: s.name, value: s.value }));
 
-    equippedGear[currentStatSelectionSlot].selectedStats = selected.map(s => ({ name: s.name, value: s.value }));
+    if (isSelectingForArtifact) {
+        if (equippedArtifacts.pieces[currentStatSelectionSlot]) {
+            equippedArtifacts.pieces[currentStatSelectionSlot].selectedStats = statsToSave;
+        }
+        updateArtifactUI();
+    } else {
+        if (equippedGear[currentStatSelectionSlot]) {
+            equippedGear[currentStatSelectionSlot].selectedStats = statsToSave;
+        }
+        updateGearSlotUI(currentStatSelectionSlot);
+    }
 
-    updateGearSlotUI(currentStatSelectionSlot);
+
     recalculateEverything();
     saveCurrentBuild();
     closeStatSelectionModal();
@@ -1294,23 +1380,33 @@ document.addEventListener('DOMContentLoaded', function() {
         initializeArtifacts();
 
         document.getElementById('artifact-column').addEventListener('click', (e) => {
-            const button = e.target.closest('.artifact-refine-btn');
-            if (!button || !equippedArtifacts.setId) return;
-
-            const type = button.dataset.type;
-            let currentLevel = equippedArtifacts.levels[type] || 0;
-
-            if (button.classList.contains('artifact-plus')) {
-                currentLevel = Math.min(10, currentLevel + 1);
-            } else if (button.classList.contains('artifact-minus')) {
-                currentLevel = Math.max(0, currentLevel - 1);
+            const statButton = e.target.closest('.select-stats-btn[data-artifact-type]');
+            if (statButton) {
+                const artifactType = statButton.dataset.artifactType;
+                openStatSelectionModal(artifactType, true);
+                return;
             }
 
-            equippedArtifacts.levels[type] = currentLevel;
+            const refineButton = e.target.closest('.artifact-refine-btn');
+            if (!refineButton || !equippedArtifacts.setId) return;
 
-            const display = button.parentElement.querySelector('.artifact-refine-display');
-            if(display) display.textContent = `+${currentLevel}`;
+            const type = refineButton.dataset.type;
+            let piece = equippedArtifacts.pieces[type];
+            if (!piece) {
+                piece = equippedArtifacts.pieces[type] = { level: 0, selectedStats: [] };
+            }
 
+            if (refineButton.classList.contains('artifact-plus')) {
+                piece.level = Math.min(10, piece.level + 1);
+            } else if (refineButton.classList.contains('artifact-minus')) {
+                piece.level = Math.max(0, piece.level - 1);
+            }
+
+            if (piece.level === 0) {
+                piece.selectedStats = [];
+            }
+
+            updateArtifactUI();
             recalculateEverything();
             saveCurrentBuild();
         });
@@ -1750,11 +1846,20 @@ function calculateGearBonuses() {
             let equippedPieceCount = 0;
             let totalRefineLevels = 0;
 
-            // Count equipped pieces and sum their levels
-            Object.values(equippedArtifacts.levels).forEach(level => {
-                if (level > 0) {
+            Object.values(equippedArtifacts.pieces).forEach(piece => {
+                if (piece.level > 0) {
                     equippedPieceCount++;
-                    totalRefineLevels += level;
+                    totalRefineLevels += piece.level;
+
+                    if (piece.selectedStats && piece.selectedStats.length > 0) {
+                        piece.selectedStats.forEach(stat => {
+                            if (!stat || !stat.name) return;
+                            const mappedStatName = selectedStatNameMapping[stat.name] || stat.name;
+                            if (newGearBonuses[mappedStatName] !== undefined) {
+                                newGearBonuses[mappedStatName] += stat.value;
+                            }
+                        });
+                    }
                 }
             });
 
