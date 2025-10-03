@@ -23,26 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const slotId = slot.id.replace('gear-slot-', '');
             currentSlotId = slotId;
-            currentSlotType = slotTypeMapping[slotId]; // Default behavior
 
             if (slotId === 'offhand') {
                 const mainHandGear = window.equippedGear['weapon'];
                 const mainHandItem = mainHandGear ? window.equipmentData.find(i => i.EquipmentId === mainHandGear.itemId) : null;
-
                 if (mainHandItem && mainHandItem.Type === 'Bow') {
-                    return; // Can't equip anything in off-hand with a bow
+                    return;
                 }
 
                 const playerClass = document.getElementById('p_class').value;
                 const dualWieldClasses = ['Rogue', 'Warrior'];
-
                 if (dualWieldClasses.includes(playerClass)) {
-                    // Rogues and Warriors can dual-wield or use a shield
                     currentSlotType = [...slotTypeMapping['weapon'], 'Shield'];
                 } else {
-                    // Other classes can only use a shield
                     currentSlotType = 'Shield';
                 }
+            } else {
+                currentSlotType = slotTypeMapping[slotId];
             }
 
             const titleText = slot.dataset.defaultText || slot.textContent;
