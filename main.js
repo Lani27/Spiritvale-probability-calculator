@@ -190,9 +190,9 @@ const statRollData = {
     "Artifact": {
         pools: {
             line1: [
-                { name: 'Strength', min: 1, max: 5, suffix: '' }, { name: 'Agility', min: 1, max: 5, suffix: '' },
-                { name: 'Vitality', min: 1, max: 5, suffix: '' }, { name: 'Intelligence', min: 1, max: 5, suffix: '' },
-                { name: 'Dexterity', min: 1, max: 5, suffix: '' }, { name: 'Luck', min: 1, max: 5, suffix: '' },
+                { name: 'Strength', min: 2, max: 3, suffix: '' }, { name: 'Agility', min: 2, max: 3, suffix: '' },
+                { name: 'Vitality', min: 2, max: 3, suffix: '' }, { name: 'Intelligence', min: 2, max: 3, suffix: '' },
+                { name: 'Dexterity', min: 2, max: 3, suffix: '' }, { name: 'Luck', min: 2, max: 3, suffix: '' },
             ]
         },
         selection: ['line1']
@@ -912,7 +912,7 @@ function updateArtifactUI() {
                 </div>
             </div>
             <div class="flex justify-end mt-1">
-                 <button class="select-stats-btn text-xs bg-indigo-900/60 hover:bg-indigo-900/80 text-indigo-300 font-semibold py-1 px-2 rounded ${pieceData.level > 0 ? '' : 'hidden'}" data-artifact-type="${type}">+ Select Stat</button>
+                 <button class="select-stats-btn text-xs bg-indigo-900/60 hover:bg-indigo-900/80 text-indigo-300 font-semibold py-1 px-2 rounded" data-artifact-type="${type}">+ Select Stat</button>
             </div>
         `;
         piecesContainer.appendChild(pieceDiv);
@@ -1033,7 +1033,7 @@ function openStatSelectionModal(slotId, isArtifact = false) {
 
     if (isArtifact) {
         const pieceData = equippedArtifacts.pieces[slotId];
-        if (!pieceData || pieceData.level === 0) return;
+        if (!pieceData) return;
         itemConfig = statRollData["Artifact"];
         selectedStats = pieceData.selectedStats || [];
         document.getElementById('stat-selection-modal-title').textContent = `Select Stat for ${slotId}`;
@@ -1400,10 +1400,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 piece.level = Math.min(10, piece.level + 1);
             } else if (refineButton.classList.contains('artifact-minus')) {
                 piece.level = Math.max(0, piece.level - 1);
-            }
-
-            if (piece.level === 0) {
-                piece.selectedStats = [];
             }
 
             updateArtifactUI();
