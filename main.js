@@ -447,7 +447,6 @@ function resetToDefaults() {
     };
     updateAllGearSlotsUI();
     updateArtifactUI();
-    toggleDualWield();
     toggleSkillSection();
 
     recalculateEverything();
@@ -625,6 +624,12 @@ window.equipItem = function(slotId, equipmentId) {
         cards: new Array(item.CardSlots || 0).fill(null)
     };
 
+    if (slotId === 'weapon' && item.Type === 'Bow') {
+        if (equippedGear['offhand']) {
+            window.unequipItem('offhand');
+        }
+    }
+
     updateGearSlotUI(slotId);
     recalculateEverything();
 }
@@ -726,7 +731,6 @@ function loadBuild(index) {
         };
         updateAllGearSlotsUI();
         updateArtifactUI();
-        toggleDualWield();
         toggleSkillSection();
         recalculateEverything();
 
@@ -1468,12 +1472,10 @@ document.addEventListener('DOMContentLoaded', function() {
             calculateAll();
         });
         document.getElementById('simulate_skills').addEventListener('change', toggleSkillSection);
-        document.getElementById('p_dual_wield').addEventListener('change', toggleDualWield);
         document.getElementById('t_archetype').addEventListener('change', calculateAll);
 
         // --- Final Setup Calls ---
         toggleSkillSection();
-        toggleDualWield();
         generateSkillInputs();
 
         // --- Tooltip Logic ---
@@ -1520,13 +1522,6 @@ document.addEventListener('DOMContentLoaded', function() {
         customAlert("A critical error occurred while loading the page. Some features may not work correctly. Please check the console for more details.", "Initialization Error");
     }
 });
-
-function toggleDualWield() {
-    const isDualWield = document.getElementById('p_dual_wield').checked;
-    document.getElementById('offhand-weapon-group').classList.toggle('hidden', !isDualWield);
-    document.getElementById('main-weapon-label').textContent = isDualWield ? 'Main Hand (sets BAD)' : 'Weapon (sets BAD)';
-    calculateAll();
-}
 
 function toggleSkillSection() {
     const isEnabled = document.getElementById('simulate_skills').checked;
