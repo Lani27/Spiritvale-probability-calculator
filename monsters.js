@@ -26,7 +26,7 @@ const monsters = [
   {
     "MonsterName": "Bat",
     "IsBoss": false,
-    "Level": 39,
+    "Level": 41,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
     "Map": "Forgotten Depths"
@@ -42,7 +42,7 @@ const monsters = [
   {
     "MonsterName": "Bee",
     "IsBoss": false,
-    "Level": 4,
+    "Level": 6,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
     "Map": "Forest Labyrinth"
@@ -58,7 +58,7 @@ const monsters = [
   {
     "MonsterName": "Bloom",
     "IsBoss": false,
-    "Level": 88,
+    "Level": 89,
     "Element": "Poison",
     "ArchetypeId": "Undead",
     "Map": "Underground Cavern"
@@ -80,6 +80,14 @@ const monsters = [
     "Map": "Sanctum of Light"
   },
   {
+    "MonsterName": "Boxy Robot",
+    "IsBoss": false,
+    "Level": 130,
+    "Element": "Neutral",
+    "ArchetypeId": "Brute",
+    "Map": "The Forge"
+  },
+  {
     "MonsterName": "Bud",
     "IsBoss": false,
     "Level": 86,
@@ -90,7 +98,7 @@ const monsters = [
   {
     "MonsterName": "Bumble",
     "IsBoss": false,
-    "Level": 16,
+    "Level": 17,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
     "Map": "Forest Labyrinth"
@@ -106,7 +114,7 @@ const monsters = [
   {
     "MonsterName": "Burrow",
     "IsBoss": false,
-    "Level": 14,
+    "Level": 16,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Forest Labyrinth"
@@ -122,7 +130,7 @@ const monsters = [
   {
     "MonsterName": "Butterfly Hue",
     "IsBoss": false,
-    "Level": 19,
+    "Level": 21,
     "Element": "Holy",
     "ArchetypeId": "Flyer",
     "Map": "Forest Labyrinth"
@@ -138,7 +146,7 @@ const monsters = [
   {
     "MonsterName": "Cacti",
     "IsBoss": false,
-    "Level": 24,
+    "Level": 26,
     "Element": "Earth",
     "ArchetypeId": "Plant",
     "Map": "Windy Desert"
@@ -146,7 +154,7 @@ const monsters = [
   {
     "MonsterName": "Cactus",
     "IsBoss": false,
-    "Level": 27,
+    "Level": 28,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Windy Desert"
@@ -178,7 +186,7 @@ const monsters = [
   {
     "MonsterName": "Cat Meow",
     "IsBoss": false,
-    "Level": 8,
+    "Level": 9,
     "Element": "Wind",
     "ArchetypeId": "Hybrid",
     "Map": "Forest Labyrinth"
@@ -203,14 +211,14 @@ const monsters = [
     "MonsterName": "Cyclops",
     "IsBoss": false,
     "Level": 68,
-    "Element": "Water",
+    "Element": "Neutral",
     "ArchetypeId": "Brute",
     "Map": "Crystal Cave"
   },
   {
     "MonsterName": "Cyclops Bat",
     "IsBoss": false,
-    "Level": 102,
+    "Level": 101,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
     "Map": "Abyss Castle Keep"
@@ -235,7 +243,7 @@ const monsters = [
     "MonsterName": "Cyclops Giant",
     "IsBoss": false,
     "Level": 70,
-    "Element": "Water",
+    "Element": "Neutral",
     "ArchetypeId": "Brute",
     "Map": "Crystal Cave"
   },
@@ -243,14 +251,14 @@ const monsters = [
     "MonsterName": "Cyclops Minion",
     "IsBoss": false,
     "Level": 67,
-    "Element": "Water",
+    "Element": "Neutral",
     "ArchetypeId": "Brute",
     "Map": "Crystal Cave"
   },
   {
     "MonsterName": "Death",
     "IsBoss": false,
-    "Level": 101,
+    "Level": 102,
     "Element": "Shadow",
     "ArchetypeId": "Caster",
     "Map": "Abyss Castle Keep"
@@ -264,6 +272,14 @@ const monsters = [
     "Map": "Abyss Castle Library"
   },
   {
+    "MonsterName": "Delivery Robot",
+    "IsBoss": false,
+    "Level": 129,
+    "Element": "Neutral",
+    "ArchetypeId": "Brute",
+    "Map": "The Forge"
+  },
+  {
     "MonsterName": "Direwolf",
     "IsBoss": false,
     "Level": 110,
@@ -274,7 +290,7 @@ const monsters = [
   {
     "MonsterName": "Dog Bark",
     "IsBoss": false,
-    "Level": 13,
+    "Level": 14,
     "Element": "Fire",
     "ArchetypeId": "Brute",
     "Map": "Forest Labyrinth"
@@ -282,7 +298,7 @@ const monsters = [
   {
     "MonsterName": "Dog Bowwow",
     "IsBoss": false,
-    "Level": 28,
+    "Level": 29,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
     "Map": "Windy Desert"
@@ -306,7 +322,7 @@ const monsters = [
   {
     "MonsterName": "Dragon Darkness",
     "IsBoss": false,
-    "Level": 85,
+    "Level": 84,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
@@ -314,7 +330,7 @@ const monsters = [
   {
     "MonsterName": "Dragon Dusk",
     "IsBoss": false,
-    "Level": 78,
+    "Level": 77,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
@@ -346,7 +362,7 @@ const monsters = [
   {
     "MonsterName": "Dragon Nightfall",
     "IsBoss": false,
-    "Level": 80,
+    "Level": 79,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
@@ -370,7 +386,7 @@ const monsters = [
   {
     "MonsterName": "Dragonfly Arrow",
     "IsBoss": false,
-    "Level": 35,
+    "Level": 36,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
     "Map": "Swamp"
@@ -378,7 +394,7 @@ const monsters = [
   {
     "MonsterName": "Dragonfly Darner",
     "IsBoss": false,
-    "Level": 37,
+    "Level": 38,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
     "Map": "Swamp"
@@ -394,7 +410,7 @@ const monsters = [
   {
     "MonsterName": "Earthworm",
     "IsBoss": false,
-    "Level": 36,
+    "Level": 37,
     "Element": "Poison",
     "ArchetypeId": "Undead",
     "Map": "Swamp"
@@ -410,7 +426,7 @@ const monsters = [
   {
     "MonsterName": "Egglet",
     "IsBoss": false,
-    "Level": 23,
+    "Level": 24,
     "Element": "Neutral",
     "ArchetypeId": "Runner",
     "Map": "Forest Labyrinth"
@@ -442,7 +458,7 @@ const monsters = [
   {
     "MonsterName": "Eyeball Bat Blue",
     "IsBoss": false,
-    "Level": 19,
+    "Level": 21,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
     "Map": "Festering Woods"
@@ -450,7 +466,7 @@ const monsters = [
   {
     "MonsterName": "Eyeball Bat Green",
     "IsBoss": false,
-    "Level": 20,
+    "Level": 22,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
     "Map": "Festering Woods"
@@ -458,7 +474,7 @@ const monsters = [
   {
     "MonsterName": "Eyeball Bat Red",
     "IsBoss": false,
-    "Level": 21,
+    "Level": 23,
     "Element": "Undead",
     "ArchetypeId": "Flyer",
     "Map": "Festering Woods"
@@ -466,7 +482,7 @@ const monsters = [
   {
     "MonsterName": "Eyeball Creep Blue",
     "IsBoss": false,
-    "Level": 109,
+    "Level": 106,
     "Element": "Undead",
     "ArchetypeId": "Hybrid",
     "Map": "Abyss Castle Crypt"
@@ -482,7 +498,7 @@ const monsters = [
   {
     "MonsterName": "Eyeball Creep Red",
     "IsBoss": false,
-    "Level": 106,
+    "Level": 109,
     "Element": "Undead",
     "ArchetypeId": "Hybrid",
     "Map": "Abyss Castle Crypt"
@@ -538,7 +554,7 @@ const monsters = [
   {
     "MonsterName": "Fledgling",
     "IsBoss": false,
-    "Level": 11,
+    "Level": 12,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
     "Map": "Forest Labyrinth"
@@ -546,7 +562,7 @@ const monsters = [
   {
     "MonsterName": "Flora",
     "IsBoss": false,
-    "Level": 32,
+    "Level": 33,
     "Element": "Water",
     "ArchetypeId": "Critter",
     "Map": "Mystic Lake"
@@ -562,7 +578,7 @@ const monsters = [
   {
     "MonsterName": "Fungi",
     "IsBoss": false,
-    "Level": 33,
+    "Level": 34,
     "Element": "Water",
     "ArchetypeId": "Brute",
     "Map": "Mystic Lake"
@@ -578,7 +594,7 @@ const monsters = [
   {
     "MonsterName": "Glow Wisp Blue",
     "IsBoss": false,
-    "Level": 31,
+    "Level": 32,
     "Element": "Water",
     "ArchetypeId": "Caster",
     "Map": "Mystic Lake"
@@ -594,7 +610,7 @@ const monsters = [
   {
     "MonsterName": "Glow Wisp Yellow",
     "IsBoss": false,
-    "Level": 31,
+    "Level": 33,
     "Element": "Fire",
     "ArchetypeId": "Caster",
     "Map": "Fairy Glen"
@@ -602,7 +618,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Giant",
     "IsBoss": false,
-    "Level": 64,
+    "Level": 59,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Goblin Village"
@@ -610,7 +626,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Giant Devil",
     "IsBoss": false,
-    "Level": 65,
+    "Level": 60,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Goblin Village"
@@ -618,7 +634,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Giant Gold",
     "IsBoss": true,
-    "Level": 70,
+    "Level": 65,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Goblin Village"
@@ -626,7 +642,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Giant Mage",
     "IsBoss": false,
-    "Level": 63,
+    "Level": 59,
     "Element": "Earth",
     "ArchetypeId": "Caster",
     "Map": "Goblin Village"
@@ -634,7 +650,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Minion",
     "IsBoss": false,
-    "Level": 59,
+    "Level": 56,
     "Element": "Earth",
     "ArchetypeId": "Critter",
     "Map": "Goblin Village"
@@ -642,7 +658,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Trooper",
     "IsBoss": false,
-    "Level": 62,
+    "Level": 58,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Goblin Village"
@@ -650,7 +666,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Trooper Assassin",
     "IsBoss": false,
-    "Level": 60,
+    "Level": 57,
     "Element": "Earth",
     "ArchetypeId": "Runner",
     "Map": "Goblin Village"
@@ -658,7 +674,7 @@ const monsters = [
   {
     "MonsterName": "Goblin Trooper Mage",
     "IsBoss": false,
-    "Level": 61,
+    "Level": 57,
     "Element": "Earth",
     "ArchetypeId": "Caster",
     "Map": "Goblin Village"
@@ -666,10 +682,42 @@ const monsters = [
   {
     "MonsterName": "Goblin Trooper Soldier",
     "IsBoss": false,
-    "Level": 62,
+    "Level": 58,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Goblin Village"
+  },
+  {
+    "MonsterName": "Goblin Warblade",
+    "IsBoss": false,
+    "Level": 120,
+    "Element": "Fire",
+    "ArchetypeId": "Ravager",
+    "Map": "Goblin Warcamp"
+  },
+  {
+    "MonsterName": "Goblin Warchief",
+    "IsBoss": true,
+    "Level": 125,
+    "Element": "Wind",
+    "ArchetypeId": "Hybrid",
+    "Map": "Goblin Warcamp"
+  },
+  {
+    "MonsterName": "Goblin Warcrusher",
+    "IsBoss": false,
+    "Level": 116,
+    "Element": "Earth",
+    "ArchetypeId": "Runner",
+    "Map": "Goblin Warcamp"
+  },
+  {
+    "MonsterName": "Goblin Warlock",
+    "IsBoss": false,
+    "Level": 118,
+    "Element": "Shadow",
+    "ArchetypeId": "Caster",
+    "Map": "Goblin Warcamp"
   },
   {
     "MonsterName": "Golem Earth",
@@ -696,6 +744,14 @@ const monsters = [
     "Map": "Crystal Cave"
   },
   {
+    "MonsterName": "Gripper Robot",
+    "IsBoss": false,
+    "Level": 130,
+    "Element": "Neutral",
+    "ArchetypeId": "Brute",
+    "Map": "The Forge"
+  },
+  {
     "MonsterName": "Hare",
     "IsBoss": true,
     "Level": 10,
@@ -706,7 +762,7 @@ const monsters = [
   {
     "MonsterName": "Haunt",
     "IsBoss": false,
-    "Level": 79,
+    "Level": 80,
     "Element": "Holy",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
@@ -730,7 +786,7 @@ const monsters = [
   {
     "MonsterName": "Housefly Icky",
     "IsBoss": false,
-    "Level": 34,
+    "Level": 36,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
     "Map": "Swamp"
@@ -738,7 +794,7 @@ const monsters = [
   {
     "MonsterName": "Housefly Junk",
     "IsBoss": false,
-    "Level": 39,
+    "Level": 40,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
     "Map": "Swamp"
@@ -746,7 +802,7 @@ const monsters = [
   {
     "MonsterName": "Housefly Nom",
     "IsBoss": false,
-    "Level": 36,
+    "Level": 38,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
     "Map": "Swamp"
@@ -800,6 +856,14 @@ const monsters = [
     "Map": "Demon's Maw"
   },
   {
+    "MonsterName": "Jellyfish Robot",
+    "IsBoss": false,
+    "Level": 97,
+    "Element": "Wind",
+    "ArchetypeId": "Caster",
+    "Map": "Dark Forest"
+  },
+  {
     "MonsterName": "Lurker",
     "IsBoss": false,
     "Level": 43,
@@ -810,7 +874,7 @@ const monsters = [
   {
     "MonsterName": "Mole Rat",
     "IsBoss": false,
-    "Level": 26,
+    "Level": 27,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Windy Desert"
@@ -826,7 +890,7 @@ const monsters = [
   {
     "MonsterName": "Mosquito Bug",
     "IsBoss": false,
-    "Level": 35,
+    "Level": 37,
     "Element": "Wind",
     "ArchetypeId": "Flyer",
     "Map": "Swamp"
@@ -858,7 +922,7 @@ const monsters = [
   {
     "MonsterName": "Moth Luna",
     "IsBoss": false,
-    "Level": 29,
+    "Level": 31,
     "Element": "Holy",
     "ArchetypeId": "Flyer",
     "Map": "Fairy Glen"
@@ -866,7 +930,7 @@ const monsters = [
   {
     "MonsterName": "Moth Moon",
     "IsBoss": false,
-    "Level": 32,
+    "Level": 33,
     "Element": "Holy",
     "ArchetypeId": "Caster",
     "Map": "Fairy Glen"
@@ -874,7 +938,7 @@ const monsters = [
   {
     "MonsterName": "Mushroom",
     "IsBoss": false,
-    "Level": 30,
+    "Level": 32,
     "Element": "Water",
     "ArchetypeId": "Brute",
     "Map": "Mystic Lake"
@@ -886,6 +950,22 @@ const monsters = [
     "Element": "Shadow",
     "ArchetypeId": "Caster",
     "Map": "Abyss Castle Library"
+  },
+  {
+    "MonsterName": "Nose Robot",
+    "IsBoss": false,
+    "Level": 128,
+    "Element": "Neutral",
+    "ArchetypeId": "Hybrid",
+    "Map": "The Forge"
+  },
+  {
+    "MonsterName": "Nozzle Robot",
+    "IsBoss": false,
+    "Level": 128,
+    "Element": "Neutral",
+    "ArchetypeId": "Hybrid",
+    "Map": "The Forge"
   },
   {
     "MonsterName": "Petal",
@@ -906,7 +986,7 @@ const monsters = [
   {
     "MonsterName": "Plant Chewer",
     "IsBoss": false,
-    "Level": 28,
+    "Level": 29,
     "Element": "Neutral",
     "ArchetypeId": "Plant",
     "Map": "Windy Desert"
@@ -922,7 +1002,7 @@ const monsters = [
   {
     "MonsterName": "Pollen",
     "IsBoss": false,
-    "Level": 2,
+    "Level": 1,
     "Element": "Neutral",
     "ArchetypeId": "Flyer",
     "Map": "Sunny Meadows"
@@ -930,7 +1010,7 @@ const monsters = [
   {
     "MonsterName": "Posy",
     "IsBoss": false,
-    "Level": 29,
+    "Level": 31,
     "Element": "Water",
     "ArchetypeId": "Critter",
     "Map": "Mystic Lake"
@@ -954,15 +1034,23 @@ const monsters = [
   {
     "MonsterName": "Rabbit",
     "IsBoss": false,
-    "Level": 18,
+    "Level": 19,
     "Element": "Neutral",
     "ArchetypeId": "Critter",
     "Map": "Forest Labyrinth"
   },
   {
+    "MonsterName": "Razor Robot",
+    "IsBoss": false,
+    "Level": 126,
+    "Element": "Fire",
+    "ArchetypeId": "Runner",
+    "Map": "The Forge"
+  },
+  {
     "MonsterName": "Scorpion",
     "IsBoss": false,
-    "Level": 27,
+    "Level": 28,
     "Element": "Fire",
     "ArchetypeId": "Brute",
     "Map": "Windy Desert"
@@ -978,7 +1066,7 @@ const monsters = [
   {
     "MonsterName": "Scorpling",
     "IsBoss": false,
-    "Level": 24,
+    "Level": 26,
     "Element": "Fire",
     "ArchetypeId": "Critter",
     "Map": "Windy Desert"
@@ -986,7 +1074,7 @@ const monsters = [
   {
     "MonsterName": "Seed",
     "IsBoss": false,
-    "Level": 6,
+    "Level": 7,
     "Element": "Earth",
     "ArchetypeId": "Plant",
     "Map": "Forest Labyrinth"
@@ -1010,10 +1098,18 @@ const monsters = [
   {
     "MonsterName": "Shell",
     "IsBoss": false,
-    "Level": 30,
+    "Level": 32,
     "Element": "Water",
     "ArchetypeId": "Critter",
     "Map": "Mystic Lake"
+  },
+  {
+    "MonsterName": "Shell Robot",
+    "IsBoss": false,
+    "Level": 126,
+    "Element": "Fire",
+    "ArchetypeId": "Runner",
+    "Map": "The Forge"
   },
   {
     "MonsterName": "Skeleton",
@@ -1042,7 +1138,7 @@ const monsters = [
   {
     "MonsterName": "Snake",
     "IsBoss": false,
-    "Level": 46,
+    "Level": 47,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
     "Map": "Forgotten Depths"
@@ -1058,10 +1154,18 @@ const monsters = [
   {
     "MonsterName": "Snakelet",
     "IsBoss": false,
-    "Level": 40,
+    "Level": 43,
     "Element": "Poison",
     "ArchetypeId": "Ravager",
     "Map": "Forgotten Depths"
+  },
+  {
+    "MonsterName": "Snout Robot",
+    "IsBoss": false,
+    "Level": 129,
+    "Element": "Neutral",
+    "ArchetypeId": "Hybrid",
+    "Map": "The Forge"
   },
   {
     "MonsterName": "Snow Bomb",
@@ -1074,7 +1178,7 @@ const monsters = [
   {
     "MonsterName": "Soul",
     "IsBoss": false,
-    "Level": 77,
+    "Level": 78,
     "Element": "Holy",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
@@ -1082,7 +1186,7 @@ const monsters = [
   {
     "MonsterName": "Soul Mage",
     "IsBoss": false,
-    "Level": 84,
+    "Level": 85,
     "Element": "Holy",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
@@ -1090,26 +1194,50 @@ const monsters = [
   {
     "MonsterName": "Spider",
     "IsBoss": false,
-    "Level": 41,
+    "Level": 42,
     "Element": "Poison",
-    "ArchetypeId": "Ravager",
+    "ArchetypeId": "Runner",
     "Map": "Forgotten Depths"
   },
   {
     "MonsterName": "Spider King",
     "IsBoss": false,
-    "Level": 48,
+    "Level": 49,
     "Element": "Poison",
-    "ArchetypeId": "Ravager",
+    "ArchetypeId": "Runner",
     "Map": "Forgotten Depths"
+  },
+  {
+    "MonsterName": "Spider Queen Robot",
+    "IsBoss": true,
+    "Level": 135,
+    "Element": "Shadow",
+    "ArchetypeId": "Ravager",
+    "Map": "The Forge"
+  },
+  {
+    "MonsterName": "Spider Robot",
+    "IsBoss": false,
+    "Level": 128,
+    "Element": "Shadow",
+    "ArchetypeId": "Ravager",
+    "Map": "The Forge"
   },
   {
     "MonsterName": "Spider Toxin",
     "IsBoss": false,
     "Level": 44,
     "Element": "Poison",
-    "ArchetypeId": "Ravager",
+    "ArchetypeId": "Runner",
     "Map": "Forgotten Depths"
+  },
+  {
+    "MonsterName": "Spiderling Robot",
+    "IsBoss": false,
+    "Level": 127,
+    "Element": "Shadow",
+    "ArchetypeId": "Ravager",
+    "Map": "The Forge"
   },
   {
     "MonsterName": "Spike",
@@ -1118,6 +1246,14 @@ const monsters = [
     "Element": "Water",
     "ArchetypeId": "Defender",
     "Map": "Mystic Lake"
+  },
+  {
+    "MonsterName": "Spike Robot",
+    "IsBoss": false,
+    "Level": 127,
+    "Element": "Fire",
+    "ArchetypeId": "Runner",
+    "Map": "The Forge"
   },
   {
     "MonsterName": "Spook",
@@ -1130,7 +1266,7 @@ const monsters = [
   {
     "MonsterName": "Spore",
     "IsBoss": false,
-    "Level": 26,
+    "Level": 27,
     "Element": "Neutral",
     "ArchetypeId": "Plant",
     "Map": "Windy Desert"
@@ -1152,9 +1288,17 @@ const monsters = [
     "Map": "Forest Labyrinth"
   },
   {
+    "MonsterName": "Stinger Robot",
+    "IsBoss": false,
+    "Level": 99,
+    "Element": "Wind",
+    "ArchetypeId": "Caster",
+    "Map": "Dark Forest"
+  },
+  {
     "MonsterName": "Sun Blossom",
     "IsBoss": false,
-    "Level": 30,
+    "Level": 32,
     "Element": "Holy",
     "ArchetypeId": "Caster",
     "Map": "Fairy Glen"
@@ -1170,7 +1314,7 @@ const monsters = [
   {
     "MonsterName": "Sunflower Fairy",
     "IsBoss": false,
-    "Level": 33,
+    "Level": 34,
     "Element": "Holy",
     "ArchetypeId": "Caster",
     "Map": "Fairy Glen"
@@ -1181,7 +1325,15 @@ const monsters = [
     "Level": 0,
     "Element": "Neutral",
     "ArchetypeId": "Egg",
-    "Map": "Nevaris"
+    "Map": "Unknown"
+  },
+  {
+    "MonsterName": "Tentacles Robot",
+    "IsBoss": false,
+    "Level": 129,
+    "Element": "Wind",
+    "ArchetypeId": "Caster",
+    "Map": "Night Garden"
   },
   {
     "MonsterName": "Toadstool",
@@ -1202,7 +1354,7 @@ const monsters = [
   {
     "MonsterName": "Treant Forest Autumn",
     "IsBoss": false,
-    "Level": 15,
+    "Level": 14,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
     "Map": "Treant Trail"
@@ -1210,7 +1362,7 @@ const monsters = [
   {
     "MonsterName": "Treant Forest Evergreen",
     "IsBoss": false,
-    "Level": 14,
+    "Level": 15,
     "Element": "Earth",
     "ArchetypeId": "Hybrid",
     "Map": "Treant Trail"
@@ -1218,7 +1370,7 @@ const monsters = [
   {
     "MonsterName": "Treant Minion Autumn",
     "IsBoss": false,
-    "Level": 11,
+    "Level": 12,
     "Element": "Fire",
     "ArchetypeId": "Hybrid",
     "Map": "Treant Trail"
@@ -1226,7 +1378,7 @@ const monsters = [
   {
     "MonsterName": "Treant Minion Evergreen",
     "IsBoss": false,
-    "Level": 10,
+    "Level": 12,
     "Element": "Earth",
     "ArchetypeId": "Hybrid",
     "Map": "Treant Trail"
@@ -1242,7 +1394,7 @@ const monsters = [
   {
     "MonsterName": "Treant Tree Evergreen",
     "IsBoss": false,
-    "Level": 12,
+    "Level": 14,
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Treant Trail"
@@ -1250,7 +1402,7 @@ const monsters = [
   {
     "MonsterName": "Vampire Bat",
     "IsBoss": false,
-    "Level": 44,
+    "Level": 46,
     "Element": "Poison",
     "ArchetypeId": "Flyer",
     "Map": "Forgotten Depths"
@@ -1266,7 +1418,7 @@ const monsters = [
   {
     "MonsterName": "Whirlwind",
     "IsBoss": false,
-    "Level": 19,
+    "Level": 21,
     "Element": "Wind",
     "ArchetypeId": "Caster",
     "Map": "Windy Desert"
@@ -1274,7 +1426,7 @@ const monsters = [
   {
     "MonsterName": "Wind",
     "IsBoss": false,
-    "Level": 20,
+    "Level": 23,
     "Element": "Wind",
     "ArchetypeId": "Caster",
     "Map": "Windy Desert"
@@ -1290,7 +1442,7 @@ const monsters = [
   {
     "MonsterName": "Wisp Blue",
     "IsBoss": false,
-    "Level": 9,
+    "Level": 11,
     "Element": "Water",
     "ArchetypeId": "Caster",
     "Map": "Forest Labyrinth"
@@ -1298,7 +1450,7 @@ const monsters = [
   {
     "MonsterName": "Wisp Purple",
     "IsBoss": false,
-    "Level": 21,
+    "Level": 22,
     "Element": "Wind",
     "ArchetypeId": "Caster",
     "Map": "Forest Labyrinth"
@@ -1306,7 +1458,7 @@ const monsters = [
   {
     "MonsterName": "Wisp Red",
     "IsBoss": false,
-    "Level": 9,
+    "Level": 11,
     "Element": "Fire",
     "ArchetypeId": "Caster",
     "Map": "Treant Trail"
@@ -1314,7 +1466,7 @@ const monsters = [
   {
     "MonsterName": "Wisp Yellow",
     "IsBoss": false,
-    "Level": 1,
+    "Level": 2,
     "Element": "Earth",
     "ArchetypeId": "Caster",
     "Map": "Sunny Meadows"
@@ -1338,7 +1490,7 @@ const monsters = [
   {
     "MonsterName": "Worm",
     "IsBoss": false,
-    "Level": 38,
+    "Level": 39,
     "Element": "Poison",
     "ArchetypeId": "Undead",
     "Map": "Swamp"
@@ -1354,9 +1506,9 @@ const monsters = [
   {
     "MonsterName": "Worm Rot",
     "IsBoss": false,
-    "Level": 89,
+    "Level": 88,
     "Element": "Poison",
-    "ArchetypeId": "Undead",
+    "ArchetypeId": "Ravager",
     "Map": "Underground Cavern"
   },
   {
@@ -1364,7 +1516,7 @@ const monsters = [
     "IsBoss": false,
     "Level": 87,
     "Element": "Poison",
-    "ArchetypeId": "Undead",
+    "ArchetypeId": "Ravager",
     "Map": "Underground Cavern"
   },
   {
@@ -1386,7 +1538,7 @@ const monsters = [
   {
     "MonsterName": "Zombie Goblin Minion",
     "IsBoss": false,
-    "Level": 49,
+    "Level": 51,
     "Element": "Undead",
     "ArchetypeId": "Undead",
     "Map": "Goblin Cave"
@@ -1394,7 +1546,7 @@ const monsters = [
   {
     "MonsterName": "Zombie Goblin Soldier",
     "IsBoss": false,
-    "Level": 52,
+    "Level": 53,
     "Element": "Undead",
     "ArchetypeId": "Undead",
     "Map": "Goblin Cave"
