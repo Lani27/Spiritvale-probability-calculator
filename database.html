@@ -388,6 +388,38 @@
                     return sourcesHtml;
                 }
 
+                function generateItemPreviewCardHTML(item) {
+                    if (!item) return '';
+
+                    let statsHtml = '';
+                    if (item.PrimaryStats || item.SecondaryStats) {
+                        statsHtml += '<div class="mt-2 pt-2 border-t border-gray-700/50 text-xs font-mono">';
+                        if (item.PrimaryStats) {
+                            statsHtml += `${parseStats(item.PrimaryStats)}`;
+                        }
+                        if (item.PrimaryStats && item.SecondaryStats) {
+                            statsHtml += '<br>'; // Add a line break if both exist
+                        }
+                        if (item.SecondaryStats) {
+                            statsHtml += `${parseStats(item.SecondaryStats)}`;
+                        }
+                        statsHtml += '</div>';
+                    }
+
+                    return `
+                        <div class="bg-gray-800/70 rounded-md border border-gray-700/50 p-2 flex flex-col">
+                            <div class="flex items-center gap-3">
+                                <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-8 h-8 rounded-sm bg-gray-700 flex-shrink-0" onerror="this.onerror=null;this.src='https.placehold.co/32x32/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-sm text-white leading-tight">${item.Name}</h4>
+                                    <p class="text-xs text-gray-400">${item.Type}</p>
+                                </div>
+                            </div>
+                            ${statsHtml}
+                        </div>
+                    `;
+                }
+
                 function generateItemCardHTML(item) {
                     if (!item) return '';
 
@@ -1158,12 +1190,10 @@
 
                         let itemsHtml = '';
                         if (setItems.length > 0) {
-                            itemsHtml = setItems.map(item => {
-                                // We need to add itemType for the generator function to work
-                                const itemWithtype = {...item, itemType: 'Equipment'};
-                                // Generate the card but remove the source info to avoid clutter
-                                return generateItemCardHTML(itemWithtype).replace(renderSources(itemWithtype, 'indigo'), '');
+                            const previewsHtml = setItems.map(item => {
+                                return generateItemPreviewCardHTML(item);
                             }).join('');
+                            itemsHtml = `<div class="p-4 bg-gray-800/70 rounded-lg border border-gray-700/50"><div class="grid grid-cols-2 gap-2">${previewsHtml}</div></div>`;
                         }
 
                         let bonusHtml = '';
@@ -1178,9 +1208,9 @@
 
                         if (itemsHtml || bonusHtml) {
                             content = `
-                                <div class="flex flex-col gap-2">
-                                    ${itemsHtml}
+                                <div class="flex flex-col gap-2" style="width: 420px;">
                                     ${bonusHtml}
+                                    ${itemsHtml}
                                 </div>
                             `;
                             tooltip.style.padding = '0'; // The cards have their own padding
