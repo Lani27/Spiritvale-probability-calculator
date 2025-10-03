@@ -489,7 +489,7 @@ function updateGearSlotUI(slotId) {
         selectStatsBtn.classList.add('hidden');
 
     } else {
-        const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
+        const item = window.equipmentData.find(e => e.EquipmentId == gearInfo.itemId);
         if (item) {
             selectStatsBtn.classList.remove('hidden');
             let namePrefix = '';
@@ -588,8 +588,9 @@ function updateGearSlotUI(slotId) {
 
 
 function updateAllGearSlotsUI() {
-    Object.keys(gearSlotLayout.left).concat(Object.keys(gearSlotLayout.right)).forEach(slotId => {
-        updateGearSlotUI(slotId);
+    const allSlots = [...gearSlotLayout.left, ...gearSlotLayout.right];
+    allSlots.forEach(slot => {
+        updateGearSlotUI(slot.id);
     });
 }
 
