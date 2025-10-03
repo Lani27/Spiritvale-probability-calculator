@@ -1859,16 +1859,6 @@ function calculateGearBonuses() {
         const artifactSet = artifactData.find(set => set.SetId === equippedArtifacts.setId);
         if (artifactSet && artifactSet.ProcessedStats) {
 
-            // Per-piece bonus applies for all 4 pieces if the set is selected.
-            artifactSet.ProcessedStats.perPiece.forEach(stat => {
-                if (!stat || !stat.stat || stat.value === 0) return;
-                let mappedStatName = statNameMapping[stat.stat] || stat.stat;
-                 if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
-                if (newGearBonuses[mappedStatName] !== undefined) {
-                    newGearBonuses[mappedStatName] += stat.value * 4;
-                }
-            });
-
             let equippedPieceCount = 0;
             let totalRefineLevels = 0;
 
@@ -1885,17 +1875,29 @@ function calculateGearBonuses() {
                     });
                 }
 
-                // Refine and full set bonuses depend on level
+                // A piece is only considered "equipped" for bonuses if its level is > 0
                 if (piece.level > 0) {
                     equippedPieceCount++;
                     totalRefineLevels += piece.level;
                 }
             });
 
+            // Per-piece bonus applies for each equipped piece (level > 0)
+            if (equippedPieceCount > 0) {
+                artifactSet.ProcessedStats.perPiece.forEach(stat => {
+                    if (!stat || !stat.stat || !stat.value) return;
+                    let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                    if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
+                    if (newGearBonuses[mappedStatName] !== undefined) {
+                        newGearBonuses[mappedStatName] += stat.value * equippedPieceCount;
+                    }
+                });
+            }
+
             // Apply Per-Refine bonuses based on the total level of all pieces
             if (totalRefineLevels > 0) {
                 artifactSet.ProcessedStats.perRefine.forEach(stat => {
-                    if (!stat || !stat.stat || stat.perLevel === 0) return;
+                    if (!stat || !stat.stat || !stat.perLevel) return;
                     let mappedStatName = statNameMapping[stat.stat] || stat.stat;
                     if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
                     if (newGearBonuses[mappedStatName] !== undefined) {
