@@ -374,6 +374,18 @@ function updateGearSlotUI(slotId) {
                             cardSlot.innerHTML = `<img src="Sprites/Cards/${card.Slot}.png" alt="${card.Name}" class="w-full h-full" onerror="this.src='Sprites/Equipment/notfound.png';">`;
                             cardSlot.title = `Click to unequip ${card.Name}`;
                             cardSlot.onclick = () => unequipCard(slotId, i);
+
+                            cardSlot.addEventListener('mouseover', () => {
+                                const tooltip = document.getElementById('tooltip');
+                                tooltip.innerHTML = generateCardTooltipHTML(card);
+                                tooltip.style.display = 'block';
+                            });
+
+                            cardSlot.addEventListener('mouseout', () => {
+                                const tooltip = document.getElementById('tooltip');
+                                tooltip.style.display = 'none';
+                                tooltip.innerHTML = '';
+                            });
                         }
                     } else {
                         cardSlot.className = 'card-slot empty-card-slot';
