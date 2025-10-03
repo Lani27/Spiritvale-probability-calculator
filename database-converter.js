@@ -139,6 +139,21 @@ function processCardsData(data) {
     });
 }
 
+/**
+ * Processes the raw artifact data to add a machine-readable 'ProcessedStats' property.
+ * @param {Array<Object>} artifactData - The raw artifact data from Artifacts.js.
+ * @returns {Array<Object>} The processed artifact data.
+ */
+function processArtifactData(data) {
+    return data.map(item => {
+        item.ProcessedStats = {
+            perRefine: parseStats(item.PerRefineBonus),
+            fullSet: parseStats(item.FullSetBonus)
+        };
+        return item;
+    });
+}
+
 function processAllData() {
     console.log("--- Starting data processing ---");
     if (typeof window.equipmentData !== 'undefined' && Array.isArray(window.equipmentData)) {
@@ -148,6 +163,10 @@ function processAllData() {
     if (typeof window.cardData !== 'undefined' && Array.isArray(window.cardData)) {
         window.cardData = processCardsData(window.cardData);
         console.log("Card data processed.");
+    }
+    if (typeof window.artifactData !== 'undefined' && Array.isArray(window.artifactData)) {
+        window.artifactData = processArtifactData(window.artifactData);
+        console.log("Artifact data processed.");
     }
     console.log("--- Data processing finished ---");
 }

@@ -243,11 +243,28 @@
         </header>
 
         <div id="gear-builder" class="mb-8">
-            <div class="grid grid-cols-2 gap-x-4 max-w-lg mx-auto">
-                <!-- Left Column -->
-                <div id="gear-column-left" class="space-y-2"></div>
-                <!-- Right Column -->
-                <div id="gear-column-right" class="space-y-2"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+                <!-- Gear Container -->
+                <div class="md:col-span-2 grid grid-cols-2 gap-4">
+                    <div id="gear-column-left" class="space-y-2"></div>
+                    <div id="gear-column-right" class="space-y-2"></div>
+                </div>
+
+                <!-- Artifact Column -->
+                <div id="artifact-column" class="space-y-2 md:col-span-1">
+                     <div class="bg-gray-800 rounded-md border border-gray-700 p-3 space-y-3 h-full">
+                        <h3 class="text-center font-semibold text-white">Artifact Set</h3>
+                        <select id="artifact-set-select" class="filter-select w-full">
+                            <option value="">-- No Set --</option>
+                        </select>
+                        <div id="artifact-pieces-container" class="space-y-2">
+                            <!-- Artifact pieces will be generated here by JS -->
+                        </div>
+                        <div id="artifact-set-bonus-display" class="text-xs text-gray-400 mt-2 p-2 bg-gray-900/50 rounded-md border border-gray-700/50 hidden">
+                            <!-- Set bonus description will be shown here -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -467,6 +484,7 @@
     <script src="monsters.js" defer></script>
     <script src="Equipment.js" defer></script>
     <script src="Cards.js" defer></script>
+    <script src="Artifacts.js" defer></script>
     <!-- Converter must run after data is loaded -->
     <script src="database-converter.js" defer></script>
     <!-- Main logic that depends on processed data -->
