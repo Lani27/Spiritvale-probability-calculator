@@ -97,6 +97,28 @@ document.addEventListener('DOMContentLoaded', () => {
         closeModal();
     });
 
+    equipmentGrid.addEventListener('mouseover', (e) => {
+        const card = e.target.closest('.equipment-card');
+        if (!card || !card.dataset.equipmentId) return;
+
+        const equipmentId = card.dataset.equipmentId;
+        const item = window.equipmentData.find(item => item.EquipmentId === equipmentId);
+
+        if (item && typeof generateItemCardHTML === 'function') {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = generateItemCardHTML(item);
+            tooltip.style.display = 'block';
+        }
+    });
+
+    equipmentGrid.addEventListener('mouseout', (e) => {
+        const card = e.target.closest('.equipment-card');
+        if (!card) return;
+        const tooltip = document.getElementById('tooltip');
+        tooltip.style.display = 'none';
+        tooltip.innerHTML = '';
+    });
+
     modalCloseBtn.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', (event) => {
         if (event.target === modalOverlay) {
