@@ -202,6 +202,32 @@
             z-index: 1000;
             pointer-events: none;
         }
+        .card-slot {
+            width: 24px;
+            height: 24px;
+            background-color: #374151;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #4b5563;
+        }
+        .empty-card-slot {
+            color: #9ca3af;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .empty-card-slot:hover {
+            background-color: #4b5563;
+            border-color: #6b7280;
+        }
+        .filled-card-slot {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
     </style>
     <link rel="stylesheet" href="equipment-modal.css">
 </head>
@@ -449,6 +475,7 @@
     <script src="database-converter.js" defer></script>
     <!-- Main logic that depends on processed data -->
     <script src="main.js" defer></script>
+    <script src="card-modal.js" defer></script>
     <!-- UI components that might depend on main logic -->
     <script src="modal.js" defer></script>
     <script src="equipment-modal.js" defer></script>
@@ -463,6 +490,20 @@
             </div>
             <div id="equipment-modal-grid">
                 <!-- Equipment cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Selection Modal -->
+    <div id="card-modal-overlay" style="display: none;">
+        <div id="card-modal">
+            <div id="card-modal-header">
+                <h2 id="card-modal-title">Select a Card</h2>
+                <input type="text" id="card-modal-search" class="input-base" placeholder="Search...">
+                <button id="card-modal-close-btn">&times;</button>
+            </div>
+            <div id="card-modal-grid">
+                <!-- Card items will be dynamically inserted here -->
             </div>
         </div>
     </div>

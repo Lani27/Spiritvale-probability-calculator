@@ -292,23 +292,80 @@ function updateGearSlotUI(slotId) {
     const slotElement = slotWrapper.querySelector('.gear-slot');
     const refineControls = slotWrapper.querySelector('.refine-controls');
     const refineDisplay = slotWrapper.querySelector('.refine-display');
+    const cardSlotsContainer = slotWrapper.querySelector('.card-slots-container');
 
     if (!gearInfo || !gearInfo.itemId) {
         slotElement.innerHTML = `<span>${slotElement.dataset.defaultText}</span>`;
         slotElement.classList.add('justify-center', 'text-gray-500');
         slotElement.classList.remove('justify-start', 'p-2', 'space-x-2', 'items-center');
         refineControls.classList.add('hidden');
+        cardSlotsContainer.classList.add('hidden');
+        cardSlotsContainer.innerHTML = '';
     } else {
         const item = window.equipmentData.find(e => e.EquipmentId === gearInfo.itemId);
         if (item) {
+            let namePrefix = '';
+            if (gearInfo.cards && gearInfo.cards.some(c => c !== null)) {
+                const affixCounts = {};
+                gearInfo.cards.forEach(cardId => {
+                    if (!cardId) return;
+                    const card = window.cardData.find(c => c.CardId === cardId);
+                    if (card && card.Affix) {
+                        affixCounts[card.Affix] = (affixCounts[card.Affix] || 0) + 1;
+                    }
+                });
+
+                const prefixes = { 2: 'Double', 3: 'Triple', 4: 'Quad' }; // Extendable
+                const affixParts = Object.entries(affixCounts).map(([affix, count]) => {
+                    return (prefixes[count] || '') + ' ' + affix;
+                });
+                if (affixParts.length > 0) {
+                    namePrefix = `<span class="block text-xs text-indigo-400 font-semibold truncate">${affixParts.join(' ')}</span>`;
+                }
+            }
+
             slotElement.innerHTML = `
                 <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-10 h-10" style="image-rendering: pixelated;" onerror="this.src='Sprites/Equipment/notfound.png';">
-                <span class="text-sm text-white truncate">${item.Name}</span>
+                <div class="flex-1 truncate">
+                    ${namePrefix}
+                    <span class="text-sm text-white truncate">${item.Name}</span>
+                </div>
             `;
             slotElement.classList.remove('justify-center', 'text-gray-500');
             slotElement.classList.add('justify-start', 'p-2', 'space-x-2', 'items-center');
             refineControls.classList.remove('hidden');
             refineDisplay.textContent = `+${gearInfo.refine || 0}`;
+
+            // Handle Card Slots
+            if (item.CardSlots > 0) {
+                cardSlotsContainer.classList.remove('hidden');
+                cardSlotsContainer.innerHTML = ''; // Clear existing slots
+                for (let i = 0; i < item.CardSlots; i++) {
+                    const cardId = gearInfo.cards[i];
+                    const cardSlot = document.createElement('div');
+                    cardSlot.dataset.slotId = slotId;
+                    cardSlot.dataset.cardSlotIndex = i;
+
+                    if (cardId) {
+                        const card = window.cardData.find(c => c.CardId === cardId);
+                        if (card) {
+                            cardSlot.className = 'card-slot filled-card-slot';
+                            cardSlot.style.backgroundImage = `url('Sprites/Cards/${card.SpriteId}.png')`;
+                            cardSlot.title = `Click to unequip ${card.Name}`;
+                            cardSlot.onclick = () => unequipCard(slotId, i);
+                        }
+                    } else {
+                        cardSlot.className = 'card-slot empty-card-slot';
+                        cardSlot.innerHTML = '+';
+                        cardSlot.title = 'Click to add a card';
+                        cardSlot.onclick = () => openCardModal(slotId, i, item.Type);
+                    }
+                    cardSlotsContainer.appendChild(cardSlot);
+                }
+            } else {
+                cardSlotsContainer.classList.add('hidden');
+                cardSlotsContainer.innerHTML = '';
+            }
         }
     }
 }
@@ -340,12 +397,35 @@ function recalculateEverything() {
 }
 
 window.equipItem = function(slotId, equipmentId) {
-    if (!equippedGear[slotId]) {
-        equippedGear[slotId] = { itemId: null, refine: 0 };
-    }
-    equippedGear[slotId].itemId = equipmentId;
+    const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
+    if (!item) return;
+
+    equippedGear[slotId] = {
+        itemId: equipmentId,
+        refine: 0,
+        cards: new Array(item.CardSlots || 0).fill(null)
+    };
+
     updateGearSlotUI(slotId);
     recalculateEverything();
+}
+
+window.equipCard = function(slotId, cardSlotIndex, cardId) {
+    if (equippedGear[slotId] && equippedGear[slotId].cards && equippedGear[slotId].cards.length > cardSlotIndex) {
+        equippedGear[slotId].cards[cardSlotIndex] = cardId;
+        updateGearSlotUI(slotId);
+        recalculateEverything();
+        saveCurrentBuild();
+    }
+}
+
+window.unequipCard = function(slotId, cardSlotIndex) {
+    if (equippedGear[slotId] && equippedGear[slotId].cards && equippedGear[slotId].cards.length > cardSlotIndex) {
+        equippedGear[slotId].cards[cardSlotIndex] = null;
+        updateGearSlotUI(slotId);
+        recalculateEverything();
+        saveCurrentBuild();
+    }
 }
 
 window.unequipItem = function(slotId) {
@@ -512,13 +592,16 @@ function initializeGearSlots() {
     const rightCol = document.getElementById('gear-column-right');
 
     const createSlotHTML = (slot) => `
-        <div id="gear-slot-wrapper-${slot.id}" class="flex items-center space-x-2" data-slot-id="${slot.id}">
-            <div id="gear-slot-${slot.id}" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500" data-default-text="${slot.name}">${slot.name}</div>
-            <div class="refine-controls hidden flex-col items-center space-y-1">
-                <button class="refine-btn refine-plus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">+</button>
-                <span class="refine-display font-bold text-indigo-400">+0</span>
-                <button class="refine-btn refine-minus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">-</button>
+        <div id="gear-slot-wrapper-${slot.id}" class="flex flex-col space-y-1" data-slot-id="${slot.id}">
+            <div class="flex items-center space-x-2">
+                <div id="gear-slot-${slot.id}" class="gear-slot flex-1 h-16 bg-gray-800 rounded-md border border-gray-700 cursor-pointer flex items-center justify-center text-gray-500" data-default-text="${slot.name}">${slot.name}</div>
+                <div class="refine-controls hidden flex-col items-center space-y-1">
+                    <button class="refine-btn refine-plus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">+</button>
+                    <span class="refine-display font-bold text-indigo-400">+0</span>
+                    <button class="refine-btn refine-minus bg-gray-700 hover:bg-gray-600 rounded-full w-6 h-6 flex items-center justify-center text-lg font-bold text-white">-</button>
+                </div>
             </div>
+            <div class="card-slots-container hidden flex justify-start items-center space-x-1 pl-1"></div>
         </div>
     `;
 
@@ -1110,6 +1193,24 @@ function calculateGearBonuses() {
             const totalValue = stat.value + (stat.perLevel * refineLevel);
             if (newGearBonuses[mappedStatName] !== undefined) newGearBonuses[mappedStatName] += totalValue;
         });
+
+        // Add Card Stats
+        if (gearInfo.cards && gearInfo.cards.length > 0) {
+            gearInfo.cards.forEach(cardId => {
+                if (!cardId) return;
+                const card = window.cardData.find(c => c.CardId === cardId);
+                if (card && card.ProcessedStats) {
+                    card.ProcessedStats.forEach(stat => {
+                        if (!stat || !stat.stat) return;
+                        let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                        if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
+                        if (newGearBonuses[mappedStatName] !== undefined) {
+                            newGearBonuses[mappedStatName] += stat.value; // Cards don't have refine levels
+                        }
+                    });
+                }
+            });
+        }
     });
 
     const setCounts = {};
