@@ -204,12 +204,18 @@ const archetypeData = {
 };
 
 // --- Build Management ---
+const weaponBadMap = {
+    'Unarmed': 0.9, 'Dagger': 1, 'Twinblade': 1, 'Sword': 1.1, 'Book': 1.1,
+    'Mace': 1.15, 'Instrument': 1.15, 'Spear': 1.2, 'Wand': 1.2, 'Scythe': 1.2,
+    'Axe': 1.3, 'Bow': 1.4, 'Pistol': 1.4
+};
+const rangedWeaponTypes = ['Bow', 'Pistol'];
+
 let builds = [];
 let activeBuildIndex = 0;
 const MAX_BUILDS = 5;
 const allInputIds = [
-    'p_class', 'p_lv', 'p_str', 'p_agi', 'p_vit', 'p_int', 'p_dex', 'p_luk',
-    'p_dual_wield', 'p_weapon_bad', 'p_weapon_bad_offhand', 'p_element', 'p_is_ranged'
+    'p_class', 'p_lv', 'p_str', 'p_agi', 'p_vit', 'p_int', 'p_dex', 'p_luk'
 ];
 const BASE_STATS = ['STR', 'AGI', 'VIT', 'INT', 'DEX', 'LUK'];
 let gearBonuses = {};
@@ -1601,6 +1607,67 @@ function updateBaseStatUI() {
 }
 
 function calculateAll() {
+    // --- Weapon Stance, BAD, and Element Calculation ---
+    const weaponStanceDisplay = document.getElementById('weapon-stance-display');
+    const mainHandGear = equippedGear['weapon'];
+    const offHandGear = equippedGear['offhand'];
+    const mainHandItem = mainHandGear ? window.equipmentData.find(e => e.EquipmentId === mainHandGear.itemId) : null;
+    const offHandItem = offHandGear ? window.equipmentData.find(e => e.EquipmentId === offHandGear.itemId) : null;
+
+    let weaponStance = 'Unarmed';
+    let isTwoHanded = false;
+    let p_bad = weaponBadMap['Unarmed'];
+    let p_is_ranged = false;
+    let p_element = 'Neutral';
+
+    const isMainHandWeapon = mainHandItem && weaponBadMap[mainHandItem.Type];
+    const isOffHandWeapon = offHandItem && weaponBadMap[offHandItem.Type];
+    const isOffHandShield = offHandItem && offHandItem.Type === 'Shield';
+
+    if (isMainHandWeapon && isOffHandWeapon) {
+        weaponStance = 'Dual-Wield Stance';
+        const bad1 = weaponBadMap[mainHandItem.Type] || 0.9;
+        const bad2 = weaponBadMap[offHandItem.Type] || 0.9;
+        p_bad = (bad1 + bad2) * 0.8;
+    } else if (isMainHandWeapon && isOffHandShield) {
+        weaponStance = 'One-Handed Stance';
+        p_bad = weaponBadMap[mainHandItem.Type] || 0.9;
+    } else if (isMainHandWeapon) {
+        weaponStance = 'Two-Handed Stance';
+        isTwoHanded = true;
+        p_bad = weaponBadMap[mainHandItem.Type] || 0.9;
+    }
+
+    if (mainHandItem && rangedWeaponTypes.includes(mainHandItem.Type)) {
+        p_is_ranged = true;
+    }
+
+    const findEnchantmentOnGear = (gear) => {
+        if (gear && gear.cards) {
+            for (const cardId of gear.cards) {
+                if (cardId) {
+                    const card = window.cardData.find(c => c.CardId === cardId);
+                    if (card && card.elementEnchant) {
+                        return card.elementEnchant;
+                    }
+                }
+            }
+        }
+        return null;
+    };
+
+    const mainHandEnchant = findEnchantmentOnGear(mainHandGear);
+    if (mainHandEnchant) {
+        p_element = mainHandEnchant;
+    } else {
+        const offHandEnchant = findEnchantmentOnGear(offHandGear);
+        if (offHandEnchant && isOffHandWeapon) {
+             p_element = offHandEnchant;
+        }
+    }
+
+    weaponStanceDisplay.textContent = weaponStance;
+
     const targetBaseStats = updateTargetStatsFromArchetype();
 
     const p_stats = {
@@ -1630,18 +1697,6 @@ function calculateAll() {
     const p_aspd_perc = (gearBonuses['AtkSpeed %'] || 0) / 100;
     const p_cspd_perc = (gearBonuses['CastSpeed %'] || 0) / 100;
 
-    const p_dual_wield = getBool('p_dual_wield');
-    let p_bad;
-    if (p_dual_wield) {
-        const bad1 = getFloat('p_weapon_bad');
-        const bad2 = getFloat('p_weapon_bad_offhand');
-        p_bad = (bad1 + bad2) * 0.8;
-    } else {
-        p_bad = getFloat('p_weapon_bad');
-    }
-
-    const p_element = getSelect('p_element');
-    const p_is_ranged = getBool('p_is_ranged');
     const t_lv = getFloat('t_lv'), t_element = getSelect('t_element');
     const t_def_perc = getFloat('t_def_perc') / 100;
     const t_mdef_perc = getFloat('t_mdef_perc') / 100;
@@ -1659,7 +1714,7 @@ function calculateAll() {
 
     const t_flee = t_lv * 2;
     const mainStat = p_is_ranged ? p_stats.dex : p_stats.str;
-    const two_handed_bonus = !p_dual_wield ? 1.25 : 1;
+    const two_handed_bonus = isTwoHanded ? 1.25 : 1;
 
     const final_atk = (p_stats.lv / 4 + mainStat + Math.floor(p_stats.dex / 10) * 2 + p_mastery + p_atk + p_weapon_atk * (1 + mainStat / 200)) *
                       (1 + p_atk_perc + Math.floor(mainStat / 10) / 100) * two_handed_bonus;

@@ -10,18 +10,24 @@ function parseStats(statsStr) {
 
     const processedStats = [];
     const lines = statsStr.split('\n');
-    // Regex updated to make the sign optional.
     const valueRegex = /([+-])?\s*(\d+\.?\d*)\s*(%?)/;
+    const enchantRegex = /Enchant Weapon with (\w+) Element/i;
 
     for (const originalLine of lines) {
         if (!originalLine.trim()) continue;
+
+        const cleanedLineForEnchant = originalLine.replace(/<[^>]*>/g, ' ').replace(/\s\s+/g, ' ').trim();
+        const enchantMatch = cleanedLineForEnchant.match(enchantRegex);
+        if (enchantMatch) {
+            processedStats.push({ stat: 'Element Enchant', value: enchantMatch[1] });
+            continue;
+        }
 
         if (originalLine.includes(':')) {
             const parts = originalLine.split(':');
             const statName = parts[0].replace(/<[^>]*>/g, '').trim();
             let valuesStr = parts.slice(1).join(':').replace(/<[^>]*>/g, '').trim();
 
-            // Regex updated to make the sign optional for per-level stats.
             const perLevelRegex = /([+-]?\s*\d+\.?\d*%?)\s*per level/i;
             const perLevelMatch = valuesStr.match(perLevelRegex);
 
@@ -42,7 +48,6 @@ function parseStats(statsStr) {
                 let isPercentage = false;
 
                 if (baseValueMatch) {
-                    // Sign is assumed to be positive if not explicitly negative.
                     const baseSign = baseValueMatch[1] === '-' ? -1 : 1;
                     const baseValue = parseFloat(baseValueMatch[2]);
                     isPercentage = baseValueMatch[3] === '%';
@@ -50,7 +55,6 @@ function parseStats(statsStr) {
                 }
 
                 if (perLevelValueMatch) {
-                    // Sign is assumed to be positive if not explicitly negative.
                     const perLevelSign = perLevelValueMatch[1] === '-' ? -1 : 1;
                     const perLevelValue = parseFloat(perLevelValueMatch[2]);
                     if (!isPercentage) {
@@ -70,7 +74,7 @@ function parseStats(statsStr) {
                             stat: s,
                             value: finalValue,
                             perLevel: finalPerLevel,
-                            isPercentage: false, // "All Stats" provides flat values
+                            isPercentage: false,
                         });
                     });
                 } else {
@@ -124,7 +128,13 @@ function processEquipmentData(data) {
  */
 function processCardsData(data) {
     return data.map(card => {
-        card.ProcessedStats = parseStats(card.Stats);
+        const processed = parseStats(card.Stats);
+        const enchantStatIndex = processed.findIndex(p => p.stat === 'Element Enchant');
+        if (enchantStatIndex > -1) {
+            card.elementEnchant = processed[enchantStatIndex].value;
+            processed.splice(enchantStatIndex, 1);
+        }
+        card.ProcessedStats = processed;
         return card;
     });
 }
