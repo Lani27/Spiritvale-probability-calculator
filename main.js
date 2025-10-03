@@ -843,14 +843,20 @@ function updateArtifactUI() {
     pieceTypes.forEach(type => {
         const level = equippedArtifacts.levels[type] || 0;
         const pieceDiv = document.createElement('div');
-        pieceDiv.className = 'flex items-center justify-between bg-gray-900/50 p-2 rounded-md';
+        pieceDiv.className = 'bg-gray-900/50 p-2 rounded-md';
+
+        const perPieceBonusHTML = artifactSet.PerPieceBonus ? `<div class="text-xs text-gray-400 font-mono -mt-1 mb-2">${parseStats(artifactSet.PerPieceBonus)}</div>` : '';
+
         pieceDiv.innerHTML = `
-            <span class="font-semibold text-sm text-white">${type}</span>
-            <div class="flex items-center space-x-2">
-                <button class="artifact-refine-btn artifact-minus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">-</button>
-                <span class="artifact-refine-display font-bold text-indigo-400 w-5 text-center">+${level}</span>
-                <button class="artifact-refine-btn artifact-plus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">+</button>
+            <div class="flex items-center justify-between">
+                <span class="font-semibold text-sm text-white">${type}</span>
+                <div class="flex items-center space-x-2">
+                    <button class="artifact-refine-btn artifact-minus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">-</button>
+                    <span class="artifact-refine-display font-bold text-indigo-400 w-5 text-center">+${level}</span>
+                    <button class="artifact-refine-btn artifact-plus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">+</button>
+                </div>
             </div>
+            ${perPieceBonusHTML}
         `;
         piecesContainer.appendChild(pieceDiv);
     });
@@ -1708,22 +1714,30 @@ function calculateGearBonuses() {
     if (equippedArtifacts.setId && typeof artifactData !== 'undefined') {
         const artifactSet = artifactData.find(set => set.SetId === equippedArtifacts.setId);
         if (artifactSet && artifactSet.ProcessedStats) {
-            const totalRefineLevels = Object.values(equippedArtifacts.levels).reduce((sum, level) => sum + level, 0);
 
-            // Per-refine bonuses are applied for each total level across all 4 pieces
-            if (totalRefineLevels > 0) {
-                artifactSet.ProcessedStats.perRefine.forEach(stat => {
-                    if (!stat || !stat.stat) return;
-                    let mappedStatName = statNameMapping[stat.stat] || stat.stat;
-                     if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
-                    const totalValue = stat.value * totalRefineLevels;
-                    if (newGearBonuses[mappedStatName] !== undefined) {
-                        newGearBonuses[mappedStatName] += totalValue;
-                    }
-                });
-            }
+            // Per-Piece and Per-Refine bonuses (calculated individually per piece)
+            Object.values(equippedArtifacts.levels).forEach(level => {
+                if (level > 0) {
+                    const bonusesToApply = [
+                        ...artifactSet.ProcessedStats.perPiece,
+                        ...artifactSet.ProcessedStats.perRefine
+                    ];
 
-            // Full set bonus
+                    bonusesToApply.forEach(stat => {
+                        if (!stat || !stat.stat) return;
+                        let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                        if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
+
+                        const totalValue = stat.perLevel * level;
+
+                        if (newGearBonuses[mappedStatName] !== undefined) {
+                            newGearBonuses[mappedStatName] += totalValue;
+                        }
+                    });
+                }
+            });
+
+            // Full set bonus is applied once if the set is active
             artifactSet.ProcessedStats.fullSet.forEach(stat => {
                 if (!stat || !stat.stat) return;
                 let mappedStatName = statNameMapping[stat.stat] || stat.stat;
