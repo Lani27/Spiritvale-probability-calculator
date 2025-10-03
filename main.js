@@ -97,6 +97,7 @@ const statRollData = {
         },
         selection: ['line1', 'line23', 'line23']
     },
+    "Ranged": { "type": "Ranged Weapon" },
     "Axe": { "type": "Melee Weapon" },
     "Dagger": { "type": "Melee Weapon" },
     "Mace": { "type": "Melee Weapon" },
@@ -454,7 +455,7 @@ function resetToDefaults() {
 
 function getStatDetailsForItem(item) {
     if (!item) return {};
-    let itemConfigKey = item.Type;
+    let itemConfigKey = item['Stat Type'] || item.Type;
     let itemConfig = statRollData[itemConfigKey];
     if (itemConfig && itemConfig.type) {
         itemConfigKey = itemConfig.type;
@@ -1047,7 +1048,7 @@ function openStatSelectionModal(slotId, isArtifact = false) {
         document.getElementById('stat-selection-modal-title').textContent = `Select Stats for ${item.Name}`;
 
 
-        let itemConfigKey = item.Type;
+        let itemConfigKey = item['Stat Type'] || item.Type;
         itemConfig = statRollData[itemConfigKey];
         if (itemConfig && itemConfig.type) {
             itemConfigKey = itemConfig.type;
