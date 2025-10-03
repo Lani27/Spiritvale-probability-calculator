@@ -398,7 +398,8 @@
                             statsHtml += `${parseStats(item.PrimaryStats)}`;
                         }
                         if (item.PrimaryStats && item.SecondaryStats) {
-                            statsHtml += '<br>'; // Add a line break if both exist
+                            // Visual separator
+                            statsHtml += '<div class="w-full h-px bg-gray-600/50 my-1"></div>';
                         }
                         if (item.SecondaryStats) {
                             statsHtml += `${parseStats(item.SecondaryStats)}`;
