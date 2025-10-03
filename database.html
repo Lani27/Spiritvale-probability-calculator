@@ -1152,9 +1152,38 @@
                     } else if (target.classList.contains('set-tooltip')) {
                         const setName = target.getAttribute('data-set-name');
                         const setBonus = decodeURIComponent(target.getAttribute('data-set-bonus'));
+
+                        // Find all items in the set
+                        const setItems = equipmentData.filter(item => item.Set === setName);
+
+                        let itemsHtml = '';
+                        if (setItems.length > 0) {
+                            itemsHtml = setItems.map(item => {
+                                // We need to add itemType for the generator function to work
+                                const itemWithtype = {...item, itemType: 'Equipment'};
+                                // Generate the card but remove the source info to avoid clutter
+                                return generateItemCardHTML(itemWithtype).replace(renderSources(itemWithtype, 'indigo'), '');
+                            }).join('');
+                        }
+
+                        let bonusHtml = '';
                         if (setBonus) {
-                            content = `<h4 class="font-bold text-white text-base mb-2">${setName} Set Bonus</h4>`;
-                            content += `<div class="font-mono text-sm">${parseStats(setBonus)}</div>`;
+                            bonusHtml = `
+                                <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4">
+                                    <h4 class="font-bold text-lg text-white mb-2">${setName} Set Bonus</h4>
+                                    <div class="font-mono text-sm">${parseStats(setBonus)}</div>
+                                </div>
+                            `;
+                        }
+
+                        if (itemsHtml || bonusHtml) {
+                            content = `
+                                <div class="flex flex-col gap-2">
+                                    ${itemsHtml}
+                                    ${bonusHtml}
+                                </div>
+                            `;
+                            tooltip.style.padding = '0'; // The cards have their own padding
                             displayTooltip = true;
                         }
                     } else if (target.classList.contains('boss-icon')) {
