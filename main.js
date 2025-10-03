@@ -30,6 +30,27 @@ function renderSources(item) {
 }
 
 
+function generateCardTooltipHTML(card) {
+    if (!card) return '';
+    return `
+        <div class="bg-gray-800/95 rounded-lg border border-gray-700/50 p-4 flex flex-col" style="width: 300px;">
+            <div class="flex items-start mb-3">
+                <img src="Sprites/Cards/${card.Slot}.png" alt="${card.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" style="image-rendering: pixelated;" onerror="this.onerror=null;this.src='Sprites/Equipment/notfound.png';">
+                <div class="flex-1">
+                    <h3 class="font-bold text-lg text-white leading-tight">${card.Name}</h3>
+                    <div class="mt-1 flex items-center flex-wrap">
+                        <span class="inline-block bg-purple-900/60 text-purple-300 text-xs font-semibold px-2 py-0.5 rounded">${card.Slot} Card</span>
+                        ${card.Affix ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">Affix: ${card.Affix}</span>` : ''}
+                    </div>
+                </div>
+            </div>
+            <div class="flex-grow space-y-3">
+                ${card.Stats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Stats</p><p class="text-sm font-mono">${parseStats(card.Stats)}</p></div>` : ''}
+            </div>
+        </div>
+    `;
+}
+
 function generateItemCardHTML(item) {
     if (!item) return '';
     return `
@@ -350,7 +371,7 @@ function updateGearSlotUI(slotId) {
                         const card = window.cardData.find(c => c.CardId === cardId);
                         if (card) {
                             cardSlot.className = 'card-slot filled-card-slot';
-                            cardSlot.style.backgroundImage = `url('Sprites/Cards/${card.SpriteId}.png')`;
+                            cardSlot.innerHTML = `<img src="Sprites/Cards/${card.Slot}.png" alt="${card.Name}" class="w-full h-full" onerror="this.src='Sprites/Equipment/notfound.png';">`;
                             cardSlot.title = `Click to unequip ${card.Name}`;
                             cardSlot.onclick = () => unequipCard(slotId, i);
                         }
