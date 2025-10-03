@@ -62,10 +62,23 @@ function populateCardGrid(itemType, searchTerm = '') {
         const cardElement = document.createElement('div');
         cardElement.className = 'card-item';
         cardElement.innerHTML = `
-            <img src="Sprites/Cards/${card.SpriteId}.png" alt="${card.Name}" onerror="this.src='Sprites/Equipment/notfound.png';">
+            <img src="Sprites/Cards/${card.Slot}.png" alt="${card.Name}" onerror="this.src='Sprites/Equipment/notfound.png';">
             <span class="card-item-name">${card.Name}</span>
         `;
         cardElement.onclick = () => selectCard(card.CardId);
+
+        cardElement.addEventListener('mouseover', () => {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.innerHTML = generateCardTooltipHTML(card);
+            tooltip.style.display = 'block';
+        });
+
+        cardElement.addEventListener('mouseout', () => {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.style.display = 'none';
+            tooltip.innerHTML = '';
+        });
+
         grid.appendChild(cardElement);
     });
 }

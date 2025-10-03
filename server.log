@@ -1,201 +1,82 @@
-127.0.0.1 - - [03/Oct/2025 06:16:19] "GET /damage_simulator.html HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:19] "GET /equipment-modal.css HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /sidebar.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /classes.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /monsters.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /Equipment.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /Cards.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /database-converter.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /main.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /card-modal.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /modal.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:20] "GET /equipment-modal.js HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_20.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_23.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_11.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_20.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_83.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_79.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_75.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_67.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_1.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_16.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_7.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_59.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_16.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_77.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_2.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_3.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_18.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_7.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_28.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_42.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_40.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_17.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_80.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V3_Wield_Gear_Right_11.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_22.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_50.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_52.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_25.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_60.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_58.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_10.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_54.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V2_Wield_Gear_Right_10.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_46.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_45.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_71.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_13.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_70.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_81.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_19.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_14.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_76.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_74.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_84.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_9.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_82.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_73.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_3.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_8.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_5.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_48.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_15.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_36.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_5.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_53.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_14.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_72.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_69.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_55.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_1.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_78.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_15.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_34.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_18.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_37.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_6.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/V1_Wield_Gear_Right_12.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_2.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:21] "GET /Sprites/Equipment/Wield_Gear_Right_4.png HTTP/1.1" 200 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Cards/card.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Cards/card_gold.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Cards/card.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Cards/card.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:22] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:22] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
-127.0.0.1 - - [03/Oct/2025 06:16:23] code 404, message File not found
-127.0.0.1 - - [03/Oct/2025 06:16:23] "GET /Sprites/Equipment/notfound.png HTTP/1.1" 404 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /damage_simulator.html HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /equipment-modal.css HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /sidebar.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /classes.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /monsters.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /Equipment.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /Cards.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /database-converter.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /main.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /card-modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:15] "GET /equipment-modal.js HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_20.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_11.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_23.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_20.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_83.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_79.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_75.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_1.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_7.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_16.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_67.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_2.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_18.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_16.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_77.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_59.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_3.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_7.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_28.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_42.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_40.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_17.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_80.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V3_Wield_Gear_Right_11.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_50.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_25.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_22.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_60.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_52.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_58.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_10.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V2_Wield_Gear_Right_10.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_46.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_54.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_71.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_45.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_19.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_76.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_13.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_14.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_70.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_81.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_74.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_84.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_3.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_82.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_9.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_8.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_73.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_5.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_48.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_15.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_36.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_5.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_53.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_55.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_72.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_14.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_69.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_78.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_1.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_18.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_15.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_34.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_37.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_6.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/V1_Wield_Gear_Right_12.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_4.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Equipment/Wield_Gear_Right_2.png HTTP/1.1" 200 -
+127.0.0.1 - - [03/Oct/2025 06:39:16] "GET /Sprites/Cards/Weapon.png HTTP/1.1" 200 -
