@@ -1,4 +1,4 @@
-const artifactData = [
+window.artifactData = [
     {
         "SetName": "Aethercore",
         "SetId": "Mp",
