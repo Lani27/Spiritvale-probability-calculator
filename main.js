@@ -1202,7 +1202,8 @@ function calculateGearBonuses() {
         'Atk %': 'ATK %',
         'Matk %': 'MATK %',
         'Crit Damage %': 'Crit Dmg %',
-        'Crit Rate %': 'Crit Rate %'
+        'Crit Rate %': 'Crit Rate %',
+        'Total Critical Rate %': 'Crit Rate %'
     };
     const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book'];
 
