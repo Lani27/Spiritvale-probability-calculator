@@ -18,7 +18,7 @@ window.artifactData = [
         "PerPieceBonus": "Damage Magic: <color=#AAFF00FF>+2%</color>",
         "PerRefineBonus": "Damage Magic: <color=#AAFF00FF>+0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Magic: <color=#AAFF00FF>+7%</color>",
-        "Source": "Relic - Cat Lightning\nScroll - Glow Wisp Purple\nRune - Whirlwind\nGem - Wind\nRune - Wind Mage",
+        "Source": "Relic - Cat Lightning\nGem - Glow Wisp Purple\nRune - Whirlwind\nScroll - Wind\nRune - Wind Mage",
         "Droprate": "12.0%\n12.0%\n12.0%\n12.0%\n12.0%",
         "Location": "Windy Desert\nWindy Desert\nWindy Desert\nWindy Desert\nWindy Desert",
         "SpriteId": "artifacts-magic_0\nartifacts-magic_1\nartifacts-magic_2\nartifacts-magic_3"
@@ -28,12 +28,24 @@ window.artifactData = [
         "SetId": "Cost",
         "IndividualBonus": null,
         "PerPieceBonus": "Mp Cost: <color=#AAFF00FF>-10%</color>",
-        "PerRefineBonus": "Mp Cost: <color=#AAFF00FF>-0.25% per level</color>",
+        "PerRefineBonus": "Mp Cost: <color=#AAFF00FF>-0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nMp Cost: <color=#AAFF00FF>-10%</color>",
-        "Source": "Rune - Bomb\nRune - Dragon Darkness\nScroll - Phantom\nRelic - Soul Mage\nGem - Spook",
+        "Source": "Rune - Bomb\nRelic - Dragon Darkness\nScroll - Phantom\nRune - Soul Mage\nGem - Spook",
         "Droprate": "6.0%\n6.0%\n6.0%\n6.0%\n6.0%",
         "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light",
         "SpriteId": "artifacts-mpcost_1\nartifacts-mpcost_2\nartifacts-mpcost_3\nartifacts-mpcost_4"
+    },
+    {
+        "SetName": "Bastion",
+        "SetId": "Bastion",
+        "IndividualBonus": "<color=#FFFFFFFF>Cast cannot be interrupted</color>\n<color=#FFFFFFFF>Immune to Flinching from damage</color>\n<color=#FFFFFFFF>Immune to Knockback</color>\n<color=#FFFFFFFF>Immune to Reflect damage</color>",
+        "PerPieceBonus": null,
+        "PerRefineBonus": null,
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+5</color>",
+        "Source": null,
+        "Droprate": null,
+        "Location": null,
+        "SpriteId": "artifacts-bastion_0\nartifacts-bastion_1\nartifacts-bastion_2\nartifacts-bastion_3"
     },
     {
         "SetName": "Blitzcore",
@@ -42,7 +54,7 @@ window.artifactData = [
         "PerPieceBonus": "Atk Spd: <color=#AAFF00FF>+2%</color>",
         "PerRefineBonus": "Atk Spd: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nAtk Spd: <color=#AAFF00FF>+7%</color>\nSplash: <color=#AAFF00FF>+1</color>",
-        "Source": "Rune - Bat\nGem - Creeper\nRelic - Lurker\nGem - Snakelet\nScroll - Spider\nRune - Spider Toxin",
+        "Source": "Rune - Bat\nGem - Creeper\nScroll - Lurker\nRelic - Snakelet\nGem - Spider\nRune - Spider Toxin",
         "Droprate": "9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%",
         "Location": "Forgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths\nForgotten Depths",
         "SpriteId": "artifacts-blitzcore_0\nartifacts-blitzcore_1\nartifacts-blitzcore_2\nartifacts-blitzcore_3"
@@ -60,13 +72,37 @@ window.artifactData = [
         "SpriteId": "artifacts-blood_0\nartifacts-blood_1\nartifacts-blood_2\nartifacts-blood_3"
     },
     {
+        "SetName": "Corporeal",
+        "SetId": "Corporeal",
+        "IndividualBonus": null,
+        "PerPieceBonus": "Holy Damage: <color=#AAFF00FF>+3%</color>\nPoison Damage: <color=#AAFF00FF>+3%</color>\nShadow Damage: <color=#AAFF00FF>+3%</color>\nUndead Damage: <color=#AAFF00FF>+3%</color>",
+        "PerRefineBonus": "Holy Damage: <color=#AAFF00FF>+0.25% per level</color>\nPoison Damage: <color=#AAFF00FF>+0.25% per level</color>\nShadow Damage: <color=#AAFF00FF>+0.25% per level</color>\nUndead Damage: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHoly Damage: <color=#AAFF00FF>+8%</color>\nPoison Damage: <color=#AAFF00FF>+8%</color>\nShadow Damage: <color=#AAFF00FF>+8%</color>\nUndead Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Scroll - Alien Biteroot\nRelic - Alien Cyclops\nRune - Alien Spike\nScroll - Alien Sporella\nRune - Alien Wheel\nGem - Jellyfish Robot\nGem - Stinger Robot",
+        "Droprate": "3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%",
+        "Location": "Dark Forest\nDark Forest\nDark Forest\nDark Forest\nDark Forest\nDark Forest\nDark Forest",
+        "SpriteId": "artifacts-corporeal_0\nartifacts-corporeal_1\nartifacts-corporeal_2\nartifacts-corporeal_3"
+    },
+    {
+        "SetName": "Eternis",
+        "SetId": "Eternis",
+        "IndividualBonus": null,
+        "PerPieceBonus": null,
+        "PerRefineBonus": null,
+        "FullSetBonus": "<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Haste</color></color>\n<color=#FFFFFFFF>Grants <color=#AAFF00FF>Lv.5 Heal</color></color>\nAll Stats: <color=#AAFF00FF>+5</color>\nAtk: <color=#AAFF00FF>+5%</color>\nHp: <color=#AAFF00FF>+10%</color>\nMatk: <color=#AAFF00FF>+5%</color>\nMp: <color=#AAFF00FF>+10%</color>",
+        "Source": "Rune - Alien One Eye\nRelic - Alien Plant\nGem - Alien Wreck\nScroll - Tentacles Robot",
+        "Droprate": "2.0%\n2.0%\n2.0%\n2.0%",
+        "Location": "Night Garden\nNight Garden\nNight Garden\nNight Garden",
+        "SpriteId": "artifacts-eternis_0\nartifacts-eternis_1\nartifacts-eternis_2\nartifacts-eternis_3"
+    },
+    {
         "SetName": "Furybrand",
         "SetId": "Crit",
         "IndividualBonus": null,
         "PerPieceBonus": "Crit: <color=#AAFF00FF>+3</color>",
         "PerRefineBonus": "Crit Damage: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCrit Damage: <color=#AAFF00FF>+5%</color>\nCrit: <color=#AAFF00FF>+8</color>",
-        "Source": "Gem - Dragon Fire\nGem - Dragon Inferno\nScroll - Dragon Spark\nRune - Elder Wisp Yellow\nRune - Fire\nRelic - Fire Mage\nRelic - Flame\nRelic - Golem Fire\nRune - Imp Demon\nGem - Imp Mischief\nScroll - Shade\nScroll - Shadow",
+        "Source": "Gem - Dragon Fire\nGem - Dragon Inferno\nScroll - Dragon Spark\nRelic - Elder Wisp Yellow\nRune - Fire\nRune - Fire Mage\nRelic - Flame\nRelic - Golem Fire\nRune - Imp Demon\nGem - Imp Mischief\nScroll - Shade\nScroll - Shadow",
         "Droprate": "3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%",
         "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
         "SpriteId": "artifacts-fury_0\nartifacts-fury_1\nartifacts-fury_2\nartifacts-fury_3"
@@ -84,13 +120,25 @@ window.artifactData = [
         "SpriteId": "artifacts-hit_0\nartifacts-hit_1\nartifacts-hit_2\nartifacts-hit_3"
     },
     {
+        "SetName": "Hexbrand",
+        "SetId": "Hexbrand",
+        "IndividualBonus": null,
+        "PerPieceBonus": "Status Damage: <color=#AAFF00FF>+10%</color>",
+        "PerRefineBonus": "Status Damage: <color=#AAFF00FF>+0.125% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nStatus Damage: <color=#AAFF00FF>+10%</color>",
+        "Source": "Rune - Devil Bat\nRune - Devil Hades\nScroll - Devil Hell\nGem - Gloom\nRelic - Grim Reaper\nScroll - Practice Dummy\nGem - Target Dummy\nRelic - Training Dummy",
+        "Droprate": "2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%",
+        "Location": "Dark Fortress\nDark Fortress\nDark Fortress\nDark Fortress\nDark Fortress\nUnknown Map\nUnknown Map\nUnknown Map",
+        "SpriteId": "artifacts-hexbrand_0\nartifacts-hexbrand_1\nartifacts-hexbrand_2\nartifacts-hexbrand_3"
+    },
+    {
         "SetName": "Lifebloom",
         "SetId": "Healing",
         "IndividualBonus": null,
-        "PerPieceBonus": "Healing: <color=#AAFF00FF>+3%</color>",
+        "PerPieceBonus": "Healing: <color=#AAFF00FF>+5%</color>",
         "PerRefineBonus": "Healing: <color=#AAFF00FF>+0.25% per level</color>",
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealing: <color=#AAFF00FF>+8%</color>",
-        "Source": "Rune - Angel\nRune - Archangel\nRelic - Dragon Dusk\nScroll - Dragon Nightfall\nGem - Ghost\nGem - Haunt\nScroll - Soul",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealing: <color=#AAFF00FF>+10%</color>",
+        "Source": "Rune - Angel\nRune - Archangel\nScroll - Dragon Dusk\nGem - Dragon Nightfall\nGem - Ghost\nScroll - Haunt\nRelic - Soul",
         "Droprate": "6.0%\n6.0%\n6.0%\n6.0%\n6.0%\n6.0%\n6.0%",
         "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light\nSanctum of Light",
         "SpriteId": "artifacts-heal_0\nartifacts-heal_1\nartifacts-heal_2\nartifacts-heal_3"
@@ -102,10 +150,22 @@ window.artifactData = [
         "PerPieceBonus": null,
         "PerRefineBonus": "Resistance to Stun: <color=#AAFF00FF>+5%</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nResistance to Slow: <color=#AAFF00FF>+100%</color>",
-        "Source": "Relic - Bloom\nScroll - Blossom\nRune - Bud\nGem - Elder Wisp Purple\nGem - Poison Bomb\nRune - Worm Rot\nScroll - Worm Stink",
+        "Source": "Rune - Bloom\nScroll - Blossom\nRune - Bud\nGem - Elder Wisp Purple\nGem - Poison Bomb\nRelic - Worm Rot\nScroll - Worm Stink",
         "Droprate": "6.0%\n6.0%\n6.0%\n6.0%\n6.0%\n6.0%\n6.0%",
         "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern\nUnderground Cavern",
         "SpriteId": "artifacts-immune_0\nartifacts-immune_1\nartifacts-immune_2\nartifacts-immune_3"
+    },
+    {
+        "SetName": "Oathbound",
+        "SetId": "Oathbound",
+        "IndividualBonus": null,
+        "PerPieceBonus": "Status Duration: <color=#AAFF00FF>+10%</color>",
+        "PerRefineBonus": "Status Duration: <color=#AAFF00FF>+0.125% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nStatus Duration: <color=#AAFF00FF>+10%</color>",
+        "Source": null,
+        "Droprate": null,
+        "Location": null,
+        "SpriteId": "artifacts-oathbound_0\nartifacts-oathbound_2\nartifacts-oathbound_3\nartifacts-oathbound_4"
     },
     {
         "SetName": "Pioneer",
@@ -114,10 +174,22 @@ window.artifactData = [
         "PerPieceBonus": "Exp Rate: <color=#AAFF00FF>+2%</color>",
         "PerRefineBonus": "Exp Rate: <color=#AAFF00FF>+0.25% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nExp Rate: <color=#AAFF00FF>+2%</color>",
-        "Source": "Scroll - Bunny\nRelic - Chick\nRune - Egg\nGem - Pollen\nRune - Wisp Yellow",
+        "Source": "Scroll - Bunny\nRelic - Chick\nRune - Egg\nRune - Pollen\nGem - Wisp Yellow",
         "Droprate": "15.0%\n15.0%\n15.0%\n15.0%\n15.0%",
         "Location": "Sunny Meadows\nSunny Meadows\nSunny Meadows\nSunny Meadows\nSunny Meadows",
         "SpriteId": "artifacts-novice_0\nartifacts-novice_1\nartifacts-novice_2\nartifacts-novice_3"
+    },
+    {
+        "SetName": "Primordial",
+        "SetId": "Primordial",
+        "IndividualBonus": null,
+        "PerPieceBonus": "Earth Damage: <color=#AAFF00FF>+3%</color>\nFire Damage: <color=#AAFF00FF>+3%</color>\nWater Damage: <color=#AAFF00FF>+3%</color>\nWind Damage: <color=#AAFF00FF>+3%</color>",
+        "PerRefineBonus": "Earth Damage: <color=#AAFF00FF>+0.25% per level</color>\nFire Damage: <color=#AAFF00FF>+0.25% per level</color>\nWater Damage: <color=#AAFF00FF>+0.25% per level</color>\nWind Damage: <color=#AAFF00FF>+0.25% per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nEarth Damage: <color=#AAFF00FF>+8%</color>\nFire Damage: <color=#AAFF00FF>+8%</color>\nWater Damage: <color=#AAFF00FF>+8%</color>\nWind Damage: <color=#AAFF00FF>+8%</color>",
+        "Source": "Gem - Boxy Robot\nRelic - Delivery Robot\nScroll - Gripper Robot\nScroll - Nose Robot\nRune - Nozzle Robot\nRune - Razor Robot\nGem - Shell Robot\nRune - Snout Robot\nGem - Spider Robot\nRelic - Spiderling Robot\nScroll - Spike Robot",
+        "Droprate": "2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%\n2.0%",
+        "Location": "The Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge",
+        "SpriteId": "artifacts-primordial_0\nartifacts-primordial_1\nartifacts-primordial_2\nartifacts-primordial_3"
     },
     {
         "SetName": "Shadebound",
@@ -126,7 +198,7 @@ window.artifactData = [
         "PerPieceBonus": "Flee: <color=#AAFF00FF>+10</color>",
         "PerRefineBonus": "Flee: <color=#AAFF00FF>+1 per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nFlee: <color=#AAFF00FF>+10</color>",
-        "Source": "Gem - Dragonfly Arrow\nGem - Dragonfly Darner\nGem - Dragonfly Swift\nRelic - Earthworm\nRune - Housefly Icky\nRune - Housefly Junk\nRune - Housefly Nom\nScroll - Mosquito Bug\nScroll - Mosquito Pester\nScroll - Mosquito Stinger\nRelic - Worm",
+        "Source": "Rune - Dragonfly Arrow\nRune - Dragonfly Darner\nRune - Dragonfly Swift\nRelic - Earthworm\nGem - Housefly Icky\nGem - Housefly Junk\nGem - Housefly Nom\nScroll - Mosquito Bug\nScroll - Mosquito Pester\nScroll - Mosquito Stinger\nRelic - Worm",
         "Droprate": "9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%",
         "Location": "Swamp\nSwamp\nSwamp\nSwamp\nSwamp\nSwamp\nSwamp\nSwamp\nSwamp\nSwamp\nSwamp",
         "SpriteId": "artifacts-shadow_0\nartifacts-shadow_1\nartifacts-shadow_2\nartifacts-shadow_3"
@@ -136,9 +208,9 @@ window.artifactData = [
         "SetId": "Cast",
         "IndividualBonus": null,
         "PerPieceBonus": "Cast Spd: <color=#AAFF00FF>+10%</color>",
-        "PerRefineBonus": "Cast Spd: <color=#AAFF00FF>+0.25% per level</color>",
+        "PerRefineBonus": "Cast Spd: <color=#AAFF00FF>+0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCast Spd: <color=#AAFF00FF>+10%</color>",
-        "Source": "Relic - Butterfly Fairy\nScroll - Butterfly Pixie\nScroll - Glow Wisp Yellow\nRelic - Moth Celestial\nRune - Moth Luna\nRune - Moth Moon\nGem - Sun Blossom\nGem - Sunflower Fairy",
+        "Source": "Scroll - Butterfly Fairy\nScroll - Butterfly Pixie\nRelic - Glow Wisp Yellow\nRelic - Moth Celestial\nRune - Moth Luna\nRune - Moth Moon\nGem - Sun Blossom\nGem - Sunflower Fairy",
         "Droprate": "12.0%\n12.0%\n12.0%\n12.0%\n12.0%\n12.0%\n12.0%\n12.0%",
         "Location": "Fairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen",
         "SpriteId": "artifacts-spellweaver_0\nartifacts-spellweaver_1\nartifacts-spellweaver_2\nartifacts-spellweaver_3"
@@ -149,9 +221,9 @@ window.artifactData = [
         "IndividualBonus": null,
         "PerPieceBonus": "Hp: <color=#FF0073FF>-10%</color>\nMatk: <color=#AAFF00FF>+5</color>\nMp: <color=#AAFF00FF>+5%</color>",
         "PerRefineBonus": "Matk: <color=#AAFF00FF>+0.25% per level</color>",
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nEnergy Shield Level: <color=#AAFF00FF>+2</color>\nHp: <color=#FF0073FF>-10%</color>\nMatk: <color=#AAFF00FF>+10</color>\nMp: <color=#AAFF00FF>+5%</color>",
-        "Source": "Gem - Cyclops Bat\nGem - Cyclops Bat Mage\nScroll - Cyclops Bat Wizard\nRune - Death\nRelic - Direwolf\nScroll - Eyeball Creep Blue\nGem - Eyeball Creep Green\nRune - Eyeball Creep Red\nScroll - Eyeball Mage Blue\nRelic - Eyeball Mage Green\nRune - Eyeball Mage Red\nRune - Nightmare\nRune - Skeleton Giant\nRelic - Skeleton Mage",
-        "Droprate": "3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nEnergy Shield Level: <color=#AAFF00FF>+2</color>\nHp: <color=#FF0073FF>-10%</color>\nMatk: <color=#AAFF00FF>+10</color>\nMp: <color=#AAFF00FF>+5%</color>",
+        "Source": "Rune - Cyclops Bat\nGem - Cyclops Bat Mage\nScroll - Cyclops Bat Wizard\nGem - Death\nRelic - Direwolf\nRune - Eyeball Creep Blue\nGem - Eyeball Creep Green\nScroll - Eyeball Creep Red\nScroll - Eyeball Mage Blue\nRelic - Eyeball Mage Green\nRune - Eyeball Mage Red\nRune - Nightmare\nRune - Skeleton Giant\nRelic - Skeleton Mage",
+        "Droprate": "3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%\n3.0%",
         "Location": "Abyss Castle Keep\nAbyss Castle Library\nAbyss Castle Keep\nAbyss Castle Keep\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Library\nAbyss Castle Keep\nAbyss Castle Keep",
         "SpriteId": "artifacts-matk_0\nartifacts-matk_1\nartifacts-matk_2\nartifacts-matk_3"
     },
@@ -162,7 +234,7 @@ window.artifactData = [
         "PerPieceBonus": "Damage Melee: <color=#AAFF00FF>+2%</color>",
         "PerRefineBonus": "Damage Melee: <color=#AAFF00FF>+0.125% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Melee: <color=#AAFF00FF>+7%</color>",
-        "Source": "Scroll - Treant Forest Autumn\nGem - Treant Forest Evergreen\nScroll - Treant Minion Autumn\nGem - Treant Minion Evergreen\nRune - Treant Tree Autumn\nRelic - Treant Tree Evergreen\nRune - Wisp Red",
+        "Source": "Gem - Treant Forest Autumn\nScroll - Treant Forest Evergreen\nGem - Treant Minion Autumn\nScroll - Treant Minion Evergreen\nRelic - Treant Tree Autumn\nRune - Treant Tree Evergreen\nRune - Wisp Red",
         "Droprate": "12.0%\n12.0%\n12.0%\n12.0%\n12.0%\n12.0%\n12.0%",
         "Location": "Treant Trail\nTreant Trail\nTreant Trail\nTreant Trail\nTreant Trail\nTreant Trail\nTreant Trail",
         "SpriteId": "artifacts-melee-2_0\nartifacts-melee-2_2\nartifacts-melee-2_3\nartifacts-melee-2_4"
@@ -192,6 +264,30 @@ window.artifactData = [
         "SpriteId": "artifacts-titanplate_0\nartifacts-titanplate_1\nartifacts-titanplate_2\nartifacts-titanplate_3"
     },
     {
+        "SetName": "Unstable Magic",
+        "SetId": "Wizard_1",
+        "IndividualBonus": null,
+        "PerPieceBonus": null,
+        "PerRefineBonus": "Earthquake Damage: <color=#AAFF00FF>+10%</color>\nFreezing Field Damage: <color=#AAFF00FF>+10%</color>\nMeteor Damage: <color=#AAFF00FF>+10%</color>\nTempest Damage: <color=#AAFF00FF>+10%</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nCast Spd: <color=#FF0073FF>-100%</color>\nMatk: <color=#AAFF00FF>+25%</color>",
+        "Source": null,
+        "Droprate": null,
+        "Location": null,
+        "SpriteId": null
+    },
+    {
+        "SetName": "Vampiric",
+        "SetId": "Vampiric",
+        "IndividualBonus": null,
+        "PerPieceBonus": "Health on hit: <color=#AAFF00FF>+5 per level</color>",
+        "PerRefineBonus": "Health on hit: <color=#AAFF00FF>+0.25 per level</color>",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHealth on hit: <color=#AAFF00FF>+10</color>",
+        "Source": "Scroll - Zombie Goblin Giant\nRune - Zombie Goblin Minion\nGem - Zombie Goblin Soldier",
+        "Droprate": "9.0%\n9.0%\n9.0%",
+        "Location": "Goblin Cave\nGoblin Cave\nGoblin Cave",
+        "SpriteId": "artifacts-vampiric_0\nartifacts-vampiric_1\nartifacts-vampiric_2\nartifacts-vampiric_3"
+    },
+    {
         "SetName": "Veilward",
         "SetId": "Mdef",
         "IndividualBonus": null,
@@ -210,9 +306,9 @@ window.artifactData = [
         "PerPieceBonus": "Hp: <color=#AAFF00FF>+5%</color>",
         "PerRefineBonus": "Hp: <color=#AAFF00FF>+0.5% per level</color>",
         "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nHp: <color=#AAFF00FF>+10%</color>",
-        "Source": "Scroll - Zombie Goblin Giant\nRune - Zombie Goblin Minion\nGem - Zombie Goblin Soldier",
-        "Droprate": "9.0%\n9.0%\n9.0%",
-        "Location": "Goblin Cave\nGoblin Cave\nGoblin Cave",
+        "Source": "Scroll - Goblin Giant\nRelic - Goblin Giant Devil\nGem - Goblin Giant Mage\nRune - Goblin Minion\nRelic - Goblin Trooper\nGem - Goblin Trooper Assassin\nScroll - Goblin Trooper Mage\nRune - Goblin Trooper Soldier",
+        "Droprate": "9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%",
+        "Location": "Goblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village",
         "SpriteId": "artifacts-hp_0\nartifacts-hp_1\nartifacts-hp_2\nartifacts-hp_3"
     },
     {
@@ -221,10 +317,10 @@ window.artifactData = [
         "IndividualBonus": null,
         "PerPieceBonus": "Atk: <color=#AAFF00FF>+5</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#FF0073FF>-15%</color>",
         "PerRefineBonus": "Atk: <color=#AAFF00FF>+0.25% per level</color>",
-        "FullSetBonus": "All Stats: <color=#AAFF00FF>+2</color>\nAtk: <color=#AAFF00FF>+10</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#FF0073FF>-15%</color>",
-        "Source": "Scroll - Goblin Giant\nRelic - Goblin Giant Devil\nGem - Goblin Giant Mage\nRune - Goblin Minion\nRelic - Goblin Trooper\nGem - Goblin Trooper Assassin\nScroll - Goblin Trooper Mage\nRune - Goblin Trooper Soldier",
-        "Droprate": "3.0%\n3.0%\n3.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n9.0%\n3.0%",
-        "Location": "Goblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village\nGoblin Village",
+        "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nAtk: <color=#AAFF00FF>+10</color>\nHp: <color=#AAFF00FF>+5%</color>\nMp: <color=#FF0073FF>-15%</color>",
+        "Source": "Scroll - Goblin Warblade\nRune - Goblin Warcrusher\nGem - Goblin Warlock",
+        "Droprate": "3.0%\n3.0%\n3.0%",
+        "Location": "Goblin Warcamp\nGoblin Warcamp\nGoblin Warcamp",
         "SpriteId": "artifacts-atk_0\nartifacts-atk_1\nartifacts-atk_2\nartifacts-atk_3"
     },
     {
@@ -239,5 +335,4 @@ window.artifactData = [
         "Location": "Forest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth\nForest Labyrinth",
         "SpriteId": "artifacts-movespeed_0\nartifacts-movespeed_1\nartifacts-movespeed_2\nartifacts-movespeed_3"
     }
-
-]
+];
