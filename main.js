@@ -241,6 +241,15 @@ const gearSlotLayout = {
 
 // This object will hold the state of the currently equipped gear
 let equippedGear = {};
+let equippedArtifacts = {
+    setId: null,
+    levels: {
+        Rune: 0,
+        Relic: 0,
+        Scroll: 0,
+        Gem: 0
+    }
+};
 
 function saveBuildsMetadata() {
     const buildsMetadata = builds.map(b => ({ name: b.name }));
@@ -363,6 +372,7 @@ function getCurrentBuildData() {
         }
     }
     buildData.equippedGear = equippedGear;
+    buildData.equippedArtifacts = equippedArtifacts;
     return buildData;
 }
 
@@ -413,7 +423,9 @@ function resetToDefaults() {
     generateSkillInputs();
 
     equippedGear = {};
+    equippedArtifacts = { setId: null, levels: { Rune: 0, Relic: 0, Scroll: 0, Gem: 0 } };
     updateAllGearSlotsUI();
+    updateArtifactUI();
     toggleDualWield();
     toggleSkillSection();
 
@@ -681,7 +693,9 @@ function loadBuild(index) {
         }
 
         equippedGear = buildData.equippedGear || {};
+        equippedArtifacts = buildData.equippedArtifacts || { setId: null, levels: { Rune: 0, Relic: 0, Scroll: 0, Gem: 0 } };
         updateAllGearSlotsUI();
+        updateArtifactUI();
         toggleDualWield();
         toggleSkillSection();
         recalculateEverything();
@@ -772,6 +786,83 @@ async function handleReset() {
 }
 
 // --- UI Generation & Listeners ---
+function initializeArtifacts() {
+    const select = document.getElementById('artifact-set-select');
+    if (!select || typeof artifactData === 'undefined') return;
+
+    // Clear existing options except the first one
+    while (select.options.length > 1) {
+        select.remove(1);
+    }
+
+    artifactData.forEach(set => {
+        const option = document.createElement('option');
+        option.value = set.SetId;
+        option.textContent = set.SetName;
+        select.appendChild(option);
+    });
+
+    select.addEventListener('change', (e) => {
+        const selectedSetId = e.target.value;
+        if (selectedSetId) {
+            equippedArtifacts.setId = selectedSetId;
+            // Reset levels when a new set is chosen
+            equippedArtifacts.levels = { Rune: 0, Relic: 0, Scroll: 0, Gem: 0 };
+        } else {
+            equippedArtifacts.setId = null;
+        }
+        updateArtifactUI();
+        recalculateEverything();
+        saveCurrentBuild();
+    });
+}
+
+function updateArtifactUI() {
+    const select = document.getElementById('artifact-set-select');
+    const piecesContainer = document.getElementById('artifact-pieces-container');
+    const bonusDisplay = document.getElementById('artifact-set-bonus-display');
+    if (!select || !piecesContainer || !bonusDisplay) return;
+
+    select.value = equippedArtifacts.setId || '';
+
+    if (!equippedArtifacts.setId) {
+        piecesContainer.innerHTML = '<p class="text-xs text-center text-gray-500">Select a set to see pieces.</p>';
+        bonusDisplay.classList.add('hidden');
+        return;
+    }
+
+    const artifactSet = artifactData.find(set => set.SetId === equippedArtifacts.setId);
+    if (!artifactSet) {
+        piecesContainer.innerHTML = '<p class="text-xs text-center text-red-500">Error: Set data not found.</p>';
+        bonusDisplay.classList.add('hidden');
+        return;
+    }
+
+    piecesContainer.innerHTML = '';
+    const pieceTypes = ['Rune', 'Relic', 'Scroll', 'Gem'];
+    pieceTypes.forEach(type => {
+        const level = equippedArtifacts.levels[type] || 0;
+        const pieceDiv = document.createElement('div');
+        pieceDiv.className = 'flex items-center justify-between bg-gray-900/50 p-2 rounded-md';
+        pieceDiv.innerHTML = `
+            <span class="font-semibold text-sm text-white">${type}</span>
+            <div class="flex items-center space-x-2">
+                <button class="artifact-refine-btn artifact-minus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">-</button>
+                <span class="artifact-refine-display font-bold text-indigo-400 w-5 text-center">+${level}</span>
+                <button class="artifact-refine-btn artifact-plus bg-gray-700 hover:bg-gray-600 rounded-full w-5 h-5 flex items-center justify-center text-base font-bold text-white" data-type="${type}">+</button>
+            </div>
+        `;
+        piecesContainer.appendChild(pieceDiv);
+    });
+
+    if (artifactSet.FullSetBonus) {
+        bonusDisplay.innerHTML = `<p class="font-semibold mb-1">Full Set Bonus:</p>${parseStats(artifactSet.FullSetBonus)}`;
+        bonusDisplay.classList.remove('hidden');
+    } else {
+        bonusDisplay.classList.add('hidden');
+    }
+}
+
 function initializeGearSlots() {
     const leftCol = document.getElementById('gear-column-left');
     const rightCol = document.getElementById('gear-column-right');
@@ -1163,6 +1254,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         initializeGearSlots();
+        initializeArtifacts();
+
+        document.getElementById('artifact-column').addEventListener('click', (e) => {
+            const button = e.target.closest('.artifact-refine-btn');
+            if (!button || !equippedArtifacts.setId) return;
+
+            const type = button.dataset.type;
+            let currentLevel = equippedArtifacts.levels[type] || 0;
+
+            if (button.classList.contains('artifact-plus')) {
+                currentLevel = Math.min(10, currentLevel + 1);
+            } else if (button.classList.contains('artifact-minus')) {
+                currentLevel = Math.max(0, currentLevel - 1);
+            }
+
+            equippedArtifacts.levels[type] = currentLevel;
+
+            const display = button.parentElement.querySelector('.artifact-refine-display');
+            if(display) display.textContent = `+${currentLevel}`;
+
+            recalculateEverything();
+            saveCurrentBuild();
+        });
+
         // --- Initialize Class Selector ---
         classSelect = document.getElementById('p_class');
         statInputs = {
@@ -1588,6 +1703,37 @@ function calculateGearBonuses() {
             }
         }
     });
+
+    // Add Artifact Set Bonuses
+    if (equippedArtifacts.setId && typeof artifactData !== 'undefined') {
+        const artifactSet = artifactData.find(set => set.SetId === equippedArtifacts.setId);
+        if (artifactSet && artifactSet.ProcessedStats) {
+            const totalRefineLevels = Object.values(equippedArtifacts.levels).reduce((sum, level) => sum + level, 0);
+
+            // Per-refine bonuses are applied for each total level across all 4 pieces
+            if (totalRefineLevels > 0) {
+                artifactSet.ProcessedStats.perRefine.forEach(stat => {
+                    if (!stat || !stat.stat) return;
+                    let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                     if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
+                    const totalValue = stat.value * totalRefineLevels;
+                    if (newGearBonuses[mappedStatName] !== undefined) {
+                        newGearBonuses[mappedStatName] += totalValue;
+                    }
+                });
+            }
+
+            // Full set bonus
+            artifactSet.ProcessedStats.fullSet.forEach(stat => {
+                if (!stat || !stat.stat) return;
+                let mappedStatName = statNameMapping[stat.stat] || stat.stat;
+                if (BASE_STATS.includes(mappedStatName.toUpperCase())) mappedStatName = mappedStatName.toUpperCase();
+                if (newGearBonuses[mappedStatName] !== undefined) {
+                    newGearBonuses[mappedStatName] += stat.value;
+                }
+            });
+        }
+    }
     gearBonuses = newGearBonuses;
 }
 
