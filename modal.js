@@ -8,15 +8,16 @@ const cancelButton = document.getElementById('custom-modal-cancel-btn');
 
 let resolvePromise;
 
-function showModal(title, content, type = 'alert', defaultValue = '') {
+function showModal(title, content, type = 'alert', defaultValue = '', showOk = true) {
     return new Promise(resolve => {
         resolvePromise = resolve;
 
         modalTitle.textContent = title;
-        modalContent.textContent = content;
+        modalContent.innerHTML = content; // Use innerHTML to allow links in content
 
         modalInput.style.display = 'none';
         cancelButton.style.display = 'inline-block';
+        okButton.style.display = 'inline-block'; // Default to visible
 
         if (type === 'prompt') {
             modalInput.style.display = 'block';
@@ -24,6 +25,10 @@ function showModal(title, content, type = 'alert', defaultValue = '') {
             modalInput.focus();
         } else if (type === 'alert') {
             cancelButton.style.display = 'none';
+        }
+
+        if (!showOk) {
+            okButton.style.display = 'none';
         }
 
         modalOverlay.style.display = 'flex';
@@ -56,8 +61,9 @@ modalOverlay.addEventListener('click', (event) => {
 });
 
 // Make functions available globally for now
-window.customAlert = (content, title = 'Alert') => {
-    return showModal(title, content, 'alert');
+window.customAlert = (content, title = 'Alert', showOk = true) => {
+    // Pass empty string for defaultValue, and the new showOk flag
+    return showModal(title, content, 'alert', '', showOk);
 };
 
 window.customConfirm = (content, title = 'Confirm') => {
