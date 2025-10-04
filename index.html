@@ -475,8 +475,9 @@
                 let p1 = 1 / equipment.pools.line1.length;
                 let p1Breakdown = `1/${equipment.pools.line1.length}`;
                 if (isPerfect) {
-                    p1 *= 1 / s1.values;
-                    p1Breakdown += ` × 1/${s1.values}`;
+                    const s1Values = (s1.max - s1.min + 1);
+                    p1 *= 1 / s1Values;
+                    p1Breakdown += ` × 1/${s1Values}`;
                 }
                 totalProb *= p1;
                 breakdown.push(`(${p1Breakdown} for ${s1.name})`);
@@ -496,9 +497,11 @@
 
                 let p23Breakdown = `1/${combinations(numGroups, 2)} for groups`;
                 if (isPerfect) {
-                    p2 *= 1 / s2.values;
-                    p3 *= 1 / s3.values;
-                    p23Breakdown += ` × (1/${s2GroupSize} × 1/${s2.values}) × (1/${s3GroupSize} × 1/${s3.values})`;
+                    const s2Values = (s2.max - s2.min + 1);
+                    const s3Values = (s3.max - s3.min + 1);
+                    p2 *= 1 / s2Values;
+                    p3 *= 1 / s3Values;
+                    p23Breakdown += ` × (1/${s2GroupSize} × 1/${s2Values}) × (1/${s3GroupSize} × 1/${s3Values})`;
                 } else {
                     p23Breakdown += ` × 1/${s2GroupSize} × 1/${s3GroupSize}`;
                 }
