@@ -668,14 +668,37 @@ async function generateShareLink() {
             return;
         }
         const compressedString = LZString.compressToEncodedURIComponent(jsonString);
-        const url = new URL(window.location.href);
-        url.search = `?build=${compressedString}`; // Replace all other params
+        const longUrl = new URL(window.location.href);
+        longUrl.search = `?build=${compressedString}`;
 
-        await navigator.clipboard.writeText(url.href);
-        await customAlert('Shareable link has been copied to your clipboard!', 'Build Shared');
+        // Show a temporary "loading" message
+        const modalContent = document.getElementById('custom-modal-content');
+        const originalContent = modalContent.innerHTML;
+        const modalTitle = document.getElementById('custom-modal-title');
+        const originalTitle = modalTitle.textContent;
+
+        customAlert("Shortening URL...", "Please Wait", false); // Don't show OK button
+
+        const response = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl.href)}`);
+
+        if (!response.ok) {
+            throw new Error(`TinyURL API failed with status: ${response.status}`);
+        }
+
+        const shortUrl = await response.text();
+
+        await navigator.clipboard.writeText(shortUrl);
+        await customAlert(`Shortened link copied to clipboard:<br><a href="${shortUrl}" target="_blank" class="text-indigo-400 underline">${shortUrl}</a>`, 'Build Shared');
+
     } catch (err) {
         console.error('Failed to create or copy share link:', err);
-        await customAlert('Could not copy the share link. You may need to grant clipboard permissions.', 'Error');
+        await customAlert('Could not create a shortened link. The long link has been copied instead.', 'URL Shortener Failed');
+        // Fallback to copying the long URL if the shortener fails
+        const longUrl = new URL(window.location.href);
+        const buildData = getCurrentBuildData();
+        const compressedString = LZString.compressToEncodedURIComponent(JSON.stringify(buildData));
+        longUrl.search = `?build=${compressedString}`;
+        await navigator.clipboard.writeText(longUrl.href);
     }
 }
 
@@ -1488,22 +1511,48 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- Initialize Core Functionality ---
         initializeMonsterSearch();
 
+        // Always initialize builds from cookies first.
+        initializeBuilds();
+
         const urlParams = new URLSearchParams(window.location.search);
         const sharedBuildData = urlParams.get('build');
 
         if (sharedBuildData && typeof LZString !== 'undefined') {
+            // If a shared build is in the URL, try to import it into a new tab.
             try {
-                const decompressed = LZString.decompressFromEncodedURIComponent(sharedBuildData);
-                const buildObject = JSON.parse(decompressed);
-                // Initialize builds but don't load from cookie, as we're loading from URL
-                initializeBuilds(false);
-                loadBuildFromData(buildObject);
+                if (builds.length >= MAX_BUILDS) {
+                    customAlert(`Cannot import shared build because you have reached the maximum of ${MAX_BUILDS} builds.`, 'Import Failed');
+                } else {
+                    const decompressed = LZString.decompressFromEncodedURIComponent(sharedBuildData);
+                    const buildObject = JSON.parse(decompressed);
+
+                    // Create a new build tab for the imported data
+                    const newBuildName = 'Copied Build';
+                    builds.push({ name: newBuildName });
+                    saveBuildsMetadata();
+
+                    const newIndex = builds.length - 1;
+
+                    // Switch to the new tab. This will make it active and render the tabs.
+                    // We set shouldLoadBuild to false because we are about to load data from the URL, not from a cookie.
+                    switchBuild(newIndex, false);
+
+                    // Now load the data from the URL into the new, active tab
+                    loadBuildFromData(buildObject);
+
+                    // The name is part of the build data saved in the cookie.
+                    // loadBuildFromData does not set the name. We need to ensure the saved data has the new name.
+                    const currentData = getCurrentBuildData();
+                    currentData.name = newBuildName;
+                    setCookie(`build_${newIndex}`, JSON.stringify(currentData), 365);
+
+                    customAlert(`The shared build has been imported into a new tab named "${newBuildName}".`, 'Build Imported');
+                }
+
             } catch (e) {
-                console.error("Failed to load build from URL, falling back to default.", e);
-                initializeBuilds(); // Fallback to normal loading
+                console.error("Failed to load build from URL.", e);
+                customAlert("Could not import the shared build. The link may be corrupted.", "Import Failed");
             }
-        } else {
-            initializeBuilds(); // Normal cookie-based loading
         }
 
 
