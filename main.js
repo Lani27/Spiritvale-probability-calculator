@@ -621,7 +621,8 @@ window.equipItem = function(slotId, equipmentId) {
     equippedGear[slotId] = {
         itemId: equipmentId,
         refine: 0,
-        cards: new Array(item.CardSlots || 0).fill(null)
+        cards: new Array(item.CardSlots || 0).fill(null),
+        selectedStats: []
     };
 
     if (slotId === 'weapon' && item.Type === 'Bow') {
@@ -658,15 +659,33 @@ window.unequipItem = function(slotId) {
     recalculateEverything();
 }
 
-function loadBuild(index) {
-    const buildDataString = getCookie(`build_${index}`);
-    if (!buildDataString) {
-        document.getElementById('p_class').dispatchEvent(new Event('change'));
+async function generateShareLink() {
+    try {
+        const buildData = getCurrentBuildData();
+        const jsonString = JSON.stringify(buildData);
+        if (typeof LZString === 'undefined') {
+            await customAlert('Compression library is not available.', 'Error');
+            return;
+        }
+        const compressedString = LZString.compressToEncodedURIComponent(jsonString);
+        const url = new URL(window.location.href);
+        url.search = `?build=${compressedString}`; // Replace all other params
+
+        await navigator.clipboard.writeText(url.href);
+        await customAlert('Shareable link has been copied to your clipboard!', 'Build Shared');
+    } catch (err) {
+        console.error('Failed to create or copy share link:', err);
+        await customAlert('Could not copy the share link. You may need to grant clipboard permissions.', 'Error');
+    }
+}
+
+function loadBuildFromData(buildData) {
+    if (!buildData) {
+        console.error("loadBuildFromData called with null or undefined data.");
+        resetToDefaults();
         return;
     }
-
     try {
-        const buildData = JSON.parse(buildDataString);
         allInputIds.forEach(id => {
             const element = document.getElementById(id);
             if (element && buildData[id] !== undefined) {
@@ -735,17 +754,35 @@ function loadBuild(index) {
         recalculateEverything();
 
     } catch (e) {
+        console.error("Failed to apply build data. Resetting to defaults.", e);
+        resetToDefaults();
+    }
+}
+
+function loadBuild(index) {
+    const buildDataString = getCookie(`build_${index}`);
+    if (!buildDataString) {
+        document.getElementById('p_class').dispatchEvent(new Event('change'));
+        return;
+    }
+
+    try {
+        const buildData = JSON.parse(buildDataString);
+        loadBuildFromData(buildData);
+    } catch (e) {
         console.error("Failed to parse build data from cookie. Resetting to defaults.", e);
         deleteCookie(`build_${index}`);
         resetToDefaults();
     }
 }
 
-function switchBuild(index) {
+function switchBuild(index, shouldLoadBuild = true) {
     if (index < 0 || index >= builds.length) return;
     activeBuildIndex = index;
     setCookie('activeBuildIndex', activeBuildIndex, 365);
-    loadBuild(index);
+    if (shouldLoadBuild) {
+        loadBuild(index);
+    }
     renderBuildTabs();
 }
 
@@ -789,7 +826,7 @@ function renderBuildTabs() {
     }
 }
 
-function initializeBuilds() {
+function initializeBuilds(shouldLoadBuild = true) {
     const savedBuildsMeta = getCookie('buildsMetadata');
     if (savedBuildsMeta) {
         try {
@@ -809,7 +846,7 @@ function initializeBuilds() {
     const savedActiveBuildIndex = getCookie('activeBuildIndex');
     activeBuildIndex = (savedActiveBuildIndex !== null && parseInt(savedActiveBuildIndex, 10) < builds.length) ? parseInt(savedActiveBuildIndex, 10) : 0;
 
-    switchBuild(activeBuildIndex);
+    switchBuild(activeBuildIndex, shouldLoadBuild);
 }
 
 async function handleReset() {
@@ -1450,11 +1487,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // --- Initialize Core Functionality ---
         initializeMonsterSearch();
-        initializeBuilds();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const sharedBuildData = urlParams.get('build');
+
+        if (sharedBuildData && typeof LZString !== 'undefined') {
+            try {
+                const decompressed = LZString.decompressFromEncodedURIComponent(sharedBuildData);
+                const buildObject = JSON.parse(decompressed);
+                // Initialize builds but don't load from cookie, as we're loading from URL
+                initializeBuilds(false);
+                loadBuildFromData(buildObject);
+            } catch (e) {
+                console.error("Failed to load build from URL, falling back to default.", e);
+                initializeBuilds(); // Fallback to normal loading
+            }
+        } else {
+            initializeBuilds(); // Normal cookie-based loading
+        }
+
 
         // --- Initialize Listeners for Calculations & UI Toggles ---
         document.getElementById('reset-build-btn').addEventListener('click', handleReset);
         document.getElementById('copy-build-btn').addEventListener('click', copyAndCreateNewBuild);
+        document.getElementById('share-build-btn').addEventListener('click', generateShareLink);
 
         // Stat Selection Modal Listeners
         document.getElementById('stat-selection-save-btn').addEventListener('click', saveSelectedStats);
