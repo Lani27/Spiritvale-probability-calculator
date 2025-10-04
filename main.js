@@ -1511,22 +1511,48 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- Initialize Core Functionality ---
         initializeMonsterSearch();
 
+        // Always initialize builds from cookies first.
+        initializeBuilds();
+
         const urlParams = new URLSearchParams(window.location.search);
         const sharedBuildData = urlParams.get('build');
 
         if (sharedBuildData && typeof LZString !== 'undefined') {
+            // If a shared build is in the URL, try to import it into a new tab.
             try {
-                const decompressed = LZString.decompressFromEncodedURIComponent(sharedBuildData);
-                const buildObject = JSON.parse(decompressed);
-                // Initialize builds but don't load from cookie, as we're loading from URL
-                initializeBuilds(false);
-                loadBuildFromData(buildObject);
+                if (builds.length >= MAX_BUILDS) {
+                    customAlert(`Cannot import shared build because you have reached the maximum of ${MAX_BUILDS} builds.`, 'Import Failed');
+                } else {
+                    const decompressed = LZString.decompressFromEncodedURIComponent(sharedBuildData);
+                    const buildObject = JSON.parse(decompressed);
+
+                    // Create a new build tab for the imported data
+                    const newBuildName = 'Copied Build';
+                    builds.push({ name: newBuildName });
+                    saveBuildsMetadata();
+
+                    const newIndex = builds.length - 1;
+
+                    // Switch to the new tab. This will make it active and render the tabs.
+                    // We set shouldLoadBuild to false because we are about to load data from the URL, not from a cookie.
+                    switchBuild(newIndex, false);
+
+                    // Now load the data from the URL into the new, active tab
+                    loadBuildFromData(buildObject);
+
+                    // The name is part of the build data saved in the cookie.
+                    // loadBuildFromData does not set the name. We need to ensure the saved data has the new name.
+                    const currentData = getCurrentBuildData();
+                    currentData.name = newBuildName;
+                    setCookie(`build_${newIndex}`, JSON.stringify(currentData), 365);
+
+                    customAlert(`The shared build has been imported into a new tab named "${newBuildName}".`, 'Build Imported');
+                }
+
             } catch (e) {
-                console.error("Failed to load build from URL, falling back to default.", e);
-                initializeBuilds(); // Fallback to normal loading
+                console.error("Failed to load build from URL.", e);
+                customAlert("Could not import the shared build. The link may be corrupted.", "Import Failed");
             }
-        } else {
-            initializeBuilds(); // Normal cookie-based loading
         }
 
 
