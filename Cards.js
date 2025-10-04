@@ -1980,17 +1980,6 @@ window.cardData = [
         "SpriteId": "card"
     },
     {
-        "Name": "Wraith Card",
-        "CardId": "Wraith",
-        "Affix": "Reaper",
-        "Slot": "Eyewear",
-        "Stats": "Health leech chance: <color=#AAFF00FF>+10%</color>\nHealth leech power: <color=#AAFF00FF>+5%</color>",
-        "Source": "Wraith",
-        "Droprate": "300%",
-        "Location": "Dark Fortress",
-        "SpriteId": "card_gold"
-    },
-    {
         "Name": "Zombie Goblin Giant Card",
         "CardId": "Zombie Goblin Giant",
         "Affix": "Undead",
@@ -2035,3 +2024,4 @@ window.cardData = [
         "SpriteId": "card"
     }
 ];
+
