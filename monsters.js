@@ -1,4 +1,4 @@
-const monsters = [
+window.monsters = [
   {
     "MonsterName": "Alien Big Blink",
     "IsBoss": true,

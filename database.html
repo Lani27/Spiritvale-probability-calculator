@@ -199,20 +199,43 @@
     <!-- Tooltip Element -->
     <div id="tooltip"></div>
     <script src="sidebar.js" defer></script>
-    <script src="Equipment.js" defer></script>
-    <script src="Cards.js" defer></script>
-    <script src="Artifacts.js" defer></script>
-    <script src="monsters.js" defer></script>
-    <script src="Maps.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Data is now loaded from the deferred scripts above.
-            // Assign 'monsters' from monsters.js to 'monsterData' for compatibility with existing code.
-            const monsterData = monsters;
+            // --- GLOBAL DATA REFERENCES & STATE ---
+            // These will be populated by the dynamically loaded scripts.
+            window.equipmentData = [];
+            window.cardData = [];
+            window.artifactData = [];
+            window.monsterData = [];
+            window.mapData = [];
+
+            const loadedScripts = new Set();
+            const initializedSections = new Set();
+
+            // --- DYNAMIC SCRIPT LOADER ---
+            function loadScript(src) {
+                if (loadedScripts.has(src)) {
+                    return Promise.resolve();
+                }
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.defer = true;
+                    script.onload = () => {
+                        console.log(`${src} loaded.`);
+                        loadedScripts.add(src);
+                        resolve();
+                    };
+                    script.onerror = () => {
+                        console.error(`Failed to load script: ${src}`);
+                        reject(new Error(`Script load error for ${src}`));
+                    };
+                    document.head.appendChild(script);
+                });
+            }
 
             try {
-                // --- UTILITY FUNCTIONS ---
-
+                // --- UTILITY FUNCTIONS (No data dependencies) ---
                 const elementColors = {
                     "Neutral": "#FFFFFFFF",
                     "Poison": "#8CD470FF",
@@ -252,14 +275,15 @@
                 }
 
                 function findShortestPath(startMapId, endMapId) {
+                    if (!window.mapData || window.mapData.length === 0) return null;
                     if (startMapId === endMapId) {
-                        const map = mapData.find(m => m.Id === startMapId);
+                        const map = window.mapData.find(m => m.Id === startMapId);
                         return map ? [map.Name] : [];
                     }
 
                     const queue = [[startMapId, [startMapId]]];
                     const visited = new Set([startMapId]);
-                    const mapIdToName = mapData.reduce((acc, map) => {
+                    const mapIdToName = window.mapData.reduce((acc, map) => {
                         acc[map.Id] = map.Name;
                         return acc;
                     }, {});
@@ -267,7 +291,7 @@
                     while (queue.length > 0) {
                         const [currentMapId, path] = queue.shift();
 
-                        const currentMapData = mapData.find(m => m.Id === currentMapId);
+                        const currentMapData = window.mapData.find(m => m.Id === currentMapId);
                         if (!currentMapData || !currentMapData.Exits) continue;
 
                         for (const neighborMapId of currentMapData.Exits) {
@@ -370,7 +394,7 @@
                         const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
                         const prefixMatch = source.match(/^(Rune - |Gem - |Relic - |Scroll - )/);
                         const prefix = prefixMatch ? prefixMatch[0] : '';
-                        const displayName = prefix + getMonsterNameHTML(monsterName, monsterData);
+                        const displayName = prefix + getMonsterNameHTML(monsterName, window.monsterData);
 
                         let droprate = droprates[index] || '';
                         // Cards have a special droprate format. We identify cards by their theme color.
@@ -410,7 +434,7 @@
                     return `
                         <div class="bg-gray-800/70 rounded-md border border-gray-700/50 p-2 flex flex-col">
                             <div class="flex items-center gap-3">
-                                <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-8 h-8 rounded-sm bg-gray-700 flex-shrink-0" onerror="this.onerror=null;this.src='https.placehold.co/32x32/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
+                                <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-8 h-8 rounded-sm bg-gray-700 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/32x32/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
                                 <div class="flex-1">
                                     <h4 class="font-semibold text-sm text-white leading-tight">${item.Name}</h4>
                                     <p class="text-xs text-gray-400">${item.Type}</p>
@@ -431,7 +455,7 @@
                         return `
                             <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10" style="width: 420px;">
                                 <div class="flex items-start mb-3">
-                                    <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" onerror="this.onerror=null;this.src='https.placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
+                                    <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
                                     <div class="flex-1">
                                         <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
                                         <div class="mt-1 flex items-center flex-wrap">
@@ -498,13 +522,15 @@
 
                 function renderEquipmentList(data) {
                     const container = document.getElementById('equipment-list');
-                    const itemsToRender = data || equipmentData;
+                    container.innerHTML = ''; // Clear previous content
+                    if (!window.equipmentData || window.equipmentData.length === 0) return;
+                    const itemsToRender = data || window.equipmentData;
                     container.innerHTML = `
                         <div class="grid grid-cols-[repeat(auto-fill,minmax(420px,1fr))] gap-4">
                             ${itemsToRender.map(item => `
                                 <div data-item-name="${item.Name}" class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10">
                                     <div class="flex items-start mb-3">
-                                        <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" onerror="this.onerror=null;this.src='https.placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
+                                        <img src="Sprites/Equipment/${item.SpriteId}.png" alt="${item.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/7c3aed?text=${item.Name.substring(0,1)}';">
                                         <div class="flex-1">
                                             <h3 class="font-bold text-lg text-white leading-tight">${item.Name}</h3>
                                             <div class="mt-1 flex items-center flex-wrap">
@@ -537,7 +563,9 @@
 
                 function renderCardsList(data) {
                     const container = document.getElementById('cards-list');
-                    const itemsToRender = data || cardData;
+                    container.innerHTML = '';
+                    if (!window.cardData || window.cardData.length === 0) return;
+                    const itemsToRender = data || window.cardData;
                     container.innerHTML = `
                         <div class="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4">
                             ${itemsToRender.map(card => `
@@ -566,7 +594,9 @@
 
                 function renderArtifactsList(data) {
                     const container = document.getElementById('artifacts-list');
-                    const itemsToRender = data || artifactData;
+                    container.innerHTML = '';
+                    if (!window.artifactData || window.artifactData.length === 0) return;
+                    const itemsToRender = data || window.artifactData;
                     container.innerHTML = `
                         <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-4">
                             ${itemsToRender.map(artifact => `
@@ -592,7 +622,9 @@
 
                 function renderMonstersList(data) {
                     const container = document.getElementById('monsters-list');
-                    const itemsToRender = data || monsterData;
+                    container.innerHTML = '';
+                    if (!window.monsterData || window.monsterData.length === 0) return;
+                    const itemsToRender = data || window.monsterData;
 
                     const sortIndicator = levelSortDirection === 'asc' ? '▲' : '▼';
                     const levelHeader = `Level <span class="text-red-400 ml-1">${sortIndicator}</span>`;
@@ -628,7 +660,9 @@
 
                 function renderMapsList(data) {
                     const container = document.getElementById('maps-list');
-                    const itemsToRender = data || mapData;
+                    container.innerHTML = '';
+                    if (!window.mapData || window.mapData.length === 0) return;
+                    const itemsToRender = data || window.mapData;
                     container.innerHTML = `
                         <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 overflow-hidden">
                             <table class="w-full text-left">
@@ -660,13 +694,13 @@
                 const monsterModalFindBtn = document.getElementById('monster-modal-find-btn');
 
                 function openMonsterModal(monsterName) {
-                    const monster = monsterData.find(m => m.MonsterName === monsterName);
+                    const monster = window.monsterData.find(m => m.MonsterName === monsterName);
                     if (!monster) return;
 
-                    document.getElementById('monster-modal-name').innerHTML = getMonsterNameHTML(monster.MonsterName, monsterData);
+                    document.getElementById('monster-modal-name').innerHTML = getMonsterNameHTML(monster.MonsterName, window.monsterData);
 
                     // --- Route Data Setup ---
-                    const monsterMapInfo = mapData.find(m => m.Name === monster.Map);
+                    const monsterMapInfo = window.mapData.find(m => m.Name === monster.Map);
                     if (monsterMapInfo) {
                         monsterModalFindBtn.setAttribute('data-monster-map-id', monsterMapInfo.Id);
                         monsterModalFindBtn.setAttribute('data-monster-map-name', monster.Map);
@@ -764,9 +798,9 @@
 
                     // Find all loot for this monster
                     const allItems = [
-                        ...equipmentData.map(item => ({ ...item, itemType: 'Equipment', themeColor: 'indigo' })),
-                        ...cardData.map(item => ({ ...item, itemType: 'Card', themeColor: 'purple' })),
-                        ...artifactData.map(item => ({ ...item, itemType: 'Artifact', themeColor: 'teal' }))
+                        ...window.equipmentData.map(item => ({ ...item, itemType: 'Equipment', themeColor: 'indigo' })),
+                        ...window.cardData.map(item => ({ ...item, itemType: 'Card', themeColor: 'purple' })),
+                        ...window.artifactData.map(item => ({ ...item, itemType: 'Artifact', themeColor: 'teal' }))
                     ];
 
                     const lootItems = [];
@@ -835,37 +869,39 @@
 
                 // --- FILTERING AND SEARCHING LOGIC ---
                 function applyFiltersAndSearch() {
-                    // Equipment
-                    const equipmentSearchTerm = document.getElementById('equipment-search').value.toLowerCase();
-                    const equipmentTypeFilter = document.getElementById('equipment-type-filter').value;
-                    let filteredEquipment = equipmentData;
+                    const activeSectionId = document.querySelector('.content-section:not(.hidden)').id;
 
-                    if (equipmentTypeFilter !== 'all') {
-                        filteredEquipment = filteredEquipment.filter(item => item.Type === equipmentTypeFilter);
-                    }
-                    if (equipmentSearchTerm) {
-                        filteredEquipment = filteredEquipment.filter(item => {
-                            const searchIn = [item.Name, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
-                            return searchIn.includes(equipmentSearchTerm);
-                        });
-                    }
-                    renderEquipmentList(filteredEquipment);
+                    if (activeSectionId === 'equipment') {
+                        const equipmentSearchTerm = document.getElementById('equipment-search').value.toLowerCase();
+                        const equipmentTypeFilter = document.getElementById('equipment-type-filter').value;
+                        let filteredEquipment = window.equipmentData;
 
-                    // Cards
-                    const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
-                    const cardSlotFilter = document.getElementById('card-slot-filter').value;
-                    let filteredCards = cardData;
+                        if (equipmentTypeFilter !== 'all') {
+                            filteredEquipment = filteredEquipment.filter(item => item.Type === equipmentTypeFilter);
+                        }
+                        if (equipmentSearchTerm) {
+                            filteredEquipment = filteredEquipment.filter(item => {
+                                const searchIn = [item.Name, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
+                                return searchIn.includes(equipmentSearchTerm);
+                            });
+                        }
+                        renderEquipmentList(filteredEquipment);
+                    } else if (activeSectionId === 'cards') {
+                        const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
+                        const cardSlotFilter = document.getElementById('card-slot-filter').value;
+                        let filteredCards = window.cardData;
 
-                    if (cardSlotFilter !== 'all') {
-                        filteredCards = filteredCards.filter(item => item.Slot === cardSlotFilter);
+                        if (cardSlotFilter !== 'all') {
+                            filteredCards = filteredCards.filter(item => item.Slot === cardSlotFilter);
+                        }
+                        if (cardSearchTerm) {
+                            filteredCards = filteredCards.filter(item => {
+                                const searchIn = [item.Name, item.Stats, item.Source, item.Location, item.Affix, item.Slot].join(' ').toLowerCase();
+                                return searchIn.includes(cardSearchTerm);
+                            });
+                        }
+                        renderCardsList(filteredCards);
                     }
-                    if (cardSearchTerm) {
-                        filteredCards = filteredCards.filter(item => {
-                            const searchIn = [item.Name, item.Stats, item.Source, item.Location, item.Affix, item.Slot].join(' ').toLowerCase();
-                            return searchIn.includes(cardSearchTerm);
-                        });
-                    }
-                    renderCardsList(filteredCards);
                 }
 
                 function applyMonsterFiltersAndSearch() {
@@ -902,72 +938,98 @@
                     renderMonstersList(filteredMonsters);
                 }
 
-                // --- POST-DATA-LOAD INITIALIZATION ---
+                // --- SECTION INITIALIZATION LOGIC ---
 
-                // Populate filters
-                const equipmentTypeFilter = document.getElementById('equipment-type-filter');
-                const uniqueEquipmentTypes = [...new Set(equipmentData.map(item => item.Type))].sort();
-                uniqueEquipmentTypes.forEach(type => {
-                    const option = document.createElement('option');
-                    option.value = type;
-                    option.textContent = type;
-                    equipmentTypeFilter.appendChild(option);
-                });
-
-                const cardSlotFilter = document.getElementById('card-slot-filter');
-                const uniqueCardSlots = [...new Set(cardData.map(item => item.Slot))].sort();
-                uniqueCardSlots.forEach(slot => {
-                    const option = document.createElement('option');
-                    option.value = slot;
-                    option.textContent = slot;
-                    cardSlotFilter.appendChild(option);
-                });
-
-                const monsterElementFilter = document.getElementById('monster-element-filter');
-                const uniqueElements = [...new Set(monsterData.map(m => m.Element))].sort();
-                uniqueElements.forEach(element => {
-                    if(element) {
+                function initializeEquipmentSection() {
+                    if (initializedSections.has('equipment')) return;
+                    // Populate filters
+                    const equipmentTypeFilter = document.getElementById('equipment-type-filter');
+                    const uniqueEquipmentTypes = [...new Set(window.equipmentData.map(item => item.Type))].sort();
+                    uniqueEquipmentTypes.forEach(type => {
                         const option = document.createElement('option');
-                        option.value = element;
-                        option.textContent = element;
-                        monsterElementFilter.appendChild(option);
-                    }
-                });
+                        option.value = type;
+                        option.textContent = type;
+                        equipmentTypeFilter.appendChild(option);
+                    });
+                    renderEquipmentList();
+                    initializedSections.add('equipment');
+                }
 
-                const monsterMapFilter = document.getElementById('monster-map-filter');
-                const uniqueMaps = [...new Set(monsterData.map(m => m.Map))].sort();
-                uniqueMaps.forEach(map => {
-                    if(map){
+                function initializeCardsSection() {
+                    if (initializedSections.has('cards')) return;
+                    const cardSlotFilter = document.getElementById('card-slot-filter');
+                    const uniqueCardSlots = [...new Set(window.cardData.map(item => item.Slot))].sort();
+                    uniqueCardSlots.forEach(slot => {
                         const option = document.createElement('option');
-                        option.value = map;
-                        option.textContent = map;
-                        monsterMapFilter.appendChild(option);
-                    }
-                });
+                        option.value = slot;
+                        option.textContent = slot;
+                        cardSlotFilter.appendChild(option);
+                    });
+                    renderCardsList();
+                    initializedSections.add('cards');
+                }
 
-                // Initial render
-                renderEquipmentList();
-                renderCardsList();
-                renderArtifactsList();
-                renderMonstersList();
-                renderMapsList();
+                function initializeArtifactsSection() {
+                    if (initializedSections.has('artifacts')) return;
+                    renderArtifactsList();
+                    initializedSections.add('artifacts');
+                }
+
+                function initializeMonstersSection() {
+                    if (initializedSections.has('monsters')) return;
+                    window.monsterData = window.monsters; // Keep this for now to be safe
+                    const monsterElementFilter = document.getElementById('monster-element-filter');
+                    const uniqueElements = [...new Set(window.monsterData.map(m => m.Element))].sort();
+                    uniqueElements.forEach(element => {
+                        if(element) {
+                            const option = document.createElement('option');
+                            option.value = element;
+                            option.textContent = element;
+                            monsterElementFilter.appendChild(option);
+                        }
+                    });
+
+                    const monsterMapFilter = document.getElementById('monster-map-filter');
+                    const uniqueMaps = [...new Set(window.monsterData.map(m => m.Map))].sort();
+                    uniqueMaps.forEach(map => {
+                        if(map){
+                            const option = document.createElement('option');
+                            option.value = map;
+                            option.textContent = map;
+                            monsterMapFilter.appendChild(option);
+                        }
+                    });
+                    renderMonstersList();
+                    initializedSections.add('monsters');
+                }
+
+                function initializeMapsSection() {
+                    if (initializedSections.has('maps')) return;
+                    renderMapsList();
+                    initializedSections.add('maps');
+                }
+
 
                 const contentSections = document.querySelectorAll('.content-section');
                 const tooltip = document.getElementById('tooltip');
 
                 // --- HASH-BASED NAVIGATION ---
-                let pendingSearch = null; // Variable to hold search info during navigation
-                let pendingHighlight = null; // Variable to hold highlight info during navigation
+                let pendingHighlight = null;
 
-                function showSectionBasedOnHash() {
-                    console.log('showSectionBasedOnHash triggered. pendingHighlight is:', pendingHighlight);
+                async function showSectionBasedOnHash() {
                     let targetId = window.location.hash.substring(1);
                     if (!targetId || !document.getElementById(targetId)) {
                         targetId = 'equipment';
-                        // Update hash to reflect default view
                         if (window.location.pathname.endsWith('database.html') && !window.location.hash) {
                             history.replaceState(null, '', '#equipment');
                         }
+                    }
+
+                    // Show loading indicator
+                    const sectionContainer = document.getElementById(targetId);
+                    const listContainer = sectionContainer.querySelector('[id$="-list"]');
+                    if (listContainer && listContainer.innerHTML === '') {
+                        listContainer.innerHTML = '<p class="text-center text-gray-400">Loading data...</p>';
                     }
 
                     // Toggle content visibility
@@ -975,35 +1037,71 @@
                         section.classList.toggle('hidden', section.id !== targetId);
                     });
 
-                    // If there's a pending highlight after a navigation, execute it now.
-                    if (pendingHighlight && pendingHighlight.itemName) {
-                        // Need to escape special characters for querySelector, especially quotes.
-                        const itemName = pendingHighlight.itemName.replace(/"/g, '\\"');
-                        const sectionElement = document.getElementById(targetId);
-
-                        if (!sectionElement) {
-                            pendingHighlight = null;
-                            return;
+                    // Define data dependencies for each section
+                    const sectionDependencies = {
+                        equipment: {
+                            scripts: ['Equipment.js', 'monsters.js', 'Maps.js'],
+                            init: initializeEquipmentSection
+                        },
+                        cards: {
+                            scripts: ['Cards.js', 'monsters.js', 'Maps.js'],
+                            init: initializeCardsSection
+                        },
+                        artifacts: {
+                            scripts: ['Artifacts.js', 'monsters.js', 'Maps.js'],
+                            init: initializeArtifactsSection
+                        },
+                        monsters: {
+                             scripts: ['monsters.js', 'Maps.js', 'Equipment.js', 'Cards.js', 'Artifacts.js'],
+                             init: initializeMonstersSection
+                        },
+                        maps: {
+                             scripts: ['Maps.js', 'monsters.js'],
+                             init: initializeMapsSection
                         }
-                        const targetElement = sectionElement.querySelector(`[data-item-name="${itemName}"]`);
+                    };
+
+                    // Load required scripts and initialize the section
+                    const deps = sectionDependencies[targetId];
+                    if (deps) {
+                        try {
+                            await Promise.all(deps.scripts.map(loadScript));
+                            // Once scripts are loaded, the global data variables (e.g., window.equipmentData) are available
+                            deps.init();
+                             // Re-assign monsterData if it's a dependency, as it's named differently in its script
+                            if(deps.scripts.includes('monsters.js') && !initializedSections.has('monsters')) {
+                                window.monsterData = window.monsters;
+                            }
+                        } catch (error) {
+                            console.error(`Initialization failed for section: ${targetId}`, error);
+                            if (listContainer) {
+                                listContainer.innerHTML = `<p class="text-center text-red-400">Error loading data for this section.</p>`;
+                            }
+                            return; // Stop further processing for this section
+                        }
+                    }
+
+
+                    // Handle pending highlights
+                    if (pendingHighlight && pendingHighlight.itemName) {
+                        const itemName = pendingHighlight.itemName.replace(/"/g, '\\"');
+                        const targetElement = sectionContainer.querySelector(`[data-item-name="${itemName}"]`);
 
                         if (targetElement) {
                             targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                             targetElement.classList.add('highlight-effect');
-
-                            setTimeout(() => {
-                                targetElement.classList.remove('highlight-effect');
-                            }, 2000); // Highlight duration
+                            setTimeout(() => targetElement.classList.remove('highlight-effect'), 2000);
                         }
-                        pendingHighlight = null; // Reset after use
+                        pendingHighlight = null;
                     }
                 }
 
+                // Initial page load and hash change listener
                 showSectionBasedOnHash();
                 window.addEventListener('hashchange', showSectionBasedOnHash);
 
 
-                // Filter and Search event listeners
+                // Filter and Search event listeners (now generic)
                 document.getElementById('equipment-search').addEventListener('input', applyFiltersAndSearch);
                 document.getElementById('equipment-type-filter').addEventListener('change', applyFiltersAndSearch);
                 document.getElementById('cards-search').addEventListener('input', applyFiltersAndSearch);
@@ -1011,7 +1109,7 @@
 
                 document.getElementById('artifacts-search').addEventListener('keyup', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
-                    const filteredData = artifactData.filter(item => {
+                    const filteredData = window.artifactData.filter(item => {
                         const searchIn = [
                             item.SetName, item.PerPieceBonus, item.PerRefineBonus,
                             item.FullSetBonus, item.Source, item.Location
@@ -1027,7 +1125,7 @@
 
                 document.getElementById('maps-search').addEventListener('input', (e) => {
                     const searchTerm = e.target.value.toLowerCase();
-                    const filteredData = mapData.filter(item => {
+                    const filteredData = window.mapData.filter(item => {
                         const monsterList = item.Monsters ? item.Monsters.join(' ') : '';
                         const searchIn = [
                             item.Name, monsterList
@@ -1040,19 +1138,10 @@
                 // Logic to keep search bar expanded if it has content
                 const searchInputs = document.querySelectorAll('.search-input');
                 searchInputs.forEach(input => {
-                    // Function to toggle the 'expanded' class
                     const checkSearchContent = () => {
-                        if (input.value) {
-                            input.classList.add('expanded');
-                        } else {
-                            input.classList.remove('expanded');
-                        }
+                        input.classList.toggle('expanded', !!input.value);
                     };
-
-                    // Check on input event
                     input.addEventListener('input', checkSearchContent);
-
-                    // Also check on page load in case of autofill
                     checkSearchContent();
                 });
 
@@ -1069,7 +1158,7 @@
                     if (nameLink) {
                         const monsterName = nameLink.getAttribute('data-monster-name');
                         openMonsterModal(monsterName);
-                        return; // Prioritize name link click
+                        return;
                     }
 
                     const sortHeader = e.target.closest('#monster-level-sort');
@@ -1115,22 +1204,13 @@
                             const section = sectionMap[itemType];
                             if (section) {
                                 closeMonsterModal();
-
-                                // Set up the pending highlight object
-                                pendingHighlight = {
-                                    itemName: itemName
-                                };
-                                console.log('pendingHighlight set:', pendingHighlight);
-
+                                pendingHighlight = { itemName: itemName };
                                 const targetHash = `#${section.hash}`;
-                                // If we are already on the correct section, the hash won't change,
-                                // so the 'hashchange' event won't fire. We need to trigger the
-                                // highlight logic manually in this case.
+
                                 if (window.location.hash === targetHash) {
                                     showSectionBasedOnHash();
                                 } else {
-                                    // Otherwise, changing the hash will trigger the event listener.
-                                    window.location.hash = section.hash;
+                                    window.location.hash = targetHash;
                                 }
                             }
                         }
@@ -1151,16 +1231,16 @@
                         if (mapId && mapName) {
                             const path = findShortestPath('Nevaris', mapId);
                             content = renderRoute(path, mapName);
-                            tooltip.style.padding = '10px'; // Ensure standard padding
+                            tooltip.style.padding = '10px';
                             displayTooltip = true;
                         }
                     } else if (target.classList.contains('monster-link')) {
                         const monsterName = target.getAttribute('data-monster-name');
                         const droprate = target.getAttribute('data-droprate');
                         const location = target.getAttribute('data-location');
-                        const monsterInfo = monsterData.find(m => m.MonsterName === monsterName);
+                        const monsterInfo = window.monsterData.find(m => m.MonsterName === monsterName);
 
-                        content = `<h4 class="font-bold text-white text-base mb-2">${getMonsterNameHTML(monsterName, monsterData)}</h4>`;
+                        content = `<h4 class="font-bold text-white text-base mb-2">${getMonsterNameHTML(monsterName, window.monsterData)}</h4>`;
                         let detailsFound = false;
 
                         if (monsterInfo) {
@@ -1185,15 +1265,11 @@
                     } else if (target.classList.contains('set-tooltip')) {
                         const setName = target.getAttribute('data-set-name');
                         const setBonus = decodeURIComponent(target.getAttribute('data-set-bonus'));
-
-                        // Find all items in the set
-                        const setItems = equipmentData.filter(item => item.Set === setName);
+                        const setItems = window.equipmentData.filter(item => item.Set === setName);
 
                         let itemsHtml = '';
                         if (setItems.length > 0) {
-                            const previewsHtml = setItems.map(item => {
-                                return generateItemPreviewCardHTML(item);
-                            }).join('');
+                            const previewsHtml = setItems.map(generateItemPreviewCardHTML).join('');
                             itemsHtml = `<div class="p-4 bg-gray-800/70 rounded-lg border border-gray-700/50"><div class="grid grid-cols-2 gap-2">${previewsHtml}</div></div>`;
                         }
 
@@ -1208,13 +1284,8 @@
                         }
 
                         if (itemsHtml || bonusHtml) {
-                            content = `
-                                <div class="flex flex-col gap-2" style="width: 420px;">
-                                    ${bonusHtml}
-                                    ${itemsHtml}
-                                </div>
-                            `;
-                            tooltip.style.padding = '0'; // The cards have their own padding
+                            content = `<div class="flex flex-col gap-2" style="width: 420px;">${bonusHtml}${itemsHtml}</div>`;
+                            tooltip.style.padding = '0';
                             displayTooltip = true;
                         }
                     } else if (target.classList.contains('boss-icon')) {
@@ -1229,18 +1300,16 @@
                         let itemData = null;
 
                         if (itemType === 'Equipment') {
-                            itemData = equipmentData.find(i => i.Name === itemName);
+                            itemData = window.equipmentData.find(i => i.Name === itemName);
                         } else if (itemType === 'Card') {
-                            itemData = cardData.find(i => i.Name === itemName);
+                            itemData = window.cardData.find(i => i.Name === itemName);
                         } else if (itemType === 'Artifact') {
-                            itemData = artifactData.find(i => i.SetName === itemName);
+                            itemData = window.artifactData.find(i => i.SetName === itemName);
                         }
 
                         if (itemData) {
-                            // Add itemType to the found data object as it's used by generateItemCardHTML
                             itemData.itemType = itemType;
                             content = generateItemCardHTML(itemData);
-                            // The card itself has padding, so we remove it from the tooltip container
                             tooltip.style.padding = '0';
                             displayTooltip = true;
                         }
@@ -1250,7 +1319,6 @@
                         tooltip.innerHTML = content;
                         tooltip.style.display = 'block';
                     } else {
-                        // Reset padding if no tooltip is shown or for other tooltips
                         tooltip.style.padding = '10px';
                     }
                 });
