@@ -49,7 +49,10 @@ function populateCardGrid(itemType, searchTerm = '') {
 
     const compatibleCards = window.cardData.filter(card => {
         const matchesType = card.Slot === cardSlotType;
-        const matchesSearch = searchTerm ? card.Name.toLowerCase().includes(searchTerm.toLowerCase()) : true;
+        const lowerCaseSearchTerm = searchTerm ? searchTerm.toLowerCase() : '';
+        const matchesSearch = searchTerm
+            ? (card.Name.toLowerCase().includes(lowerCaseSearchTerm) || (card.Stats && card.Stats.toLowerCase().includes(lowerCaseSearchTerm)))
+            : true;
         return matchesType && matchesSearch;
     });
 
