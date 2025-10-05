@@ -1,4 +1,4 @@
-window.mapData = [
+const mapData = [
     {
         "Id": "Castle Crypt",
         "Name": "Abyss Castle Crypt",
@@ -132,7 +132,7 @@ window.mapData = [
         "Name": "Goblin Warcamp",
         "MinLevel": 116,
         "MaxLevel": 120,
-        "Monsters": ["Goblin Warcrusher", "Goblin Warlock", "Goblin Warblade"],
+        "Monsters": ["Goblin Warlock", "Goblin Warblade", "Goblin Warcrusher"],
         "Exits": ["Goblin Village"]
     },
     {
