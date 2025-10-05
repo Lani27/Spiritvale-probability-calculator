@@ -35,9 +35,9 @@ window.cardData = [
     {
         "Name": "Ashrend Card",
         "CardId": "Alien Wreck",
-        "Affix": "Swift",
-        "Slot": "Feet",
-        "Stats": "Move Spd: <color=#AAFF00FF>+20%</color>\nMp: <color=#FF0073FF>-20%</color>",
+        "Affix": "Titan",
+        "Slot": "Chest",
+        "Stats": "<color=#FFFFFFFF>Immune to Knockback</color>",
         "Source": "Alien Wreck",
         "Droprate": "100%",
         "Location": "Night Garden",
@@ -107,6 +107,17 @@ window.cardData = [
         "Source": "Blossom",
         "Droprate": "100%",
         "Location": "Underground Cavern",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Bogbloom Card",
+        "CardId": "Alien Plant",
+        "Affix": "Resistance",
+        "Slot": "Shield",
+        "Stats": "Resistance to Bleeding: <color=#AAFF00FF>+100%</color>\nResistance to Slow: <color=#AAFF00FF>+100%</color>",
+        "Source": "Alien Plant",
+        "Droprate": "100%",
+        "Location": "Night Garden",
         "SpriteId": "card"
     },
     {
@@ -745,6 +756,17 @@ window.cardData = [
         "Source": "Eyeball Mage Red",
         "Droprate": "100%",
         "Location": "Abyss Castle Library",
+        "SpriteId": "card"
+    },
+    {
+        "Name": "Fangroot Card",
+        "CardId": "Alien Biteroot",
+        "Affix": "Resistance",
+        "Slot": "Feet",
+        "Stats": "Resistance to Bleeding: <color=#AAFF00FF>+100%</color>",
+        "Source": "Alien Biteroot",
+        "Droprate": "100%",
+        "Location": "Dark Forest",
         "SpriteId": "card"
     },
     {
@@ -1683,6 +1705,17 @@ window.cardData = [
         "SpriteId": "card_gold"
     },
     {
+        "Name": "Stormcoil Card",
+        "CardId": "Tentacles Robot",
+        "Affix": "Swift",
+        "Slot": "Feet",
+        "Stats": "Move Spd: <color=#AAFF00FF>+20%</color>\nMp: <color=#FF0073FF>-20%</color>",
+        "Source": "Tentacles Robot",
+        "Droprate": "100%",
+        "Location": "Night Garden",
+        "SpriteId": "card"
+    },
+    {
         "Name": "Sun Blossom Card",
         "CardId": "Sun Blossom",
         "Affix": "Enchanted",
@@ -2024,4 +2057,3 @@ window.cardData = [
         "SpriteId": "card"
     }
 ];
-
