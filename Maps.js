@@ -1,4 +1,4 @@
-const mapData = [
+window.mapData = [
     {
         "Id": "Castle Crypt",
         "Name": "Abyss Castle Crypt",
