@@ -356,7 +356,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": "Forest Labyrinth",
+        "Location": "Forest Field 2",
         "SpriteId": "Head_25"
     },
     {
@@ -7931,7 +7931,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": "Forest Labyrinth",
+        "Location": "Forest Field 2",
         "SpriteId": "Head_19"
     },
     {
@@ -8951,7 +8951,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": "Forest Labyrinth",
+        "Location": "Forest Field 2",
         "SpriteId": "Head_24"
     },
     {
