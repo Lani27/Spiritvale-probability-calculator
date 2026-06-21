@@ -394,7 +394,8 @@
                         const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
                         const prefixMatch = source.match(/^(Rune - |Gem - |Relic - |Scroll - )/);
                         const prefix = prefixMatch ? prefixMatch[0] : '';
-                        const displayName = prefix + getMonsterNameHTML(monsterName, window.monsterData);
+                        const monsterInfo = window.monsterData.find(m => m.MonsterName === monsterName);
+                        const displayName = prefix + (monsterInfo ? getMonsterNameHTML(monsterName, window.monsterData) : monsterName);
 
                         let droprate = droprates[index] || '';
                         // Cards have a special droprate format. We identify cards by their theme color.
@@ -402,9 +403,16 @@
                             droprate = formatCardDroprate(droprate);
                         }
 
-                        sourcesHtml += `<li class="break-words">
-                            <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}" data-droprate="${droprate}" data-location="${locations[index] || ''}">${displayName}</span>
-                        </li>`;
+                        const location = locations[index] || '';
+                        if (monsterInfo) {
+                            sourcesHtml += `<li class="break-words">
+                                <span class="monster-link font-semibold text-${themeColor}-400 cursor-pointer" data-monster-name="${monsterName}" data-droprate="${droprate}" data-location="${location}">${displayName}</span>
+                            </li>`;
+                        } else {
+                            sourcesHtml += `<li class="break-words">
+                                <span class="source-link font-semibold text-${themeColor}-400 cursor-help" data-source-name="${monsterName}" data-droprate="${droprate}" data-location="${location}">${displayName}</span>
+                            </li>`;
+                        }
                     });
                     sourcesHtml += '</ul>';
 
@@ -1219,7 +1227,7 @@
 
                 // Global Tooltip Logic
                 document.body.addEventListener('mouseover', (e) => {
-                    const target = e.target.closest('.monster-link, .set-tooltip, .boss-icon, .loot-item, #monster-modal-find-btn');
+                    const target = e.target.closest('.monster-link, .source-link, .set-tooltip, .boss-icon, .loot-item, #monster-modal-find-btn');
                     if (!target) return;
 
                     let content = '';
@@ -1259,6 +1267,27 @@
                         }
                         if (!detailsFound) {
                             content += `<p class="text-gray-500">Details not found.</p>`;
+                        }
+                        displayTooltip = true;
+
+                    } else if (target.classList.contains('source-link')) {
+                        const sourceName = target.getAttribute('data-source-name');
+                        const droprate = target.getAttribute('data-droprate');
+                        const location = target.getAttribute('data-location');
+
+                        content = `<h4 class="font-bold text-white text-base mb-2">${sourceName}</h4>`;
+                        let detailsFound = false;
+
+                        if (droprate && droprate !== 'null') {
+                            content += `<p><strong>Droprate:</strong> ${droprate}</p>`;
+                            detailsFound = true;
+                        }
+                        if (location && location !== 'null') {
+                            content += `<p><strong>Map:</strong> ${location}</p>`;
+                            detailsFound = true;
+                        }
+                        if (!detailsFound) {
+                            content += `<p class="text-gray-500">${sourceName === 'Crafted' ? 'Crafted item.' : 'Source information only.'}</p>`;
                         }
                         displayTooltip = true;
 

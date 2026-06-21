@@ -356,7 +356,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Forest Labyrinth",
         "SpriteId": "Head_25"
     },
     {
@@ -371,7 +371,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Abyss Castle Library",
         "SpriteId": "Head_43"
     },
     {
@@ -521,7 +521,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Head_18"
     },
     {
@@ -551,7 +551,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Treant Trail",
         "SpriteId": "Casual_Head_34"
     },
     {
@@ -716,7 +716,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Forgotten Depths",
         "SpriteId": "Eyewear_5"
     },
     {
@@ -926,7 +926,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Warcamp",
         "SpriteId": "V3_Head_2"
     },
     {
@@ -1151,7 +1151,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Treant Trail",
         "SpriteId": "Casual_Head_33"
     },
     {
@@ -1376,7 +1376,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Treant Trail",
         "SpriteId": "Casual_Head_59"
     },
     {
@@ -1391,7 +1391,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Sunny Meadows",
         "SpriteId": "Casual_Head_19"
     },
     {
@@ -1406,7 +1406,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Mystic Lake",
         "SpriteId": "Casual_Head_60"
     },
     {
@@ -1616,7 +1616,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Head_42"
     },
     {
@@ -1736,7 +1736,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Cave",
         "SpriteId": "Head_51"
     },
     {
@@ -2051,7 +2051,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Festering Woods",
         "SpriteId": "Eyewear_6"
     },
     {
@@ -2306,7 +2306,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Head_35"
     },
     {
@@ -2426,7 +2426,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "The Forge",
         "SpriteId": "V3_Head_20"
     },
     {
@@ -2666,7 +2666,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Swamp",
         "SpriteId": "Casual_Eyewear_18"
     },
     {
@@ -2681,7 +2681,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Head_44"
     },
     {
@@ -2831,7 +2831,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Head_16"
     },
     {
@@ -3041,7 +3041,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Fairy Glen",
         "SpriteId": "Head_15"
     },
     {
@@ -3596,7 +3596,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Sunny Meadows",
         "SpriteId": "Casual_Head_18"
     },
     {
@@ -3611,7 +3611,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Sanctum of Light",
         "SpriteId": "V1_Head_19"
     },
     {
@@ -3731,7 +3731,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Demon's Maw",
         "SpriteId": "Head_37"
     },
     {
@@ -3761,7 +3761,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Abyss Castle Keep",
         "SpriteId": "Casual_Head_47"
     },
     {
@@ -4151,7 +4151,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Village",
         "SpriteId": "Head_41"
     },
     {
@@ -5021,7 +5021,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Dark Forest",
         "SpriteId": "V3_Head_18"
     },
     {
@@ -5051,7 +5051,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Abyss Castle Library",
         "SpriteId": "Head_31"
     },
     {
@@ -5141,7 +5141,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Night Garden",
         "SpriteId": "V3_Head_15"
     },
     {
@@ -5261,7 +5261,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Village",
         "SpriteId": "Head_8"
     },
     {
@@ -5546,7 +5546,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Swamp",
         "SpriteId": "Casual_Head_40"
     },
     {
@@ -6071,7 +6071,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Cave",
         "SpriteId": "Mask_3"
     },
     {
@@ -6236,7 +6236,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Mystic Lake",
         "SpriteId": "Casual_Head_55"
     },
     {
@@ -6341,7 +6341,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Crystal Cave",
         "SpriteId": "Casual_Head_27"
     },
     {
@@ -6521,7 +6521,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Underground Cavern",
         "SpriteId": "Head_39"
     },
     {
@@ -6596,7 +6596,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Eyewear_3"
     },
     {
@@ -6941,7 +6941,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Sanctum of Light",
         "SpriteId": "Eyewear_2"
     },
     {
@@ -7181,7 +7181,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Forgotten Depths",
         "SpriteId": "Eyewear_9"
     },
     {
@@ -7196,7 +7196,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Mystic Lake",
         "SpriteId": "Casual_Head_58"
     },
     {
@@ -7511,7 +7511,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Crystal Cave",
         "SpriteId": "Casual_Head_25"
     },
     {
@@ -7841,7 +7841,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Demon's Maw",
         "SpriteId": "Head_49"
     },
     {
@@ -7916,7 +7916,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Fairy Glen",
         "SpriteId": "Head_14"
     },
     {
@@ -7931,7 +7931,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Forest Labyrinth",
         "SpriteId": "Head_19"
     },
     {
@@ -7976,7 +7976,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Sanctum of Light",
         "SpriteId": "Head_29"
     },
     {
@@ -8501,7 +8501,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Forgotten Depths",
         "SpriteId": "Eyewear_7"
     },
     {
@@ -8546,7 +8546,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Casual_Eyewear_16"
     },
     {
@@ -8561,7 +8561,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Windy Desert",
         "SpriteId": "Eyewear_4"
     },
     {
@@ -8651,7 +8651,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Festering Woods",
         "SpriteId": "Casual_Head_57"
     },
     {
@@ -8756,7 +8756,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Cave",
         "SpriteId": "V1_Head_6"
     },
     {
@@ -8936,7 +8936,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Underground Cavern",
         "SpriteId": "Mask_5"
     },
     {
@@ -8951,7 +8951,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Forest Labyrinth",
         "SpriteId": "Head_24"
     },
     {
@@ -9371,7 +9371,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Abyss Castle Keep",
         "SpriteId": "Head_21"
     },
     {
@@ -9401,7 +9401,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Fairy Glen",
         "SpriteId": "Mask_4"
     },
     {
@@ -9506,7 +9506,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Goblin Warcamp",
         "SpriteId": "Head_17"
     },
     {
@@ -9566,7 +9566,7 @@ window.equipmentData = [
         "Stat Type": null,
         "Source": "Crafted",
         "Droprate": null,
-        "Location": null,
+        "Location": "Sanctum of Light",
         "SpriteId": "Head_11"
     },
     {
