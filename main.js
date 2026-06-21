@@ -101,12 +101,21 @@ const statRollData = {
     "Melee": { "type": "Melee Weapon" },
     "Axe": { "type": "Melee Weapon" },
     "Dagger": { "type": "Melee Weapon" },
+    "Katar": { "type": "Melee Weapon" },
     "Mace": { "type": "Melee Weapon" },
     "Spear": { "type": "Melee Weapon" },
     "Sword": { "type": "Melee Weapon" },
     "Wand": { "type": "Melee Weapon" },
     "Book": { "type": "Melee Weapon" },
+    "Twinblade": { "type": "Melee Weapon" },
+    "Scythe": { "type": "Melee Weapon" },
+    "Instrument": { "type": "Melee Weapon" },
     "Bow": { "type": "Ranged Weapon" },
+    "Pistol": { "type": "Ranged Weapon" },
+    "Rifle": { "type": "Ranged Weapon" },
+    "Shotgun": { "type": "Ranged Weapon" },
+    "GatlingGun": { "type": "Ranged Weapon" },
+    "Launcher": { "type": "Ranged Weapon" },
     "Melee Weapon": {
         pools: {
             line1: [
@@ -218,10 +227,12 @@ const archetypeData = {
 // --- Build Management ---
 const weaponBadMap = {
     'Unarmed': 0.9, 'Dagger': 1, 'Twinblade': 1, 'Sword': 1.1, 'Book': 1.1,
-    'Mace': 1.15, 'Instrument': 1.15, 'Spear': 1.2, 'Wand': 1.2, 'Scythe': 1.2,
-    'Axe': 1.3, 'Bow': 1.4, 'Pistol': 1.4
+    'Katar': 1, 'Mace': 1.15, 'Instrument': 1.15, 'Spear': 1.2, 'Wand': 1.2,
+    'Scythe': 1.2, 'Axe': 1.3, 'Bow': 1.4, 'Pistol': 1.4, 'Rifle': 1.4,
+    'Shotgun': 1.4, 'GatlingGun': 1.4, 'Launcher': 1.4
 };
-const rangedWeaponTypes = ['Bow', 'Pistol'];
+const rangedWeaponTypes = ['Bow', 'Pistol', 'Rifle', 'Shotgun', 'GatlingGun', 'Launcher'];
+const twoHandedWeaponTypes = ['Bow', 'Rifle', 'Shotgun', 'GatlingGun', 'Launcher'];
 
 let builds = [];
 let activeBuildIndex = 0;
@@ -617,6 +628,7 @@ function recalculateEverything() {
 window.equipItem = function(slotId, equipmentId) {
     const item = window.equipmentData.find(e => e.EquipmentId === equipmentId);
     if (!item) return;
+    if (slotId === 'offhand' && twoHandedWeaponTypes.includes(item.Type)) return;
 
     equippedGear[slotId] = {
         itemId: equipmentId,
@@ -625,7 +637,7 @@ window.equipItem = function(slotId, equipmentId) {
         selectedStats: []
     };
 
-    if (slotId === 'weapon' && item.Type === 'Bow') {
+    if (slotId === 'weapon' && twoHandedWeaponTypes.includes(item.Type)) {
         if (equippedGear['offhand']) {
             window.unequipItem('offhand');
         }
@@ -1885,7 +1897,7 @@ function calculateGearBonuses() {
         'Atk Speed': 'AtkSpeed %', 'Cast speed': 'CastSpeed %',
         'Def': 'Flat Def', 'Mdef': 'Flat Mdef',
     };
-    const weaponTypes = ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book'];
+    const weaponTypes = ['Sword', 'Dagger', 'Katar', 'Axe', 'Mace', 'Bow', 'Pistol', 'Rifle', 'Shotgun', 'GatlingGun', 'Launcher', 'Wand', 'Spear', 'Book', 'Twinblade', 'Scythe', 'Instrument'];
 
     Object.values(equippedGear).forEach(gearInfo => {
         if (!gearInfo || !gearInfo.itemId) return;

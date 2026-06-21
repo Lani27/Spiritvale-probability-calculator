@@ -9,11 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlotId = '';
     let currentSlotType = '';
 
+    const oneHandedWeaponTypes = ['Sword', 'Dagger', 'Katar', 'Axe', 'Mace', 'Wand', 'Spear', 'Book', 'Twinblade', 'Scythe', 'Instrument', 'Pistol'];
+    const twoHandedWeaponTypes = ['Bow', 'Rifle', 'Shotgun', 'GatlingGun', 'Launcher'];
+    const weaponTypes = [...oneHandedWeaponTypes, ...twoHandedWeaponTypes];
+
     const slotTypeMapping = {
         'head': 'Head', 'back': 'Back', 'legs': 'Legs', 'feet': 'Feet',
         'eyewear': 'Eyewear', 'chest': 'Chest', 'offhand': 'Shield',
         'accessory1': 'Accessory', 'accessory2': 'Accessory',
-        'weapon': ['Sword', 'Dagger', 'Axe', 'Mace', 'Bow', 'Wand', 'Spear', 'Book', 'Twinblade', 'Scythe', 'Instrument', 'Pistol'],
+        'weapon': weaponTypes,
     };
 
     if (gearBuilder) {
@@ -27,14 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (slotId === 'offhand') {
                 const mainHandGear = window.equippedGear['weapon'];
                 const mainHandItem = mainHandGear ? window.equipmentData.find(i => i.EquipmentId === mainHandGear.itemId) : null;
-                if (mainHandItem && mainHandItem.Type === 'Bow') {
+                if (mainHandItem && twoHandedWeaponTypes.includes(mainHandItem.Type)) {
                     return;
                 }
 
                 const playerClass = document.getElementById('p_class').value;
                 const dualWieldClasses = ['Rogue', 'Warrior'];
                 if (dualWieldClasses.includes(playerClass)) {
-                    currentSlotType = [...slotTypeMapping['weapon'], 'Shield'];
+                    currentSlotType = [...oneHandedWeaponTypes, 'Shield'];
                 } else {
                     currentSlotType = 'Shield';
                 }
