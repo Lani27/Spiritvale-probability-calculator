@@ -222,9 +222,9 @@ window.artifactData = [
     "PerPieceBonus": "Buff Duration: <color=#AAFF00FF>+10% per level</color>",
     "PerRefineBonus": "Buff Duration: <color=#AAFF00FF>+0.25% per level</color>",
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nBuff Duration:",
-    "Source": "Rune - Little Star\nJewel - Starry\nRune - Twinkle\nScroll - Ice Bear\nRelic - Festive Bear\nJewel - Ice Golem\nScroll - Shadow Golem\nRelic - Starflake\nRune - Vanilla Ice\nJewel - Shadow Ice\nJewel - Ice Baby\nScroll - Festive Baby\nRelic - Ice Cube\nRune - Shadow Cube",
-    "Droprate": "100.0%\n200.0%\n100.0%\n100.0%\n100.0%\n200.0%\n200.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n200.0%\n200.0%",
-    "Location": "Starfall Tundra\nAncient Ruins\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nAncient Ruins\nAncient Ruins\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nAncient Ruins\nAncient Ruins",
+    "Source": "Rune - Little Star\nRune - Twinkle\nScroll - Ice Bear\nRelic - Festive Bear\nScroll - Shadow Golem\nRelic - Starflake\nRune - Vanilla Ice\nJewel - Shadow Ice\nJewel - Ice Baby\nScroll - Festive Baby\nRelic - Ice Cube\nRune - Shadow Cube",
+    "Droprate": "100.0%\n100.0%\n100.0%\n100.0%\n200.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n200.0%\n200.0%",
+    "Location": "Starfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nAncient Ruins\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nAncient Ruins\nAncient Ruins",
     "SpriteId": "T_Artifact_Oathbound_0\nT_Artifact_Oathbound_1\nT_Artifact_Oathbound_2\nT_Artifact_Oathbound_3"
   },
   {
