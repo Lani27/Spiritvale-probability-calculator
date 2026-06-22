@@ -391,8 +391,8 @@
                     sources.forEach((source, index) => {
                         if (source.trim() === '') return; // Skip empty lines
 
-                        const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - )/, '');
-                        const prefixMatch = source.match(/^(Rune - |Gem - |Relic - |Scroll - )/);
+                        const monsterName = source.replace(/^(Rune - |Gem - |Relic - |Scroll - |Jewel - )/, '');
+                        const prefixMatch = source.match(/^(Rune - |Gem - |Relic - |Scroll - |Jewel - )/);
                         const prefix = prefixMatch ? prefixMatch[0] : '';
                         const monsterInfo = window.monsterData.find(m => m.MonsterName === monsterName);
                         const displayName = prefix + (monsterInfo ? getMonsterNameHTML(monsterName, window.monsterData) : monsterName);
