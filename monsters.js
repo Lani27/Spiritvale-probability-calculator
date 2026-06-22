@@ -1096,14 +1096,6 @@ window.monsters = [
     "Map": "Ancient Ruins"
   },
   {
-    "MonsterName": "Ice Golem",
-    "IsBoss": false,
-    "Level": 138,
-    "Element": "Water",
-    "ArchetypeId": "Critter",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Ice Mage",
     "IsBoss": true,
     "Level": 80,
@@ -1888,14 +1880,6 @@ window.monsters = [
     "Map": "Starfall Tundra"
   },
   {
-    "MonsterName": "Starry",
-    "IsBoss": false,
-    "Level": 137,
-    "Element": "Holy",
-    "ArchetypeId": "Flyer",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Sting",
     "IsBoss": true,
     "Level": 15,
@@ -2128,4 +2112,123 @@ window.monsters = [
     "Map": "Windy Desert"
   },
   {
-    "MonsterName
+    "MonsterName": "Wisp Blue",
+    "IsBoss": false,
+    "Level": 11,
+    "Element": "Water",
+    "ArchetypeId": "Caster",
+    "Map": "Forest Field 1"
+  },
+  {
+    "MonsterName": "Wisp Purple",
+    "IsBoss": false,
+    "Level": 12,
+    "Element": "Wind",
+    "ArchetypeId": "Caster",
+    "Map": "Forest Field 1"
+  },
+  {
+    "MonsterName": "Wisp Red",
+    "IsBoss": false,
+    "Level": 14,
+    "Element": "Fire",
+    "ArchetypeId": "Caster",
+    "Map": "Forest Field 1"
+  },
+  {
+    "MonsterName": "Wisp Yellow",
+    "IsBoss": false,
+    "Level": 15,
+    "Element": "Earth",
+    "ArchetypeId": "Caster",
+    "Map": "Forest Field 1"
+  },
+  {
+    "MonsterName": "Wolf",
+    "IsBoss": false,
+    "Level": 30,
+    "Element": "Shadow",
+    "ArchetypeId": "Ravager",
+    "Map": "Festering Woods 2"
+  },
+  {
+    "MonsterName": "Wolf Pup",
+    "IsBoss": false,
+    "Level": 26,
+    "Element": "Shadow",
+    "ArchetypeId": "Ravager",
+    "Map": "Festering Woods 2"
+  },
+  {
+    "MonsterName": "Worm",
+    "IsBoss": false,
+    "Level": 68,
+    "Element": "Undead",
+    "ArchetypeId": "Undead",
+    "Map": "Swamp Wilderness"
+  },
+  {
+    "MonsterName": "Worm Creep",
+    "IsBoss": true,
+    "Level": 95,
+    "Element": "Poison",
+    "ArchetypeId": "Ravager",
+    "Map": "Underground Cavern"
+  },
+  {
+    "MonsterName": "Worm Rot",
+    "IsBoss": false,
+    "Level": 88,
+    "Element": "Poison",
+    "ArchetypeId": "Ravager",
+    "Map": "Underground Cavern"
+  },
+  {
+    "MonsterName": "Worm Stink",
+    "IsBoss": false,
+    "Level": 87,
+    "Element": "Poison",
+    "ArchetypeId": "Ravager",
+    "Map": "Underground Cavern"
+  },
+  {
+    "MonsterName": "Wraith",
+    "IsBoss": true,
+    "Level": 125,
+    "Element": "Undead",
+    "ArchetypeId": "Hybrid",
+    "Map": "Abyss Castle Crypt"
+  },
+  {
+    "MonsterName": "Zombie Goblin Giant",
+    "IsBoss": false,
+    "Level": 58,
+    "Element": "Undead",
+    "ArchetypeId": "Undead",
+    "Map": "Goblin Cave 2"
+  },
+  {
+    "MonsterName": "Zombie Goblin Lord",
+    "IsBoss": true,
+    "Level": 65,
+    "Element": "Undead",
+    "ArchetypeId": "Undead",
+    "Map": "Goblin Cave 2"
+  },
+  {
+    "MonsterName": "Zombie Goblin Minion",
+    "IsBoss": false,
+    "Level": 53,
+    "Element": "Undead",
+    "ArchetypeId": "Undead",
+    "Map": "Goblin Cave 1"
+  },
+  {
+    "MonsterName": "Zombie Goblin Soldier",
+    "IsBoss": false,
+    "Level": 55,
+    "Element": "Undead",
+    "ArchetypeId": "Undead",
+    "Map": "Goblin Cave 1"
+  }
+];

@@ -174,9 +174,9 @@ window.artifactData = [
     "PerPieceBonus": "Damage Status: <color=#AAFF00FF>+5% per level</color>",
     "PerRefineBonus": "Damage Status: <color=#AAFF00FF>+0.25% per level</color>",
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+1</color>\nDamage Status: <color=#AAFF00FF>+5%</color>",
-    "Source": "Jewel - Fangroot\nRelic - Voidspawn\nJewel - Cinderspike\nScroll - Sporeling\nScroll - Blazewheel\nRune - Devil Bat\nRune - Devil Hades\nScroll - Devil Hell\nRune - Dragonfly Swift\nRune - Earthworm\nJewel - Housefly Junk\nRune - Stormjelly\nScroll - Mosquito Stinger\nJewel - Plant Monster\nRelic - Plant Worm\nScroll - Slime Jelly\nRune - Slime Monster\nRune - Stormstinger\nRelic - Worm",
-    "Droprate": "300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n200.0%\n200.0%\n200.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%",
-    "Location": "Dark Forest\nDark Forest\nDark Forest\nDark Forest\nDark Forest\n\n\n\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nDark Forest\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nDark Forest\nSwamp Wilderness",
+    "Source": "Jewel - Fangroot\nRelic - Voidspawn\nJewel - Cinderspike\nScroll - Sporeling\nScroll - Blazewheel\nRune - Dragonfly Swift\nRune - Earthworm\nJewel - Housefly Junk\nRune - Stormjelly\nScroll - Mosquito Stinger\nJewel - Plant Monster\nRelic - Plant Worm\nScroll - Slime Jelly\nRune - Slime Monster\nRune - Stormstinger\nRelic - Worm",
+    "Droprate": "300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%\n300.0%",
+    "Location": "Dark Forest\nDark Forest\nDark Forest\nDark Forest\nDark Forest\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nDark Forest\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nDark Forest\nSwamp Wilderness",
     "SpriteId": "T_Artifact_Hexbrand_0\nT_Artifact_Hexbrand_1\nT_Artifact_Hexbrand_2\nT_Artifact_Hexbrand_3"
   },
   {
