@@ -1,38 +1,5 @@
 window.cardData = [
   {
-    "Name": "Alien Galaxia Card",
-    "CardId": "Alien Galaxia",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Alien Pew Pew Card",
-    "CardId": "Alien Pew Pew",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Alien Skye Card",
-    "CardId": "Alien Skye",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Angel Card",
     "CardId": "Angel",
     "Affix": "Blessed",
@@ -77,28 +44,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Ball Robot Blue Card",
-    "CardId": "Ball Robot Blue",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Ball Robot Red Card",
-    "CardId": "Ball Robot Red",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Bat Card",
     "CardId": "Bat",
     "Affix": "Leeching",
@@ -140,28 +85,6 @@ window.cardData = [
     "Source": "Bird",
     "Droprate": "50%",
     "Location": "Sunny Meadows 2",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Blast Robot Blue Card",
-    "CardId": "Blast Robot Blue",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Blast Robot Red Card",
-    "CardId": "Blast Robot Red",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {
@@ -217,17 +140,6 @@ window.cardData = [
     "Source": "Bomb",
     "Droprate": "50%",
     "Location": "Sanctum of Light",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Bot Robot Card",
-    "CardId": "Bot Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {
@@ -429,17 +341,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Curse Manifestation Card",
-    "CardId": "NightmareShadow",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Cyclops Bat Card",
     "CardId": "Cyclops Bat",
     "Affix": "Melee",
@@ -539,39 +440,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Devil Bat Card",
-    "CardId": "Devil Bat",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Devil Hades Card",
-    "CardId": "Devil Hades",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Devil Hell Card",
-    "CardId": "Devil Hell",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Direwolf Card",
     "CardId": "Direwolf",
     "Affix": "Cloaking",
@@ -624,17 +492,6 @@ window.cardData = [
     "Source": "Dragon Blizzard",
     "Droprate": "50%",
     "Location": "Crystal Cave",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Dragon Bot Card",
-    "CardId": "Dragon Bot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {
@@ -701,17 +558,6 @@ window.cardData = [
     "Source": "Dragon Nightfall",
     "Droprate": "50%",
     "Location": "Sanctum of Light",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Dragon Robot Card",
-    "CardId": "Dragon Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {
@@ -1265,17 +1111,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Galaxy Robot Card",
-    "CardId": "Galaxy Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Ghost Card",
     "CardId": "Ghost",
     "Affix": "Dissonance",
@@ -1496,17 +1331,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Grid Robot Card",
-    "CardId": "Grid Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Grim Reaper Card",
     "CardId": "Grim Reaper",
     "Affix": "Undead",
@@ -1560,28 +1384,6 @@ window.cardData = [
     "Droprate": "300%",
     "Location": "Mystic Lake 2",
     "SpriteId": "card_gold"
-  },
-  {
-    "Name": "Hermit Robot Blue Card",
-    "CardId": "Hermit Robot Blue",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Hermit Robot Red Card",
-    "CardId": "Hermit Robot Red",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
   },
   {
     "Name": "Horror Card",
@@ -1647,17 +1449,6 @@ window.cardData = [
     "Source": "Ice Baby",
     "Droprate": "50%",
     "Location": "Starfall Tundra",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Ice Bear Card",
-    "CardId": "Ice Bear A",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {
@@ -1804,17 +1595,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Metal Robot Card",
-    "CardId": "Metal Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Mole Rat Card",
     "CardId": "Mole Rat",
     "Affix": "Seismic",
@@ -1911,17 +1691,6 @@ window.cardData = [
     "Source": "Mushroom",
     "Droprate": "50%",
     "Location": "Lake Field",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Nexus Robot Card",
-    "CardId": "Nexus Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {
@@ -2189,17 +1958,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Robot Dragon Card",
-    "CardId": "Dragon Predator Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card_gold"
-  },
-  {
     "Name": "Scorpion Card",
     "CardId": "Scorpion",
     "Affix": "Fireproof",
@@ -2431,17 +2189,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Soldier Robot Card",
-    "CardId": "Soldier Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Soul Card",
     "CardId": "Soul",
     "Affix": "Soul",
@@ -2607,17 +2354,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Starry Card",
-    "CardId": "Alien Starry",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Sting Card",
     "CardId": "Sting",
     "Affix": "Frenzy",
@@ -2706,28 +2442,6 @@ window.cardData = [
     "SpriteId": "card"
   },
   {
-    "Name": "Tanker Robot Card",
-    "CardId": "Tanker Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Tech Robot Card",
-    "CardId": "Tech Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "card"
-  },
-  {
     "Name": "Toadstool Card",
     "CardId": "Toadstool",
     "Affix": "Waterproof",
@@ -2802,17 +2516,6 @@ window.cardData = [
     "Source": "Treant Tree Evergreen",
     "Droprate": "50%",
     "Location": "Treant Trail",
-    "SpriteId": "card"
-  },
-  {
-    "Name": "Trooper Robot Card",
-    "CardId": "Trooper Robot",
-    "Affix": null,
-    "Slot": "Weapon",
-    "Stats": null,
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
     "SpriteId": "card"
   },
   {

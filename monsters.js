@@ -8,30 +8,6 @@ window.monsters = [
     "Map": "Goblin Cave 2"
   },
   {
-    "MonsterName": "Alien Galaxia",
-    "IsBoss": false,
-    "Level": 144,
-    "Element": "Neutral",
-    "ArchetypeId": "Critter",
-    "Map": "Cyber City"
-  },
-  {
-    "MonsterName": "Alien Pew Pew",
-    "IsBoss": false,
-    "Level": 142,
-    "Element": "Neutral",
-    "ArchetypeId": "Hybrid",
-    "Map": "Cyber City"
-  },
-  {
-    "MonsterName": "Alien Skye",
-    "IsBoss": false,
-    "Level": 144,
-    "Element": "Neutral",
-    "ArchetypeId": "Hybrid",
-    "Map": "Cyber City"
-  },
-  {
     "MonsterName": "Angel",
     "IsBoss": false,
     "Level": 76,
@@ -62,22 +38,6 @@ window.monsters = [
     "Element": "Fire",
     "ArchetypeId": "Runner",
     "Map": "Night Garden"
-  },
-  {
-    "MonsterName": "Ball Robot Blue",
-    "IsBoss": false,
-    "Level": 141,
-    "Element": "Neutral",
-    "ArchetypeId": "Runner",
-    "Map": "Cyber City"
-  },
-  {
-    "MonsterName": "Ball Robot Red",
-    "IsBoss": false,
-    "Level": 141,
-    "Element": "Neutral",
-    "ArchetypeId": "Runner",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Bat",
@@ -112,36 +72,12 @@ window.monsters = [
     "Map": "Sunny Meadows 2"
   },
   {
-    "MonsterName": "Blast Robot Blue",
-    "IsBoss": false,
-    "Level": 143,
-    "Element": "Neutral",
-    "ArchetypeId": "Archer",
-    "Map": "Cyber City"
-  },
-  {
-    "MonsterName": "Blast Robot Red",
-    "IsBoss": false,
-    "Level": 143,
-    "Element": "Neutral",
-    "ArchetypeId": "Archer",
-    "Map": "Cyber City"
-  },
-  {
     "MonsterName": "Blazewheel",
     "IsBoss": false,
     "Level": 95,
     "Element": "Fire",
     "ArchetypeId": "Runner",
     "Map": "Dark Forest"
-  },
-  {
-    "MonsterName": "Blind",
-    "IsBoss": false,
-    "Level": 140,
-    "Element": "Poison",
-    "ArchetypeId": "Caster",
-    "Map": "Ancient Ruins"
   },
   {
     "MonsterName": "Bloom",
@@ -174,14 +110,6 @@ window.monsters = [
     "Element": "Fire",
     "ArchetypeId": "Runner",
     "Map": "Sanctum of Light"
-  },
-  {
-    "MonsterName": "Bot Robot",
-    "IsBoss": false,
-    "Level": 141,
-    "Element": "Neutral",
-    "ArchetypeId": "Runner",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Boxy Robot",
@@ -312,14 +240,6 @@ window.monsters = [
     "Map": "Dark Forest"
   },
   {
-    "MonsterName": "Cobra Venom",
-    "IsBoss": false,
-    "Level": 140,
-    "Element": "Poison",
-    "ArchetypeId": "Hybrid",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Cosmic Entity",
     "IsBoss": true,
     "Level": 135,
@@ -334,38 +254,6 @@ window.monsters = [
     "Element": "Shadow",
     "ArchetypeId": "Ravager",
     "Map": "Forgotten Depths 1"
-  },
-  {
-    "MonsterName": "Crystal Guardian Amethyst",
-    "IsBoss": false,
-    "Level": 136,
-    "Element": "Shadow",
-    "ArchetypeId": "Hybrid",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Crystal Guardian Aqua",
-    "IsBoss": false,
-    "Level": 140,
-    "Element": "Water",
-    "ArchetypeId": "Hybrid",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Crystal Guardian Emerald",
-    "IsBoss": false,
-    "Level": 136,
-    "Element": "Earth",
-    "ArchetypeId": "Hybrid",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Curse Manifestation",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Shadow",
-    "ArchetypeId": "Runner",
-    "Map": null
   },
   {
     "MonsterName": "Cyclops",
@@ -416,30 +304,6 @@ window.monsters = [
     "Map": "Crystal Cave"
   },
   {
-    "MonsterName": "Dark Wizard Black",
-    "IsBoss": false,
-    "Level": 137,
-    "Element": "Shadow",
-    "ArchetypeId": "Caster",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Dark Wizard Purple",
-    "IsBoss": false,
-    "Level": 138,
-    "Element": "Shadow",
-    "ArchetypeId": "Caster",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Dark Wizard Red",
-    "IsBoss": false,
-    "Level": 138,
-    "Element": "Shadow",
-    "ArchetypeId": "Caster",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Death",
     "IsBoss": false,
     "Level": 112,
@@ -462,30 +326,6 @@ window.monsters = [
     "Element": "Neutral",
     "ArchetypeId": "Brute",
     "Map": "The Forge"
-  },
-  {
-    "MonsterName": "Devil Bat",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Fire",
-    "ArchetypeId": "Flyer",
-    "Map": null
-  },
-  {
-    "MonsterName": "Devil Hades",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Fire",
-    "ArchetypeId": "Flyer",
-    "Map": null
-  },
-  {
-    "MonsterName": "Devil Hell",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Fire",
-    "ArchetypeId": "Flyer",
-    "Map": null
   },
   {
     "MonsterName": "Direwolf",
@@ -528,14 +368,6 @@ window.monsters = [
     "Map": "Crystal Cave"
   },
   {
-    "MonsterName": "Dragon Bot",
-    "IsBoss": false,
-    "Level": 142,
-    "Element": "Neutral",
-    "ArchetypeId": "Hybrid",
-    "Map": "Cyber City"
-  },
-  {
     "MonsterName": "Dragon Darkness",
     "IsBoss": false,
     "Level": 84,
@@ -576,52 +408,12 @@ window.monsters = [
     "Map": "Demon's Maw"
   },
   {
-    "MonsterName": "Dragon King Blue",
-    "IsBoss": false,
-    "Level": 139,
-    "Element": "Water",
-    "ArchetypeId": "Brute",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Dragon King Green",
-    "IsBoss": false,
-    "Level": 139,
-    "Element": "Fire",
-    "ArchetypeId": "Brute",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Dragon King Orange",
-    "IsBoss": false,
-    "Level": 139,
-    "Element": "Earth",
-    "ArchetypeId": "Brute",
-    "Map": "Ancient Ruins"
-  },
-  {
-    "MonsterName": "Dragon King Purple",
-    "IsBoss": false,
-    "Level": 139,
-    "Element": "Wind",
-    "ArchetypeId": "Brute",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Dragon Nightfall",
     "IsBoss": false,
     "Level": 79,
     "Element": "Shadow",
     "ArchetypeId": "Hybrid",
     "Map": "Sanctum of Light"
-  },
-  {
-    "MonsterName": "Dragon Robot",
-    "IsBoss": false,
-    "Level": 144,
-    "Element": "Neutral",
-    "ArchetypeId": "Hybrid",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Dragon Spark",
@@ -872,14 +664,6 @@ window.monsters = [
     "Map": "Abyss Castle Crypt"
   },
   {
-    "MonsterName": "Eyeball Mage",
-    "IsBoss": false,
-    "Level": 138,
-    "Element": "Shadow",
-    "ArchetypeId": "Caster",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Eyeball Mage Blue",
     "IsBoss": false,
     "Level": 123,
@@ -1030,14 +814,6 @@ window.monsters = [
     "Element": "Water",
     "ArchetypeId": "Brute",
     "Map": "Lake Field"
-  },
-  {
-    "MonsterName": "Galaxy Robot",
-    "IsBoss": false,
-    "Level": 144,
-    "Element": "Neutral",
-    "ArchetypeId": "Hybrid",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Ghost",
@@ -1208,14 +984,6 @@ window.monsters = [
     "Map": "Crystal Cave"
   },
   {
-    "MonsterName": "Grid Robot",
-    "IsBoss": false,
-    "Level": 143,
-    "Element": "Neutral",
-    "ArchetypeId": "Brute",
-    "Map": "Cyber City"
-  },
-  {
     "MonsterName": "Grim Reaper",
     "IsBoss": false,
     "Level": 119,
@@ -1254,22 +1022,6 @@ window.monsters = [
     "Element": "Water",
     "ArchetypeId": "Defender",
     "Map": "Mystic Lake 2"
-  },
-  {
-    "MonsterName": "Hermit Robot Blue",
-    "IsBoss": false,
-    "Level": 142,
-    "Element": "Neutral",
-    "ArchetypeId": "Critter",
-    "Map": "Cyber City"
-  },
-  {
-    "MonsterName": "Hermit Robot Red",
-    "IsBoss": false,
-    "Level": 142,
-    "Element": "Neutral",
-    "ArchetypeId": "Critter",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Horror",
@@ -1408,14 +1160,6 @@ window.monsters = [
     "Map": "Starfall Tundra"
   },
   {
-    "MonsterName": "Love Heart",
-    "IsBoss": false,
-    "Level": 136,
-    "Element": "Holy",
-    "ArchetypeId": "Flyer",
-    "Map": "Ancient Ruins"
-  },
-  {
     "MonsterName": "Lurker",
     "IsBoss": false,
     "Level": 43,
@@ -1454,14 +1198,6 @@ window.monsters = [
     "Element": "Wind",
     "ArchetypeId": "Ravager",
     "Map": "Sunken Depths"
-  },
-  {
-    "MonsterName": "Metal Robot",
-    "IsBoss": false,
-    "Level": 144,
-    "Element": "Neutral",
-    "ArchetypeId": "Brute",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Mimic Barrel",
@@ -1598,14 +1334,6 @@ window.monsters = [
     "Element": "Water",
     "ArchetypeId": "Brute",
     "Map": "Lake Field"
-  },
-  {
-    "MonsterName": "Nexus Robot",
-    "IsBoss": false,
-    "Level": 142,
-    "Element": "Neutral",
-    "ArchetypeId": "Critter",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Nightmare",
@@ -1776,14 +1504,6 @@ window.monsters = [
     "Map": "Mystic Lake 1"
   },
   {
-    "MonsterName": "Practice Dummy",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Neutral",
-    "ArchetypeId": "Critter",
-    "Map": null
-  },
-  {
     "MonsterName": "Queen Worm",
     "IsBoss": true,
     "Level": 75,
@@ -1830,14 +1550,6 @@ window.monsters = [
     "Element": "Fire",
     "ArchetypeId": "Runner",
     "Map": "The Forge"
-  },
-  {
-    "MonsterName": "Robot Dragon",
-    "IsBoss": true,
-    "Level": 150,
-    "Element": "Neutral",
-    "ArchetypeId": "Hybrid",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Scorpion",
@@ -2048,14 +1760,6 @@ window.monsters = [
     "Map": "Turtle Nexus"
   },
   {
-    "MonsterName": "Soldier Robot",
-    "IsBoss": false,
-    "Level": 145,
-    "Element": "Neutral",
-    "ArchetypeId": "Brute",
-    "Map": "Cyber City"
-  },
-  {
     "MonsterName": "Soul",
     "IsBoss": false,
     "Level": 78,
@@ -2256,44 +1960,12 @@ window.monsters = [
     "Map": "Fairy Glen"
   },
   {
-    "MonsterName": "Tanker Robot",
-    "IsBoss": false,
-    "Level": 145,
-    "Element": "Neutral",
-    "ArchetypeId": "Defender",
-    "Map": "Cyber City"
-  },
-  {
-    "MonsterName": "Target Dummy",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Neutral",
-    "ArchetypeId": "Critter",
-    "Map": null
-  },
-  {
-    "MonsterName": "Tech Robot",
-    "IsBoss": false,
-    "Level": 143,
-    "Element": "Neutral",
-    "ArchetypeId": "Brute",
-    "Map": "Cyber City"
-  },
-  {
     "MonsterName": "Toadstool",
     "IsBoss": false,
     "Level": 30,
     "Element": "Water",
     "ArchetypeId": "Brute",
     "Map": "Lake Field"
-  },
-  {
-    "MonsterName": "Training Dummy",
-    "IsBoss": false,
-    "Level": 0,
-    "Element": "Neutral",
-    "ArchetypeId": "Egg",
-    "Map": null
   },
   {
     "MonsterName": "Treant Forest Autumn",
@@ -2342,14 +2014,6 @@ window.monsters = [
     "Element": "Earth",
     "ArchetypeId": "Brute",
     "Map": "Treant Trail"
-  },
-  {
-    "MonsterName": "Trooper Robot",
-    "IsBoss": false,
-    "Level": 145,
-    "Element": "Neutral",
-    "ArchetypeId": "Brute",
-    "Map": "Cyber City"
   },
   {
     "MonsterName": "Turtle Baby",
@@ -2464,123 +2128,4 @@ window.monsters = [
     "Map": "Windy Desert"
   },
   {
-    "MonsterName": "Wisp Blue",
-    "IsBoss": false,
-    "Level": 11,
-    "Element": "Water",
-    "ArchetypeId": "Caster",
-    "Map": "Forest Field 1"
-  },
-  {
-    "MonsterName": "Wisp Purple",
-    "IsBoss": false,
-    "Level": 12,
-    "Element": "Wind",
-    "ArchetypeId": "Caster",
-    "Map": "Forest Field 1"
-  },
-  {
-    "MonsterName": "Wisp Red",
-    "IsBoss": false,
-    "Level": 14,
-    "Element": "Fire",
-    "ArchetypeId": "Caster",
-    "Map": "Forest Field 1"
-  },
-  {
-    "MonsterName": "Wisp Yellow",
-    "IsBoss": false,
-    "Level": 15,
-    "Element": "Earth",
-    "ArchetypeId": "Caster",
-    "Map": "Forest Field 1"
-  },
-  {
-    "MonsterName": "Wolf",
-    "IsBoss": false,
-    "Level": 30,
-    "Element": "Shadow",
-    "ArchetypeId": "Ravager",
-    "Map": "Festering Woods 2"
-  },
-  {
-    "MonsterName": "Wolf Pup",
-    "IsBoss": false,
-    "Level": 26,
-    "Element": "Shadow",
-    "ArchetypeId": "Ravager",
-    "Map": "Festering Woods 2"
-  },
-  {
-    "MonsterName": "Worm",
-    "IsBoss": false,
-    "Level": 68,
-    "Element": "Undead",
-    "ArchetypeId": "Undead",
-    "Map": "Swamp Wilderness"
-  },
-  {
-    "MonsterName": "Worm Creep",
-    "IsBoss": true,
-    "Level": 95,
-    "Element": "Poison",
-    "ArchetypeId": "Ravager",
-    "Map": "Underground Cavern"
-  },
-  {
-    "MonsterName": "Worm Rot",
-    "IsBoss": false,
-    "Level": 88,
-    "Element": "Poison",
-    "ArchetypeId": "Ravager",
-    "Map": "Underground Cavern"
-  },
-  {
-    "MonsterName": "Worm Stink",
-    "IsBoss": false,
-    "Level": 87,
-    "Element": "Poison",
-    "ArchetypeId": "Ravager",
-    "Map": "Underground Cavern"
-  },
-  {
-    "MonsterName": "Wraith",
-    "IsBoss": true,
-    "Level": 125,
-    "Element": "Undead",
-    "ArchetypeId": "Hybrid",
-    "Map": "Abyss Castle Crypt"
-  },
-  {
-    "MonsterName": "Zombie Goblin Giant",
-    "IsBoss": false,
-    "Level": 58,
-    "Element": "Undead",
-    "ArchetypeId": "Undead",
-    "Map": "Goblin Cave 2"
-  },
-  {
-    "MonsterName": "Zombie Goblin Lord",
-    "IsBoss": true,
-    "Level": 65,
-    "Element": "Undead",
-    "ArchetypeId": "Undead",
-    "Map": "Goblin Cave 2"
-  },
-  {
-    "MonsterName": "Zombie Goblin Minion",
-    "IsBoss": false,
-    "Level": 53,
-    "Element": "Undead",
-    "ArchetypeId": "Undead",
-    "Map": "Goblin Cave 1"
-  },
-  {
-    "MonsterName": "Zombie Goblin Soldier",
-    "IsBoss": false,
-    "Level": 55,
-    "Element": "Undead",
-    "ArchetypeId": "Undead",
-    "Map": "Goblin Cave 1"
-  }
-];
+    "MonsterName

@@ -81,25 +81,9 @@ window.mapData = [
     "MinLevel": 136,
     "MaxLevel": 140,
     "Monsters": [
-      "Crystal Guardian Amethyst",
-      "Crystal Guardian Emerald",
-      "Love Heart",
       "Ice Cube",
       "Shadow Cube",
-      "Starry",
-      "Dark Wizard Black",
-      "Dark Wizard Purple",
-      "Dark Wizard Red",
-      "Eyeball Mage",
-      "Ice Golem",
-      "Shadow Golem",
-      "Dragon King Blue",
-      "Dragon King Green",
-      "Dragon King Orange",
-      "Dragon King Purple",
-      "Blind",
-      "Cobra Venom",
-      "Crystal Guardian Aqua"
+      "Shadow Golem"
     ],
     "Exits": null
   },
@@ -143,36 +127,6 @@ window.mapData = [
       "Goblin Field 1",
       "Ice Field"
     ]
-  },
-  {
-    "Id": "Cyber City",
-    "Name": "Cyber City",
-    "MinLevel": 141,
-    "MaxLevel": 145,
-    "Monsters": [
-      "Ball Robot Blue",
-      "Ball Robot Red",
-      "Bot Robot",
-      "Hermit Robot Blue",
-      "Hermit Robot Red",
-      "Nexus Robot",
-      "Alien Pew Pew",
-      "Dragon Bot",
-      "Grid Robot",
-      "Tech Robot",
-      "Blast Robot Blue",
-      "Blast Robot Red",
-      "Alien Skye",
-      "Dragon Robot",
-      "Alien Galaxia",
-      "Galaxy Robot",
-      "Metal Robot",
-      "Soldier Robot",
-      "Trooper Robot",
-      "Tanker Robot",
-      "Robot Dragon"
-    ],
-    "Exits": null
   },
   {
     "Id": "Dark Forest",
@@ -285,7 +239,6 @@ window.mapData = [
       "Skeleton"
     ],
     "Exits": [
-      "Nevaris",
       "Dark Forest",
       "Dungeon Boss",
       "Festering Woods 2"
@@ -338,8 +291,7 @@ window.mapData = [
     ],
     "Exits": [
       "Forest Field 1",
-      "Desert Field 3",
-      "Nevaris"
+      "Desert Field 3"
     ]
   },
   {
@@ -603,19 +555,6 @@ window.mapData = [
     ]
   },
   {
-    "Id": "Nevaris",
-    "Name": "Nevaris",
-    "MinLevel": 0,
-    "MaxLevel": 0,
-    "Monsters": null,
-    "Exits": [
-      "Sunny Meadows 1",
-      "Forest Field 2",
-      "Sewers",
-      "Festering Woods 1"
-    ]
-  },
-  {
     "Id": "Sewers",
     "Name": "Nevaris Sewers",
     "MinLevel": 16,
@@ -626,7 +565,6 @@ window.mapData = [
       "Rat White"
     ],
     "Exits": [
-      "Nevaris",
       "Bunny Woods"
     ]
   },
@@ -753,14 +691,6 @@ window.mapData = [
     ]
   },
   {
-    "Id": "Sunken Depths 2",
-    "Name": "Sunken Depths",
-    "MinLevel": 0,
-    "MaxLevel": 0,
-    "Monsters": null,
-    "Exits": null
-  },
-  {
     "Id": "Sunny Meadows 1",
     "Name": "Sunny Meadows 1",
     "MinLevel": 1,
@@ -772,7 +702,6 @@ window.mapData = [
       "Seed"
     ],
     "Exits": [
-      "Nevaris",
       "Sunny Meadows 2",
       "Forest Field 1",
       "Treant Trail"
@@ -837,16 +766,6 @@ window.mapData = [
     ],
     "Exits": [
       "Swamp"
-    ]
-  },
-  {
-    "Id": "Eternal Tower",
-    "Name": "The Echoing Spire",
-    "MinLevel": 0,
-    "MaxLevel": 0,
-    "Monsters": null,
-    "Exits": [
-      "Eternal Tower"
     ]
   },
   {
@@ -931,14 +850,6 @@ window.mapData = [
     ]
   },
   {
-    "Id": "Port Town",
-    "Name": "Wayfarer's Landing",
-    "MinLevel": 0,
-    "MaxLevel": 0,
-    "Monsters": null,
-    "Exits": null
-  },
-  {
     "Id": "Desert Field 1",
     "Name": "Windy Desert",
     "MinLevel": 26,
@@ -996,13 +907,5 @@ window.mapData = [
       "Forest Field 2",
       "Dungeon Outside"
     ]
-  },
-  {
-    "Id": "Worm Nest",
-    "Name": "Worm Nest",
-    "MinLevel": 0,
-    "MaxLevel": 0,
-    "Monsters": null,
-    "Exits": null
   }
 ];

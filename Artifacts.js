@@ -1,17 +1,5 @@
 window.artifactData = [
   {
-    "SetName": "Aegis Light",
-    "SetId": "Paladin_1",
-    "IndividualBonus": "Grand Cross Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nJudgement Blade Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nShield Throw Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nConsecration Healing: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": "Crafted",
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "artifacts-paladin-1_0\nartifacts-paladin-1_1\nartifacts-paladin-1_2\nartifacts-paladin-1_3"
-  },
-  {
     "SetName": "Aethercore",
     "SetId": "Mp",
     "IndividualBonus": null,
@@ -32,20 +20,8 @@ window.artifactData = [
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>\n<color=#B2B2B2FF>Four attunements share one page, arguing until they become a single harmony.</color>\n\n<color=#FF9700FF><color=#AAFF00FF>Elemental Attunement</color> replaces Fire Attunement</color>\n<color=#FF9700FF><color=#AAFF00FF>Elemental Attunement</color> replaces Water Attunement</color>\n<color=#FF9700FF><color=#AAFF00FF>Elemental Attunement</color> replaces Wind Attunement</color>\n<color=#FF9700FF><color=#AAFF00FF>Elemental Attunement</color> replaces Earth Attunement</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Elemental Attunement</color>\nFire Damage: <color=#AAFF00FF>+5% per level</color>\nWater Damage: <color=#AAFF00FF>+5% per level</color>\nWind Damage: <color=#AAFF00FF>+5% per level</color>\nEarth Damage: <color=#AAFF00FF>+5% per level</color>\n<color=#B2B2B2FF>Elemental sigils raise matching barriers whenever avatar power gathers around the caster.</color>\n\nApply <color=#AAFF00FF>Arcane Barrier</color> for <color=#AAFF00FF>1 seconds</color> when applying <color=#AAFF00FF>Fire Barrier</color>\nApply <color=#AAFF00FF>Arcane Barrier</color> for <color=#AAFF00FF>1 seconds</color> when applying <color=#AAFF00FF>Water Barrier</color>\nApply <color=#AAFF00FF>Arcane Barrier</color> for <color=#AAFF00FF>1 seconds</color> when applying <color=#AAFF00FF>Wind Barrier</color>\nApply <color=#AAFF00FF>Arcane Barrier</color> for <color=#AAFF00FF>1 seconds</color> when applying <color=#AAFF00FF>Earth Barrier</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Arcane Barrier</color>\nFire Damage: <color=#AAFF00FF>+10%</color>\nFire Resistance: <color=#AAFF00FF>+10%</color>\nDuration: <color=#AAFF00FF>1 seconds</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Arcane Barrier</color>\nWater Damage: <color=#AAFF00FF>+10%</color>\nWater Resistance: <color=#AAFF00FF>+10%</color>\nDuration: <color=#AAFF00FF>1 seconds</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Arcane Barrier</color>\nWind Damage: <color=#AAFF00FF>+10%</color>\nWind Resistance: <color=#AAFF00FF>+10%</color>\nDuration: <color=#AAFF00FF>1 seconds</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Arcane Barrier</color>\nEarth Damage: <color=#AAFF00FF>+10%</color>\nEarth Resistance: <color=#AAFF00FF>+10%</color>\nDuration: <color=#AAFF00FF>1 seconds</color>\nStr:",
     "Source": "Crafted",
     "Droprate": null,
-    "Location": null,
+    "Location": "Mystic Lake 2",
     "SpriteId": "artifacts-wizard-1_0\nartifacts-wizard-1_1\nartifacts-wizard-1_2\nartifacts-wizard-1_3"
-  },
-  {
-    "SetName": "Arcane Origin",
-    "SetId": "Mage",
-    "IndividualBonus": "Fireball Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nIce Shard Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nEarth Spikes Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nThunder Storm Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_ArcaneOrigin_0\nT_Artifact_ArcaneOrigin_1\nT_Artifact_ArcaneOrigin_5\nT_Artifact_ArcaneOrigin_6"
   },
   {
     "SetName": "Arcanum",
@@ -116,7 +92,7 @@ window.artifactData = [
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
     "Source": "Crafted",
     "Droprate": null,
-    "Location": null,
+    "Location": "Windy Desert",
     "SpriteId": "artifacts-berserker-1_0\nartifacts-berserker-1_1\nartifacts-berserker-1_2\nartifacts-berserker-1_3"
   },
   {
@@ -132,18 +108,6 @@ window.artifactData = [
     "SpriteId": "T_Artifact_Corporeal_0\nT_Artifact_Corporeal_1\nT_Artifact_Corporeal_2\nT_Artifact_Corporeal_3"
   },
   {
-    "SetName": "Deadeye",
-    "SetId": "Gunslinger_1",
-    "IndividualBonus": "Panic Burst Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nPoint Blank Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nSniper Shot Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nExplosive Grenade Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "artifacts-gunslinger-1_0\nartifacts-gunslinger-1_1\nartifacts-gunslinger-1_2\nartifacts-gunslinger-1_3"
-  },
-  {
     "SetName": "Eternis",
     "SetId": "Eternis",
     "IndividualBonus": null,
@@ -156,18 +120,6 @@ window.artifactData = [
     "SpriteId": "T_Artifact_Eternis_0\nT_Artifact_Eternis_1\nT_Artifact_Eternis_2\nT_Artifact_Eternis_3"
   },
   {
-    "SetName": "Far Sight",
-    "SetId": "Scout",
-    "IndividualBonus": "Strafing Volley Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nForce Shot Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nVolatile Bolt Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nArrow Shower Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_Farsight_0\nT_Artifact_Farsight_1\nT_Artifact_Farsight_2\nT_Artifact_Farsight_3"
-  },
-  {
     "SetName": "Fateweave",
     "SetId": "Weaver_1",
     "IndividualBonus": "Firebolt Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nIcebolt Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nThunderbolt Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nEarthbolt Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
@@ -176,7 +128,7 @@ window.artifactData = [
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
     "Source": "Crafted",
     "Droprate": null,
-    "Location": null,
+    "Location": "Starfall Tundra",
     "SpriteId": "artifacts-weaver-1_0\nartifacts-weaver-1_1\nartifacts-weaver-1_2\nartifacts-weaver-1_3"
   },
   {
@@ -188,7 +140,7 @@ window.artifactData = [
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>\n<color=#B2B2B2FF>Frozen lasts longer. Blizzard and Ice Shard can create Frozen Ground.</color>\n\nStatus Duration: <color=#AAFF00FF>+30%</color>\n<color=#FF9700FF>Blizzard: <color=#AAFF00FF>Remove Knockback</color></color>\n<color=#FF9700FF>Blizzard autocasts Frozen Ground</color>\nAutocast <color=#AAFF00FF>Frozen Ground</color> with <color=#AAFF00FF>Ice Shard</color> hits\n-----------------------------------------------------\n<color=#00E2FFFF>Frozen Ground</color>\n<color=#B2B2B2FF>Freeze the ground beneath enemies, damaging them repeatedly with a chance to leave them Frozen.</color>\n\nType: <color=#00E2FFFF>Magic</color>\nElement: <sprite name=Elements_6> <color=#79D7FDFF>Water</color>\nDamage: <color=#AAFF00FF>500% MATK</color>\nHits: <color=#AAFF00FF>2</color>\nDuration: <color=#AAFF00FF>2 seconds</color>\nMax Instances: <color=#AAFF00FF>3</color>\nCost: <color=#AAFF00FF>20 + 10 mana per level</color>\n-----------------------------------------------------\n<color=#FFD900FF>Status Effects</color>\n<color=#C37CFFFF>Frozen</color>\n<color=#FF0073FF>Cannot Attack or Move</color>\n<color=#FF0073FF>Flee Disabled</color>\n<color=#FF0073FF>Block Disabled</color>\nDuration: <color=#AAFF00FF>10 seconds</color>\nChance: <color=#AAFF00FF>5% per level</color>\nStr:",
     "Source": "Crafted",
     "Droprate": null,
-    "Location": null,
+    "Location": "Mystic Lake 2",
     "SpriteId": "artifacts-wizard-1_0\nartifacts-wizard-1_1\nartifacts-wizard-1_2\nartifacts-wizard-1_3"
   },
   {
@@ -202,18 +154,6 @@ window.artifactData = [
     "Droprate": "200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%\n200.0%",
     "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
     "SpriteId": "T_Artifact_Furybrand_0\nT_Artifact_Furybrand_1\nT_Artifact_Furybrand_2\nT_Artifact_Furybrand_3"
-  },
-  {
-    "SetName": "Gravebound",
-    "SetId": "Necromancer_1",
-    "IndividualBonus": "Bone Spikes Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nDeath Spiral Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nDeath Nova Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nCorpse Explosion Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "artifacts-necromancer-1_0\nartifacts-necromancer-1_2\nartifacts-necromancer-1_3\nartifacts-necromancer-1_4"
   },
   {
     "SetName": "Hawkeye",
@@ -240,42 +180,6 @@ window.artifactData = [
     "SpriteId": "T_Artifact_Hexbrand_0\nT_Artifact_Hexbrand_1\nT_Artifact_Hexbrand_2\nT_Artifact_Hexbrand_3"
   },
   {
-    "SetName": "Holy Vow",
-    "SetId": "Acolyte",
-    "IndividualBonus": "Holy Light Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nHeal Healing: <color=#AAFF00FF>+5% + 2% per level</color>\nTrue Sight Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nMp Cost: <color=#AAFF00FF>-2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_HolyVow_0\nT_Artifact_HolyVow_1\nT_Artifact_HolyVow_2\nT_Artifact_HolyVow_3"
-  },
-  {
-    "SetName": "Honored Oath",
-    "SetId": "Knight",
-    "IndividualBonus": "Piercing Flurry Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nImpale Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nAir Cutter Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nWeapon Throw Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_HonoredOath_0\nT_Artifact_HonoredOath_1\nT_Artifact_HonoredOath_2\nT_Artifact_HonoredOath_3"
-  },
-  {
-    "SetName": "Iron Wake",
-    "SetId": "Warrior",
-    "IndividualBonus": "Bash Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nTwin Cleave Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nVortex Slash Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nStomp Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_IronWake_0\nT_Artifact_IronWake_1\nT_Artifact_IronWake_2\nT_Artifact_IronWake_3"
-  },
-  {
     "SetName": "Lifebloom",
     "SetId": "Healing",
     "IndividualBonus": null,
@@ -296,7 +200,7 @@ window.artifactData = [
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>\n<color=#B2B2B2FF>Burning or Stun triggers Combustion. Fire Pillar gains more instances, and Meteor becomes Meteor Storm.</color>\n\nAutocast <color=#AAFF00FF>Combustion</color> when applying <color=#AAFF00FF>Burning</color>\nAutocast <color=#AAFF00FF>Combustion</color> when applying <color=#AAFF00FF>Stun</color>\nFire Pillar max instances: <color=#AAFF00FF>+2</color>\n<color=#FF9700FF><color=#AAFF00FF>Meteor Storm</color> replaces Meteor</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Burning</color>\n<color=#B2B2B2FF>Drains hp over time, scaled by STR, AGI and INT</color>\n<color=#B2B2B2FF>Drains 3% hp per second</color>\n<color=#B2B2B2FF>Stackable</color>\n-----------------------------------------------------\n<color=#C37CFFFF>Stun</color>\n<color=#FF0073FF>Cannot Attack or Move</color>\n<color=#FF0073FF>Flee Disabled</color>\n<color=#FF0073FF>Block Disabled</color>\n-----------------------------------------------------\n<color=#00E2FFFF>Meteor Storm</color>\n<color=#B2B2B2FF>Call down a lingering storm of meteors, raining Fire damage across the targeted area.</color>\n\nElement: <sprite name=Elements_5> <color=#FF7026FF>Fire</color>\nDuration: <color=#AAFF00FF>5 seconds</color>\nArea: <color=#AAFF00FF>7</color>\n-----------------------------------------------------\nCast Range: <color=#AAFF00FF>12</color>\nCast Time: <color=#AAFF00FF>1 seconds per level</color>\nCooldown: <color=#AAFF00FF>7 seconds</color>\nCost: <color=#AAFF00FF>80 + 40 mana per level</color>",
     "Source": "Crafted",
     "Droprate": null,
-    "Location": null,
+    "Location": "Mystic Lake 2",
     "SpriteId": "artifacts-wizard-1_0\nartifacts-wizard-1_1\nartifacts-wizard-1_2\nartifacts-wizard-1_3"
   },
   {
@@ -348,18 +252,6 @@ window.artifactData = [
     "SpriteId": "T_Artifact_Primordial_0\nT_Artifact_Primordial_1\nT_Artifact_Primordial_2\nT_Artifact_Primordial_3"
   },
   {
-    "SetName": "Sanctum Grace",
-    "SetId": "Priest_1",
-    "IndividualBonus": "Exorcism Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nHoly Wrath Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nTurn Undead Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nSmite Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": "Crafted",
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "artifacts-priest-1_0\nartifacts-priest-1_1\nartifacts-priest-1_2\nartifacts-priest-1_3"
-  },
-  {
     "SetName": "Shadebound",
     "SetId": "Flee",
     "IndividualBonus": null,
@@ -372,18 +264,6 @@ window.artifactData = [
     "SpriteId": "T_Artifact_Shadebound_0\nT_Artifact_Shadebound_1\nT_Artifact_Shadebound_2\nT_Artifact_Shadebound_3"
   },
   {
-    "SetName": "Silent Death",
-    "SetId": "Rogue",
-    "IndividualBonus": "Venom Strike Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nShadow Step Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nBlade Dance Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nDamage Status: <color=#AAFF00FF>+2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_SilentDeath_0\nT_Artifact_SilentDeath_1\nT_Artifact_SilentDeath_2\nT_Artifact_SilentDeath_3"
-  },
-  {
     "SetName": "Spellweaver",
     "SetId": "Cast",
     "IndividualBonus": null,
@@ -394,18 +274,6 @@ window.artifactData = [
     "Droprate": "400.0%\n400.0%\n400.0%\n400.0%\n400.0%\n400.0%\n400.0%\n400.0%\n400.0%",
     "Location": "Fairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen",
     "SpriteId": "T_Artifact_Spellweaver_0\nT_Artifact_Spellweaver_1\nT_Artifact_Spellweaver_2\nT_Artifact_Spellweaver_3"
-  },
-  {
-    "SetName": "Spirit Pact",
-    "SetId": "Summoner",
-    "IndividualBonus": "Soul Strike Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nBanishment Field Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nResonance Well Healing: <color=#AAFF00FF>+5% + 2% per level</color>\nDissonance Well Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>",
-    "Source": null,
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "T_Artifact_SpiritPact_0\nT_Artifact_SpiritPact_1\nT_Artifact_SpiritPact_2\nT_Artifact_SpiritPact_3"
   },
   {
     "SetName": "Starfire",
@@ -452,7 +320,7 @@ window.artifactData = [
     "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>\n<color=#B2B2B2FF>Tempest and Chain Lightning build Tempest Engine, increasing their power and MP cost. Chain Lightning also triggers Thunder Storm.</color>\n\nTempest applies <color=#AAFF00FF>Tempest Engine</color> for <color=#AAFF00FF>10 seconds</color>\nChain Lightning applies <color=#AAFF00FF>Tempest Engine</color> for <color=#AAFF00FF>10 seconds</color>\n<color=#AAFF00FF>30%</color> chance to Autocast <color=#AAFF00FF>Thunder Storm</color> with <color=#AAFF00FF>Chain Lightning</color> hits\n-----------------------------------------------------\n<color=#C37CFFFF>Tempest Engine</color>\n<color=#B2B2B2FF>Stackable (max 5 stacks)</color>\nChain Lightning Damage: <color=#AAFF00FF>+10%</color>\nChain Lightning Mana Cost: <color=#FF0073FF>+30%</color>\nTempest Damage: <color=#AAFF00FF>+10%</color>\nTempest Mana Cost: <color=#FF0073FF>+30%</color>\nDuration: <color=#AAFF00FF>10 seconds</color>\n-----------------------------------------------------\n<color=#00E2FFFF>Thunder Storm</color>\n<color=#B2B2B2FF>Call down a storm of lightning over an area, striking enemies and exposing them to Water damage.</color>\n\nType: <color=#00E2FFFF>Magic</color>\nElement: <sprite name=Elements_7> <color=#FFC701FF>Wind</color>\nDamage: <color=#AAFF00FF>250% MATK per level</color>\nHits: <color=#AAFF00FF>1 per level</color>\nArea: <color=#AAFF00FF>5</color>\nCost: <color=#AAFF00FF>30 + 15 mana per level</color>\n-----------------------------------------------------\n<color=#FFD900FF>Status Effects</color>\n<color=#C37CFFFF>Water Exposure</color>\nWater Resistance: <color=#FF0073FF>-4% per level</color>\nDuration: <color=#AAFF00FF>10 seconds</color>\nStr:",
     "Source": "Crafted",
     "Droprate": null,
-    "Location": null,
+    "Location": "Mystic Lake 2",
     "SpriteId": "artifacts-wizard-1_0\nartifacts-wizard-1_1\nartifacts-wizard-1_2\nartifacts-wizard-1_3"
   },
   {
@@ -466,18 +334,6 @@ window.artifactData = [
     "Droprate": "400.0%\n400.0%\n400.0%\n400.0%\n400.0%",
     "Location": "Windy Desert South\nWindy Desert South\nWindy Desert South\nWindy Desert South\nWindy Desert South",
     "SpriteId": "T_Artifact_Titanplate_0\nT_Artifact_Titanplate_1\nT_Artifact_Titanplate_2\nT_Artifact_Titanplate_3"
-  },
-  {
-    "SetName": "Umbral Veil",
-    "SetId": "Shinobi_1",
-    "IndividualBonus": "Flame Orb Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nBinding Spiral Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nFlash Step Damage: <color=#AAFF00FF>+5% + 2% per level</color>\nBlack Blade Damage: <color=#AAFF00FF>+5% + 2% per level</color>",
-    "PerPieceBonus": null,
-    "PerRefineBonus": null,
-    "FullSetBonus": "All Stats: <color=#AAFF00FF>+3</color>\nStr:",
-    "Source": "Crafted",
-    "Droprate": null,
-    "Location": null,
-    "SpriteId": "artifacts-shinobi-1_0\nartifacts-shinobi-1_1\nartifacts-shinobi-1_3\nartifacts-shinobi-1_4"
   },
   {
     "SetName": "Vampiric",
