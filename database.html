@@ -93,6 +93,13 @@
                                 <option value="all">All Types</option>
                             </select>
                         </div>
+                        <div class="relative">
+                            <select id="equipment-level-sort" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 cursor-pointer">
+                                <option value="none">Sort by Level</option>
+                                <option value="asc">Level: Low to High</option>
+                                <option value="desc">Level: High to Low</option>
+                            </select>
+                        </div>
                     </div>
                     <div id="equipment-list"></div>
                 </section>
@@ -112,19 +119,33 @@
                                 <option value="all">All Slots</option>
                             </select>
                         </div>
+                        <div class="relative">
+                            <select id="cards-level-sort" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 cursor-pointer">
+                                <option value="none">Sort by Level</option>
+                                <option value="asc">Level: Low to High</option>
+                                <option value="desc">Level: High to Low</option>
+                            </select>
+                        </div>
                     </div>
                     <div id="cards-list"></div>
                 </section>
 
                 <!-- Artifacts Content (Hidden by default) -->
                 <section id="artifacts" class="content-section hidden">
-                    <div class="sticky top-0 z-10 bg-gray-900 py-4 flex items-center mb-6">
+                    <div class="sticky top-0 z-10 bg-gray-900 py-4 flex flex-wrap items-center gap-4 mb-6">
                         <h1 class="text-3xl font-bold text-white">Artifacts</h1>
-                        <div class="search-wrapper relative ml-4">
+                        <div class="search-wrapper relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                             </div>
                             <input type="search" id="artifacts-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500" placeholder="Search Artifacts...">
+                        </div>
+                        <div class="relative">
+                            <select id="artifacts-level-sort" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 cursor-pointer">
+                                <option value="none">Sort by Level</option>
+                                <option value="asc">Level: Low to High</option>
+                                <option value="desc">Level: High to Low</option>
+                            </select>
                         </div>
                     </div>
                     <div id="artifacts-list"></div>
@@ -272,6 +293,69 @@
                         .replace(/<color=#([A-Fa-f0-9]{6})[A-Fa-f0-9]{2}>/g, (match, color) => `<span style="color:#${color};">`)
                         .replace(/<\/color>/g, '</span>')
                         .replace(/\n/g, '<br>');
+                }
+
+                const itemSortDirections = {
+                    equipment: 'none',
+                    cards: 'none',
+                    artifacts: 'none'
+                };
+
+                function getItemDisplayName(item) {
+                    return item.Name || item.SetName || item.Affix || '';
+                }
+
+                function getMonsterDataForItemLevels() {
+                    return window.monsterData && window.monsterData.length > 0
+                        ? window.monsterData
+                        : (window.monsters || []);
+                }
+
+                function getItemLevel(item) {
+                    const requiredLevel = Number(item.LevelRequired);
+                    if (item.LevelRequired !== undefined && item.LevelRequired !== null && Number.isFinite(requiredLevel)) {
+                        return { value: requiredLevel, label: 'Req. Lv.' };
+                    }
+
+                    const exportedSourceLevel = Number(item.SourceLevel);
+                    if (item.SourceLevel !== undefined && item.SourceLevel !== null && Number.isFinite(exportedSourceLevel)) {
+                        return { value: exportedSourceLevel, label: 'Source Lv.' };
+                    }
+
+                    const monsterLevels = getMonsterDataForItemLevels();
+                    const sourceLevels = String(item.Source || '').split('\n')
+                        .map(source => source.replace(/^(Rune|Gem|Relic|Scroll|Jewel) - /i, '').trim())
+                        .map(source => monsterLevels.find(monster => monster.MonsterName === source)?.Level)
+                        .filter(level => Number.isFinite(Number(level)))
+                        .map(Number);
+
+                    if (sourceLevels.length === 0) return null;
+                    return { value: Math.min(...sourceLevels), label: 'Source Lv.' };
+                }
+
+                function renderItemLevel(item, themeColor) {
+                    const level = getItemLevel(item);
+                    if (!level) return '';
+                    return `<span class="inline-block bg-${themeColor}-900/60 text-${themeColor}-300 text-xs font-semibold px-2 py-0.5 rounded">${level.label} ${level.value}</span>`;
+                }
+
+                function sortItemsByLevel(items, category) {
+                    const direction = itemSortDirections[category];
+                    if (direction === 'none') return items;
+
+                    return [...items].sort((a, b) => {
+                        const levelA = getItemLevel(a)?.value;
+                        const levelB = getItemLevel(b)?.value;
+                        const hasLevelA = Number.isFinite(levelA);
+                        const hasLevelB = Number.isFinite(levelB);
+
+                        if (hasLevelA !== hasLevelB) return hasLevelA ? -1 : 1;
+                        if (hasLevelA && levelA !== levelB) {
+                            return direction === 'asc' ? levelA - levelB : levelB - levelA;
+                        }
+
+                        return getItemDisplayName(a).localeCompare(getItemDisplayName(b), undefined, { sensitivity: 'base' });
+                    });
                 }
 
                 function findShortestPath(startMapId, endMapId) {
@@ -545,6 +629,7 @@
                                                 <span class="inline-block bg-indigo-900/60 text-indigo-300 text-xs font-semibold px-2 py-0.5 rounded">${item.Type}</span>
                                                 ${item['Stat Type'] ? `<span class="ml-2 inline-block bg-teal-900/60 text-teal-300 text-xs font-semibold px-2 py-0.5 rounded">${item['Stat Type']}</span>` : ''}
                                                 ${item.Set ? `<span class="ml-2 inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded set-tooltip cursor-pointer" data-set-name="${item.Set}" data-set-bonus="${encodeURIComponent(item.SetBonuses || '')}">Set: ${item.Set}</span>` : ''}
+                                                ${renderItemLevel(item, 'indigo')}
                                             </div>
                                         </div>
                                     </div>
@@ -585,6 +670,7 @@
                                             <h3 class="font-bold text-lg text-white leading-tight">${card.Name}</h3>
                                             <div class="mt-1">
                                                 <span class="inline-block bg-purple-900/60 text-purple-300 text-xs font-semibold px-2 py-0.5 rounded">${card.Slot}</span>
+                                                ${renderItemLevel(card, 'purple')}
                                             </div>
                                         </div>
                                     </div>
@@ -614,6 +700,7 @@
                                          onerror="this.style.display='none'">
                                     <div class="mr-20">
                                         <h3 class="font-bold text-xl text-white mb-3">${artifact.SetName} Set</h3>
+                                        ${renderItemLevel(artifact, 'teal')}
                                         <div class="space-y-2">
                                             ${artifact.PerPieceBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Piece Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerPieceBonus)}</p></div>` : ''}
                                             ${artifact.PerRefineBonus ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Per Refine Bonus</p><p class="text-sm font-mono">${parseStats(artifact.PerRefineBonus)}</p></div>` : ''}
@@ -893,7 +980,7 @@
                                 return searchIn.includes(equipmentSearchTerm);
                             });
                         }
-                        renderEquipmentList(filteredEquipment);
+                        renderEquipmentList(sortItemsByLevel(filteredEquipment, 'equipment'));
                     } else if (activeSectionId === 'cards') {
                         const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
                         const cardSlotFilter = document.getElementById('card-slot-filter').value;
@@ -908,8 +995,21 @@
                                 return searchIn.includes(cardSearchTerm);
                             });
                         }
-                        renderCardsList(filteredCards);
+                        renderCardsList(sortItemsByLevel(filteredCards, 'cards'));
                     }
+                }
+
+                function applyArtifactFiltersAndSearch() {
+                    const searchTerm = document.getElementById('artifacts-search').value.toLowerCase();
+                    let filteredArtifacts = window.artifactData.filter(item => {
+                        const searchIn = [
+                            item.SetName, item.PerPieceBonus, item.PerRefineBonus,
+                            item.FullSetBonus, item.Source, item.Location
+                        ].join(' ').toLowerCase();
+                        return searchIn.includes(searchTerm);
+                    });
+
+                    renderArtifactsList(sortItemsByLevel(filteredArtifacts, 'artifacts'));
                 }
 
                 function applyMonsterFiltersAndSearch() {
@@ -1112,19 +1212,21 @@
                 // Filter and Search event listeners (now generic)
                 document.getElementById('equipment-search').addEventListener('input', applyFiltersAndSearch);
                 document.getElementById('equipment-type-filter').addEventListener('change', applyFiltersAndSearch);
+                document.getElementById('equipment-level-sort').addEventListener('change', (e) => {
+                    itemSortDirections.equipment = e.target.value;
+                    applyFiltersAndSearch();
+                });
                 document.getElementById('cards-search').addEventListener('input', applyFiltersAndSearch);
                 document.getElementById('card-slot-filter').addEventListener('change', applyFiltersAndSearch);
+                document.getElementById('cards-level-sort').addEventListener('change', (e) => {
+                    itemSortDirections.cards = e.target.value;
+                    applyFiltersAndSearch();
+                });
 
-                document.getElementById('artifacts-search').addEventListener('keyup', (e) => {
-                    const searchTerm = e.target.value.toLowerCase();
-                    const filteredData = window.artifactData.filter(item => {
-                        const searchIn = [
-                            item.SetName, item.PerPieceBonus, item.PerRefineBonus,
-                            item.FullSetBonus, item.Source, item.Location
-                        ].join(' ').toLowerCase();
-                        return searchIn.includes(searchTerm);
-                    });
-                    renderArtifactsList(filteredData);
+                document.getElementById('artifacts-search').addEventListener('input', applyArtifactFiltersAndSearch);
+                document.getElementById('artifacts-level-sort').addEventListener('change', (e) => {
+                    itemSortDirections.artifacts = e.target.value;
+                    applyArtifactFiltersAndSearch();
                 });
 
                 document.getElementById('monsters-search').addEventListener('input', applyMonsterFiltersAndSearch);
