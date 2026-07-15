@@ -5,13 +5,13 @@ window.mapData = [
     "MinLevel": 116,
     "MaxLevel": 120,
     "Monsters": [
-      "Gloom",
-      "Eyeball Creep Blue",
-      "Eyeball Creep Green",
-      "Eyeball Creep Red",
-      "Grim Reaper",
+      "Spectre",
+      "Azure Eyestalk",
+      "Jade Eyestalk",
+      "Ruby Eyestalk",
+      "Reaper",
       "Direwolf",
-      "Wraith"
+      "Wraith King"
     ],
     "Exits": [
       "Castle Keep",
@@ -24,17 +24,15 @@ window.mapData = [
     "MinLevel": 106,
     "MaxLevel": 110,
     "Monsters": [
-      "Mimic Book",
-      "Mimic Living Trap",
-      "Mimic Barrel",
-      "Mimic Candle",
-      "Mimic Sword",
-      "Mimic Treasure Chest"
+      "Trap Mimic",
+      "Barrel Mimic",
+      "Candle Mimic",
+      "Chest Mimic"
     ],
     "Exits": [
       "Dark Forest",
       "Castle Keep",
-      "Dungeon Outside"
+      "Dungeon Boss"
     ]
   },
   {
@@ -43,10 +41,11 @@ window.mapData = [
     "MinLevel": 111,
     "MaxLevel": 115,
     "Monsters": [
-      "Cyclops Bat",
-      "Death",
-      "Cyclops Bat Wizard",
+      "Eyeclops Bat",
+      "Wight",
+      "Eyeclops Arcanist",
       "Skeleton Mage",
+      "Sword Mimic",
       "Skeleton Giant"
     ],
     "Exits": [
@@ -64,12 +63,13 @@ window.mapData = [
     "MinLevel": 121,
     "MaxLevel": 125,
     "Monsters": [
-      "Nightmare",
-      "Cyclops Bat Mage",
-      "Eyeball Mage Blue",
-      "Eyeball Mage Green",
-      "Eyeball Mage Red",
-      "Death Mage"
+      "Book Mimic",
+      "Apparition",
+      "Eyeclops Mage",
+      "Azure Beholder",
+      "Jade Beholder",
+      "Ruby Beholder",
+      "Abyss Archon"
     ],
     "Exits": [
       "Castle Keep"
@@ -83,6 +83,8 @@ window.mapData = [
     "Monsters": [
       "Ice Cube",
       "Shadow Cube",
+      "Starry",
+      "Ice Golem",
       "Shadow Golem"
     ],
     "Exits": null
@@ -96,7 +98,7 @@ window.mapData = [
       "Bunny",
       "Egglet",
       "Rabbit",
-      "Hare"
+      "Vorpal Hare"
     ],
     "Exits": [
       "Festering Woods 2",
@@ -111,16 +113,16 @@ window.mapData = [
     "MaxLevel": 75,
     "Monsters": [
       "Ice",
-      "Snow Bomb",
-      "Dragon Water",
-      "Cyclops Minion",
+      "Snowball",
+      "Aqua Drake",
+      "Cyclopling",
       "Icicle",
-      "Dragon Ice",
+      "Rime Drake",
       "Cyclops",
-      "Elder Wisp Blue",
-      "Dragon Blizzard",
-      "Cyclops Giant",
-      "Golem Ice",
+      "Elder Frost",
+      "Frost Wyvern",
+      "Cyclops Titan",
+      "Rime Golem",
       "Ice Mage"
     ],
     "Exits": [
@@ -136,11 +138,11 @@ window.mapData = [
     "Monsters": [
       "Stormjelly",
       "Cinderspike",
-      "Sporeling",
+      "Chompcap",
       "Voidspawn",
       "Stormstinger",
-      "Fangroot",
-      "Blazewheel"
+      "Chomproot",
+      "Cinderwheel"
     ],
     "Exits": [
       "Festering Woods 1",
@@ -151,16 +153,16 @@ window.mapData = [
   {
     "Id": "Dark Fortress 1",
     "Name": "Dark Fortress Lv1",
-    "MinLevel": 146,
-    "MaxLevel": 150,
+    "MinLevel": 136,
+    "MaxLevel": 140,
     "Monsters": [
-      "Echo Acolyte",
-      "Echo Mage",
-      "Echo Rogue",
-      "Echo Scout",
-      "Echo Summoner",
-      "Echo Warrior",
-      "Echo Knight"
+      "Umbral Acolyte",
+      "Umbral Mage",
+      "Umbral Rogue",
+      "Umbral Scout",
+      "Umbral Summoner",
+      "Umbral Warrior",
+      "Umbral Knight"
     ],
     "Exits": null
   },
@@ -170,13 +172,20 @@ window.mapData = [
     "MinLevel": 146,
     "MaxLevel": 150,
     "Monsters": [
+      "Umbral Priest",
+      "Umbral Wizard",
+      "Umbral Gunslinger",
+      "Umbral Berserker",
+      "Umbral Shinobi",
+      "Umbral Necromancer",
+      "Umbral Paladin",
       "Echo Berserker",
-      "Echo Priest",
-      "Echo Shinobi",
-      "Echo Wizard",
+      "Echo Gunslinger",
       "Echo Necromancer",
       "Echo Paladin",
-      "Echo Gunslinger"
+      "Echo Priest",
+      "Echo Shinobi",
+      "Echo Wizard"
     ],
     "Exits": null
   },
@@ -186,19 +195,19 @@ window.mapData = [
     "MinLevel": 96,
     "MaxLevel": 100,
     "Monsters": [
-      "Fire",
-      "Imp Mischief",
-      "Dragon Spark",
-      "Flame",
-      "Imp Demon",
-      "Dragon Fire",
+      "Ember",
+      "Gremlin",
+      "Spark Drake",
+      "Blaze",
+      "Imp",
+      "Flame Drake",
       "Shade",
-      "Elder Wisp Yellow",
+      "Elder Fire",
       "Fire Mage",
-      "Dragon Inferno",
-      "Shadow",
-      "Golem Fire",
-      "Imp Devil"
+      "Inferno Wyvern",
+      "Nightfiend",
+      "Magma Golem",
+      "Demon Lord"
     ],
     "Exits": [
       "Poison Cave",
@@ -211,16 +220,16 @@ window.mapData = [
     "MinLevel": 31,
     "MaxLevel": 35,
     "Monsters": [
-      "Butterfly Hue",
-      "Moth Luna",
-      "Sun Blossom",
-      "Butterfly Fairy",
-      "Glow Wisp Yellow",
-      "Moth Moon",
-      "Sunflower Fairy",
-      "Butterfly Pixie",
-      "Moth Celestial",
-      "Sunflora Pixie"
+      "Sprite",
+      "Luna Moth",
+      "Nymph",
+      "Fairy",
+      "Fire Glimmer",
+      "Moon Moth",
+      "Sylvie",
+      "Pixie",
+      "Celestial Moth",
+      "Lady Fey"
     ],
     "Exits": [
       "Treant Trail",
@@ -233,14 +242,14 @@ window.mapData = [
     "MinLevel": 21,
     "MaxLevel": 25,
     "Monsters": [
-      "Eyeball Bat Blue",
-      "Eyeball Bat Green",
-      "Eyeball Bat Red",
+      "Azure Gazer",
+      "Jade Gazer",
+      "Ruby Gazer",
       "Skeleton"
     ],
     "Exits": [
       "Dark Forest",
-      "Dungeon Boss",
+      "Dungeon Outside",
       "Festering Woods 2"
     ]
   },
@@ -250,9 +259,9 @@ window.mapData = [
     "MinLevel": 26,
     "MaxLevel": 30,
     "Monsters": [
-      "Wolf Pup",
+      "Wolf Cub",
       "Wolf",
-      "Werewolf"
+      "Lycanthrope"
     ],
     "Exits": [
       "Swamp",
@@ -266,10 +275,10 @@ window.mapData = [
     "MinLevel": 11,
     "MaxLevel": 15,
     "Monsters": [
-      "Wisp Blue",
-      "Wisp Purple",
-      "Wisp Red",
-      "Wisp Yellow"
+      "Frost Wisp",
+      "Lightning Wisp",
+      "Fire Wisp",
+      "Earth Wisp"
     ],
     "Exits": [
       "Desert Field 1",
@@ -284,10 +293,10 @@ window.mapData = [
     "MinLevel": 16,
     "MaxLevel": 20,
     "Monsters": [
-      "Cat Meow",
-      "Burrow",
-      "Dog Pup",
-      "Dog Bark"
+      "Sparkit",
+      "Digger",
+      "Pup",
+      "Hound"
     ],
     "Exits": [
       "Forest Field 1",
@@ -301,9 +310,9 @@ window.mapData = [
     "MaxLevel": 0,
     "Monsters": [
       "Bee",
-      "Cat Meow",
-      "Dog Pup",
-      "Seed"
+      "Sparkit",
+      "Pup",
+      "Seedling"
     ],
     "Exits": [
       "Sunny Meadows 2",
@@ -322,10 +331,10 @@ window.mapData = [
     "MinLevel": 0,
     "MaxLevel": 0,
     "Monsters": [
-      "Wisp Blue",
+      "Frost Wisp",
       "Fledgling",
-      "Dog Bark",
-      "Bird"
+      "Hound",
+      "Rooster"
     ],
     "Exits": [
       "Labyrinth 1",
@@ -347,10 +356,10 @@ window.mapData = [
     "MinLevel": 0,
     "MaxLevel": 0,
     "Monsters": [
-      "Burrow",
+      "Digger",
       "Rabbit",
       "Sprout",
-      "Flower Pot Monster"
+      "Mandrake"
     ],
     "Exits": [
       "Labyrinth 2",
@@ -372,9 +381,9 @@ window.mapData = [
     "MinLevel": 0,
     "MaxLevel": 0,
     "Monsters": [
-      "Butterfly Hue",
-      "Wisp Purple",
-      "Bumble",
+      "Sprite",
+      "Lightning Wisp",
+      "Bumblebee",
       "Egglet"
     ],
     "Exits": [
@@ -398,15 +407,15 @@ window.mapData = [
       "Bat",
       "Spider",
       "Lurker",
-      "Snakelet",
-      "Spider Toxin",
-      "Creeper",
-      "Snake Naga"
+      "Adder",
+      "Widow",
+      "Crawler",
+      "Naga"
     ],
     "Exits": [
-      "Castle Dungeon",
-      "Desert Field 3",
-      "Dungeon Boss"
+      "Dungeon Boss",
+      "Festering Woods 1",
+      "Desert Field 3"
     ]
   },
   {
@@ -415,15 +424,15 @@ window.mapData = [
     "MinLevel": 46,
     "MaxLevel": 50,
     "Monsters": [
-      "Vampire Bat",
-      "Snake",
-      "Spider King",
+      "Nosferatu",
+      "Viper",
+      "Arachne",
       "Horror",
-      "Bat Lord"
+      "Night Baron"
     ],
     "Exits": [
       "Dungeon Outside",
-      "Festering Woods 1"
+      "Castle Dungeon"
     ]
   },
   {
@@ -432,9 +441,9 @@ window.mapData = [
     "MinLevel": 51,
     "MaxLevel": 55,
     "Monsters": [
-      "Monster Bat",
-      "Zombie Goblin Minion",
-      "Zombie Goblin Soldier"
+      "Nightwing",
+      "Zombie Goblin",
+      "Zombie Grunt"
     ],
     "Exits": [
       "Goblin Field 1",
@@ -447,10 +456,10 @@ window.mapData = [
     "MinLevel": 56,
     "MaxLevel": 60,
     "Monsters": [
-      "Monster Bat King",
-      "Zombie Goblin Giant",
+      "Nightlord",
+      "Zombie Orc",
       "Abomination",
-      "Zombie Goblin Lord"
+      "Zombie Orc Lord"
     ],
     "Exits": [
       "Goblin Cave 1",
@@ -463,11 +472,11 @@ window.mapData = [
     "MinLevel": 41,
     "MaxLevel": 45,
     "Monsters": [
-      "Goblin Minion",
-      "Goblin Trooper Mage",
-      "Goblin Trooper Assassin",
-      "Goblin Trooper",
-      "Goblin Trooper Soldier"
+      "Goblin",
+      "Goblin Mage",
+      "Goblin Assassin",
+      "Goblin Grunt",
+      "Goblin Soldier"
     ],
     "Exits": [
       "Desert Field 2",
@@ -482,10 +491,10 @@ window.mapData = [
     "MinLevel": 46,
     "MaxLevel": 50,
     "Monsters": [
-      "Goblin Giant Mage",
-      "Goblin Giant",
-      "Goblin Giant Devil",
-      "Goblin King"
+      "Orc Mage",
+      "Orc",
+      "Orc Soldier",
+      "Orc King"
     ],
     "Exits": [
       "Goblin Warcamp",
@@ -499,10 +508,10 @@ window.mapData = [
     "MinLevel": 121,
     "MaxLevel": 125,
     "Monsters": [
-      "Goblin Warlock",
-      "Goblin Warblade",
-      "Goblin Warcrusher",
-      "Goblin Warchief"
+      "Orc Warlock",
+      "Orc Reaver",
+      "Orc Crusher",
+      "Orc Warchief"
     ],
     "Exits": [
       "Goblin Village"
@@ -514,7 +523,7 @@ window.mapData = [
     "MinLevel": 26,
     "MaxLevel": 30,
     "Monsters": [
-      "Mushroom",
+      "Shroom",
       "Fungi",
       "Toadstool"
     ],
@@ -529,10 +538,10 @@ window.mapData = [
     "MinLevel": 31,
     "MaxLevel": 35,
     "Monsters": [
-      "Posy",
-      "Glow Wisp Blue",
+      "Sea Blossom",
+      "Frost Glimmer",
       "Flora",
-      "Petal"
+      "Nautilus"
     ],
     "Exits": [
       "Lake Field 1",
@@ -546,8 +555,8 @@ window.mapData = [
     "MinLevel": 36,
     "MaxLevel": 40,
     "Monsters": [
-      "Shell",
-      "Spike",
+      "Conch",
+      "Hermit",
       "Hermit King"
     ],
     "Exits": [
@@ -560,9 +569,9 @@ window.mapData = [
     "MinLevel": 16,
     "MaxLevel": 20,
     "Monsters": [
-      "Rat Dark",
-      "Rat Grey",
-      "Rat White"
+      "Sewer Rat",
+      "Plague Rat",
+      "Albino Rat"
     ],
     "Exits": [
       "Bunny Woods"
@@ -576,8 +585,8 @@ window.mapData = [
     "Monsters": [
       "Voidgazer",
       "Stormcoil",
-      "Bogbloom",
-      "Ashrend",
+      "Chompbloom",
+      "Cindermaw",
       "Cosmic Entity"
     ],
     "Exits": [
@@ -592,11 +601,11 @@ window.mapData = [
     "Monsters": [
       "Angel",
       "Ghost",
-      "Dragon Dusk",
+      "Dusk Drake",
       "Soul",
       "Archangel",
-      "Dragon Nightfall",
-      "Haunt"
+      "Night Drake",
+      "Banshee"
     ],
     "Exits": [
       "Desert Field 1",
@@ -614,9 +623,9 @@ window.mapData = [
       "Bomb",
       "Spook",
       "Phantom",
-      "Dragon Darkness",
+      "Shadow Wyvern",
       "Soul Mage",
-      "Angel Mage"
+      "Seraphim Arbiter"
     ],
     "Exits": [
       "Sanctum Inner"
@@ -637,7 +646,7 @@ window.mapData = [
       "Ice Bear",
       "Festive Bear",
       "Twinkle",
-      "Mega Ice Golem"
+      "Ice Titan"
     ],
     "Exits": [
       "Ice Cave"
@@ -650,11 +659,11 @@ window.mapData = [
     "MaxLevel": 65,
     "Monsters": [
       "Turtle Baby",
-      "Shark Baby",
-      "Turtle Blue",
-      "Turtle Green",
-      "Turtle Red",
-      "Shark Pirate"
+      "Sharkling",
+      "Azure Terrapin",
+      "Verdant Terrapin",
+      "Crimson Terrapin",
+      "Shark Buccaneer"
     ],
     "Exits": [
       "Sunken Depths 1",
@@ -667,23 +676,23 @@ window.mapData = [
     "MinLevel": 101,
     "MaxLevel": 105,
     "Monsters": [
-      "FIsh Blue",
-      "Fish Pink",
-      "Fish Yellow",
-      "Squid Baby",
-      "Octopus Baby Blue",
-      "Octopus Baby Orange",
-      "Octopus Baby Purple",
-      "Fish Man Blue",
-      "Fish Man Pink",
-      "Fish Man Yellow",
-      "Octopus Orange",
-      "Octopus Purple",
-      "Octopus White",
-      "Shark",
-      "Merman Blue",
-      "Merman Pink",
-      "Merman Yellow",
+      "Bluefin",
+      "Rosetail",
+      "Goldtail",
+      "Squidling",
+      "Azure Squid",
+      "Amber Squid",
+      "Plum Squid",
+      "Aqua Merling",
+      "Roseate Merling",
+      "Canary Merling",
+      "Amber Cuttlefish",
+      "Violet Cuttlefish",
+      "Pearl Cuttlefish",
+      "Bull Shark",
+      "Sapphire Merman",
+      "Coral Merman",
+      "Topaz Merman",
       "Kraken"
     ],
     "Exits": [
@@ -699,7 +708,7 @@ window.mapData = [
       "Pollen",
       "Chick",
       "Egg",
-      "Seed"
+      "Seedling"
     ],
     "Exits": [
       "Sunny Meadows 2",
@@ -714,11 +723,11 @@ window.mapData = [
     "MaxLevel": 10,
     "Monsters": [
       "Bee",
-      "Bumble",
+      "Bumblebee",
       "Fledgling",
       "Sprout",
-      "Bird",
-      "Sting"
+      "Rooster",
+      "Vespa"
     ],
     "Exits": [
       "Bunny Woods",
@@ -733,14 +742,14 @@ window.mapData = [
     "MinLevel": 36,
     "MaxLevel": 40,
     "Monsters": [
-      "Dragonfly Arrow",
-      "Housefly Icky",
-      "Mosquito Bug",
-      "Plant Shooter",
+      "Darter",
+      "Gadfly",
+      "Gnat",
+      "Spitter",
       "Slime",
-      "Dragonfly Darner",
-      "Housefly Nom",
-      "Mosquito Pester"
+      "Skimmer",
+      "Blowfly",
+      "Mosquito"
     ],
     "Exits": [
       "Festering Woods 2",
@@ -753,16 +762,16 @@ window.mapData = [
     "MinLevel": 66,
     "MaxLevel": 70,
     "Monsters": [
-      "Earthworm",
-      "Plant Monster",
-      "Slime Jelly",
+      "Grave Worm",
+      "Snapvine",
+      "Jellooze",
       "Worm",
-      "Dragonfly Swift",
-      "Housefly Junk",
-      "Mosquito Stinger",
-      "Plant Worm",
-      "Slime Monster",
-      "Queen Worm"
+      "Hawker",
+      "Bluebottle",
+      "Bloodsucker",
+      "Vinecrawler",
+      "Oozelord",
+      "Broodmother"
     ],
     "Exits": [
       "Swamp"
@@ -785,7 +794,7 @@ window.mapData = [
       "Snout Robot",
       "Boxy Robot",
       "Gripper Robot",
-      "Spider Queen"
+      "Suphara"
     ],
     "Exits": [
       "Demon's Maw"
@@ -797,13 +806,13 @@ window.mapData = [
     "MinLevel": 16,
     "MaxLevel": 20,
     "Monsters": [
-      "Treant Minion Autumn",
-      "Treant Minion Evergreen",
-      "Treant Tree Autumn",
-      "Treant Tree Evergreen",
-      "Treant Forest Autumn",
-      "Treant Forest Evergreen",
-      "Flower Pot Monster"
+      "Maple Sapling",
+      "Pine Sapling",
+      "Maple Treant",
+      "Pine Treant",
+      "Maple Ancient",
+      "Pine Ancient",
+      "Mandrake"
     ],
     "Exits": [
       "Sunny Meadows 1",
@@ -818,9 +827,9 @@ window.mapData = [
     "MaxLevel": 135,
     "Monsters": [
       "Solar Turtle",
-      "Octopus King Blue",
-      "Octopus King Orange",
-      "Octopus King Purple",
+      "Azure Octopus",
+      "Amber Octopus",
+      "Violet Octopus",
       "Hydro Turtle",
       "Storm Turtle",
       "Turtle Champion"
@@ -835,14 +844,14 @@ window.mapData = [
     "MinLevel": 86,
     "MaxLevel": 90,
     "Monsters": [
-      "Bud",
-      "Poison Bomb",
-      "Worm Stink",
-      "Worm Rot",
-      "Bloom",
-      "Elder Wisp Purple",
-      "Blossom",
-      "Worm Creep"
+      "Venom Bud",
+      "Miasma",
+      "Grub",
+      "Maggot",
+      "Nightbloom",
+      "Elder Lightning",
+      "Deathblossom",
+      "Devourer"
     ],
     "Exits": [
       "Sanctum Inner",
@@ -855,12 +864,12 @@ window.mapData = [
     "MinLevel": 26,
     "MaxLevel": 30,
     "Monsters": [
-      "Whirlwind",
-      "Glow Wisp Purple",
-      "Wind",
-      "Cat Lightning",
+      "Breeze",
+      "Lightning Glimmer",
+      "Gale",
+      "Voltpaw",
       "Wind Mage",
-      "Cat Bolt"
+      "Raiju"
     ],
     "Exits": [
       "Forest Field 1",
@@ -876,10 +885,10 @@ window.mapData = [
     "MaxLevel": 35,
     "Monsters": [
       "Scorpling",
-      "Mole Rat",
+      "Mole",
       "Scorpion",
-      "Dog Bowwow",
-      "Mole Rat King",
+      "Hellhound",
+      "Dire Mole",
       "Scorpion King"
     ],
     "Exits": [
@@ -898,8 +907,8 @@ window.mapData = [
       "Cacti",
       "Spore",
       "Cactus",
-      "Plant Chewer",
-      "Golem Earth",
+      "Man-Eater",
+      "Stone Golem",
       "Cactus King"
     ],
     "Exits": [
