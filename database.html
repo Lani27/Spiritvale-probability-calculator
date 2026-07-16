@@ -104,6 +104,27 @@
                     <div id="equipment-list"></div>
                 </section>
 
+                <!-- Gems Content (Hidden by default) -->
+                <section id="gems" class="content-section hidden">
+                    <div class="sticky top-0 z-10 bg-gray-900 py-4 flex flex-wrap items-center gap-4 mb-6">
+                        <h1 class="text-3xl font-bold text-white">Gems</h1>
+                        <div class="search-wrapper relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <input type="search" id="gems-search" class="search-input block w-10 h-10 p-2 pl-10 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500" placeholder="Search Gems...">
+                        </div>
+                        <div class="relative">
+                            <select id="gems-level-sort" class="filter-select block w-48 h-10 px-4 text-sm text-gray-300 bg-gray-700 rounded-full border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 cursor-pointer">
+                                <option value="none">Sort by Level</option>
+                                <option value="asc">Level: Low to High</option>
+                                <option value="desc">Level: High to Low</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="gems-list"></div>
+                </section>
+
                 <!-- Cards Content (Hidden by default) -->
                 <section id="cards" class="content-section hidden">
                      <div class="sticky top-0 z-10 bg-gray-900 py-4 flex flex-wrap items-center gap-4 mb-6">
@@ -225,6 +246,7 @@
             // --- GLOBAL DATA REFERENCES & STATE ---
             // These will be populated by the dynamically loaded scripts.
             window.equipmentData = [];
+            window.gemData = [];
             window.cardData = [];
             window.artifactData = [];
             window.monsterData = [];
@@ -297,9 +319,19 @@
 
                 const itemSortDirections = {
                     equipment: 'none',
+                    gems: 'none',
                     cards: 'none',
                     artifacts: 'none'
                 };
+
+                function getEquipmentOnlyData() {
+                    return (window.equipmentData || []).filter(item => item.Type !== 'Gem');
+                }
+
+                function getGemData() {
+                    if (window.gemData && window.gemData.length > 0) return window.gemData;
+                    return (window.equipmentData || []).filter(item => item.Type === 'Gem');
+                }
 
                 const spriteBaseUrl = 'https://raw.githubusercontent.com/Lani27/Spiritvale-probability-calculator/main/Sprites';
 
@@ -549,7 +581,7 @@
                     // The tooltip should not contain the sources, so we pass a dummy theme color to avoid rendering them.
                     const sourceFreeItem = { ...item, Source: '' };
 
-                    if (item.itemType === 'Equipment') {
+                    if (item.itemType === 'Equipment' || item.itemType === 'Gem') {
                         return `
                             <div class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10" style="width: 420px;">
                                 <div class="flex items-start mb-3">
@@ -662,6 +694,39 @@
                     if (isNaN(rate)) return droprate;
                     // Adjust for floating point inaccuracies and remove unnecessary trailing zeros
                     return Number((rate / 100).toFixed(2)) + '%';
+                }
+
+                function renderGemsList(data) {
+                    const container = document.getElementById('gems-list');
+                    container.innerHTML = '';
+                    const gems = getGemData();
+                    if (gems.length === 0) return;
+                    const itemsToRender = data || gems;
+                    container.innerHTML = `
+                        <div class="grid grid-cols-[repeat(auto-fill,minmax(400px,1fr))] gap-4">
+                            ${itemsToRender.map(gem => `
+                                <div data-item-name="${gem.Name}" class="bg-gray-800/70 rounded-lg border border-gray-700/50 p-4 flex flex-col transition-all hover:border-yellow-500/50 hover:shadow-2xl hover:shadow-yellow-500/10">
+                                    <div class="flex items-start mb-3">
+                                        <img src="${getSpriteUrl('Equipment', gem.SpriteId)}" alt="${gem.Name}" class="w-12 h-12 rounded-md bg-gray-700 mr-4 flex-shrink-0" onerror="this.onerror=null;this.src='https://placehold.co/64x64/1f2937/eab308?text=${gem.Name.substring(0,1)}';">
+                                        <div class="flex-1">
+                                            <h3 class="font-bold text-lg text-white leading-tight">${gem.Name}</h3>
+                                            <div class="mt-1 flex items-center flex-wrap gap-2">
+                                                <span class="inline-block bg-yellow-900/60 text-yellow-300 text-xs font-semibold px-2 py-0.5 rounded">Gem</span>
+                                                ${gem.Affix ? `<span class="inline-block bg-gray-700 text-gray-300 text-xs font-semibold px-2 py-0.5 rounded">${gem.Affix}</span>` : ''}
+                                                ${renderItemLevel(gem, 'yellow')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow space-y-3 mb-4">
+                                        ${gem.Description ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Description</p><p class="text-sm">${parseStats(gem.Description)}</p></div>` : ''}
+                                        ${gem.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Stats</p><p class="text-sm font-mono">${parseStats(gem.PrimaryStats)}</p></div>` : ''}
+                                    </div>
+                                    <div class="mt-auto">
+                                        ${renderSources(gem, 'yellow')}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>`;
                 }
 
                 function renderCardsList(data) {
@@ -903,7 +968,8 @@
 
                     // Find all loot for this monster
                     const allItems = [
-                        ...window.equipmentData.map(item => ({ ...item, itemType: 'Equipment', themeColor: 'indigo' })),
+                        ...getEquipmentOnlyData().map(item => ({ ...item, itemType: 'Equipment', themeColor: 'indigo' })),
+                        ...getGemData().map(item => ({ ...item, itemType: 'Gem', themeColor: 'yellow' })),
                         ...window.cardData.map(item => ({ ...item, itemType: 'Card', themeColor: 'purple' })),
                         ...window.artifactData.map(item => ({ ...item, itemType: 'Artifact', themeColor: 'teal' }))
                     ];
@@ -939,12 +1005,12 @@
                         }, {});
 
                         let lootHtml = '';
-                        const categoryOrder = ['Equipment', 'Card', 'Artifact']; // Define order
+                        const categoryOrder = ['Equipment', 'Gem', 'Card', 'Artifact']; // Define order
 
                         categoryOrder.forEach(category => {
                             if (groupedLoot[category]) {
                                 // Add a divider for the category
-                                const plural = category === 'Card' ? 'Cards' : (category === 'Artifact' ? 'Artifacts' : 'Equipment');
+                                const plural = category === 'Card' ? 'Cards' : (category === 'Artifact' ? 'Artifacts' : `${category}${category === 'Gem' ? 's' : ''}`);
                                 lootHtml += `<h4 class="text-lg font-semibold text-white mb-2 mt-4 col-span-1 md:col-span-2">${plural}</h4>`;
 
                                 groupedLoot[category].forEach(item => {
@@ -979,7 +1045,7 @@
                     if (activeSectionId === 'equipment') {
                         const equipmentSearchTerm = document.getElementById('equipment-search').value.toLowerCase();
                         const equipmentTypeFilter = document.getElementById('equipment-type-filter').value;
-                        let filteredEquipment = window.equipmentData;
+                        let filteredEquipment = getEquipmentOnlyData();
 
                         if (equipmentTypeFilter !== 'all') {
                             filteredEquipment = filteredEquipment.filter(item => item.Type === equipmentTypeFilter);
@@ -991,6 +1057,17 @@
                             });
                         }
                         renderEquipmentList(sortItemsByLevel(filteredEquipment, 'equipment'));
+                    } else if (activeSectionId === 'gems') {
+                        const gemSearchTerm = document.getElementById('gems-search').value.toLowerCase();
+                        let filteredGems = getGemData();
+
+                        if (gemSearchTerm) {
+                            filteredGems = filteredGems.filter(item => {
+                                const searchIn = [item.Name, item.Affix, item.Description, item.PrimaryStats, item.Source, item.Location].join(' ').toLowerCase();
+                                return searchIn.includes(gemSearchTerm);
+                            });
+                        }
+                        renderGemsList(sortItemsByLevel(filteredGems, 'gems'));
                     } else if (activeSectionId === 'cards') {
                         const cardSearchTerm = document.getElementById('cards-search').value.toLowerCase();
                         const cardSlotFilter = document.getElementById('card-slot-filter').value;
@@ -1062,15 +1139,23 @@
                     if (initializedSections.has('equipment')) return;
                     // Populate filters
                     const equipmentTypeFilter = document.getElementById('equipment-type-filter');
-                    const uniqueEquipmentTypes = [...new Set(window.equipmentData.map(item => item.Type))].sort();
+                    const equipment = getEquipmentOnlyData();
+                    const uniqueEquipmentTypes = [...new Set(equipment.map(item => item.Type))].sort();
                     uniqueEquipmentTypes.forEach(type => {
                         const option = document.createElement('option');
                         option.value = type;
                         option.textContent = type;
                         equipmentTypeFilter.appendChild(option);
                     });
-                    renderEquipmentList();
+                    renderEquipmentList(equipment);
                     initializedSections.add('equipment');
+                }
+
+                function initializeGemsSection() {
+                    if (initializedSections.has('gems')) return;
+                    window.gemData = (window.equipmentData || []).filter(item => item.Type === 'Gem');
+                    renderGemsList();
+                    initializedSections.add('gems');
                 }
 
                 function initializeCardsSection() {
@@ -1161,6 +1246,10 @@
                             scripts: ['Equipment.js', 'monsters.js', 'Maps.js'],
                             init: initializeEquipmentSection
                         },
+                        gems: {
+                            scripts: ['Equipment.js', 'monsters.js', 'Maps.js'],
+                            init: initializeGemsSection
+                        },
                         cards: {
                             scripts: ['Cards.js', 'monsters.js', 'Maps.js'],
                             init: initializeCardsSection
@@ -1224,6 +1313,11 @@
                 document.getElementById('equipment-type-filter').addEventListener('change', applyFiltersAndSearch);
                 document.getElementById('equipment-level-sort').addEventListener('change', (e) => {
                     itemSortDirections.equipment = e.target.value;
+                    applyFiltersAndSearch();
+                });
+                document.getElementById('gems-search').addEventListener('input', applyFiltersAndSearch);
+                document.getElementById('gems-level-sort').addEventListener('change', (e) => {
+                    itemSortDirections.gems = e.target.value;
                     applyFiltersAndSearch();
                 });
                 document.getElementById('cards-search').addEventListener('input', applyFiltersAndSearch);
@@ -1317,6 +1411,7 @@
                         if (itemName && itemType) {
                             const sectionMap = {
                                 'Equipment': { hash: 'equipment' },
+                                'Gem': { hash: 'gems' },
                                 'Card': { hash: 'cards' },
                                 'Artifact': { hash: 'artifacts' }
                             };
@@ -1442,6 +1537,8 @@
 
                         if (itemType === 'Equipment') {
                             itemData = window.equipmentData.find(i => i.Name === itemName);
+                        } else if (itemType === 'Gem') {
+                            itemData = getGemData().find(i => i.Name === itemName);
                         } else if (itemType === 'Card') {
                             itemData = window.cardData.find(i => i.Name === itemName);
                         } else if (itemType === 'Artifact') {

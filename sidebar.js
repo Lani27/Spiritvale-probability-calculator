@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Database</h2>
                     <ul class="space-y-1">
                         <li><a href="database.html#equipment" class="sidebar-link" data-target="equipment"><span class="nav-icon">🛡️</span><span class="nav-text">Equipment</span></a></li>
+                        <li><a href="database.html#gems" class="sidebar-link" data-target="gems"><span class="nav-icon">💎</span><span class="nav-text">Gems</span></a></li>
                         <li><a href="database.html#cards" class="sidebar-link" data-target="cards"><span class="nav-icon">🎴</span><span class="nav-text">Cards</span></a></li>
                         <li><a href="database.html#artifacts" class="sidebar-link" data-target="artifacts"><span class="nav-icon">✨</span><span class="nav-text">Artifacts</span></a></li>
                         <li><a href="database.html#monsters" class="sidebar-link" data-target="monsters"><span class="nav-icon">👹</span><span class="nav-text">Monsters</span></a></li>
@@ -42,6 +43,10 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="database.html#equipment" class="sidebar-link" data-target="equipment">
                 <span class="nav-icon">🛡️</span>
                 <span class="nav-text">Equip</span>
+            </a>
+            <a href="database.html#gems" class="sidebar-link" data-target="gems">
+                <span class="nav-icon">💎</span>
+                <span class="nav-text">Gems</span>
             </a>
             <a href="database.html#cards" class="sidebar-link" data-target="cards">
                 <span class="nav-icon">🎴</span>
