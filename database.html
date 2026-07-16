@@ -564,9 +564,11 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow space-y-3 mb-4">
+                                    ${item.Affix ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Affix</p><p class="text-sm font-mono">${parseStats(item.Affix)}</p></div>` : ''}
+                                    ${item.Description ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Description</p><p class="text-sm">${parseStats(item.Description)}</p></div>` : ''}
                                     ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
                                     ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
-                                    <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
+                                    ${item.CardSlots !== undefined && item.CardSlots !== null ? `<div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>` : ''}
                                 </div>
                                 <div class="mt-auto">
                                     ${renderSources(sourceFreeItem, 'indigo')}
@@ -640,9 +642,11 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow space-y-3 mb-4">
+                                        ${item.Affix ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Affix</p><p class="text-sm font-mono">${parseStats(item.Affix)}</p></div>` : ''}
+                                        ${item.Description ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Description</p><p class="text-sm">${parseStats(item.Description)}</p></div>` : ''}
                                         ${item.PrimaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Primary Stats</p><p class="text-sm font-mono">${parseStats(item.PrimaryStats)}</p></div>` : ''}
                                         ${item.SecondaryStats ? `<div><p class="text-xs text-gray-500 uppercase font-semibold">Secondary Stats</p><p class="text-sm font-mono">${parseStats(item.SecondaryStats)}</p></div>` : ''}
-                                        <div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>
+                                        ${item.CardSlots !== undefined && item.CardSlots !== null ? `<div><p class="text-xs text-gray-400">Card Slots: <span class="font-semibold text-indigo-400">${item.CardSlots}</span></p></div>` : ''}
                                     </div>
                                     <div class="mt-auto">
                                         ${renderSources(item, 'indigo')}
@@ -982,7 +986,7 @@
                         }
                         if (equipmentSearchTerm) {
                             filteredEquipment = filteredEquipment.filter(item => {
-                                const searchIn = [item.Name, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
+                                const searchIn = [item.Name, item.Affix, item.Description, item.PrimaryStats, item.SecondaryStats, item.SetBonuses, item.Type, item.Set, item.Source, item.Location].join(' ').toLowerCase();
                                 return searchIn.includes(equipmentSearchTerm);
                             });
                         }

@@ -32,6 +32,32 @@ window.equipmentData = [
     "SpriteId": "V1_Back_13"
   },
   {
+    "Name": "Aerial Shot Gem",
+    "EquipmentId": "AerialShot Gem",
+    "Type": "Gem",
+    "Affix": "Aerial Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Aerial Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Flora\nToadstool",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Mystic Lake 1\nLake Field",
+    "SpriteId": "gem",
+    "SourceLevel": 30
+  },
+  {
+    "Name": "Air Cutter Gem",
+    "EquipmentId": "SpearSlice Gem",
+    "Type": "Gem",
+    "Affix": "Air Cutter",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Air Cutter Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Fungi\nFrost Glimmer\nHermit",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Lake Field\nMystic Lake 1\nMystic Lake 2",
+    "SpriteId": "gem",
+    "SourceLevel": 28
+  },
+  {
     "Name": "Alpha Surge",
     "EquipmentId": "Summoner_1",
     "Type": "Grimoire",
@@ -78,6 +104,19 @@ window.equipmentData = [
     "Droprate": "300.0%\n300.0%\n\n",
     "Location": "Forest Field 2\nForest Field 1\nForest Field 1\nForest Field 2",
     "SpriteId": "Earring_19"
+  },
+  {
+    "Name": "Anchor Gem",
+    "EquipmentId": "NoKnockback Gem",
+    "Type": "Gem",
+    "Affix": "Anchor",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "<color=#FF9700FF>Immune to knockback.</color>\nMovement Speed: <color=#FF0073FF>-10% + 1% per level</color>",
+    "Source": "Suphara",
+    "Droprate": "30.0%",
+    "Location": "The Forge",
+    "SpriteId": "gem_2",
+    "SourceLevel": 135
   },
   {
     "Name": "Arcane Barrier",
@@ -174,6 +213,19 @@ window.equipmentData = [
     "Droprate": "1000.0%\n200.0%\n1000.0%\n200.0%\n200.0%\n\n",
     "Location": "Forgotten Depths 2\nForgotten Depths 2\nForgotten Depths 1\nForgotten Depths 1\nForgotten Depths 1\nForgotten Depths 1\nForgotten Depths 2",
     "SpriteId": "Bracelet_2"
+  },
+  {
+    "Name": "Arrow Shower Gem",
+    "EquipmentId": "ArrowShower Gem",
+    "Type": "Gem",
+    "Affix": "Arrow Shower",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Arrow Shower Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Sharkling\nCrimson Terrapin",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Stormreef Isle\nStormreef Isle",
+    "SpriteId": "gem",
+    "SourceLevel": 62
   },
   {
     "Name": "Arrowcatch Wall",
@@ -288,6 +340,19 @@ window.equipmentData = [
     "SpriteId": "V2_Wield_Gear_Right_6"
   },
   {
+    "Name": "Axe Throw Gem",
+    "EquipmentId": "AxeThrow Gem",
+    "Type": "Gem",
+    "Affix": "Axe Throw",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Axe Throw Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Shark Buccaneer\nAzure Terrapin",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Stormreef Isle\nStormreef Isle",
+    "SpriteId": "gem",
+    "SourceLevel": 63
+  },
+  {
     "Name": "Azure Antlers",
     "EquipmentId": "Azure Antlers",
     "Type": "Eyewear",
@@ -400,6 +465,19 @@ window.equipmentData = [
     "SpriteId": "Casual_Back_9"
   },
   {
+    "Name": "Banishment Field Gem",
+    "EquipmentId": "FieldCurse Gem",
+    "Type": "Gem",
+    "Affix": "Banishment Field",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Banishment Field Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Nightwing\nNightlord",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Goblin Cave 1\nGoblin Cave 2",
+    "SpriteId": "gem",
+    "SourceLevel": 51
+  },
+  {
     "Name": "Banishment Well",
     "EquipmentId": "Summoner_3",
     "Type": "Grimoire",
@@ -414,6 +492,32 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Nevaris",
     "SpriteId": "grimoire-base"
+  },
+  {
+    "Name": "Bash Gem",
+    "EquipmentId": "Bash Gem",
+    "Type": "Gem",
+    "Affix": "Bash",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Bash Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Hellhound\nScorpling",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Windy Desert North\nWindy Desert North",
+    "SpriteId": "gem",
+    "SourceLevel": 31
+  },
+  {
+    "Name": "Bastion Gem",
+    "EquipmentId": "DefMult Gem",
+    "Type": "Gem",
+    "Affix": "Bastion",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "DEF: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Zombie Orc Lord",
+    "Droprate": "30.0%",
+    "Location": "Goblin Cave 2",
+    "SpriteId": "gem_2",
+    "SourceLevel": 65
   },
   {
     "Name": "Batling Familiar",
@@ -496,6 +600,19 @@ window.equipmentData = [
     "SpriteId": "V2_Head_14"
   },
   {
+    "Name": "Binding Spiral Gem",
+    "EquipmentId": "FrostBlade Gem",
+    "Type": "Gem",
+    "Affix": "Binding Spiral",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Binding Spiral Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Festive Bear\nVanilla Ice\nIce Baby",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Starfall Tundra\nStarfall Tundra\nStarfall Tundra",
+    "SpriteId": "gem",
+    "SourceLevel": 132
+  },
+  {
     "Name": "Binding Spirits Staff",
     "EquipmentId": "Binding Spirits Staff",
     "Type": "Wand",
@@ -512,6 +629,19 @@ window.equipmentData = [
     "SpriteId": "T_Staff_BindingSpirits"
   },
   {
+    "Name": "Black Blade Gem",
+    "EquipmentId": "ShadowRelease Gem",
+    "Type": "Gem",
+    "Affix": "Black Blade",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Black Blade Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Eyeclops Mage\nRuby Beholder",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Library\nAbyss Castle Library",
+    "SpriteId": "gem",
+    "SourceLevel": 123
+  },
+  {
     "Name": "Blacksteel Blade",
     "EquipmentId": "Blacksteel Blade",
     "Type": "Sword",
@@ -526,6 +656,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n3000.0%\n",
     "Location": "Dark Fortress Lv2\nDark Fortress Lv2\nSpire Entrance",
     "SpriteId": "T_Sword_BlacksteelBlade"
+  },
+  {
+    "Name": "Blade Dance Gem",
+    "EquipmentId": "BladeDance Gem",
+    "Type": "Gem",
+    "Affix": "Blade Dance",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Blade Dance Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Turtle Baby\nVerdant Terrapin",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Stormreef Isle\nStormreef Isle",
+    "SpriteId": "gem",
+    "SourceLevel": 61
   },
   {
     "Name": "Blade of Eclipse",
@@ -624,6 +767,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "Blizzard Gem",
+    "EquipmentId": "FreezingField Gem",
+    "Type": "Gem",
+    "Affix": "Blizzard",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Blizzard Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Little Star\nIce Bear\nStarflake",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Starfall Tundra\nStarfall Tundra\nStarfall Tundra",
+    "SpriteId": "gem",
+    "SourceLevel": 131
+  },
+  {
     "Name": "Blood Clip",
     "EquipmentId": "Blood Clip",
     "Type": "Accessory",
@@ -654,6 +810,19 @@ window.equipmentData = [
     "Droprate": "300.0%\n300.0%\n300.0%\n",
     "Location": "Dark Forest\nDark Forest\nDark Forest\nDark Forest",
     "SpriteId": "V1_Leg_7"
+  },
+  {
+    "Name": "Bloodfang Gem",
+    "EquipmentId": "Leech Gem",
+    "Type": "Gem",
+    "Affix": "Bloodfang",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Health Leech: <color=#AAFF00FF>+0.5% per level</color>",
+    "Source": "Lycanthrope",
+    "Droprate": "30.0%",
+    "Location": "Festering Woods 2",
+    "SpriteId": "gem_2",
+    "SourceLevel": 35
   },
   {
     "Name": "Bloodprice",
@@ -814,6 +983,32 @@ window.equipmentData = [
     "Droprate": "1500.0%\n300.0%\n",
     "Location": "Festering Woods 2\nFestering Woods 2\nFestering Woods 2",
     "SpriteId": "Wield_Gear_Right_21"
+  },
+  {
+    "Name": "Bone Spear Gem",
+    "EquipmentId": "BoneSpear Gem",
+    "Type": "Gem",
+    "Affix": "Bone Spear",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Bone Spear Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Ruby Eyestalk\nSpectre",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Crypt\nAbyss Castle Crypt",
+    "SpriteId": "gem",
+    "SourceLevel": 116
+  },
+  {
+    "Name": "Bone Spikes Gem",
+    "EquipmentId": "BoneSpikes Gem",
+    "Type": "Gem",
+    "Affix": "Bone Spikes",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Bone Spikes Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Azure Eyestalk\nReaper",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Crypt\nAbyss Castle Crypt",
+    "SpriteId": "gem",
+    "SourceLevel": 117
   },
   {
     "Name": "Bonefang",
@@ -1040,6 +1235,19 @@ window.equipmentData = [
     "SpriteId": "Casual_Head_32"
   },
   {
+    "Name": "Carrier Gem",
+    "EquipmentId": "WeightLimit Gem",
+    "Type": "Gem",
+    "Affix": "Carrier",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Weight Limit: <color=#AAFF00FF>+200 per level</color>",
+    "Source": "Ice Titan",
+    "Droprate": "30.0%",
+    "Location": "Starfall Tundra",
+    "SpriteId": "gem_2",
+    "SourceLevel": 140
+  },
+  {
     "Name": "Centurion Helm",
     "EquipmentId": "Centurion Helm",
     "Type": "Head",
@@ -1070,6 +1278,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n500.0%\n",
     "Location": "Abyss Castle Keep\nAbyss Castle Keep\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Crypt\nAbyss Castle Keep\nAbyss Castle Crypt\nAbyss Castle Keep",
     "SpriteId": "T_Mace_CeruleanScepter"
+  },
+  {
+    "Name": "Chain Lightning Gem",
+    "EquipmentId": "ChainLightning Gem",
+    "Type": "Gem",
+    "Affix": "Chain Lightning",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Chain Lightning Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Voidgazer\nCindermaw",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Night Garden\nNight Garden",
+    "SpriteId": "gem",
+    "SourceLevel": 126
   },
   {
     "Name": "Chain Reaction",
@@ -1118,6 +1339,19 @@ window.equipmentData = [
     "Droprate": "200.0%\n200.0%\n200.0%\n",
     "Location": "Dark Forest\nDark Forest\nDark Forest\nDark Forest",
     "SpriteId": "V3_Wield_Gear_Right_17"
+  },
+  {
+    "Name": "Channel Gem",
+    "EquipmentId": "MpCost Gem",
+    "Type": "Gem",
+    "Affix": "Channel",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "MP Cost: <color=#AAFF00FF>-2% per level</color>",
+    "Source": "Seraphim Arbiter",
+    "Droprate": "30.0%",
+    "Location": "Sanctum of Light",
+    "SpriteId": "gem_2",
+    "SourceLevel": 90
   },
   {
     "Name": "Chaos Reaver",
@@ -1376,6 +1610,45 @@ window.equipmentData = [
     "SpriteId": "V3_Wield_Gear_Right_5"
   },
   {
+    "Name": "Consecration Gem",
+    "EquipmentId": "Consecration Gem",
+    "Type": "Gem",
+    "Affix": "Consecration",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Consecration Healing: <color=#AAFF00FF>+2% per level</color>\nConsecrated Ground Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Wight\nSword Mimic",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Keep\nAbyss Castle Keep",
+    "SpriteId": "gem",
+    "SourceLevel": 112
+  },
+  {
+    "Name": "Corpse Explosion Gem",
+    "EquipmentId": "CorpseExplosion Gem",
+    "Type": "Gem",
+    "Affix": "Corpse Explosion",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Corpse Explosion Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bluebottle\nJellooze\nOozelord",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Swamp Wilderness\nSwamp Wilderness\nSwamp Wilderness",
+    "SpriteId": "gem",
+    "SourceLevel": 67
+  },
+  {
+    "Name": "Counter Slash Gem",
+    "EquipmentId": "CounterSlash Gem",
+    "Type": "Gem",
+    "Affix": "Counter Slash",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Counter Slash Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Cacti\nMan-Eater",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Windy Desert South\nWindy Desert South",
+    "SpriteId": "gem",
+    "SourceLevel": 31
+  },
+  {
     "Name": "Crimson Crest",
     "EquipmentId": "Crimson Crest",
     "Type": "Head",
@@ -1488,6 +1761,19 @@ window.equipmentData = [
     "SpriteId": "Head_51"
   },
   {
+    "Name": "Cyclone Gem",
+    "EquipmentId": "Cyclone Gem",
+    "Type": "Gem",
+    "Affix": "Cyclone",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Cyclone Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc Crusher",
+    "Droprate": "10.0%",
+    "Location": "Goblin Warcamp",
+    "SpriteId": "gem",
+    "SourceLevel": 125
+  },
+  {
     "Name": "Daggers",
     "EquipmentId": "Daggers",
     "Type": "Back",
@@ -1502,6 +1788,32 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n500.0%\n100.0%\n100.0%\n100.0%\n",
     "Location": "Swamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness\nSwamp Wilderness",
     "SpriteId": "Back_4"
+  },
+  {
+    "Name": "Damnation Gem",
+    "EquipmentId": "Damnation Gem",
+    "Type": "Gem",
+    "Affix": "Damnation",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Damnation Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Barrel Mimic",
+    "Droprate": "10.0%",
+    "Location": "Abyss Castle Dungeon",
+    "SpriteId": "gem",
+    "SourceLevel": 107
+  },
+  {
+    "Name": "Dark Claw Gem",
+    "EquipmentId": "DarkClaw Gem",
+    "Type": "Gem",
+    "Affix": "Dark Claw",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Dark Claw Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Eyeclops Arcanist\nSkeleton Giant",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Keep\nAbyss Castle Keep",
+    "SpriteId": "gem",
+    "SourceLevel": 113
   },
   {
     "Name": "Darkfeather Wings",
@@ -1568,6 +1880,45 @@ window.equipmentData = [
     "SpriteId": "T_Mace_Dawnstar"
   },
   {
+    "Name": "Death Coil Gem",
+    "EquipmentId": "DeathCoil Gem",
+    "Type": "Gem",
+    "Affix": "Death Coil",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Death Coil Damage: <color=#AAFF00FF>+2% per level</color>\nDeath Coil Healing: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Azure Beholder\nBook Mimic",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Library\nAbyss Castle Library",
+    "SpriteId": "gem",
+    "SourceLevel": 121
+  },
+  {
+    "Name": "Death Nova Gem",
+    "EquipmentId": "DeathNova Gem",
+    "Type": "Gem",
+    "Affix": "Death Nova",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Death Nova Damage: <color=#AAFF00FF>+2% per level</color>\nDeath Nova Field Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Direwolf\nJade Eyestalk",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Crypt\nAbyss Castle Crypt",
+    "SpriteId": "gem",
+    "SourceLevel": 118
+  },
+  {
+    "Name": "Death Spiral Gem",
+    "EquipmentId": "DeathSpiral Gem",
+    "Type": "Gem",
+    "Affix": "Death Spiral",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Death Spiral Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Jade Beholder\nApparition",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Library\nAbyss Castle Library",
+    "SpriteId": "gem",
+    "SourceLevel": 122
+  },
+  {
     "Name": "Death's Grin",
     "EquipmentId": "Death's Grin",
     "Type": "Eyewear",
@@ -1582,6 +1933,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Swamp Wilderness",
     "SpriteId": "Mask_2"
+  },
+  {
+    "Name": "Deflect Gem",
+    "EquipmentId": "CritDef Gem",
+    "Type": "Gem",
+    "Affix": "Deflect",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "CRIT DEF: <color=#AAFF00FF>+3% per level</color>",
+    "Source": "Ice Titan",
+    "Droprate": "30.0%",
+    "Location": "Starfall Tundra",
+    "SpriteId": "gem_2",
+    "SourceLevel": 140
   },
   {
     "Name": "Destruction Staff",
@@ -1776,6 +2140,19 @@ window.equipmentData = [
     "SpriteId": "Eyewear_6"
   },
   {
+    "Name": "Dissonance Well Gem",
+    "EquipmentId": "FieldDamage Gem",
+    "Type": "Gem",
+    "Affix": "Dissonance Well",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Dissonance Well Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Elder Frost\nRime Golem\nIcicle\nSnowball",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave",
+    "SpriteId": "gem",
+    "SourceLevel": 71
+  },
+  {
     "Name": "Divine Blade",
     "EquipmentId": "Champion Blade",
     "Type": "Sword",
@@ -1790,6 +2167,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n",
     "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light",
     "SpriteId": "T_Sword_DivineBlade"
+  },
+  {
+    "Name": "Divine Punishment Gem",
+    "EquipmentId": "DivinePunishment Gem",
+    "Type": "Gem",
+    "Affix": "Divine Punishment",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Divine Punishment Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Candle Mimic",
+    "Droprate": "10.0%",
+    "Location": "Abyss Castle Dungeon",
+    "SpriteId": "gem",
+    "SourceLevel": 109
   },
   {
     "Name": "Doom Crescent",
@@ -2048,6 +2438,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "Earth Gem",
+    "EquipmentId": "Earth Gem",
+    "Type": "Gem",
+    "Affix": "Earth",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Earth Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Orc King",
+    "Droprate": "30.0%",
+    "Location": "Goblin Village",
+    "SpriteId": "gem_2",
+    "SourceLevel": 55
+  },
+  {
     "Name": "Earth Shaker",
     "EquipmentId": "Earth Shaker",
     "Type": "Axe",
@@ -2062,6 +2465,71 @@ window.equipmentData = [
     "Droprate": "500.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n",
     "Location": "Sunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths",
     "SpriteId": "T_Axe_EarthShaker"
+  },
+  {
+    "Name": "Earth Spikes Gem",
+    "EquipmentId": "EarthSpikes Gem",
+    "Type": "Gem",
+    "Affix": "Earth Spikes",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Earth Spikes Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Egglet\nPlague Rat",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Bunny Woods\nNevaris Sewers",
+    "SpriteId": "gem",
+    "SourceLevel": 18
+  },
+  {
+    "Name": "Earth Splitter Gem",
+    "EquipmentId": "GroundSlam Gem",
+    "Type": "Gem",
+    "Affix": "Earth Splitter",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Earth Splitter Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Crawler\nLurker",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Forgotten Depths 1\nForgotten Depths 1",
+    "SpriteId": "gem",
+    "SourceLevel": 43
+  },
+  {
+    "Name": "Earthbolt Gem",
+    "EquipmentId": "Earthbolt Gem",
+    "Type": "Gem",
+    "Affix": "Earthbolt",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Earthbolt Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bunny\nRabbit\nSewer Rat\nAlbino Rat",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Bunny Woods\nBunny Woods\nNevaris Sewers\nNevaris Sewers",
+    "SpriteId": "gem",
+    "SourceLevel": 16
+  },
+  {
+    "Name": "Earthquake Gem",
+    "EquipmentId": "Earthquake Gem",
+    "Type": "Gem",
+    "Affix": "Earthquake",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Earthquake Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc Reaver",
+    "Droprate": "10.0%",
+    "Location": "Goblin Warcamp",
+    "SpriteId": "gem",
+    "SourceLevel": 123
+  },
+  {
+    "Name": "Echo Gem",
+    "EquipmentId": "DoubleAttack Gem",
+    "Type": "Gem",
+    "Affix": "Echo",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Multistrike: <color=#AAFF00FF>+3% per level</color>",
+    "Source": "Naga",
+    "Droprate": "30.0%",
+    "Location": "Forgotten Depths 1",
+    "SpriteId": "gem_2",
+    "SourceLevel": 50
   },
   {
     "Name": "Eclipse Kunai",
@@ -2094,6 +2562,19 @@ window.equipmentData = [
     "Droprate": "3000.0%\n100.0%\n",
     "Location": "Night Garden\nNight Garden\nNight Garden",
     "SpriteId": "V3_Wield_Gear_Right_19"
+  },
+  {
+    "Name": "Elemental Overload Gem",
+    "EquipmentId": "TetraVortex Gem",
+    "Type": "Gem",
+    "Affix": "Elemental Overload",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Elemental Overload Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Amber Octopus\nStorm Turtle",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Turtle Nexus\nTurtle Nexus",
+    "SpriteId": "gem",
+    "SourceLevel": 133
   },
   {
     "Name": "Elementalist",
@@ -2224,6 +2705,19 @@ window.equipmentData = [
     "SpriteId": "V1_Foot_15"
   },
   {
+    "Name": "Evasion Gem",
+    "EquipmentId": "Flee Gem",
+    "Type": "Gem",
+    "Affix": "Evasion",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Flee: <color=#AAFF00FF>+3 per level</color>\nPerfect Dodge: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Naga",
+    "Droprate": "30.0%",
+    "Location": "Forgotten Depths 1",
+    "SpriteId": "gem_2",
+    "SourceLevel": 50
+  },
+  {
     "Name": "Everfrost Staff",
     "EquipmentId": "Everfrost Staff",
     "Type": "Wand",
@@ -2238,6 +2732,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n100.0%\n500.0%\n",
     "Location": "Starfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra\nStarfall Tundra",
     "SpriteId": "T_Staff_EverfrostStaff"
+  },
+  {
+    "Name": "Execute Gem",
+    "EquipmentId": "Execute Gem",
+    "Type": "Gem",
+    "Affix": "Execute",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Execute Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Cinderspike\nStormstinger",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Dark Forest\nDark Forest",
+    "SpriteId": "gem",
+    "SourceLevel": 92
   },
   {
     "Name": "Executioner",
@@ -2270,6 +2777,19 @@ window.equipmentData = [
     "Droprate": "200.0%\n200.0%\n200.0%\n",
     "Location": "Dark Forest\nDark Forest\nDark Forest\nDark Forest",
     "SpriteId": "T_Axe_ExecutionerAxe"
+  },
+  {
+    "Name": "Exorcism Gem",
+    "EquipmentId": "Exorcism Gem",
+    "Type": "Gem",
+    "Affix": "Exorcism",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Exorcism Damage: <color=#AAFF00FF>+2% per level</color>\nDark Exorcism Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Soul Mage\nSpook",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Sanctum of Light\nSanctum of Light",
+    "SpriteId": "gem",
+    "SourceLevel": 82
   },
   {
     "Name": "Exorcist Bible",
@@ -2318,6 +2838,19 @@ window.equipmentData = [
     "Droprate": "100.0%",
     "Location": "Goblin Cave 2",
     "SpriteId": "V3_Back_4"
+  },
+  {
+    "Name": "Explosive Grenade Gem",
+    "EquipmentId": "ExplosiveGrenade Gem",
+    "Type": "Gem",
+    "Affix": "Explosive Grenade",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Explosive Grenade Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Elder Fire\nImp\nGremlin\nNightfiend",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
+    "SpriteId": "gem",
+    "SourceLevel": 96
   },
   {
     "Name": "Eye of the Storm",
@@ -2382,6 +2915,32 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Windy Desert South",
     "SpriteId": "Head_44"
+  },
+  {
+    "Name": "Fan Fire Gem",
+    "EquipmentId": "FanFire Gem",
+    "Type": "Gem",
+    "Affix": "Fan Fire",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fan Fire Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Ruby Gazer",
+    "Droprate": "10.0%",
+    "Location": "Festering Woods 1",
+    "SpriteId": "gem",
+    "SourceLevel": 24
+  },
+  {
+    "Name": "Fan Of Knives Gem",
+    "EquipmentId": "FanOfKnives Gem",
+    "Type": "Gem",
+    "Affix": "Fan Of Knives",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fan Of Knives Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Roseate Merling\nSapphire Merman\nGoldtail\nAmber Squid\nViolet Cuttlefish",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths",
+    "SpriteId": "gem",
+    "SourceLevel": 102
   },
   {
     "Name": "Fang Clip",
@@ -2480,6 +3039,19 @@ window.equipmentData = [
     "SpriteId": "V1_Foot_15"
   },
   {
+    "Name": "Fearsome Cry Gem",
+    "EquipmentId": "ShoutStun Gem",
+    "Type": "Gem",
+    "Affix": "Fearsome Cry",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fearsome Cry Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Goblin Assassin",
+    "Droprate": "10.0%",
+    "Location": "Goblin Field",
+    "SpriteId": "gem",
+    "SourceLevel": 43
+  },
+  {
     "Name": "Feathered Scout Hat",
     "EquipmentId": "Feathered Scout Hat",
     "Type": "Head",
@@ -2544,6 +3116,84 @@ window.equipmentData = [
     "SpriteId": "Giftbox1"
   },
   {
+    "Name": "Fire Gem",
+    "EquipmentId": "Fire Gem",
+    "Type": "Gem",
+    "Affix": "Fire",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fire Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Scorpion King",
+    "Droprate": "30.0%",
+    "Location": "Windy Desert North",
+    "SpriteId": "gem_2",
+    "SourceLevel": 40
+  },
+  {
+    "Name": "Fire Pillar Gem",
+    "EquipmentId": "FirePillar Gem",
+    "Type": "Gem",
+    "Affix": "Fire Pillar",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fire Pillar Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Inferno Wyvern\nEmber\nBlaze\nShade",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
+    "SpriteId": "gem",
+    "SourceLevel": 96
+  },
+  {
+    "Name": "Fire Release Gem",
+    "EquipmentId": "FireRelease Gem",
+    "Type": "Gem",
+    "Affix": "Fire Release",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fire Release Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Scorpion",
+    "Droprate": "10.0%",
+    "Location": "Windy Desert North",
+    "SpriteId": "gem",
+    "SourceLevel": 33
+  },
+  {
+    "Name": "Fireball Gem",
+    "EquipmentId": "Fireball Gem",
+    "Type": "Gem",
+    "Affix": "Fireball",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Fireball Damage: <color=#AAFF00FF>+2% per level</color>\nFirewall Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Chick\nSeedling\nPine Ancient\nPine Sapling\nPine Treant",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunny Meadows 1\nSunny Meadows 1\nTreant Trail\nTreant Trail\nTreant Trail",
+    "SpriteId": "gem",
+    "SourceLevel": 2
+  },
+  {
+    "Name": "Firebolt Gem",
+    "EquipmentId": "Firebolt Gem",
+    "Type": "Gem",
+    "Affix": "Firebolt",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Firebolt Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Egg\nMandrake\nPollen\nMaple Ancient\nMaple Sapling\nMaple Treant",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunny Meadows 1\nTreant Trail\nSunny Meadows 1\nTreant Trail\nTreant Trail\nTreant Trail",
+    "SpriteId": "gem",
+    "SourceLevel": 1
+  },
+  {
+    "Name": "Flame Orb Gem",
+    "EquipmentId": "FlameOrb Gem",
+    "Type": "Gem",
+    "Affix": "Flame Orb",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Flame Orb Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Flame Drake\nSpark Drake\nFire Mage\nMagma Golem",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
+    "SpriteId": "gem",
+    "SourceLevel": 97
+  },
+  {
     "Name": "Flame Spirit",
     "EquipmentId": "Flame Spirit",
     "Type": "Eyewear",
@@ -2590,6 +3240,32 @@ window.equipmentData = [
     "Droprate": "100.0%\n500.0%\n100.0%\n100.0%\n100.0%\n",
     "Location": "The Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge",
     "SpriteId": "T_Kunai_FlameTongueKunai"
+  },
+  {
+    "Name": "Flash Grenade Gem",
+    "EquipmentId": "FlashGrenade Gem",
+    "Type": "Gem",
+    "Affix": "Flash Grenade",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Flash Grenade Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Cactus",
+    "Droprate": "10.0%",
+    "Location": "Windy Desert South",
+    "SpriteId": "gem",
+    "SourceLevel": 33
+  },
+  {
+    "Name": "Flash Step Gem",
+    "EquipmentId": "LightningStrike Gem",
+    "Type": "Gem",
+    "Affix": "Flash Step",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Flash Step Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Nightbloom\nMiasma",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Underground Cavern\nUnderground Cavern",
+    "SpriteId": "gem",
+    "SourceLevel": 87
   },
   {
     "Name": "Fleetrunner",
@@ -2640,6 +3316,19 @@ window.equipmentData = [
     "SpriteId": "Bracelet_4"
   },
   {
+    "Name": "Focus Gem",
+    "EquipmentId": "CastSpd Gem",
+    "Type": "Gem",
+    "Affix": "Focus",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Cast Speed: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Demon Lord",
+    "Droprate": "30.0%",
+    "Location": "Demon's Maw",
+    "SpriteId": "gem_2",
+    "SourceLevel": 105
+  },
+  {
     "Name": "Focused Amplification",
     "EquipmentId": "Wizard_5",
     "Type": "Grimoire",
@@ -2654,6 +3343,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Mystic Lake 2",
     "SpriteId": "grimoire-adv"
+  },
+  {
+    "Name": "Force Shot Gem",
+    "EquipmentId": "ForceShot Gem",
+    "Type": "Gem",
+    "Affix": "Force Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Force Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Horror\nNosferatu",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Forgotten Depths 2\nForgotten Depths 2",
+    "SpriteId": "gem",
+    "SourceLevel": 46
   },
   {
     "Name": "Forest Chest",
@@ -2734,6 +3436,19 @@ window.equipmentData = [
     "Droprate": "500.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n100.0%\n",
     "Location": "Sunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths",
     "SpriteId": "T_Shield_FortifiedGuardWall"
+  },
+  {
+    "Name": "Freeze Grenade Gem",
+    "EquipmentId": "FreezeGrenade Gem",
+    "Type": "Gem",
+    "Affix": "Freeze Grenade",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Freeze Grenade Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Cyclops\nCyclops Titan\nCyclopling\nIce",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave\nCrystal Cave",
+    "SpriteId": "gem",
+    "SourceLevel": 71
   },
   {
     "Name": "Frost Mark",
@@ -2896,6 +3611,19 @@ window.equipmentData = [
     "SpriteId": "Gatlinggun"
   },
   {
+    "Name": "Gaze Gem",
+    "EquipmentId": "Threat Gem",
+    "Type": "Gem",
+    "Affix": "Gaze",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Threat Generation: <color=#AAFF00FF>+10% per level</color>",
+    "Source": "Kraken",
+    "Droprate": "30.0%",
+    "Location": "Sunken Depths",
+    "SpriteId": "gem_2",
+    "SourceLevel": 110
+  },
+  {
     "Name": "Ghostly Hat",
     "EquipmentId": "Ghostly Hat",
     "Type": "Head",
@@ -3022,6 +3750,32 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Nevaris",
     "SpriteId": "grimoire-base"
+  },
+  {
+    "Name": "Grace Gem",
+    "EquipmentId": "Healing Gem",
+    "Type": "Gem",
+    "Affix": "Grace",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Healing: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Lady Fey",
+    "Droprate": "30.0%",
+    "Location": "Fairy Glen",
+    "SpriteId": "gem_2",
+    "SourceLevel": 40
+  },
+  {
+    "Name": "Grand Cross Gem",
+    "EquipmentId": "GrandCross Gem",
+    "Type": "Gem",
+    "Affix": "Grand Cross",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Grand Cross Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Chompbloom",
+    "Droprate": "10.0%",
+    "Location": "Night Garden",
+    "SpriteId": "gem",
+    "SourceLevel": 129
   },
   {
     "Name": "Grasping Eye Urn",
@@ -3184,6 +3938,19 @@ window.equipmentData = [
     "SpriteId": "Wield_Gear_Right_80"
   },
   {
+    "Name": "Gunk Shot Gem",
+    "EquipmentId": "GunkShot Gem",
+    "Type": "Gem",
+    "Affix": "Gunk Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Gunk Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Skimmer\nGnat",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Swamp\nSwamp",
+    "SpriteId": "gem",
+    "SourceLevel": 37
+  },
+  {
     "Name": "Happy Chipper Hat",
     "EquipmentId": "Happy Chipper Hat",
     "Type": "Head",
@@ -3216,6 +3983,19 @@ window.equipmentData = [
     "SpriteId": "V1_Head_19"
   },
   {
+    "Name": "Harvest Gem",
+    "EquipmentId": "Harvest Gem",
+    "Type": "Gem",
+    "Affix": "Harvest",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Harvest Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Elder Lightning\nGrub",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Underground Cavern\nUnderground Cavern",
+    "SpriteId": "gem",
+    "SourceLevel": 87
+  },
+  {
     "Name": "Harvester of Souls",
     "EquipmentId": "Harvester of Souls",
     "Type": "Scythe",
@@ -3246,6 +4026,32 @@ window.equipmentData = [
     "Droprate": "300.0%\n300.0%\n300.0%\n",
     "Location": "Stormreef Isle\nStormreef Isle\nStormreef Isle\nStormreef Isle",
     "SpriteId": "T_Crossbow_Hawkeye"
+  },
+  {
+    "Name": "Heal Gem",
+    "EquipmentId": "Heal Gem",
+    "Type": "Gem",
+    "Affix": "Heal",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Heal Healing: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Fairy\nSprite\nSylvie",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Fairy Glen\nFairy Glen\nFairy Glen",
+    "SpriteId": "gem",
+    "SourceLevel": 31
+  },
+  {
+    "Name": "Heart Gem",
+    "EquipmentId": "HpMult Gem",
+    "Type": "Gem",
+    "Affix": "Heart",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "HP: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc Warchief",
+    "Droprate": "30.0%",
+    "Location": "Goblin Warcamp",
+    "SpriteId": "gem_2",
+    "SourceLevel": 130
   },
   {
     "Name": "Heart Vessel",
@@ -3376,6 +4182,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "High Heal Gem",
+    "EquipmentId": "HighHeal Gem",
+    "Type": "Gem",
+    "Affix": "High Heal",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "High Heal Healing: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Angel\nBanshee\nSoul",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light",
+    "SpriteId": "gem",
+    "SourceLevel": 76
+  },
+  {
     "Name": "Holy Crest",
     "EquipmentId": "Holy Shield",
     "Type": "Shield",
@@ -3392,6 +4211,32 @@ window.equipmentData = [
     "SpriteId": "T_Shield_HolyShield"
   },
   {
+    "Name": "Holy Gem",
+    "EquipmentId": "Holy Gem",
+    "Type": "Gem",
+    "Affix": "Holy",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Holy Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Seraphim Arbiter",
+    "Droprate": "30.0%",
+    "Location": "Sanctum of Light",
+    "SpriteId": "gem_2",
+    "SourceLevel": 90
+  },
+  {
+    "Name": "Holy Light Gem",
+    "EquipmentId": "HolyLight Gem",
+    "Type": "Gem",
+    "Affix": "Holy Light",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Holy Light Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Jade Gazer\nWolf",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Festering Woods 1\nFestering Woods 2",
+    "SpriteId": "gem",
+    "SourceLevel": 22
+  },
+  {
     "Name": "Holy Staff",
     "EquipmentId": "Holy Staff",
     "Type": "Wand",
@@ -3406,6 +4251,19 @@ window.equipmentData = [
     "Droprate": "1000.0%\n200.0%\n",
     "Location": "Sanctum of Light\nSanctum of Light\nSanctum of Light",
     "SpriteId": "T_Staff_HolyStaff"
+  },
+  {
+    "Name": "Holy Wrath Gem",
+    "EquipmentId": "HolyWrath Gem",
+    "Type": "Gem",
+    "Affix": "Holy Wrath",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Holy Wrath Damage: <color=#AAFF00FF>+2% per level</color>\nLitany of Wrath Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Phantom",
+    "Droprate": "10.0%",
+    "Location": "Sanctum of Light",
+    "SpriteId": "gem",
+    "SourceLevel": 83
   },
   {
     "Name": "Hornbrand",
@@ -3486,6 +4344,71 @@ window.equipmentData = [
     "Droprate": "400.0%\n400.0%\n",
     "Location": "Forest Field 2\nForest Field 2\nForest Field 2",
     "SpriteId": "V2_Wield_Gear_Right_5"
+  },
+  {
+    "Name": "Hydro Vortex Gem",
+    "EquipmentId": "HydroVortex Gem",
+    "Type": "Gem",
+    "Affix": "Hydro Vortex",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Hydro Vortex Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bluefin\nCanary Merling\nCoral Merman\nPlum Squid\nPearl Cuttlefish\nSquidling",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths",
+    "SpriteId": "gem",
+    "SourceLevel": 101
+  },
+  {
+    "Name": "Ice Release Gem",
+    "EquipmentId": "IceRelease Gem",
+    "Type": "Gem",
+    "Affix": "Ice Release",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Ice Release Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Frost Wyvern\nRime Drake\nAqua Drake",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Crystal Cave\nCrystal Cave\nCrystal Cave",
+    "SpriteId": "gem",
+    "SourceLevel": 72
+  },
+  {
+    "Name": "Ice Shard Gem",
+    "EquipmentId": "IceShard Gem",
+    "Type": "Gem",
+    "Affix": "Ice Shard",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Ice Shard Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Digger\nHound\nLightning Wisp\nEarth Wisp",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Forest Field 2\nForest Field 2\nForest Field 1\nForest Field 1",
+    "SpriteId": "gem",
+    "SourceLevel": 12
+  },
+  {
+    "Name": "Icebolt Gem",
+    "EquipmentId": "Icebolt Gem",
+    "Type": "Gem",
+    "Affix": "Icebolt",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Icebolt Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Sparkit\nPup\nFrost Wisp\nFire Wisp",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Forest Field 2\nForest Field 2\nForest Field 1\nForest Field 1",
+    "SpriteId": "gem",
+    "SourceLevel": 11
+  },
+  {
+    "Name": "Impale Gem",
+    "EquipmentId": "SpearStab Gem",
+    "Type": "Gem",
+    "Affix": "Impale",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Impale Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Spider\nWidow",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Forgotten Depths 1\nForgotten Depths 1",
+    "SpriteId": "gem",
+    "SourceLevel": 42
   },
   {
     "Name": "Insect Carapace",
@@ -3744,6 +4667,32 @@ window.equipmentData = [
     "SpriteId": "T_Dagger_Jagtooth"
   },
   {
+    "Name": "Judgement Blade Gem",
+    "EquipmentId": "JudgementBlade Gem",
+    "Type": "Gem",
+    "Affix": "Judgement Blade",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Judgement Blade Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Violet Octopus\nSolar Turtle",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Turtle Nexus\nTurtle Nexus",
+    "SpriteId": "gem",
+    "SourceLevel": 131
+  },
+  {
+    "Name": "Jump Shot Gem",
+    "EquipmentId": "JumpShot Gem",
+    "Type": "Gem",
+    "Affix": "Jump Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Jump Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Grave Worm\nBloodsucker\nWorm",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Swamp Wilderness\nSwamp Wilderness\nSwamp Wilderness",
+    "SpriteId": "gem",
+    "SourceLevel": 66
+  },
+  {
     "Name": "Jupiter's Wrath",
     "EquipmentId": "Wizard_1",
     "Type": "Grimoire",
@@ -3856,6 +4805,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "Life Drain Gem",
+    "EquipmentId": "LifeDrain Gem",
+    "Type": "Gem",
+    "Affix": "Life Drain",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Life Drain Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Trap Mimic\nChest Mimic",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Dungeon\nAbyss Castle Dungeon",
+    "SpriteId": "gem",
+    "SourceLevel": 106
+  },
+  {
     "Name": "Life Drinker",
     "EquipmentId": "Grim Reaper Scythe",
     "Type": "Scythe",
@@ -3902,6 +4864,19 @@ window.equipmentData = [
     "Droprate": "2000.0%\n400.0%\n",
     "Location": "Mystic Lake 2\nMystic Lake 2\nMystic Lake 2",
     "SpriteId": "V2_Foot_3"
+  },
+  {
+    "Name": "Lightning Release Gem",
+    "EquipmentId": "LightningRelease Gem",
+    "Type": "Gem",
+    "Affix": "Lightning Release",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Lightning Release Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Chomproot\nChompcap",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Dark Forest\nDark Forest",
+    "SpriteId": "gem",
+    "SourceLevel": 92
   },
   {
     "Name": "Lightning Stance",
@@ -4096,6 +5071,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-adv"
   },
   {
+    "Name": "Mantra Gem",
+    "EquipmentId": "NoCastCancel Gem",
+    "Type": "Gem",
+    "Affix": "Mantra",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "<color=#FF9700FF>Casting cannot be interrupted.</color>\nCast Speed: <color=#FF0073FF>-10% + 1% per level</color>",
+    "Source": "Demon Lord",
+    "Droprate": "30.0%",
+    "Location": "Demon's Maw",
+    "SpriteId": "gem_2",
+    "SourceLevel": 105
+  },
+  {
     "Name": "Master Axe",
     "EquipmentId": "Master Axe",
     "Type": "Axe",
@@ -4288,6 +5276,19 @@ window.equipmentData = [
     "SpriteId": "Back_12"
   },
   {
+    "Name": "Meteor Gem",
+    "EquipmentId": "Meteor Gem",
+    "Type": "Gem",
+    "Affix": "Meteor",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Meteor Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Boxy Robot\nNozzle Robot\nRazor Robot\nSpider Robot",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "The Forge\nThe Forge\nThe Forge\nThe Forge",
+    "SpriteId": "gem",
+    "SourceLevel": 126
+  },
+  {
     "Name": "Meteoric Staff",
     "EquipmentId": "Meteoric Staff",
     "Type": "Wand",
@@ -4318,6 +5319,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n100.0%\n100.0%\n3000.0%\n",
     "Location": "The Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge",
     "SpriteId": "Hand_15_Blue"
+  },
+  {
+    "Name": "Mind Gem",
+    "EquipmentId": "MpMult Gem",
+    "Type": "Gem",
+    "Affix": "Mind",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "MP: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Broodmother",
+    "Droprate": "30.0%",
+    "Location": "Swamp Wilderness",
+    "SpriteId": "gem_2",
+    "SourceLevel": 75
   },
   {
     "Name": "Mind Greaves",
@@ -4398,6 +5412,19 @@ window.equipmentData = [
     "Droprate": "2000.0%\n400.0%\n400.0%\n",
     "Location": "Forgotten Depths 2\nForgotten Depths 2\nForgotten Depths 2\nForgotten Depths 2",
     "SpriteId": "V2_Chest_7"
+  },
+  {
+    "Name": "Mirror Gem",
+    "EquipmentId": "ReflectSpell Gem",
+    "Type": "Gem",
+    "Affix": "Mirror",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Chance to reflect single-target magic.: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Ice Mage",
+    "Droprate": "30.0%",
+    "Location": "Crystal Cave",
+    "SpriteId": "gem_2",
+    "SourceLevel": 80
   },
   {
     "Name": "Mischief Gift Box",
@@ -4816,6 +5843,19 @@ window.equipmentData = [
     "SpriteId": "Casual_Earring_10"
   },
   {
+    "Name": "Overcharge Gem",
+    "EquipmentId": "Matk Gem",
+    "Type": "Gem",
+    "Affix": "Overcharge",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "MATK: <color=#AAFF00FF>+1% per level</color>\nMP Cost: <color=#FF0073FF>+2% per level</color>",
+    "Source": "Turtle Champion",
+    "Droprate": "30.0%",
+    "Location": "Turtle Nexus",
+    "SpriteId": "gem_2",
+    "SourceLevel": 140
+  },
+  {
     "Name": "Oxygen Tank",
     "EquipmentId": "Oxygen Tank",
     "Type": "Back",
@@ -4846,6 +5886,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Sanctum of Light",
     "SpriteId": "V1_Head_16"
+  },
+  {
+    "Name": "Panic Burst Gem",
+    "EquipmentId": "PanicBurst Gem",
+    "Type": "Gem",
+    "Affix": "Panic Burst",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Panic Burst Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Hawker\nSnapvine\nVinecrawler",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Swamp Wilderness\nSwamp Wilderness\nSwamp Wilderness",
+    "SpriteId": "gem",
+    "SourceLevel": 67
   },
   {
     "Name": "Parrying Knife",
@@ -4910,6 +5963,32 @@ window.equipmentData = [
     "Droprate": "300.0%\n300.0%\n300.0%\n300.0%\n",
     "Location": "Swamp\nSwamp\nSwamp\nSwamp\nSwamp",
     "SpriteId": "Wield_Gear_Right_84"
+  },
+  {
+    "Name": "Piercing Flurry Gem",
+    "EquipmentId": "SpearThrust Gem",
+    "Type": "Gem",
+    "Affix": "Piercing Flurry",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Piercing Flurry Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Shroom\nNautilus\nSea Blossom\nConch",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Lake Field\nMystic Lake 1\nMystic Lake 1\nMystic Lake 2",
+    "SpriteId": "gem",
+    "SourceLevel": 26
+  },
+  {
+    "Name": "Piercing Shot Gem",
+    "EquipmentId": "PiercingShot Gem",
+    "Type": "Gem",
+    "Affix": "Piercing Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Piercing Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Viper",
+    "Droprate": "10.0%",
+    "Location": "Forgotten Depths 2",
+    "SpriteId": "gem",
+    "SourceLevel": 47
   },
   {
     "Name": "Pirate Coat",
@@ -5104,6 +6183,45 @@ window.equipmentData = [
     "SpriteId": "V1_Earring_7"
   },
   {
+    "Name": "Point Blank Gem",
+    "EquipmentId": "PointBlankShot Gem",
+    "Type": "Gem",
+    "Affix": "Point Blank",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Point Blank Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Delivery Robot\nGripper Robot\nShell Robot\nSpiderling Robot",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "The Forge\nThe Forge\nThe Forge\nThe Forge",
+    "SpriteId": "gem",
+    "SourceLevel": 126
+  },
+  {
+    "Name": "Poison Gem",
+    "EquipmentId": "Poison Gem",
+    "Type": "Gem",
+    "Affix": "Poison",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Poison Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Devourer",
+    "Droprate": "30.0%",
+    "Location": "Underground Cavern",
+    "SpriteId": "gem_2",
+    "SourceLevel": 95
+  },
+  {
+    "Name": "Poison Grenade Gem",
+    "EquipmentId": "PoisonGrenade Gem",
+    "Type": "Gem",
+    "Affix": "Poison Grenade",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Poison Grenade Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Deathblossom\nVenom Bud\nMaggot",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Underground Cavern\nUnderground Cavern\nUnderground Cavern",
+    "SpriteId": "gem",
+    "SourceLevel": 86
+  },
+  {
     "Name": "Potions",
     "EquipmentId": "Potions",
     "Type": "Back",
@@ -5198,6 +6316,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n100.0%\n100.0%\n3000.0%\n",
     "Location": "The Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge\nThe Forge",
     "SpriteId": "Hand_15_Green"
+  },
+  {
+    "Name": "Precision Gem",
+    "EquipmentId": "Hit Gem",
+    "Type": "Gem",
+    "Affix": "Precision",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Hit: <color=#AAFF00FF>+3 per level</color>\nCrit: <color=#AAFF00FF>+1 per level</color>",
+    "Source": "Scorpion King",
+    "Droprate": "30.0%",
+    "Location": "Windy Desert North",
+    "SpriteId": "gem_2",
+    "SourceLevel": 40
   },
   {
     "Name": "Precision Greaves",
@@ -5424,6 +6555,19 @@ window.equipmentData = [
     "SpriteId": "Back_11"
   },
   {
+    "Name": "Razor Gem",
+    "EquipmentId": "CritDamage Gem",
+    "Type": "Gem",
+    "Affix": "Razor",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "CRIT Damage: <color=#AAFF00FF>+5% + 1% per level</color>",
+    "Source": "Suphara",
+    "Droprate": "30.0%",
+    "Location": "The Forge",
+    "SpriteId": "gem_2",
+    "SourceLevel": 135
+  },
+  {
     "Name": "Razor Kunai",
     "EquipmentId": "Razor Kunai",
     "Type": "Dagger",
@@ -5454,6 +6598,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n3000.0%\n",
     "Location": "Dark Fortress Lv2\nDark Fortress Lv2\nSpire Entrance",
     "SpriteId": "T_Katar_GlacierThorn"
+  },
+  {
+    "Name": "Reap Gem",
+    "EquipmentId": "Reap Gem",
+    "Type": "Gem",
+    "Affix": "Reap",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Reap Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Voidspawn\nCinderwheel\nStormjelly",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Dark Forest\nDark Forest\nDark Forest",
+    "SpriteId": "gem",
+    "SourceLevel": 91
   },
   {
     "Name": "Recurve Bow",
@@ -5646,6 +6803,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Nevaris",
     "SpriteId": "grimoire-base"
+  },
+  {
+    "Name": "Resonance Well Gem",
+    "EquipmentId": "FieldHealing Gem",
+    "Type": "Gem",
+    "Affix": "Resonance Well",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Resonance Well Healing: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Celestial Moth\nMoon Moth\nNymph",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Fairy Glen\nFairy Glen\nFairy Glen",
+    "SpriteId": "gem",
+    "SourceLevel": 32
   },
   {
     "Name": "Resonant Headphones",
@@ -6000,6 +7170,19 @@ window.equipmentData = [
     "SpriteId": "Feet_45"
   },
   {
+    "Name": "Sanctuary Gem",
+    "EquipmentId": "Sanctuary Gem",
+    "Type": "Gem",
+    "Affix": "Sanctuary",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Sanctuary Healing: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bomb\nShadow Wyvern",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Sanctum of Light\nSanctum of Light",
+    "SpriteId": "gem",
+    "SourceLevel": 81
+  },
+  {
     "Name": "Sanctum Gloves",
     "EquipmentId": "Sanctum Gloves",
     "Type": "Accessory",
@@ -6240,6 +7423,19 @@ window.equipmentData = [
     "SpriteId": "V1_Back_11"
   },
   {
+    "Name": "Seer Gem",
+    "EquipmentId": "Detector Gem",
+    "Type": "Gem",
+    "Affix": "Seer",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Perfect Hit: <color=#AAFF00FF>+2% per level</color>\nGrants <color=#AAFF00FF>Lv.1 True Sight</color>",
+    "Source": "Cosmic Entity",
+    "Droprate": "30.0%",
+    "Location": "Night Garden",
+    "SpriteId": "gem_2",
+    "SourceLevel": 135
+  },
+  {
     "Name": "Serpent Fang",
     "EquipmentId": "Swift Fang",
     "Type": "Spear",
@@ -6302,6 +7498,32 @@ window.equipmentData = [
     "Droprate": "400.0%\n2000.0%\n400.0%\n",
     "Location": "Forgotten Depths 1\nForgotten Depths 1\nForgotten Depths 1\nForgotten Depths 1",
     "SpriteId": "V3_Foot_6"
+  },
+  {
+    "Name": "Shadow Gem",
+    "EquipmentId": "Shadow Gem",
+    "Type": "Gem",
+    "Affix": "Shadow",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Shadow Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Abyss Archon",
+    "Droprate": "30.0%",
+    "Location": "Abyss Castle Library",
+    "SpriteId": "gem_2",
+    "SourceLevel": 130
+  },
+  {
+    "Name": "Shadow Step Gem",
+    "EquipmentId": "ShadowStep Gem",
+    "Type": "Gem",
+    "Affix": "Shadow Step",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Shadow Step Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Gadfly\nMosquito\nSlime",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Swamp\nSwamp\nSwamp",
+    "SpriteId": "gem",
+    "SourceLevel": 37
   },
   {
     "Name": "Shadow Trail",
@@ -6368,6 +7590,32 @@ window.equipmentData = [
     "SpriteId": "Casual_Head_58"
   },
   {
+    "Name": "Shield Bash Gem",
+    "EquipmentId": "ShieldBash Gem",
+    "Type": "Gem",
+    "Affix": "Shield Bash",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Shield Bash Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Eyeclops Bat\nSkeleton Mage",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Abyss Castle Keep\nAbyss Castle Keep",
+    "SpriteId": "gem",
+    "SourceLevel": 111
+  },
+  {
+    "Name": "Shield Throw Gem",
+    "EquipmentId": "ShieldThrow Gem",
+    "Type": "Gem",
+    "Affix": "Shield Throw",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Shield Throw Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Aqua Merling\nTopaz Merman\nRosetail\nAzure Squid\nAmber Cuttlefish\nBull Shark",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths\nSunken Depths",
+    "SpriteId": "gem",
+    "SourceLevel": 101
+  },
+  {
     "Name": "Shotgun",
     "EquipmentId": "Shotgun",
     "Type": "Shotgun",
@@ -6382,6 +7630,32 @@ window.equipmentData = [
     "Droprate": "300.0%\n",
     "Location": "Goblin Cave 1\nGoblin Cave 1",
     "SpriteId": "Shotgun"
+  },
+  {
+    "Name": "Shrapnel Gem",
+    "EquipmentId": "ShrapnelShot Gem",
+    "Type": "Gem",
+    "Affix": "Shrapnel",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Shrapnel Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Abomination\nZombie Grunt",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Goblin Cave 2\nGoblin Cave 1",
+    "SpriteId": "gem",
+    "SourceLevel": 55
+  },
+  {
+    "Name": "Shuriken Fan Gem",
+    "EquipmentId": "ShurikenFan Gem",
+    "Type": "Gem",
+    "Affix": "Shuriken Fan",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Shuriken Fan Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Azure Octopus\nHydro Turtle",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Turtle Nexus\nTurtle Nexus",
+    "SpriteId": "gem",
+    "SourceLevel": 132
   },
   {
     "Name": "Silence of Night",
@@ -6576,6 +7850,19 @@ window.equipmentData = [
     "SpriteId": "Wield_Gear_Right_5"
   },
   {
+    "Name": "Smite Gem",
+    "EquipmentId": "Smite Gem",
+    "Type": "Gem",
+    "Affix": "Smite",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Smite Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Dusk Drake\nNight Drake",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Sanctum of Light\nSanctum of Light",
+    "SpriteId": "gem",
+    "SourceLevel": 77
+  },
+  {
     "Name": "Sniper Rifle",
     "EquipmentId": "Sniper Rifle",
     "Type": "Rifle",
@@ -6590,6 +7877,19 @@ window.equipmentData = [
     "Droprate": "500.0%\n100.0%\n",
     "Location": "Goblin Warcamp\nGoblin Warcamp\nGoblin Warcamp",
     "SpriteId": "T_Gun_SniperRifle"
+  },
+  {
+    "Name": "Sniper Shot Gem",
+    "EquipmentId": "SniperShot Gem",
+    "Type": "Gem",
+    "Affix": "Sniper Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Sniper Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Nose Robot\nSnout Robot\nSpike Robot",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "The Forge\nThe Forge\nThe Forge",
+    "SpriteId": "gem",
+    "SourceLevel": 127
   },
   {
     "Name": "Snowbun Earmuffs",
@@ -6720,6 +8020,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "Soul Strike Gem",
+    "EquipmentId": "SoulStrike Gem",
+    "Type": "Gem",
+    "Affix": "Soul Strike",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Soul Strike Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Azure Gazer\nSkeleton\nWolf Cub",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Festering Woods 1\nFestering Woods 1\nFestering Woods 2",
+    "SpriteId": "gem",
+    "SourceLevel": 21
+  },
+  {
     "Name": "Soulbinder Chest",
     "EquipmentId": "SoulbinderChest",
     "Type": "Chest",
@@ -6766,6 +8079,19 @@ window.equipmentData = [
     "Droprate": "200.0%\n200.0%\n200.0%\n1000.0%\n200.0%\n",
     "Location": "Demon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw\nDemon's Maw",
     "SpriteId": "Feet_28"
+  },
+  {
+    "Name": "Soulfang Gem",
+    "EquipmentId": "LeechMp Gem",
+    "Type": "Gem",
+    "Affix": "Soulfang",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Siphon MP: <color=#AAFF00FF>+0.3 per level</color>",
+    "Source": "Night Baron",
+    "Droprate": "30.0%",
+    "Location": "Forgotten Depths 2",
+    "SpriteId": "gem_2",
+    "SourceLevel": 55
   },
   {
     "Name": "Speed Gauntlets",
@@ -6894,6 +8220,19 @@ window.equipmentData = [
     "Droprate": "400.0%\n400.0%\n2000.0%\n400.0%\n2000.0%\n400.0%\n\n\n",
     "Location": "Mystic Lake 1\nFairy Glen\nMystic Lake 2\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nMystic Lake 1\nMystic Lake 2",
     "SpriteId": "Feet_38"
+  },
+  {
+    "Name": "Spike Gem",
+    "EquipmentId": "ReflectDamage Gem",
+    "Type": "Gem",
+    "Affix": "Spike",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Reflect Damage: <color=#AAFF00FF>+3% per level</color>",
+    "Source": "Cactus King",
+    "Droprate": "30.0%",
+    "Location": "Windy Desert South",
+    "SpriteId": "gem_2",
+    "SourceLevel": 40
   },
   {
     "Name": "Spiked Club",
@@ -7056,6 +8395,19 @@ window.equipmentData = [
     "SpriteId": "Head_29"
   },
   {
+    "Name": "Steadfast Gem",
+    "EquipmentId": "NoFlinch Gem",
+    "Type": "Gem",
+    "Affix": "Steadfast",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "<color=#FF9700FF>Immune to flinching from damage.</color>\nHP: <color=#FF0073FF>-10% + 1% per level</color>",
+    "Source": "Orc Warchief",
+    "Droprate": "30.0%",
+    "Location": "Goblin Warcamp",
+    "SpriteId": "gem_2",
+    "SourceLevel": 130
+  },
+  {
     "Name": "Stiletto",
     "EquipmentId": "Stiletto",
     "Type": "Dagger",
@@ -7070,6 +8422,19 @@ window.equipmentData = [
     "Droprate": "300.0%\n",
     "Location": "Lake Field\nLake Field",
     "SpriteId": "Wield_Gear_Right_72"
+  },
+  {
+    "Name": "Stomp Gem",
+    "EquipmentId": "Stomp Gem",
+    "Type": "Gem",
+    "Affix": "Stomp",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Stomp Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bat\nAdder",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Forgotten Depths 1\nForgotten Depths 1",
+    "SpriteId": "gem",
+    "SourceLevel": 41
   },
   {
     "Name": "Stonebound Boots",
@@ -7280,6 +8645,32 @@ window.equipmentData = [
     "SpriteId": "V1_Foot_13"
   },
   {
+    "Name": "Strafing Volley Gem",
+    "EquipmentId": "StrafingVolley Gem",
+    "Type": "Gem",
+    "Affix": "Strafing Volley",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Strafing Volley Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Mole\nDire Mole",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Windy Desert North\nWindy Desert North",
+    "SpriteId": "gem",
+    "SourceLevel": 32
+  },
+  {
+    "Name": "Stride Gem",
+    "EquipmentId": "MoveSpd Gem",
+    "Type": "Gem",
+    "Affix": "Stride",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Movement Speed: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Vorpal Hare",
+    "Droprate": "30.0%",
+    "Location": "Bunny Woods",
+    "SpriteId": "gem_2",
+    "SourceLevel": 30
+  },
+  {
     "Name": "Sun Emblem",
     "EquipmentId": "Sun Emblem",
     "Type": "Shield",
@@ -7392,6 +8783,32 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "Suppression Field Gem",
+    "EquipmentId": "FieldSilence Gem",
+    "Type": "Gem",
+    "Affix": "Suppression Field",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Suppression Field Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Pixie\nFire Glimmer\nLuna Moth",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Fairy Glen\nFairy Glen\nFairy Glen",
+    "SpriteId": "gem",
+    "SourceLevel": 32
+  },
+  {
+    "Name": "Suppressive Shot Gem",
+    "EquipmentId": "SuppressiveShot Gem",
+    "Type": "Gem",
+    "Affix": "Suppressive Shot",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Suppressive Shot Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Arachne",
+    "Droprate": "10.0%",
+    "Location": "Forgotten Depths 2",
+    "SpriteId": "gem",
+    "SourceLevel": 49
+  },
+  {
     "Name": "Swampy Hat",
     "EquipmentId": "Swampy Hat",
     "Type": "Head",
@@ -7440,6 +8857,19 @@ window.equipmentData = [
     "SpriteId": "T_Sword_Sword"
   },
   {
+    "Name": "Tempest Gem",
+    "EquipmentId": "Tempest Gem",
+    "Type": "Gem",
+    "Affix": "Tempest",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Tempest Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Stormcoil",
+    "Droprate": "10.0%",
+    "Location": "Night Garden",
+    "SpriteId": "gem",
+    "SourceLevel": 127
+  },
+  {
     "Name": "Tempest Robes",
     "EquipmentId": "Tempest Robes",
     "Type": "Chest",
@@ -7472,6 +8902,32 @@ window.equipmentData = [
     "SpriteId": "T_Staff_TempestStaff"
   },
   {
+    "Name": "Tempo Gem",
+    "EquipmentId": "AtkSpd Gem",
+    "Type": "Gem",
+    "Affix": "Tempo",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Attack Speed: <color=#AAFF00FF>+5% + 1% per level</color>",
+    "Source": "Vespa",
+    "Droprate": "30.0%",
+    "Location": "Sunny Meadows 2",
+    "SpriteId": "gem_2",
+    "SourceLevel": 15
+  },
+  {
+    "Name": "Tenacity Gem",
+    "EquipmentId": "StatusResist Gem",
+    "Type": "Gem",
+    "Affix": "Tenacity",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Resistance to Frozen: <color=#AAFF00FF>+1% per level</color>\nResistance to Stun: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Turtle Champion",
+    "Droprate": "30.0%",
+    "Location": "Turtle Nexus",
+    "SpriteId": "gem_2",
+    "SourceLevel": 140
+  },
+  {
     "Name": "Thief Mask",
     "EquipmentId": "Thief Mask",
     "Type": "Eyewear",
@@ -7486,6 +8942,32 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Forgotten Depths 1",
     "SpriteId": "Eyewear_7"
+  },
+  {
+    "Name": "Thunder Storm Gem",
+    "EquipmentId": "ThunderStorm Gem",
+    "Type": "Gem",
+    "Affix": "Thunder Storm",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Thunder Storm Damage: <color=#AAFF00FF>+2% per level</color>\nStatic Field Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bumblebee\nVoltpaw\nLightning Glimmer\nSprout",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunny Meadows 2\nWindy Desert\nWindy Desert\nSunny Meadows 2",
+    "SpriteId": "gem",
+    "SourceLevel": 7
+  },
+  {
+    "Name": "Thunderbolt Gem",
+    "EquipmentId": "Thunderbolt Gem",
+    "Type": "Gem",
+    "Affix": "Thunderbolt",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Thunderbolt Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Bee\nRooster\nFledgling\nBreeze\nGale\nWind Mage",
+    "Droprate": "10.0%\n10.0%\n10.0%\n10.0%\n10.0%\n10.0%",
+    "Location": "Sunny Meadows 2\nSunny Meadows 2\nSunny Meadows 2\nWindy Desert\nWindy Desert\nWindy Desert",
+    "SpriteId": "gem",
+    "SourceLevel": 6
   },
   {
     "Name": "Thundercoil",
@@ -7696,6 +9178,19 @@ window.equipmentData = [
     "SpriteId": "T_Gun_TripleBarrelRevolver"
   },
   {
+    "Name": "Turn Undead Gem",
+    "EquipmentId": "TurnUndead Gem",
+    "Type": "Gem",
+    "Affix": "Turn Undead",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Turn Undead Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Archangel\nGhost",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Sanctum of Light\nSanctum of Light",
+    "SpriteId": "gem",
+    "SourceLevel": 77
+  },
+  {
     "Name": "Turtle Shell",
     "EquipmentId": "TurtleShell",
     "Type": "Back",
@@ -7710,6 +9205,19 @@ window.equipmentData = [
     "Droprate": "200.0%\n200.0%\n",
     "Location": "Stormreef Isle\nStormreef Isle\nStormreef Isle",
     "SpriteId": "Back_8"
+  },
+  {
+    "Name": "Twin Cleave Gem",
+    "EquipmentId": "AxeArc Gem",
+    "Type": "Gem",
+    "Affix": "Twin Cleave",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Twin Cleave Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc Mage\nGoblin\nGoblin Grunt",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Goblin Village\nGoblin Field\nGoblin Field",
+    "SpriteId": "gem",
+    "SourceLevel": 41
   },
   {
     "Name": "Twinblade",
@@ -7728,6 +9236,19 @@ window.equipmentData = [
     "SpriteId": "V3_Wield_Gear_Right_1"
   },
   {
+    "Name": "Twist Of Fate Gem",
+    "EquipmentId": "TwistOfFate Gem",
+    "Type": "Gem",
+    "Affix": "Twist Of Fate",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Twist Of Fate Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Twinkle\nShadow Ice\nFestive Baby",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Starfall Tundra\nStarfall Tundra\nStarfall Tundra",
+    "SpriteId": "gem",
+    "SourceLevel": 132
+  },
+  {
     "Name": "Umbral Blade",
     "EquipmentId": "Energy Sword Purple",
     "Type": "Sword",
@@ -7742,6 +9263,19 @@ window.equipmentData = [
     "Droprate": "100.0%\n100.0%\n500.0%\n",
     "Location": "Turtle Nexus\nTurtle Nexus\nTurtle Nexus\nTurtle Nexus",
     "SpriteId": "Sword 01 Magenta"
+  },
+  {
+    "Name": "Undead Gem",
+    "EquipmentId": "Undead Gem",
+    "Type": "Gem",
+    "Affix": "Undead",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Undead Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Wraith King",
+    "Droprate": "30.0%",
+    "Location": "Abyss Castle Crypt",
+    "SpriteId": "gem_2",
+    "SourceLevel": 125
   },
   {
     "Name": "Valiant Crown",
@@ -7776,6 +9310,19 @@ window.equipmentData = [
     "SpriteId": "grimoire-base"
   },
   {
+    "Name": "Veil Gem",
+    "EquipmentId": "PerfectCloak Gem",
+    "Type": "Gem",
+    "Affix": "Veil",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Perfect Cloaking: <color=#FF9700FF>undetectable by shadow monsters when invisible</color>\nMP: <color=#FF0073FF>-10% + 1% per level</color>",
+    "Source": "Abyss Archon",
+    "Droprate": "30.0%",
+    "Location": "Abyss Castle Library",
+    "SpriteId": "gem_2",
+    "SourceLevel": 130
+  },
+  {
     "Name": "Venom Bloom",
     "EquipmentId": "Rogue_3",
     "Type": "Grimoire",
@@ -7790,6 +9337,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Nevaris",
     "SpriteId": "grimoire-base"
+  },
+  {
+    "Name": "Venom Strike Gem",
+    "EquipmentId": "VenomStrike Gem",
+    "Type": "Gem",
+    "Affix": "Venom Strike",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Venom Strike Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Darter\nBlowfly\nSpitter",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Swamp\nSwamp\nSwamp",
+    "SpriteId": "gem",
+    "SourceLevel": 36
   },
   {
     "Name": "Ventilator Mask",
@@ -7872,6 +9432,19 @@ window.equipmentData = [
     "SpriteId": "Sword 02 Magenta"
   },
   {
+    "Name": "Vitalis Gem",
+    "EquipmentId": "Regen Gem",
+    "Type": "Gem",
+    "Affix": "Vitalis",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "HP Regen: <color=#AAFF00FF>+3% per level</color>\nMP Regen: <color=#AAFF00FF>+3% per level</color>",
+    "Source": "Cosmic Entity",
+    "Droprate": "30.0%",
+    "Location": "Night Garden",
+    "SpriteId": "gem_2",
+    "SourceLevel": 135
+  },
+  {
     "Name": "Void Urn",
     "EquipmentId": "Void Urn",
     "Type": "Back",
@@ -7904,6 +9477,19 @@ window.equipmentData = [
     "SpriteId": "Legs_20"
   },
   {
+    "Name": "Volatile Bolt Gem",
+    "EquipmentId": "VolatileBolt Gem",
+    "Type": "Gem",
+    "Affix": "Volatile Bolt",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Volatile Bolt Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Zombie Orc\nZombie Goblin",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Goblin Cave 2\nGoblin Cave 1",
+    "SpriteId": "gem",
+    "SourceLevel": 53
+  },
+  {
     "Name": "Voltaic Overdraw",
     "EquipmentId": "Wizard_2",
     "Type": "Grimoire",
@@ -7918,6 +9504,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Mystic Lake 2",
     "SpriteId": "grimoire-adv"
+  },
+  {
+    "Name": "Vortex Slash Gem",
+    "EquipmentId": "AxeVortex Gem",
+    "Type": "Gem",
+    "Affix": "Vortex Slash",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Vortex Slash Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc\nGoblin Mage\nGoblin Soldier",
+    "Droprate": "10.0%\n10.0%\n10.0%",
+    "Location": "Goblin Village\nGoblin Field\nGoblin Field",
+    "SpriteId": "gem",
+    "SourceLevel": 42
   },
   {
     "Name": "War Axe",
@@ -7984,6 +9583,19 @@ window.equipmentData = [
     "SpriteId": "V1_Back_19"
   },
   {
+    "Name": "Ward Gem",
+    "EquipmentId": "MdefMult Gem",
+    "Type": "Gem",
+    "Affix": "Ward",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "MDEF: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Ice Mage",
+    "Droprate": "30.0%",
+    "Location": "Crystal Cave",
+    "SpriteId": "gem_2",
+    "SourceLevel": 80
+  },
+  {
     "Name": "Warlord Emblem Shield",
     "EquipmentId": "Warlord Emblem Shield",
     "Type": "Shield",
@@ -8046,6 +9658,32 @@ window.equipmentData = [
     "Droprate": "300.0%\n300.0%\n1500.0%\n300.0%\n",
     "Location": "Windy Desert South\nWindy Desert South\nWindy Desert South\nWindy Desert South\nWindy Desert South",
     "SpriteId": "T_Axe_WastelandCleaver"
+  },
+  {
+    "Name": "Water Gem",
+    "EquipmentId": "Water Gem",
+    "Type": "Gem",
+    "Affix": "Water",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Water Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Hermit King",
+    "Droprate": "30.0%",
+    "Location": "Mystic Lake 2",
+    "SpriteId": "gem_2",
+    "SourceLevel": 45
+  },
+  {
+    "Name": "Weapon Throw Gem",
+    "EquipmentId": "WeaponThrow Gem",
+    "Type": "Gem",
+    "Affix": "Weapon Throw",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Weapon Throw Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Stone Golem\nSpore",
+    "Droprate": "10.0%\n10.0%",
+    "Location": "Windy Desert South\nWindy Desert South",
+    "SpriteId": "gem",
+    "SourceLevel": 32
   },
   {
     "Name": "Weave of Arcana",
@@ -8192,6 +9830,19 @@ window.equipmentData = [
     "SpriteId": "Casual_Back_18"
   },
   {
+    "Name": "Whirlwind Gem",
+    "EquipmentId": "Whirlwind Gem",
+    "Type": "Gem",
+    "Affix": "Whirlwind",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Whirlwind Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc Soldier",
+    "Droprate": "10.0%",
+    "Location": "Goblin Village",
+    "SpriteId": "gem",
+    "SourceLevel": 50
+  },
+  {
     "Name": "Whisper of Thorns",
     "EquipmentId": "Whisper of Thorns",
     "Type": "Pistol",
@@ -8222,6 +9873,19 @@ window.equipmentData = [
     "Droprate": null,
     "Location": "Abyss Castle Keep",
     "SpriteId": "Head_21"
+  },
+  {
+    "Name": "Wild Charge Gem",
+    "EquipmentId": "WildCharge Gem",
+    "Type": "Gem",
+    "Affix": "Wild Charge",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Wild Charge Damage: <color=#AAFF00FF>+2% per level</color>",
+    "Source": "Orc Warlock",
+    "Droprate": "10.0%",
+    "Location": "Goblin Warcamp",
+    "SpriteId": "gem",
+    "SourceLevel": 121
   },
   {
     "Name": "Wilderness Pack",
@@ -8270,6 +9934,19 @@ window.equipmentData = [
     "Droprate": "300.0%\n300.0%\n300.0%\n300.0%\n1500.0%\n",
     "Location": "Fairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen\nFairy Glen",
     "SpriteId": "V2_Wield_Gear_Right_1"
+  },
+  {
+    "Name": "Wind Gem",
+    "EquipmentId": "Wind Gem",
+    "Type": "Gem",
+    "Affix": "Wind",
+    "Description": "A gem infused with ancient essence. When embedded into an Artifact, it awakens hidden strength within its bearer.",
+    "PrimaryStats": "Wind Damage: <color=#AAFF00FF>+1% per level</color>",
+    "Source": "Raiju",
+    "Droprate": "30.0%",
+    "Location": "Windy Desert",
+    "SpriteId": "gem_2",
+    "SourceLevel": 35
   },
   {
     "Name": "Windcarver",
